@@ -65,6 +65,8 @@
     <NavigationProperty Name="tblLand2" Relationship="Self.FK_tblLandRule_tblDictionaryRule" FromRole="tblDictionary" ToRole="tblLand" />
     <NavigationProperty Name="tblLand3" Relationship="Self.FK_tblLandType_tblDictionaryType" FromRole="tblDictionary" ToRole="tblLand" />
     <NavigationProperty Name="tblLand4" Relationship="Self.FK_tblLandUnit_tblDictionaryUnit" FromRole="tblDictionary" ToRole="tblLand" />
+    <NavigationProperty Name="tblNews" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionary" FromRole="tblDictionary" ToRole="tblNews" />
+    <NavigationProperty Name="tblNews1" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime" FromRole="tblDictionary" ToRole="tblNews" />
   </EntityType>
   <EntityType Name="tblDistrict">
     <Key>
@@ -134,6 +136,12 @@
     <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CateId" Type="Int32" />
     <NavigationProperty Name="tblCategory" Relationship="WEBSITEBDSModel.FK_tblNews_tblCategory" FromRole="tblNews" ToRole="tblCategory" />
+    <Property Name="ProvinceId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="TimeId" Type="Int32" />
+    <NavigationProperty Name="tblDictionary" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionary" FromRole="tblNews" ToRole="tblDictionary" />
+    <NavigationProperty Name="tblDictionary1" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime" FromRole="tblNews" ToRole="tblDictionary" />
+    <NavigationProperty Name="tblProvince" Relationship="WEBSITEBDSModel.FK_tblNews_tblProvince" FromRole="tblNews" ToRole="tblProvince" />
   </EntityType>
   <EntityType Name="tblProject">
     <Key>
@@ -158,6 +166,7 @@
     <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblDistrict_tblProvince" FromRole="tblProvince" ToRole="tblDistrict" />
     <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblProvince" ToRole="tblLand" />
+    <NavigationProperty Name="tblNews" Relationship="WEBSITEBDSModel.FK_tblNews_tblProvince" FromRole="tblProvince" ToRole="tblNews" />
   </EntityType>
   <EntityType Name="tblWard">
     <Key>
@@ -376,6 +385,35 @@
       <End Role="tblCategory" EntitySet="tblCategory" />
       <End Role="tblNews" EntitySet="tblNews" />
     </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="WEBSITEBDSModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="WEBSITEBDSModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="WEBSITEBDSModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="WEBSITEBDSModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="WEBSITEBDSModel.AspNetUsers" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblDictionary" Association="WEBSITEBDSModel.FK_tblNews_tblDictionary">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblDictionaryTime" Association="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblProvince" Association="WEBSITEBDSModel.FK_tblNews_tblProvince">
+      <End Role="tblProvince" EntitySet="tblProvince" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="WEBSITEBDSModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_tblNews_tblCategory">
     <End Type="WEBSITEBDSModel.tblCategory" Role="tblCategory" Multiplicity="0..1" />
@@ -388,5 +426,132 @@
         <PropertyRef Name="CateId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="WEBSITEBDSModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="WEBSITEBDSModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="WEBSITEBDSModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNews_tblDictionary">
+    <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+    <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="CateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNews_tblDictionaryTime">
+    <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+    <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="TimeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNews_tblProvince">
+    <End Type="WEBSITEBDSModel.tblProvince" Role="tblProvince" Multiplicity="0..1" />
+    <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="WEBSITEBDSModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
   </Association>
 </Schema>

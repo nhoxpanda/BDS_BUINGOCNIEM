@@ -14,6 +14,19 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         private WEBSITEBDSEntities _db = new WEBSITEBDSEntities();
         public ActionResult Index()
         {
+            return View(_db.tblNews.OrderByDescending(p => p.CreateDate).ToList());
+        }
+
+        public ActionResult Create(tblNews model)
+        {
+            if (Request["btnSave"] != null)
+            {
+                model.CreateDate = DateTime.Now;
+                _db.tblNews.Add(model);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CateId = _db.tblDictionary.Where(p => p.CategoryId == 6).ToList();
             return View();
         }
     }

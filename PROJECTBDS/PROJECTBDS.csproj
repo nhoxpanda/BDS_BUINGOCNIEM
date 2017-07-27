@@ -2237,6 +2237,7 @@
     <Content Include="Areas\Admin\Views\CategoryNewsManage\_Partial_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryNewsManage\_Partial_Insert.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryNewsManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsManage\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2292,7 +2293,6 @@
     <Folder Include="Areas\Admin\Views\CompanyInfoManage\" />
     <Folder Include="Areas\Admin\Views\EventsManage\" />
     <Folder Include="Areas\Admin\Views\LandManage\" />
-    <Folder Include="Areas\Admin\Views\NewsManage\" />
     <Folder Include="Areas\Admin\Views\ProjectManage\" />
     <Folder Include="Content\ckeditor\plugins\autocorrect\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\base64image\dialogs\" />
