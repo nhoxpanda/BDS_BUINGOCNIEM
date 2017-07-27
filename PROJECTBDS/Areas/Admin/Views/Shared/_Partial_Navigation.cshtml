@@ -1,0 +1,69 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@(User.Identity.IsAuthenticated == true ? User.Identity.Name : "")</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="/admin/homeadmin">
+                    <i class="fa fa-dashboard"></i><span>DASHBOARD</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <span>TIN TỨC</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/NewsManage/Index">Tin tức</a></li>
+                    <li><a href="~/Admin/EventsManage/Index">Sự kiện</a></li>
+                    <li><a href="~/Admin/CategoryNewsManage/Index/6">Danh mục tin</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/9">Thời gian sự kiện</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <span>NHÀ ĐẤT</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/LandManage/Index">DS nhà đất</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/1">Loại BĐS</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/2">Loại giao dịch</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/3">Hướng nhà</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/4">Pháp lý</a></li>
+                    <li><a href="~/Admin/DictionaryManage/Index/5">Đơn vị</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <span>DỰ ÁN</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/ProjectManage/Index">DS dự án</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="~/Admin/CompanyInfoManage/Index">
+                    <span>THÔNG TIN CÔNG TY</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WEBSITEBDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="Delete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Contents" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Orders" Type="int" />
+  </EntityType>
+  <EntityType Name="tblConfig">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hotline" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Map" Type="nvarchar(max)" />
+    <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssuedPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="50" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="200" />
+    <Property Name="GooglePlus" Type="nvarchar" MaxLength="200" />
+    <Property Name="Youtube" Type="nvarchar" MaxLength="200" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="MetaKeyword" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblDictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="Delete" Type="bit" Nullable="false" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblDistrict">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProvinceId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Desc" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="MetaDesc" Type="nvarchar" MaxLength="500" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Area" Type="nvarchar" MaxLength="500" />
+    <Property Name="Road" Type="nvarchar" MaxLength="500" />
+    <Property Name="DirectionId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="UnitId" Type="int" />
+    <Property Name="TypeId" Type="int" />
+    <Property Name="ProvinceId" Type="int" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="WardId" Type="int" />
+    <Property Name="RuleId" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+    <Property Name="Map" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="xmap" Type="nvarchar" MaxLength="500" />
+    <Property Name="ymap" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblNews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Contents" Type="nvarchar(max)" />
+    <Property Name="Desc" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="MetaDesc" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="CateId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Desc" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Delete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblProvince">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblWard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="DistrictId" Type="int" />
+  </EntityType>
+  <Association Name="FK_tblDictionary_tblCategory">
+    <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDictionary">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDistrict_tblProvince">
+    <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+    <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDistrict">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLand_tblDistrict">
+    <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDistrict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLand_tblProject">
+    <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLand_tblProvince">
+    <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLand_tblWard">
+    <End Role="tblWard" Type="Self.tblWard" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="WardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLandCategory_tblDictionaryCategory">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLandDirection_tblDictionaryDirection">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLandRule_tblDictionaryRule">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="RuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLandType_tblDictionaryType">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLandUnit_tblDictionaryUnit">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblLand">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNews_tblCategory">
+    <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+    <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="CateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWard_tblDistrict">
+    <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+    <End Role="tblWard" Type="Self.tblWard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDistrict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWard">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WEBSITEBDSModelStoreContainer">
+    <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLand" EntityType="Self.tblLand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProvince" EntityType="Self.tblProvince" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWard" EntityType="Self.tblWard" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblDictionary_tblCategory" Association="Self.FK_tblDictionary_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategory" />
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDistrict_tblProvince" Association="Self.FK_tblDistrict_tblProvince">
+      <End Role="tblProvince" EntitySet="tblProvince" />
+      <End Role="tblDistrict" EntitySet="tblDistrict" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLand_tblDistrict" Association="Self.FK_tblLand_tblDistrict">
+      <End Role="tblDistrict" EntitySet="tblDistrict" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLand_tblProject" Association="Self.FK_tblLand_tblProject">
+      <End Role="tblProject" EntitySet="tblProject" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLand_tblProvince" Association="Self.FK_tblLand_tblProvince">
+      <End Role="tblProvince" EntitySet="tblProvince" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLand_tblWard" Association="Self.FK_tblLand_tblWard">
+      <End Role="tblWard" EntitySet="tblWard" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLandCategory_tblDictionaryCategory" Association="Self.FK_tblLandCategory_tblDictionaryCategory">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLandDirection_tblDictionaryDirection" Association="Self.FK_tblLandDirection_tblDictionaryDirection">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLandRule_tblDictionaryRule" Association="Self.FK_tblLandRule_tblDictionaryRule">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLandType_tblDictionaryType" Association="Self.FK_tblLandType_tblDictionaryType">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLandUnit_tblDictionaryUnit" Association="Self.FK_tblLandUnit_tblDictionaryUnit">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblLand" EntitySet="tblLand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblCategory" Association="Self.FK_tblNews_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategory" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
+      <End Role="tblDistrict" EntitySet="tblDistrict" />
+      <End Role="tblWard" EntitySet="tblWard" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

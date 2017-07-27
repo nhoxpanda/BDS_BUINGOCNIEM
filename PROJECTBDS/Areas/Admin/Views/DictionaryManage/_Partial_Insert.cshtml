@@ -1,0 +1,32 @@
+﻿@model PROJECTBDS.Models.tblDictionary
+
+<div id="modal-insert" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("Create", "DictionaryManage"))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thêm mới</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12">Tên</label>
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                <input type="hidden" value="@ViewBag.ID" name="CategoryId" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="padding-top: 20px">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-danger" name="btnLuu">Lưu</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

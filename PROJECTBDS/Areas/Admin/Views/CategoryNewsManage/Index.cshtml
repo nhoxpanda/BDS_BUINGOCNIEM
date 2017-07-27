@@ -1,0 +1,105 @@
+﻿@using PROJECTBDS.Models
+@model IEnumerable<tblDictionary>
+
+@{
+    var dic = ViewBag.tblCategory as tblCategory;
+    ViewBag.Title = "Danh sách " + dic.Title;
+}
+
+<section class="content-header">
+    <h1>
+        Danh sách @ViewBag.Title
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách @ViewBag.Title</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "CategoryNewsManage", new { id = dic.Id })" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <button onclick="insertItem(@dic.Id)" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px">#</th>
+                                <th>@dic.Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model)
+                            {
+                                <tr id="rowItem@(c.Id)">
+                                    <td style="width: 100px">
+                                        <a class="cursorpointer" onclick="editItem(@c.Id)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a> |
+                                        <a class="cursorpointer" onclick="deleteItem(@c.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                    </td>
+                                    <td>@c.Title</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="data-item"></div>
+
+@section scripts{
+    <script>
+        function deleteItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/CategoryNewsManage/Delete',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#rowItem" + id).hide();
+                }
+            });
+        }
+
+        function editItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/CategoryNewsManage/Edit',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-item").html(data);
+                    $("#modal-edit").modal("show");
+                }
+            });
+        }
+
+        function insertItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/CategoryNewsManage/Insert',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-item").html(data);
+                    $("#modal-insert").modal("show");
+                }
+            });
+        }
+
+    </script>
+}

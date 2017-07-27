@@ -1,0 +1,1351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WEBSITEBDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaDesc" Type="nvarchar(max)" />
+          <Property Name="Orders" Type="int" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Contents" Type="nvarchar(max)" />
+          <Property Name="MetaDesc" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Orders" Type="int" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hotline" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Map" Type="nvarchar(max)" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IssuedPlace" Type="nvarchar" MaxLength="50" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="GooglePlus" Type="nvarchar" MaxLength="200" />
+          <Property Name="Youtube" Type="nvarchar" MaxLength="200" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaDesc" Type="nvarchar(max)" />
+          <Property Name="MetaKeyword" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaDesc" Type="nvarchar(max)" />
+          <Property Name="Orders" Type="int" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProvinceId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="MetaDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Area" Type="nvarchar" MaxLength="500" />
+          <Property Name="Road" Type="nvarchar" MaxLength="500" />
+          <Property Name="DirectionId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="WardId" Type="int" />
+          <Property Name="RuleId" Type="int" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+          <Property Name="Map" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="xmap" Type="nvarchar" MaxLength="500" />
+          <Property Name="ymap" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Contents" Type="nvarchar(max)" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="MetaDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="CateId" Type="int" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="TimeId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaDesc" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProvince">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblWard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="DistrictId" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDictionary_tblCategory">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDictionary">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDistrict_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDistrict">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblWard">
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandCategory_tblDictionaryCategory">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandDirection_tblDictionaryDirection">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="DirectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandRule_tblDictionaryRule">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="RuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandType_tblDictionaryType">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandUnit_tblDictionaryUnit">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblDictionary">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="CateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblDictionaryTime">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWard_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblWard">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBSITEBDSModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLand" EntityType="Self.tblLand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProvince" EntityType="Self.tblProvince" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWard" EntityType="Self.tblWard" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDictionary_tblCategory" Association="Self.FK_tblDictionary_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDistrict_tblProvince" Association="Self.FK_tblDistrict_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblDistrict" Association="Self.FK_tblLand_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblProject" Association="Self.FK_tblLand_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblProvince" Association="Self.FK_tblLand_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblWard" Association="Self.FK_tblLand_tblWard">
+            <End Role="tblWard" EntitySet="tblWard" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandCategory_tblDictionaryCategory" Association="Self.FK_tblLandCategory_tblDictionaryCategory">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandDirection_tblDictionaryDirection" Association="Self.FK_tblLandDirection_tblDictionaryDirection">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandRule_tblDictionaryRule" Association="Self.FK_tblLandRule_tblDictionaryRule">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandType_tblDictionaryType" Association="Self.FK_tblLandType_tblDictionaryType">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandUnit_tblDictionaryUnit" Association="Self.FK_tblLandUnit_tblDictionaryUnit">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblDictionary" Association="Self.FK_tblNews_tblDictionary">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblDictionaryTime" Association="Self.FK_tblNews_tblDictionaryTime">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblProvince" Association="Self.FK_tblNews_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblWard" EntitySet="tblWard" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEBSITEBDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblDictionary_tblCategory" FromRole="tblCategory" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblNews" Relationship="WEBSITEBDSModel.FK_tblNews_tblCategory" FromRole="tblCategory" ToRole="tblNews" />
+        </EntityType>
+        <EntityType Name="tblCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Orders" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Map" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GooglePlus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.FK_tblDictionary_tblCategory" FromRole="tblDictionary" ToRole="tblCategory" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLandCategory_tblDictionaryCategory" FromRole="tblDictionary" ToRole="tblLand" />
+          <NavigationProperty Name="tblLand1" Relationship="Self.FK_tblLandDirection_tblDictionaryDirection" FromRole="tblDictionary" ToRole="tblLand" />
+          <NavigationProperty Name="tblLand2" Relationship="Self.FK_tblLandRule_tblDictionaryRule" FromRole="tblDictionary" ToRole="tblLand" />
+          <NavigationProperty Name="tblLand3" Relationship="Self.FK_tblLandType_tblDictionaryType" FromRole="tblDictionary" ToRole="tblLand" />
+          <NavigationProperty Name="tblLand4" Relationship="Self.FK_tblLandUnit_tblDictionaryUnit" FromRole="tblDictionary" ToRole="tblLand" />
+          <NavigationProperty Name="tblNews" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionary" FromRole="tblDictionary" ToRole="tblNews" />
+          <NavigationProperty Name="tblNews1" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime" FromRole="tblDictionary" ToRole="tblNews" />
+        </EntityType>
+        <EntityType Name="tblDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblDistrict_tblProvince" FromRole="tblDistrict" ToRole="tblProvince" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblDistrict" FromRole="tblDistrict" ToRole="tblLand" />
+          <NavigationProperty Name="tblWard" Relationship="Self.FK_tblWard_tblDistrict" FromRole="tblDistrict" ToRole="tblWard" />
+        </EntityType>
+        <EntityType Name="tblLand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Road" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DirectionId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="WardId" Type="Int32" />
+          <Property Name="RuleId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Map" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblLandCategory_tblDictionaryCategory" FromRole="tblLand" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary1" Relationship="Self.FK_tblLandDirection_tblDictionaryDirection" FromRole="tblLand" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary2" Relationship="Self.FK_tblLandRule_tblDictionaryRule" FromRole="tblLand" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary3" Relationship="Self.FK_tblLandType_tblDictionaryType" FromRole="tblLand" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary4" Relationship="Self.FK_tblLandUnit_tblDictionaryUnit" FromRole="tblLand" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblLand_tblDistrict" FromRole="tblLand" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblProject" Relationship="Self.FK_tblLand_tblProject" FromRole="tblLand" ToRole="tblProject" />
+          <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblLand" ToRole="tblProvince" />
+          <NavigationProperty Name="tblWard" Relationship="Self.FK_tblLand_tblWard" FromRole="tblLand" ToRole="tblWard" />
+          <Property Name="xmap" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ymap" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CateId" Type="Int32" />
+          <NavigationProperty Name="tblCategory" Relationship="WEBSITEBDSModel.FK_tblNews_tblCategory" FromRole="tblNews" ToRole="tblCategory" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="TimeId" Type="Int32" />
+          <NavigationProperty Name="tblDictionary" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionary" FromRole="tblNews" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary1" Relationship="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime" FromRole="tblNews" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblProvince" Relationship="WEBSITEBDSModel.FK_tblNews_tblProvince" FromRole="tblNews" ToRole="tblProvince" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProject" FromRole="tblProject" ToRole="tblLand" />
+        </EntityType>
+        <EntityType Name="tblProvince">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblDistrict_tblProvince" FromRole="tblProvince" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblProvince" ToRole="tblLand" />
+          <NavigationProperty Name="tblNews" Relationship="WEBSITEBDSModel.FK_tblNews_tblProvince" FromRole="tblProvince" ToRole="tblNews" />
+        </EntityType>
+        <EntityType Name="tblWard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="Int32" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblWard_tblDistrict" FromRole="tblWard" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblWard" FromRole="tblWard" ToRole="tblLand" />
+        </EntityType>
+        <Association Name="FK_tblDictionary_tblCategory">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDictionary">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandCategory_tblDictionaryCategory">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandDirection_tblDictionaryDirection">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="DirectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandRule_tblDictionaryRule">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="RuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandType_tblDictionaryType">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandUnit_tblDictionaryUnit">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDistrict_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDistrict">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWard_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblWard">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblWard">
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBSITEBDSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblCompany" EntityType="Self.tblCompany" />
+          <EntitySet Name="tblConfig" EntityType="Self.tblConfig" />
+          <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" />
+          <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" />
+          <EntitySet Name="tblLand" EntityType="Self.tblLand" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" />
+          <EntitySet Name="tblProject" EntityType="Self.tblProject" />
+          <EntitySet Name="tblProvince" EntityType="Self.tblProvince" />
+          <EntitySet Name="tblWard" EntityType="Self.tblWard" />
+          <AssociationSet Name="FK_tblDictionary_tblCategory" Association="Self.FK_tblDictionary_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandCategory_tblDictionaryCategory" Association="Self.FK_tblLandCategory_tblDictionaryCategory">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandDirection_tblDictionaryDirection" Association="Self.FK_tblLandDirection_tblDictionaryDirection">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandRule_tblDictionaryRule" Association="Self.FK_tblLandRule_tblDictionaryRule">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandType_tblDictionaryType" Association="Self.FK_tblLandType_tblDictionaryType">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandUnit_tblDictionaryUnit" Association="Self.FK_tblLandUnit_tblDictionaryUnit">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDistrict_tblProvince" Association="Self.FK_tblDistrict_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblDistrict" Association="Self.FK_tblLand_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblWard" EntitySet="tblWard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblProject" Association="Self.FK_tblLand_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblProvince" Association="Self.FK_tblLand_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblWard" Association="Self.FK_tblLand_tblWard">
+            <End Role="tblWard" EntitySet="tblWard" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblCategory" Association="WEBSITEBDSModel.FK_tblNews_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="WEBSITEBDSModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="WEBSITEBDSModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="WEBSITEBDSModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="WEBSITEBDSModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="WEBSITEBDSModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblDictionary" Association="WEBSITEBDSModel.FK_tblNews_tblDictionary">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblDictionaryTime" Association="WEBSITEBDSModel.FK_tblNews_tblDictionaryTime">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNews_tblProvince" Association="WEBSITEBDSModel.FK_tblNews_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="WEBSITEBDSModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblNews_tblCategory">
+          <End Type="WEBSITEBDSModel.tblCategory" Role="tblCategory" Multiplicity="0..1" />
+          <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="CateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="WEBSITEBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="WEBSITEBDSModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WEBSITEBDSModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WEBSITEBDSModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblDictionary">
+          <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="CateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblDictionaryTime">
+          <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNews_tblProvince">
+          <End Type="WEBSITEBDSModel.tblProvince" Role="tblProvince" Multiplicity="0..1" />
+          <End Type="WEBSITEBDSModel.tblNews" Role="tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="WEBSITEBDSModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="WEBSITEBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBSITEBDSModelStoreContainer" CdmEntityContainer="WEBSITEBDSEntities">
+          <EntitySetMapping Name="tblCategory">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompany">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCompany">
+              <MappingFragment StoreEntitySet="tblCompany">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConfig">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblConfig">
+              <MappingFragment StoreEntitySet="tblConfig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="IssuedPlace" ColumnName="IssuedPlace" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDictionary">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDictionary">
+              <MappingFragment StoreEntitySet="tblDictionary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDistrict">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDistrict">
+              <MappingFragment StoreEntitySet="tblDistrict">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLand">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblLand">
+              <MappingFragment StoreEntitySet="tblLand">
+                <ScalarProperty Name="ymap" ColumnName="ymap" />
+                <ScalarProperty Name="xmap" ColumnName="xmap" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Road" ColumnName="Road" />
+                <ScalarProperty Name="DirectionId" ColumnName="DirectionId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+                <ScalarProperty Name="RuleId" ColumnName="RuleId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNews">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblNews">
+              <MappingFragment StoreEntitySet="tblNews">
+                <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CateId" ColumnName="CateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProject">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProvince">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProvince">
+              <MappingFragment StoreEntitySet="tblProvince">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWard">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblWard">
+              <MappingFragment StoreEntitySet="tblWard">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="WEBSITEBDSModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="WEBSITEBDSModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
