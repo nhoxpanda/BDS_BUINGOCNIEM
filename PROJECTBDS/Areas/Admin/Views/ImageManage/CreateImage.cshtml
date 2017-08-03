@@ -1,0 +1,89 @@
+﻿@model PROJECTBDS.Models.tblImage
+@{
+    ViewBag.Title = "Thêm mới";
+}
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<section class="content-header">
+    <h1>
+        Thêm mới image
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Thêm mới image</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm("CreateImage", "ImageManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Tiêu đề</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Ảnh</label>
+                                        <div class="col-lg-4 col-md-4">
+
+                                            <img src="" id="_Image" style="width:100px;height:100px;border:1px solid #ff6a00" />
+                                            <input name="url" id="url" style="display:none" /><input type="button" class="btn btn-n" onclick="openfile()" value="Open">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Loại ảnh</label>
+                                        <div class="col-lg-4 col-md-4">
+
+                                            @Html.DropDownListFor(model => model.DictionaryId, ViewBag.DictionaryId as List<SelectListItem>, new { name = "Title", id = "DictionaryId", @class = "selectpicker" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Order</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(model => model.Orders, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                 
+                                    <div class="form-group">
+                                        <div class="col-lg-10 col-md-10 col-md-offset-2">
+                                            <button class="btn  btn-success" name="btnSave" type="submit">Lưu lại</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="~/Areas/Admin/Content/JS/bootstrap-select.min.js"></script>
+    <script>
+        function openfile() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#_Image').attr('src', fileUrl);
+             $('#url').val(fileUrl);
+        }
+    </script>
+}
+
+
+
+@section style{
+    <link href="~/Areas/Admin/Content/Css/bootstrap-select.min.css" rel="stylesheet" />
+}
+

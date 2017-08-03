@@ -19,7 +19,6 @@ namespace PROJECTBDS
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/footer").Include(
-                        "~/Content/bootstrap/js/bootstrap.min.js",
                         "~/Content/plugins/datepicker/bootstrap-datepicker.js",
                         "~/Content/plugins/slimScroll/jquery.slimscroll.min.js",
                         "~/Content/plugins/fastclick/fastclick.js",

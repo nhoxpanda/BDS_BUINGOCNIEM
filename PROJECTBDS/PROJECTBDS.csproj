@@ -81,6 +81,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -207,9 +215,11 @@
     <Compile Include="Areas\Admin\Controllers\DictionaryManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\EventsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImageManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\LandManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectManageController.cs" />
+    <Compile Include="Areas\Admin\Models\ImageManage.cs" />
     <Compile Include="Areas\Admin\Models\LoadDataAdmin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,72 +228,70 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BDSdb.Context.cs">
+    <Compile Include="Models\db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BDSdb.Context.tt</DependentUpon>
+      <DependentUpon>db.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BDSdb.cs">
+    <Compile Include="Models\db.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BDSdb.Designer.cs">
+    <Compile Include="Models\db.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BDSdb.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\tblCategory.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblCompany.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblConfig.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDictionary.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDistrict.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblImage.cs">
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblLand.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblNews.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProject.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProjectDetail.cs">
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProvince.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblWard.cs">
-      <DependentUpon>BDSdb.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\Css\bootstrap-select.css" />
+    <Content Include="Areas\Admin\Content\Css\bootstrap-select.min.css" />
+    <Content Include="Areas\Admin\Content\Css\slidemuti.css" />
+    <Content Include="Areas\Admin\Content\Css\StyleSheet1.css" />
+    <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker.min.js" />
+    <Content Include="Areas\Admin\Content\JS\bootstrap-select.min.js" />
+    <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker-plus.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -1315,6 +1323,7 @@
     <Content Include="Content\font-awesome-4.4.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.4.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.4.0\HELP-US-OUT.txt" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -2118,29 +2127,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\BDSdb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDSdb.edmx</DependentUpon>
-      <LastGenOutput>BDSdb.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BDSdb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDSdb.edmx</DependentUpon>
-      <LastGenOutput>BDSdb.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
-    <EntityDeploy Include="Models\BDSdb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BDSdb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BDSdb.edmx.diagram">
-      <DependentUpon>BDSdb.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Partial_Header.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Partial_Navigation.cshtml" />
@@ -2238,6 +2230,44 @@
     <Content Include="Areas\Admin\Views\CategoryNewsManage\_Partial_Insert.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryNewsManage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NewsManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsManage\Index.cshtml" />
+    <EntityDeploy Include="Models\db.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\db.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db.edmx</DependentUpon>
+      <LastGenOutput>db.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\db.edmx.diagram">
+      <DependentUpon>db.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db.edmx</DependentUpon>
+      <LastGenOutput>db.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Admin\Views\NewsManage\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\EventsManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EventsManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\EventsManage\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\CompanyInfoManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CompanyInfoManage\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\CompanyInfoManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LandManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LandManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LandManage\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\CreateProject.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\EditProject.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\CreateDetailProject.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\EditDetailProject.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectManage\DetailProject.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageManage\_PartialListImage.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageManage\CreateImage.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageManage\_PartialEditImage.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2290,10 +2320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\CompanyInfoManage\" />
-    <Folder Include="Areas\Admin\Views\EventsManage\" />
-    <Folder Include="Areas\Admin\Views\LandManage\" />
-    <Folder Include="Areas\Admin\Views\ProjectManage\" />
     <Folder Include="Content\ckeditor\plugins\autocorrect\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\base64image\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\bootstrapVisibility\" />

@@ -1,0 +1,146 @@
+﻿@model PROJECTBDS.Models.tblProject
+
+@{
+    ViewBag.Title = "Chỉnh sửa dự án";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<section class="content-header">
+    <h1>
+        sửa
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">update</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm("EditProject","ProjectManage" ,FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <label class="control-label col-lg-4 col-md-4">Tiêu đề</label>
+                                                <div class="col-lg-8 col-md-8">
+                                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                                </div>
+                                                <br /><br /><br />
+                                                <label class="control-label col-lg-4 col-md-4 ">MetaDesc</label>
+                                                <div class="col-lg-8 col-md-8">
+                                                    @Html.TextBoxFor(model => model.MetaDesc, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.HiddenFor(model => model.Desc)
+                                        @Html.HiddenFor(model => model.Delete)
+                                        @Html.HiddenFor(model=>model.CreateDate)
+                                        <div class="col-md-6">
+                                            <label class="control-label col-lg-4 col-md-4">Image</label>
+                                            <div class="col-lg8 col-md-8">
+                                                <img src="@Model.Image" style="width:100px; height:100px; border:1px solid #0094ff" id="_Image" title="Image đại diện" />
+                                                <input type="button" class="btn btn-danger" onclick="openfile()" value="open" />
+                                                @Html.HiddenFor(model => model.Image)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Mô tả</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Ảnh</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            <input type="file" name="ListImage" id="ListImage" multiple class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            @foreach (var item in ViewBag.LsImage)
+                                            {
+
+                                                <div style="width:70px;height:100px; text-align:center; float:left" id="Image_@item.Id">
+                                                    <img style="width:70px; height:70px" src="@item.URL" />
+                                                    <input class="btn btn-success" value="Xóa" type="button" onclick="DeleteImage(@item.Id)"/>
+                                                </div>
+
+                                            }
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        CKEDITOR.replace("Content");
+        function openfile() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#_Image').attr('src', fileUrl);
+            $('#Image').val(fileUrl);
+        }
+
+        function DeleteImage(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ImageManage/DeleteImage',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#Image_" + id).remove();
+                }
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+﻿@model PROJECTBDS.Models.tblNews
+@{
+    ViewBag.Title = "Cập nhập";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<section class="content-header">
+    <h1>
+        Cập nhập
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"> Cập nhập</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm("Update", "CompanyInfoManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="box-header">
+                        <div class="callout callout-info lead">
+                            <a href="@Url.Action("Create", "CompanyInfoManage", new { id = Convert.ToInt32(Session["idCate"]) })" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                            <button class="btn btn-danger" id="btnSave" name="btnSave"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Tiêu đề</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.HiddenFor(model => model.Id)
+                                            @Html.HiddenFor(model => model.CreateDate)
+                                            @Html.HiddenFor(model => model.CateId)
+                                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Hình đại diện</label>
+                                        <div class="col-lg-4 col-md-4">
+
+                                            <img src="" id="_Image" style="width:100px;height:100px;border:1px solid #ff6a00" />
+                                            <input name="Image" id="Image" style="display:none" /><input type="button" class="btn btn-n" onclick="openfile()" value="Open">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Meta Title</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Meta Description</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.MetaDesc, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Mô tả</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.Desc, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Nội dung</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.Contents, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-10 col-md-10 col-md-offset-2">
+                                            <button class="btn  btn-success" name="btnSave" type="submit">Lưu lại</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        CKEDITOR.replace("Contents");
+        function openfile() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#_Image').attr('src', fileUrl);
+             $('#Image').val(fileUrl);
+        }
+    </script>
+}

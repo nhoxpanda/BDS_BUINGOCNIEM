@@ -1,0 +1,124 @@
+﻿
+@using PROJECTBDS.Models;
+@model List<PROJECTBDS.Models.tblImage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Quản Lý Hình Ảnh
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"> Quản Lý Hình Ảnh</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "ImageManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a class="btn btn-success" href="@Url.Action("CreateImage", "ImageManage")"><i class="fa fa-plus"></i>Thêm mới</a>
+                    </div>
+                </div>
+
+                <div class="box-body" id="data-customer">
+                    <div class="col-md-12 text-center" style="padding-bottom:30px">
+                        <select class="selectpicker show-menu-arrow" name="ID_Type" id="loaiImage">
+                            @foreach (var item in ViewBag.LoaiImage)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                   <div id="output"></div>
+                    <div id="edit"></div>
+                </div>
+                <div id='Paging' style="text-align: right; padding-right:10px">
+                    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page, query = ViewBag.query }))*@
+                </div>
+            </div>
+        </div>
+    </div>
+    @*ViewBag.query = query;
+        ViewBag.CategoryId = CategoryId;*@
+</section>
+@section style{
+<link href="~/Areas/Admin/Content/Css/bootstrap-select.min.css" rel="stylesheet" />
+}
+@section scripts {
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script src="~/Areas/Admin/Content/JS/bootstrap-select.min.js"></script>
+    <script>
+
+        $('#loaiImage').change(function () {
+            var id = $(this).val();
+            Loaddata(id);
+        })
+        function Loaddata(id)
+        {
+            var dataPost = {id: id };
+            $.ajax({
+                type: "get",
+                url: '/Admin/ImageManage/LoadImage',
+                data: "id="+id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#output").html(data)
+                },
+                error: function (errorData) { onError(errorData); 
+            }
+            });
+        }
+        $(document).ready(function () {
+            var id = $('#loaiImage').val();
+            Loaddata(id)
+
+        })
+        function deletePost(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ImageManage/DeleteImage',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#post" + id).fadeOut();
+                }
+            });
+        }
+
+        function EditImage(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ImageManage/EditImage',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#edit").html(data);
+                    $("#modal-edit").modal("show");
+                }
+            });
+        }
+        function openfile() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#_Image').attr('src', fileUrl);
+            $('#URL').val(fileUrl);
+        }
+    </script>
+
+}

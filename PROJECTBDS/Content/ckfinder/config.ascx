@@ -27,8 +27,8 @@
 	{
 		// Paste your license name and key here. If left blank, CKFinder will
 		// be fully functional, in Demo Mode.
-		LicenseName = "";
-		LicenseKey = "";
+        LicenseName = "LinhComputer";
+        LicenseKey = "AY3466PS2M189S3VK23KK2G5MG677KGB";
 
 		// The base URL used to reach files in CKFinder through the browser.
         BaseUrl = "~/Images/News/";

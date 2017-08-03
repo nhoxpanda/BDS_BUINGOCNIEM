@@ -18,7 +18,6 @@ namespace PROJECTBDS.Models
         public tblCategory()
         {
             this.tblDictionary = new HashSet<tblDictionary>();
-            this.tblNews = new HashSet<tblNews>();
         }
     
         public int Id { get; set; }
@@ -30,7 +29,5 @@ namespace PROJECTBDS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDictionary> tblDictionary { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblNews> tblNews { get; set; }
     }
 }

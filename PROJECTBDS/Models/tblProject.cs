@@ -18,6 +18,8 @@ namespace PROJECTBDS.Models
         public tblProject()
         {
             this.tblLand = new HashSet<tblLand>();
+            this.tblProjectDetail = new HashSet<tblProjectDetail>();
+            this.tblImage = new HashSet<tblImage>();
         }
     
         public int Id { get; set; }
@@ -32,5 +34,9 @@ namespace PROJECTBDS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblProjectDetail> tblProjectDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImage> tblImage { get; set; }
     }
 }

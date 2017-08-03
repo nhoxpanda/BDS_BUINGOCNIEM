@@ -14,6 +14,12 @@ namespace PROJECTBDS.Models
     
     public partial class tblLand
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblLand()
+        {
+            this.tblImage = new HashSet<tblImage>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Desc { get; set; }
@@ -53,5 +59,7 @@ namespace PROJECTBDS.Models
         public virtual tblProject tblProject { get; set; }
         public virtual tblProvince tblProvince { get; set; }
         public virtual tblWard tblWard { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImage> tblImage { get; set; }
     }
 }

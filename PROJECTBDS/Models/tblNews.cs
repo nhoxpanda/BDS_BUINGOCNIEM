@@ -27,7 +27,6 @@ namespace PROJECTBDS.Models
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> TimeId { get; set; }
     
-        public virtual tblCategory tblCategory { get; set; }
         public virtual tblDictionary tblDictionary { get; set; }
         public virtual tblDictionary tblDictionary1 { get; set; }
         public virtual tblProvince tblProvince { get; set; }

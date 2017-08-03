@@ -1,0 +1,212 @@
+﻿@model PROJECTBDS.Models.tblLand
+@{
+    ViewBag.Title = "Thêm mới";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<section class="content-header">
+    <h1>
+        Thêm mới
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-header">
+                        <div class="callout callout-info lead">
+                            <a href="@Url.Action("Create", "EventsManage", new { id = Convert.ToInt32(Session["idCate"]) })" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                            <button class="btn btn-danger" id="btnSave" name="btnSave"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <label class="control-label col-lg-4 col-md-4">Tiêu đề</label>
+                                                <div class="col-lg-8 col-md-8">
+                                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                                </div>
+                                                <br /><br /><br />
+                                                <label class="control-label col-lg-4 col-md-4 ">MetaDesc</label>
+                                                <div class="col-lg-8 col-md-8">
+                                                    @Html.TextBoxFor(model => model.MetaDesc, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.HiddenFor(model => model.Code)
+                                        @Html.HiddenFor(model => model.Area)
+                                        @Html.HiddenFor(model => model.Name)
+                                        @Html.HiddenFor(model => model.Email)
+                                        @Html.HiddenFor(model => model.Phone)
+                                        @Html.HiddenFor(model => model.Avatar)
+                                        @Html.HiddenFor(model => model.Map)
+                                        @Html.HiddenFor(model => model.xmap)
+                                        @Html.HiddenFor(model => model.ymap)
+                                        <div class="col-md-6">
+                                            <label class="control-label col-lg-4 col-md-4">Image</label>
+                                            <div class="col-lg8 col-md-8">
+                                                <img src="@Model.Image" style="width:100px; height:100px; border:1px solid #0094ff" id="_Image" title="Image đại diện" />
+                                                <input type="button" class="btn btn-danger" onclick="openfile()" value="open" />
+                                                @Html.HiddenFor(model => model.Image)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Chọn dự án</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.ProjectId, ViewBag.ProjectId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Pháp Lý</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.RuleId, ViewBag.RuleId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Đường rộng</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Road, new { @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Hướng nhà</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.DirectionId, ViewBag.DirectionId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Loại giao dịch</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.TypeId, ViewBag.TypeId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Loại bất động sản</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.CategoryId, ViewBag.CategoryId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Xã(Phường)</label>
+                                        <div class="col-lg-2 col-md-2">
+                                            @Html.DropDownListFor(model => model.WardId, ViewBag.WardId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Huyện (Quận)</label>
+                                        <div class="col-lg-2 col-md-2">
+                                            @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Tỉnh (Thành)</label>
+                                        <div class="col-lg-2 col-md-2">
+                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Địa chỉ</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Giá</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Mô tả</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Ảnh</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            <input type="file" name="ListImage" id="ListImage" multiple class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            @foreach (var item in ViewBag.LsImage)
+                                            {
+
+                                                <div style="width:70px;height:100px; text-align:center; float:left" id="Image_@item.Id">
+                                                    <img style="width:70px; height:70px" src="@item.URL" />
+                                                    <a href="#" onclick="DeleteImage(@item.Id)">Xóa</a>
+                                                </div>
+
+                                            }
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        CKEDITOR.replace("Content");
+        function openfile() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#_Image').attr('src', fileUrl);
+            $('#Image').val(fileUrl);
+        }
+        function hide_image(id)
+        {
+            $(id).css("Display", "none");
+        }
+        function DeleteImage(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ImageManage/DeleteImage',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#Image_" + id).remove();
+                }
+            });
+        }
+        </script>
+}
+

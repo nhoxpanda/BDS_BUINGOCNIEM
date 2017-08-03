@@ -1,0 +1,79 @@
+﻿@model PROJECTBDS.Models.tblProjectDetail
+@{
+    ViewBag.Title = "Thêm mới";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<section class="content-header">
+    <h1>
+        Thêm mới
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model=>model.Id)
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Chọn dự án</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.ProjectId, ViewBag.ProjectId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Đầu mục</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.DictionaryId, ViewBag.DictionaryId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Tiêu đề</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <br /><br /><br />
+                                        <label class="control-label col-lg-2 col-md-2 ">MetaDesc</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Orders, new { @class = "form-control", required = "required" })
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" >
+                                        <label class="control-label col-lg-2 col-md-2">Mô tả</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(model => model.Content, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        CKEDITOR.replace("Content");
+    </script>
+}
+
