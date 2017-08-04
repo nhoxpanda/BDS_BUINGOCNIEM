@@ -1,44 +1,298 @@
-﻿<!DOCTYPE html>
+﻿@using PROJECTBDS.Helpers
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="alternate" href="@domain" hreflang="vi-vn">
+    <link rel="canonical" href="@domain" itemprop="url">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/homepage")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body style="zoom: 1;">
+    <div class="bg-menu-black"></div>
+    <div class="mobile-bg">
+        <div class="">
+            <div class="menu-mobile">
+                <a href="/#"><img class="menu-icon" src="/Content/assets/img/menu-mobile.svg" alt=""></a>
+                <a href="/"><img class="logo" src="/Content/assets/img/logo.svg" alt=""></a>
+                <a href="/dang-nhap"><img class="dangtin-r" src="/Content/assets/img/right-dangtin.svg" alt=""></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="bg-showmenu">
+                <div class="menu-popup">
+                    <div class="social-mobile">
+                        <a target="_blank" rel="nofollow" href="skype:jsgiang?chat"><span class="icon-social-buttons-skype"></span></a>
+                        <a target="_blank" rel="nofollow" href=""><span class="icon-facebook-logo"></span></a>
+                        <a target="_blank" rel="nofollow" href=""><span class="icon-google-plus-social-logotype"></span></a>
+                        <a target="_blank" rel="nofollow" href=""><span class="icon-youtube-play-button"></span></a>
+                        <a href="/"><img class="search-mobile" src="/Content/assets/img/search-mobile.svg" alt=""></a>
+                        <a class="close-r" href="/#"><img class="close-r" src="/Content/assets/img/close-menu.svg" alt=""></a>
+                    </div>
+                    <div class="login-menu">
+                        <a rel="nofollow" href="/dang-nhap">Đăng nhập</a>|
+                        <a rel="nofollow" href="/dang-ky">Đăng ký</a>
+                    </div>
+                    <div class="menu-mobile2">
+                        <a class="menu-default" href="/">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Sàn giao dịch bất sản Sunland">
+                            Trang chủ
+                        </a>
+                        <a class="menu-realestate" href="/sieu-thi-dia-oc">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Siêu thị dự án">
+                            Siêu thị địa ốc
+                        </a>
+                        <a class="menu-projects" href="/du-an">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Dự án bất động sản mới">
+                            Dự án
+                        </a>
+                        <a class="menu-about" href="/gioi-thieu">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Giới thiệu sàn giao dịch bất động sản Sunland">
+                            Giới thiệu
+                        </a>
+                        <a class="menu-news" href="/tin-tuc">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Tin bất dộng sản, khuyến mãi">
+                            Tin BĐS - Khuyến mãi
+                        </a>
+                        <a class="menu-events" href="/su-kien">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Sự kiện bất động sản trong tuần">
+                            Sự kiện
+                        </a>
+                        <a class="menu-contact" href="/lien-he">
+                            <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Liên hệ giao dịch BĐS">
+                            Liên hệ
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="tophead">
+        <div class="container">
+            <div class="right-top">
+                <div class="login">
+                    <a rel="nofollow" href="/dang-nhap">Đăng nhập</a>
+                    <a rel="nofollow" href="/dang-ky">Đăng ký</a>
+                </div>
+                <div class="social">
+                    <a target="_blank" rel="nofollow" href="skype:jsgiang?chat"><span class="icon-social-buttons-skype"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/sunlandsg/"><span class="icon-facebook-logo"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+SunlandH%E1%BB%93Ch%C3%ADMinh"><span class="icon-google-plus-social-logotype"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://www.youtube.com/channel/UCo_caVoxyXoGbQrxNAHhQVw"><span class="icon-youtube-play-button"></span></a>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="menu">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header logo-content">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/" title="Bất động sản Bùi Ngọc Niệm"><img alt="Bất động sản Bùi Ngọc Niệm" src="/Content/assets/img/logo.png"></a>
+                </div>
 
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="menu-content collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="menu-realestate"><a href="/sieu-thi-dia-oc" title="Siêu thị dự án, siêu thị địa ốc">Siêu thị địa ốc</a></li>
+                        <li class="menu-projects"><a href="/du-an" title="Dự án bất động sản">Dự án</a></li>
+                        <li class="menu-about"><a href="/gioi-thieu" title="Giới thiệu sàn giao dịch bất động sản Sunland">Giới thiệu</a></li>
+                        <li class="menu-news"><a href="/tin-tuc" title="Tin bất động sản, khuyến mãi">Tin BĐS - Khuyến mãi</a></li>
+                        <li class="menu-events"><a href="/su-kien" title="Sự kiện, Event các dự án mới">Sự kiện</a></li>
+                        <li class="menu-contact"><a href="/lien-he" title="Liên hệ Sàn giao dịch bất động sản Sunland">Liên hệ</a></li>
+                    </ul>
+
+                </div>
+                <a href="/dang-nhap">
+                    <div class="ad-button">
+                        <span class="icon-dangtin"> </span>
+                        <b>Đăng tin</b>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <!-- /.container -->
+    </div>
+    @RenderBody()
+    <section class="footer-wallpaper">
+        <div class="container">
+            <div class="row gutter-0">
+                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                    <div class="left-logo">
+                        <a href="/"><img src="/Content/assets/img/logo-footer1.jpg"></a>
+                        <a href="/"><img src="/Content/assets/img/logo-footer2.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                    <div class="minds-logo"><img src="/Content/assets/img/bg-footer-red.png"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="right-logo"></div>
+                </div>
+            </div>
+            <div class="address-footer">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="colums1-footer no-border">
+                            <h6>SÀN GIAO DỊCH BĐS Bùi Ngọc Niệm</h6>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                85A, Phan Kế Bính, P. ĐaKao, Quận 1, TP. HCM
+                            </div>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                                ĐT: (08) 3910.2522 – Fax: (08) 3823.0210
+                            </div>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                <a target="_blank" href="mailto:info@sunland.vn" style="">info@sunland.vn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="colums1-footer ">
+                            <h6>SÀN GIAO DỊCH BĐS Bùi Ngọc Niệm - QUẬN 9</h6>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                505 Liên Phường, P. Phước Long B, Quận 9, TP. HCM
+                            </div>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                                ĐT: (08) 6280.6166 – Fax: (08) 6280.6168
+                            </div>
+                            <div class="footer-ad">
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                <a target="_blank" href="mailto:info@sunland.vn" style="">info@sunland.vn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12" style="overflow:hidden">
+                        <a href="https://www.facebook.com/sunlandsg" target="_blank" rel="nofollow" style="overflow:hidden">
+                            <img src="/Content/assets/img/fanpage.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="container p-footer text-center">
+                <p>
+                    © 2017 Copyright by <span>BĐS BÙI NGỌC NIỆM</span>. Developed by DIP Vietnam<br>
+                    Giấy phép ĐKKD số 0312632653 do Sở Kế hoạch và Đầu tư TPHCM cấp ngày 20/01/2014
+                </p>
+                <ul>
+                    <li><a href="/dang-nhap">Đăng tin miễn phí</a></li>
+                    <li><a href="/sieu-thi-dia-oc" title="Siêu thị dự án">Siêu thị địa ốc</a></li>
+                    <li><a href="/du-an" title="Dự án bất động sản, chung cư, nhà phố">Dự án</a></li>
+                    <li><a href="/gioi-thieu" title="Giới thiệu sàn giao dịch bất động sản Sunland">Giới thiệu</a></li>
+                    <li><a href="/tin-tuc" title="Tin bất động sản">Tin tức</a></li>
+                    <li><a href="/su-kien" title="Sự kiện bất động sản diễn ra trong tuần">Sự kiện</a></li>
+                    <li><a href="/#">Tuyển dụng</a></li>
+                    <li class="last"><a href="/lien-he" title="Liên hệ giao dịch bất động sản">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="top-button scrollToTop2" style="display: none;">
+        <a href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="svg replaced-svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" fill="#272322" d="M18,0c9.941,0,18,8.059,18,18s-8.059,18-18,18S0,27.941,0,18  S8.059,0,18,0z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M18.417,9.982l-2.991,4.694l2.473-0.664c0,6.682,0,5.009,0,11.689  c0,0.421,1.035,0.421,1.035,0c0-6.68,0-5.008,0-11.688l2.473,0.673L18.417,9.982z"></path>
+            </svg>
+        </a>
+    </div>
+    <div class="skype-pixel">
+        <a href="skype:"><span class="icon-social-buttons-skype"></span> Hỗ trợ skype</a>
+    </div>
+    <div class="phone-pixel">
+        <a href="tel:0938 779 660"><span class="icon-telephone-auricular-with-cable"></span><b>0938 779 660<b></b></b></a><b>
+            <b>
+            </b>
+        </b>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Content/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/Content/assets/js/conversion.js"></script>
+    <script src="/Content/assets/js/yii.js"></script>
+    <script src="/Content/assets/js/yii.validation.js"></script>
+    <script src="/Content/assets/js/yii.activeForm.js"></script>
+    <script src="/Content/assets/js/bootstrap.min.js"></script>
+    <script src="/Content/assets/js/owl.carousel.js"></script>
+    <script src="/Content/assets/js/img2svg.js"></script>
+    <script src="/Content/assets/js/bootbox.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery(document).ready(function ($) {
+                var owllogo = $('.owl-carousel.logo-load').owlCarousel({
+                    nav: true,
+                    items: 6, //10 items above 1000px browser width
+                    itemsDesktop: [1024, 5], //5 items between 1000px and 901px
+                    itemsDesktopSmall: [900, 3], // 3 items betweem 900px and 601px
+                    itemsTablet: [600, 2], //2 items between 600 and 0;
+                    itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+                });
+                $('.logo-load-next').click(function () {
+                    owllogo.trigger('owl.next');
+                })
+                $('.logo-load-prev').click(function () {
+                    owllogo.trigger('owl.prev');
+                })
+            });
+
+            //Check to see if the window is top if not then display button
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('.scrollToTop2').fadeIn();
+                } else {
+                    $('.scrollToTop2').fadeOut();
+                }
+            });
+
+            //Click event to scroll to top
+            $('.scrollToTop2').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                return false;
+            });
+            $(document).ready(function () {
+                $('img.menu-icon').click(function () {
+                    $('.menu-popup').fadeIn('slow');
+                    $('.bg-menu-black').css('display', 'block');
+                });
+                //
+                $('a.close-r ').click(function () {
+                    $('.menu-popup').fadeOut('slow');
+                    $('.bg-menu-black').css('display', 'none');
+                });
+                //
+                $("#province").change(function () {
+                    $.getJSON('/Home/DistrictList?id=' + $('#province').val(), function (data) {
+                        var items = '';
+                        $.each(data, function (i, gd) {
+                            items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                        });
+                        $('#district').html(items);
+                    });
+                })
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

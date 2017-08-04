@@ -220,12 +220,18 @@
     <Compile Include="Areas\Admin\Controllers\NewsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectManageController.cs" />
     <Compile Include="Areas\Admin\Models\LoadDataAdmin.cs" />
+    <Compile Include="Controllers\AboutsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\LoadData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>Main.tt</DependentUpon>
@@ -309,6 +315,63 @@
     <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker.min.js" />
     <Content Include="Areas\Admin\Content\JS\bootstrap-select.min.js" />
     <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker-plus.min.js" />
+    <Content Include="Content\assets\css\bootstrap.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\custom.css" />
+    <Content Include="Content\assets\css\fonts-css.css" />
+    <Content Include="Content\assets\css\nmc.css" />
+    <Content Include="Content\assets\css\owl.carousel.css" />
+    <Content Include="Content\assets\css\owl.theme.css" />
+    <Content Include="Content\assets\css\responsive.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\fonts\icomoon.svg" />
+    <Content Include="Content\assets\img\banner-melosa-sunland_5799b15770f9a.jpg" />
+    <Content Include="Content\assets\img\bg-footer-png.png" />
+    <Content Include="Content\assets\img\bg-footer-red.png" />
+    <Content Include="Content\assets\img\bg-footer.jpg" />
+    <Content Include="Content\assets\img\bg-sigup.jpg" />
+    <Content Include="Content\assets\img\bg-slider.jpg" />
+    <Content Include="Content\assets\img\capitaland_570cca53ea9a3.jpg" />
+    <Content Include="Content\assets\img\close-menu.svg" />
+    <Content Include="Content\assets\img\detail-button.jpg" />
+    <Content Include="Content\assets\img\fanpage.jpg" />
+    <Content Include="Content\assets\img\grabbing.png" />
+    <Content Include="Content\assets\img\hado-logo-web_577766fe5702c.jpg" />
+    <Content Include="Content\assets\img\hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" />
+    <Content Include="Content\assets\img\head-project.jpg" />
+    <Content Include="Content\assets\img\icon-menu.svg" />
+    <Content Include="Content\assets\img\images %281%29.jpg" />
+    <Content Include="Content\assets\img\images.jpg" />
+    <Content Include="Content\assets\img\IMG_27072017_153635_0.png" />
+    <Content Include="Content\assets\img\jamila-banner1_58f862499f56b.gif" />
+    <Content Include="Content\assets\img\Jamila_Right_Banner1_58f86e0ca90ad.gif" />
+    <Content Include="Content\assets\img\Jamila_Right_Banner4_58f86f0ad7ace.gif" />
+    <Content Include="Content\assets\img\KhangDien_570cca788b96c.jpg" />
+    <Content Include="Content\assets\img\logo--upweb_5719a51faaf05.png" />
+    <Content Include="Content\assets\img\logo-footer1.jpg" />
+    <Content Include="Content\assets\img\logo-footer2.jpg" />
+    <Content Include="Content\assets\img\logo.png" />
+    <Content Include="Content\assets\img\logo.svg" />
+    <Content Include="Content\assets\img\logolucastavilla_57062199da636_570ccd9c04fe5.png" />
+    <Content Include="Content\assets\img\LUCASTA-BANNER-HOME_57e4e8c8ac055.jpg" />
+    <Content Include="Content\assets\img\menu-mobile.svg" />
+    <Content Include="Content\assets\img\right-dangtin.svg" />
+    <Content Include="Content\assets\img\search-mobile.svg" />
+    <Content Include="Content\assets\img\top-butotn.png" />
+    <Content Include="Content\assets\img\venica_5715b01dccd9e.jpg" />
+    <Content Include="Content\assets\img\villapark-logo_570cca4696568.jpg" />
+    <Content Include="Content\assets\img\VINCITY_585a4faddf53c.jpg" />
+    <Content Include="Content\assets\js\bootbox.min.js" />
+    <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\conversion.js" />
+    <Content Include="Content\assets\js\fbevents.js" />
+    <Content Include="Content\assets\js\img2svg.js" />
+    <Content Include="Content\assets\js\jquery.js" />
+    <Content Include="Content\assets\js\owl.carousel.js" />
+    <Content Include="Content\assets\js\yii.activeForm.js" />
+    <Content Include="Content\assets\js\yii.js" />
+    <Content Include="Content\assets\js\yii.validation.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -2144,9 +2207,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+<<<<<<< HEAD
     <Content Include="Images\News\41018_eiffel_tower_paris_france_reflection_sunset_11521_2560x1600-1920x1080-c_04082017.jpg" />
     <Content Include="Images\News\bgpattern_04082017.png" />
     <Content Include="Images\News\bg_04082017.png" />
+=======
+>>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\cach-lam-lau-ga-8_03082017.jpg" />
     <Content Include="Images\News\close-32_03082017.png" />
     <Content Include="Images\News\credit-cards-icon.png" />
@@ -2169,14 +2235,20 @@
     <Content Include="Images\News\new-icon_16062017 - Copy_02082017.png" />
     <Content Include="Images\News\new-icon_16062017.png" />
     <Content Include="Images\News\phongthuy.png" />
+<<<<<<< HEAD
     <Content Include="Images\News\_thumbs\Files\cach-lam-lau-ga-8_03082017.jpg" />
     <Content Include="Images\News\_thumbs\Files\close-32_03082017.png" />
+=======
+>>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\_thumbs\Files\credit-cards-icon.png" />
     <Content Include="Images\News\_thumbs\Files\credit-cards-icon_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon - Copy_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon_02082017.png" />
+<<<<<<< HEAD
     <Content Include="Images\News\_thumbs\Files\fashion_bgifted-logo_03082017.png" />
+=======
+>>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\_thumbs\Files\google-plus-icon - Copy_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\google-plus-icon.png" />
     <Content Include="Images\News\_thumbs\Files\icon_03082017.png" />
@@ -2313,6 +2385,7 @@
     <Content Include="Areas\Admin\Views\ImageManage\_PartialListImage.cshtml" />
     <Content Include="Areas\Admin\Views\ImageManage\CreateImage.cshtml" />
     <Content Include="Areas\Admin\Views\ImageManage\_PartialEditImage.cshtml" />
+<<<<<<< HEAD
     <EntityDeploy Include="Models\Main.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Main.Designer.cs</LastGenOutput>
@@ -2330,6 +2403,15 @@
       <DependentUpon>Main.edmx</DependentUpon>
       <LastGenOutput>Main.cs</LastGenOutput>
     </Content>
+=======
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\assets\fonts\icomoon.eot" />
+    <Content Include="Content\assets\fonts\icomoon.ttf" />
+    <Content Include="Content\assets\fonts\icomoon.woff" />
+>>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2379,6 +2461,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Partial_Event.cshtml" />
+    <Content Include="Views\Shared\_Partial_Land.cshtml" />
+    <Content Include="Views\Shared\_Partial_Partner.cshtml" />
+    <Content Include="Views\Shared\_Partial_Project.cshtml" />
+    <Content Include="Views\Shared\_Partial_Search.cshtml" />
+    <Content Include="Views\Shared\_Partial_Slider.cshtml" />
+    <Content Include="Views\Abouts\Index.cshtml" />
+    <Content Include="Views\Abouts\Detail.cshtml" />
+    <Content Include="Views\Events\Detail.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Lands\Detail.cshtml" />
+    <Content Include="Views\Lands\Index.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Projects\Detail.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../fonts/icomoon.eot?jw0cf1');
+    src:    url('../fonts/icomoon.eot?jw0cf1#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?jw0cf1') format('truetype'),
+        url('../fonts/icomoon.woff?jw0cf1') format('woff'),
+        url('../fonts/icomoon.svg?jw0cf1#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-chevron:before {
+    content: "\e90c";
+}
+.icon-dangtin:before {
+    content: "\e90a";
+}
+.icon-tien-list:before {
+    content: "\e905";
+}
+.icon-telephone-auricular-with-cable:before {
+    content: "\e906";
+}
+.icon-search-dangtin:before {
+    content: "\e907";
+}
+.icon-location-pin2:before {
+    content: "\e908";
+}
+.icon-diadiem-list:before {
+    content: "\e909";
+}
+.icon-address-box:before {
+    content: "\e90b";
+}
+.icon-youtube-play-button:before {
+    content: "\e900";
+}
+.icon-social-buttons-skype:before {
+    content: "\e901";
+}
+.icon-location-pin:before {
+    content: "\e902";
+}
+.icon-google-plus-social-logotype:before {
+    content: "\e903";
+}
+.icon-facebook-logo:before {
+    content: "\e904";
+}
+
