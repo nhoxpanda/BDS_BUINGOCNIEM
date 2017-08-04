@@ -2207,12 +2207,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-<<<<<<< HEAD
-    <Content Include="Images\News\41018_eiffel_tower_paris_france_reflection_sunset_11521_2560x1600-1920x1080-c_04082017.jpg" />
-    <Content Include="Images\News\bgpattern_04082017.png" />
-    <Content Include="Images\News\bg_04082017.png" />
-=======
->>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\cach-lam-lau-ga-8_03082017.jpg" />
     <Content Include="Images\News\close-32_03082017.png" />
     <Content Include="Images\News\credit-cards-icon.png" />
@@ -2235,20 +2229,11 @@
     <Content Include="Images\News\new-icon_16062017 - Copy_02082017.png" />
     <Content Include="Images\News\new-icon_16062017.png" />
     <Content Include="Images\News\phongthuy.png" />
-<<<<<<< HEAD
-    <Content Include="Images\News\_thumbs\Files\cach-lam-lau-ga-8_03082017.jpg" />
-    <Content Include="Images\News\_thumbs\Files\close-32_03082017.png" />
-=======
->>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\_thumbs\Files\credit-cards-icon.png" />
     <Content Include="Images\News\_thumbs\Files\credit-cards-icon_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon - Copy_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon.png" />
     <Content Include="Images\News\_thumbs\Files\facebook-icon_02082017.png" />
-<<<<<<< HEAD
-    <Content Include="Images\News\_thumbs\Files\fashion_bgifted-logo_03082017.png" />
-=======
->>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <Content Include="Images\News\_thumbs\Files\google-plus-icon - Copy_02082017.png" />
     <Content Include="Images\News\_thumbs\Files\google-plus-icon.png" />
     <Content Include="Images\News\_thumbs\Files\icon_03082017.png" />
@@ -2385,25 +2370,6 @@
     <Content Include="Areas\Admin\Views\ImageManage\_PartialListImage.cshtml" />
     <Content Include="Areas\Admin\Views\ImageManage\CreateImage.cshtml" />
     <Content Include="Areas\Admin\Views\ImageManage\_PartialEditImage.cshtml" />
-<<<<<<< HEAD
-    <EntityDeploy Include="Models\Main.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Main.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Main.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Main.edmx</DependentUpon>
-      <LastGenOutput>Main.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Main.edmx.diagram">
-      <DependentUpon>Main.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Main.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Main.edmx</DependentUpon>
-      <LastGenOutput>Main.cs</LastGenOutput>
-    </Content>
-=======
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
@@ -2411,7 +2377,6 @@
     <Content Include="Content\assets\fonts\icomoon.eot" />
     <Content Include="Content\assets\fonts\icomoon.ttf" />
     <Content Include="Content\assets\fonts\icomoon.woff" />
->>>>>>> bc0fd11e1bb9688979d8f6197c86df9edf8962a4
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
