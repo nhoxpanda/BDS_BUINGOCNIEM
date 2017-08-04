@@ -4,7 +4,68 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WEBSITEBDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Web_NiemBDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,6 +111,25 @@
           <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="MetaDesc" Type="nvarchar(max)" />
           <Property Name="MetaKeyword" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="WardId" Type="int" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Sex" Type="bit" Nullable="false" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblDictionary">
           <Key>
@@ -116,6 +196,7 @@
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="xmap" Type="nvarchar" MaxLength="500" />
           <Property Name="ymap" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="tblNews">
           <Key>
@@ -174,6 +255,110 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="DistrictId" Type="int" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblCustomer1">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="1" />
+          <End Role="tblCustomer1" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblWard">
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblDictionary_tblCategory">
           <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
           <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="*" />
@@ -231,6 +416,18 @@
             </Principal>
             <Dependent Role="tblImage">
               <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblCustomer">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -414,10 +611,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WEBSITEBDSModelStoreContainer">
+        <EntityContainer Name="Web_NiemBDSModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
@@ -427,6 +631,38 @@
           <EntitySet Name="tblProjectDetail" EntityType="Self.tblProjectDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProvince" EntityType="Self.tblProvince" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWard" EntityType="Self.tblWard" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblCustomer1" Association="Self.FK_tblCustomer_tblCustomer1">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblCustomer1" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblDistrict" Association="Self.FK_tblCustomer_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblProvince" Association="Self.FK_tblCustomer_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblWard" Association="Self.FK_tblCustomer_tblWard">
+            <End Role="tblWard" EntitySet="tblWard" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblDictionary_tblCategory" Association="Self.FK_tblDictionary_tblCategory">
             <End Role="tblCategory" EntitySet="tblCategory" />
             <End Role="tblDictionary" EntitySet="tblDictionary" />
@@ -446,6 +682,10 @@
           <AssociationSet Name="FK_tblImage_tblProject" Association="Self.FK_tblImage_tblProject">
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblImage" EntitySet="tblImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblCustomer" Association="Self.FK_tblLand_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblLand" EntitySet="tblLand" />
           </AssociationSet>
           <AssociationSet Name="FK_tblLand_tblDistrict" Association="Self.FK_tblLand_tblDistrict">
             <End Role="tblDistrict" EntitySet="tblDistrict" />
@@ -511,7 +751,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WEBSITEBDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Web_NiemBDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tblCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -559,6 +799,31 @@
           <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaKeyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="WardId" Type="Int32" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Boolean" Nullable="false" />
+          <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCustomer1" Relationship="Self.FK_tblCustomer_tblCustomer1" FromRole="tblCustomer" ToRole="tblCustomer1" />
+          <NavigationProperty Name="tblCustomer2" Relationship="Self.FK_tblCustomer_tblCustomer1" FromRole="tblCustomer1" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblCustomer_tblDistrict" FromRole="tblCustomer" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblCustomer_tblProvince" FromRole="tblCustomer" ToRole="tblProvince" />
+          <NavigationProperty Name="tblWard" Relationship="Self.FK_tblCustomer_tblWard" FromRole="tblCustomer" ToRole="tblWard" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblCustomer" FromRole="tblCustomer" ToRole="tblLand" />
+        </EntityType>
         <EntityType Name="tblDictionary">
           <Key>
             <PropertyRef Name="Id" />
@@ -571,6 +836,7 @@
           <Property Name="Delete" Type="Boolean" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="tblCategory" Relationship="Self.FK_tblDictionary_tblCategory" FromRole="tblDictionary" ToRole="tblCategory" />
+          <NavigationProperty Name="tblImage" Relationship="Self.FK_tblImage_tblDictionary" FromRole="tblDictionary" ToRole="tblImage" />
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLandCategory_tblDictionaryCategory" FromRole="tblDictionary" ToRole="tblLand" />
           <NavigationProperty Name="tblLand1" Relationship="Self.FK_tblLandDirection_tblDictionaryDirection" FromRole="tblDictionary" ToRole="tblLand" />
           <NavigationProperty Name="tblLand2" Relationship="Self.FK_tblLandRule_tblDictionaryRule" FromRole="tblDictionary" ToRole="tblLand" />
@@ -578,8 +844,7 @@
           <NavigationProperty Name="tblLand4" Relationship="Self.FK_tblLandUnit_tblDictionaryUnit" FromRole="tblDictionary" ToRole="tblLand" />
           <NavigationProperty Name="tblNews" Relationship="Self.FK_tblNews_tblDictionary" FromRole="tblDictionary" ToRole="tblNews" />
           <NavigationProperty Name="tblNews1" Relationship="Self.FK_tblNews_tblDictionaryTime" FromRole="tblDictionary" ToRole="tblNews" />
-          <NavigationProperty Name="tblProjectDetail" Relationship="WEBSITEBDSModel.FK_tblProjectDetail_tblDictionary" FromRole="tblDictionary" ToRole="tblProjectDetail" />
-          <NavigationProperty Name="tblImage" Relationship="WEBSITEBDSModel.FK_tblImage_tblDictionary" FromRole="tblDictionary" ToRole="tblImage" />
+          <NavigationProperty Name="tblProjectDetail" Relationship="Self.FK_tblProjectDetail_tblDictionary" FromRole="tblDictionary" ToRole="tblProjectDetail" />
         </EntityType>
         <EntityType Name="tblDistrict">
           <Key>
@@ -588,9 +853,25 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ProvinceId" Type="Int32" />
+          <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblCustomer_tblDistrict" FromRole="tblDistrict" ToRole="tblCustomer" />
           <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblDistrict_tblProvince" FromRole="tblDistrict" ToRole="tblProvince" />
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblDistrict" FromRole="tblDistrict" ToRole="tblLand" />
           <NavigationProperty Name="tblWard" Relationship="Self.FK_tblWard_tblDistrict" FromRole="tblDistrict" ToRole="tblWard" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DictionaryId" Type="Int32" />
+          <Property Name="LandId" Type="Int32" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblImage_tblDictionary" FromRole="tblImage" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblLand" Relationship="Self.FK_tblImage_tblLand" FromRole="tblImage" ToRole="tblLand" />
+          <NavigationProperty Name="tblProject" Relationship="Self.FK_tblImage_tblProject" FromRole="tblImage" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblLand">
           <Key>
@@ -625,16 +906,18 @@
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="xmap" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ymap" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblLand_tblCustomer" FromRole="tblLand" ToRole="tblCustomer" />
           <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblLandCategory_tblDictionaryCategory" FromRole="tblLand" ToRole="tblDictionary" />
           <NavigationProperty Name="tblDictionary1" Relationship="Self.FK_tblLandDirection_tblDictionaryDirection" FromRole="tblLand" ToRole="tblDictionary" />
           <NavigationProperty Name="tblDictionary2" Relationship="Self.FK_tblLandRule_tblDictionaryRule" FromRole="tblLand" ToRole="tblDictionary" />
           <NavigationProperty Name="tblDictionary3" Relationship="Self.FK_tblLandType_tblDictionaryType" FromRole="tblLand" ToRole="tblDictionary" />
           <NavigationProperty Name="tblDictionary4" Relationship="Self.FK_tblLandUnit_tblDictionaryUnit" FromRole="tblLand" ToRole="tblDictionary" />
           <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblLand_tblDistrict" FromRole="tblLand" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblImage" Relationship="Self.FK_tblImage_tblLand" FromRole="tblLand" ToRole="tblImage" />
           <NavigationProperty Name="tblProject" Relationship="Self.FK_tblLand_tblProject" FromRole="tblLand" ToRole="tblProject" />
           <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblLand" ToRole="tblProvince" />
           <NavigationProperty Name="tblWard" Relationship="Self.FK_tblLand_tblWard" FromRole="tblLand" ToRole="tblWard" />
-          <NavigationProperty Name="tblImage" Relationship="WEBSITEBDSModel.FK_tblImage_tblLand" FromRole="tblLand" ToRole="tblImage" />
         </EntityType>
         <EntityType Name="tblNews">
           <Key>
@@ -669,9 +952,22 @@
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblImage" Relationship="Self.FK_tblImage_tblProject" FromRole="tblProject" ToRole="tblImage" />
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProject" FromRole="tblProject" ToRole="tblLand" />
-          <NavigationProperty Name="tblProjectDetail" Relationship="WEBSITEBDSModel.FK_tblProjectDetail_tblProject" FromRole="tblProject" ToRole="tblProjectDetail" />
-          <NavigationProperty Name="tblImage" Relationship="WEBSITEBDSModel.FK_tblImage_tblProject" FromRole="tblProject" ToRole="tblImage" />
+          <NavigationProperty Name="tblProjectDetail" Relationship="Self.FK_tblProjectDetail_tblProject" FromRole="tblProject" ToRole="tblProjectDetail" />
+        </EntityType>
+        <EntityType Name="tblProjectDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="DictionaryId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Orders" Type="Int32" />
+          <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblProjectDetail_tblDictionary" FromRole="tblProjectDetail" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblProject" Relationship="Self.FK_tblProjectDetail_tblProject" FromRole="tblProjectDetail" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblProvince">
           <Key>
@@ -679,6 +975,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblCustomer_tblProvince" FromRole="tblProvince" ToRole="tblCustomer" />
           <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblDistrict_tblProvince" FromRole="tblProvince" ToRole="tblDistrict" />
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblProvince" ToRole="tblLand" />
           <NavigationProperty Name="tblNews" Relationship="Self.FK_tblNews_tblProvince" FromRole="tblProvince" ToRole="tblNews" />
@@ -690,6 +987,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DistrictId" Type="Int32" />
+          <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblCustomer_tblWard" FromRole="tblWard" ToRole="tblCustomer" />
           <NavigationProperty Name="tblDistrict" Relationship="Self.FK_tblWard_tblDistrict" FromRole="tblWard" ToRole="tblDistrict" />
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblWard" FromRole="tblWard" ToRole="tblLand" />
         </EntityType>
@@ -702,6 +1000,78 @@
             </Principal>
             <Dependent Role="tblDictionary">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblCustomer1">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="1" />
+          <End Role="tblCustomer1" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblDistrict">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblProvince">
+          <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProvince">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblWard">
+          <End Role="tblWard" Type="Self.tblWard" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLand_tblCustomer">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLand">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImage_tblDictionary">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblImage" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="DictionaryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -789,6 +1159,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblProjectDetail_tblDictionary">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblProjectDetail" Type="Self.tblProjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectDetail">
+              <PropertyRef Name="DictionaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblDistrict_tblProvince">
           <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
           <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
@@ -822,6 +1204,30 @@
             </Principal>
             <Dependent Role="tblWard">
               <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImage_tblLand">
+          <End Role="tblLand" Type="Self.tblLand" Multiplicity="0..1" />
+          <End Role="tblImage" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="LandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImage_tblProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+          <End Role="tblImage" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblImage">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -873,20 +1279,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WEBSITEBDSEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_tblProjectDetail_tblProject">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+          <End Role="tblProjectDetail" Type="Self.tblProjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProjectDetail">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Web_NiemBDSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblCategory" EntityType="Self.tblCategory" />
           <EntitySet Name="tblCompany" EntityType="Self.tblCompany" />
           <EntitySet Name="tblConfig" EntityType="Self.tblConfig" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" />
           <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" />
           <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" />
+          <EntitySet Name="tblImage" EntityType="Self.tblImage" />
           <EntitySet Name="tblLand" EntityType="Self.tblLand" />
           <EntitySet Name="tblNews" EntityType="Self.tblNews" />
           <EntitySet Name="tblProject" EntityType="Self.tblProject" />
+          <EntitySet Name="tblProjectDetail" EntityType="Self.tblProjectDetail" />
           <EntitySet Name="tblProvince" EntityType="Self.tblProvince" />
           <EntitySet Name="tblWard" EntityType="Self.tblWard" />
           <AssociationSet Name="FK_tblDictionary_tblCategory" Association="Self.FK_tblDictionary_tblCategory">
             <End Role="tblCategory" EntitySet="tblCategory" />
             <End Role="tblDictionary" EntitySet="tblDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblCustomer1" Association="Self.FK_tblCustomer_tblCustomer1">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblCustomer1" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblDistrict" Association="Self.FK_tblCustomer_tblDistrict">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblProvince" Association="Self.FK_tblCustomer_tblProvince">
+            <End Role="tblProvince" EntitySet="tblProvince" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblWard" Association="Self.FK_tblCustomer_tblWard">
+            <End Role="tblWard" EntitySet="tblWard" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLand_tblCustomer" Association="Self.FK_tblLand_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblLand" EntitySet="tblLand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImage_tblDictionary" Association="Self.FK_tblImage_tblDictionary">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblImage" EntitySet="tblImage" />
           </AssociationSet>
           <AssociationSet Name="FK_tblLandCategory_tblDictionaryCategory" Association="Self.FK_tblLandCategory_tblDictionaryCategory">
             <End Role="tblDictionary" EntitySet="tblDictionary" />
@@ -916,6 +1361,10 @@
             <End Role="tblDictionary" EntitySet="tblDictionary" />
             <End Role="tblNews" EntitySet="tblNews" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblProjectDetail_tblDictionary" Association="Self.FK_tblProjectDetail_tblDictionary">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblProjectDetail" EntitySet="tblProjectDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblDistrict_tblProvince" Association="Self.FK_tblDistrict_tblProvince">
             <End Role="tblProvince" EntitySet="tblProvince" />
             <End Role="tblDistrict" EntitySet="tblDistrict" />
@@ -927,6 +1376,14 @@
           <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
             <End Role="tblDistrict" EntitySet="tblDistrict" />
             <End Role="tblWard" EntitySet="tblWard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImage_tblLand" Association="Self.FK_tblImage_tblLand">
+            <End Role="tblLand" EntitySet="tblLand" />
+            <End Role="tblImage" EntitySet="tblImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImage_tblProject" Association="Self.FK_tblImage_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblImage" EntitySet="tblImage" />
           </AssociationSet>
           <AssociationSet Name="FK_tblLand_tblProject" Association="Self.FK_tblLand_tblProject">
             <End Role="tblProject" EntitySet="tblProject" />
@@ -944,125 +1401,127 @@
             <End Role="tblProvince" EntitySet="tblProvince" />
             <End Role="tblNews" EntitySet="tblNews" />
           </AssociationSet>
-          <EntitySet Name="tblProjectDetail" EntityType="WEBSITEBDSModel.tblProjectDetail" />
-          <AssociationSet Name="FK_tblProjectDetail_tblDictionary" Association="WEBSITEBDSModel.FK_tblProjectDetail_tblDictionary">
-            <End Role="tblDictionary" EntitySet="tblDictionary" />
-            <End Role="tblProjectDetail" EntitySet="tblProjectDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProjectDetail_tblProject" Association="WEBSITEBDSModel.FK_tblProjectDetail_tblProject">
+          <AssociationSet Name="FK_tblProjectDetail_tblProject" Association="Self.FK_tblProjectDetail_tblProject">
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblProjectDetail" EntitySet="tblProjectDetail" />
           </AssociationSet>
-          <EntitySet Name="tblImage" EntityType="WEBSITEBDSModel.tblImage" />
-          <AssociationSet Name="FK_tblImage_tblDictionary" Association="WEBSITEBDSModel.FK_tblImage_tblDictionary">
-            <End Role="tblDictionary" EntitySet="tblDictionary" />
-            <End Role="tblImage" EntitySet="tblImage" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Web_NiemBDSModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Web_NiemBDSModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Web_NiemBDSModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Web_NiemBDSModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Web_NiemBDSModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Web_NiemBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblImage_tblLand" Association="WEBSITEBDSModel.FK_tblImage_tblLand">
-            <End Role="tblLand" EntitySet="tblLand" />
-            <End Role="tblImage" EntitySet="tblImage" />
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Web_NiemBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblImage_tblProject" Association="WEBSITEBDSModel.FK_tblImage_tblProject">
-            <End Role="tblProject" EntitySet="tblProject" />
-            <End Role="tblImage" EntitySet="tblImage" />
+          <AssociationSet Name="AspNetUserRoles" Association="Web_NiemBDSModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="tblProjectDetail">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Web_NiemBDSModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectId" Type="Int32" />
-          <Property Name="DictionaryId" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Orders" Type="Int32" />
-          <NavigationProperty Name="tblDictionary" Relationship="WEBSITEBDSModel.FK_tblProjectDetail_tblDictionary" FromRole="tblProjectDetail" ToRole="tblDictionary" />
-          <NavigationProperty Name="tblProject" Relationship="WEBSITEBDSModel.FK_tblProjectDetail_tblProject" FromRole="tblProjectDetail" ToRole="tblProject" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Web_NiemBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
-        <Association Name="FK_tblProjectDetail_tblDictionary">
-          <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
-          <End Type="WEBSITEBDSModel.tblProjectDetail" Role="tblProjectDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblDictionary">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblProjectDetail">
-              <PropertyRef Name="DictionaryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblProjectDetail_tblProject">
-          <End Type="WEBSITEBDSModel.tblProject" Role="tblProject" Multiplicity="0..1" />
-          <End Type="WEBSITEBDSModel.tblProjectDetail" Role="tblProjectDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProject">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblProjectDetail">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tblImage">
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Web_NiemBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DictionaryId" Type="Int32" />
-          <Property Name="LandId" Type="Int32" />
-          <Property Name="Orders" Type="Int32" />
-          <Property Name="ProjectId" Type="Int32" />
-          <NavigationProperty Name="tblDictionary" Relationship="WEBSITEBDSModel.FK_tblImage_tblDictionary" FromRole="tblImage" ToRole="tblDictionary" />
-          <NavigationProperty Name="tblLand" Relationship="WEBSITEBDSModel.FK_tblImage_tblLand" FromRole="tblImage" ToRole="tblLand" />
-          <NavigationProperty Name="tblProject" Relationship="WEBSITEBDSModel.FK_tblImage_tblProject" FromRole="tblImage" ToRole="tblProject" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Web_NiemBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Web_NiemBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Web_NiemBDSModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <Association Name="FK_tblImage_tblDictionary">
-          <End Type="WEBSITEBDSModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
-          <End Type="WEBSITEBDSModel.tblImage" Role="tblImage" Multiplicity="*" />
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="Web_NiemBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Web_NiemBDSModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblDictionary">
+            <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblImage">
-              <PropertyRef Name="DictionaryId" />
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblImage_tblLand">
-          <End Type="WEBSITEBDSModel.tblLand" Role="tblLand" Multiplicity="0..1" />
-          <End Type="WEBSITEBDSModel.tblImage" Role="tblImage" Multiplicity="*" />
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="Web_NiemBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Web_NiemBDSModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblLand">
+            <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblImage">
-              <PropertyRef Name="LandId" />
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblImage_tblProject">
-          <End Type="WEBSITEBDSModel.tblProject" Role="tblProject" Multiplicity="0..1" />
-          <End Type="WEBSITEBDSModel.tblImage" Role="tblImage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProject">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblImage">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="AspNetUserRoles">
+          <End Type="Web_NiemBDSModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="Web_NiemBDSModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WEBSITEBDSModelStoreContainer" CdmEntityContainer="WEBSITEBDSEntities">
+        <EntityContainerMapping StorageEntityContainer="Web_NiemBDSModelStoreContainer" CdmEntityContainer="Web_NiemBDSEntities">
           <EntitySetMapping Name="tblCategory">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCategory">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCategory">
               <MappingFragment StoreEntitySet="tblCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1074,7 +1533,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCompany">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCompany">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCompany">
               <MappingFragment StoreEntitySet="tblCompany">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1087,7 +1546,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblConfig">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblConfig">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblConfig">
               <MappingFragment StoreEntitySet="tblConfig">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1110,8 +1569,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomer">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblDictionary">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDictionary">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblDictionary">
               <MappingFragment StoreEntitySet="tblDictionary">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1124,7 +1603,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDistrict">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDistrict">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblDistrict">
               <MappingFragment StoreEntitySet="tblDistrict">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1132,8 +1611,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblImage">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblImage">
+              <MappingFragment StoreEntitySet="tblImage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
+                <ScalarProperty Name="LandId" ColumnName="LandId" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblLand">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblLand">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblLand">
               <MappingFragment StoreEntitySet="tblLand">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1164,11 +1656,12 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="xmap" ColumnName="xmap" />
                 <ScalarProperty Name="ymap" ColumnName="ymap" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblNews">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblNews">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblNews">
               <MappingFragment StoreEntitySet="tblNews">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1186,7 +1679,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProject">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProject">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProject">
               <MappingFragment StoreEntitySet="tblProject">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1200,8 +1693,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblProjectDetail">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProjectDetail">
+              <MappingFragment StoreEntitySet="tblProjectDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblProvince">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProvince">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProvince">
               <MappingFragment StoreEntitySet="tblProvince">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1209,7 +1714,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWard">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblWard">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.tblWard">
               <MappingFragment StoreEntitySet="tblWard">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1217,31 +1722,69 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblProjectDetail">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProjectDetail">
-              <MappingFragment StoreEntitySet="tblProjectDetail">
-                <ScalarProperty Name="Orders" ColumnName="Orders" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblImage">
-            <EntityTypeMapping TypeName="WEBSITEBDSModel.tblImage">
-              <MappingFragment StoreEntitySet="tblImage">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="Orders" ColumnName="Orders" />
-                <ScalarProperty Name="LandId" ColumnName="LandId" />
-                <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Web_NiemBDSModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

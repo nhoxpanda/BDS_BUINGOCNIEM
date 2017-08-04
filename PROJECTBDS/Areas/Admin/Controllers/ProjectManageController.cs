@@ -14,7 +14,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     {
         // GET: Admin/ProjectManage
         #region Quản lý dự án
-            private WEBSITEBDSEntities db = new WEBSITEBDSEntities();
+            private Web_NiemBDSEntities db = new Web_NiemBDSEntities();
             public ActionResult Index(int? page, string query)
             {
                 int pageN = page ?? 1;

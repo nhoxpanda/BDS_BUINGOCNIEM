@@ -12,22 +12,34 @@ namespace PROJECTBDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblWard
+    public partial class tblCustomer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblWard()
+        public tblCustomer()
         {
-            this.tblCustomer = new HashSet<tblCustomer>();
             this.tblLand = new HashSet<tblLand>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Image { get; set; }
+        public Nullable<int> ProvinceId { get; set; }
         public Nullable<int> DistrictId { get; set; }
+        public Nullable<int> WardId { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public bool Sex { get; set; }
+        public string Skype { get; set; }
+        public string Email { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
+        public virtual tblCustomer tblCustomer1 { get; set; }
+        public virtual tblCustomer tblCustomer2 { get; set; }
         public virtual tblDistrict tblDistrict { get; set; }
+        public virtual tblProvince tblProvince { get; set; }
+        public virtual tblWard tblWard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }
     }

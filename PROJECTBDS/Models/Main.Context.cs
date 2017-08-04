@@ -13,10 +13,10 @@ namespace PROJECTBDS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WEBSITEBDSEntities : DbContext
+    public partial class Web_NiemBDSEntities : DbContext
     {
-        public WEBSITEBDSEntities()
-            : base("name=WEBSITEBDSEntities")
+        public Web_NiemBDSEntities()
+            : base("name=Web_NiemBDSEntities")
         {
         }
     
@@ -28,14 +28,20 @@ namespace PROJECTBDS.Models
         public virtual DbSet<tblCategory> tblCategory { get; set; }
         public virtual DbSet<tblCompany> tblCompany { get; set; }
         public virtual DbSet<tblConfig> tblConfig { get; set; }
+        public virtual DbSet<tblCustomer> tblCustomer { get; set; }
         public virtual DbSet<tblDictionary> tblDictionary { get; set; }
         public virtual DbSet<tblDistrict> tblDistrict { get; set; }
+        public virtual DbSet<tblImage> tblImage { get; set; }
         public virtual DbSet<tblLand> tblLand { get; set; }
         public virtual DbSet<tblNews> tblNews { get; set; }
         public virtual DbSet<tblProject> tblProject { get; set; }
+        public virtual DbSet<tblProjectDetail> tblProjectDetail { get; set; }
         public virtual DbSet<tblProvince> tblProvince { get; set; }
         public virtual DbSet<tblWard> tblWard { get; set; }
-        public virtual DbSet<tblProjectDetail> tblProjectDetail { get; set; }
-        public virtual DbSet<tblImage> tblImage { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

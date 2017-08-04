@@ -13,7 +13,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     public class LandManageController : Controller
     {
 
-        WEBSITEBDSEntities db = new WEBSITEBDSEntities();
+        Web_NiemBDSEntities db = new Web_NiemBDSEntities();
         // GET: Admin/LandManage
         public ActionResult Index(int? page,string query)
         {
@@ -26,7 +26,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             }
             else
             {
-                model = db.tblLand.OrderByDescending(n => n.CreateDate).ToList();
+                model = db.tblLand.OrderBy(n => n.CreateDate).ToList();
             }
             return View(model.ToPagedList(pageN,30));
         }
@@ -63,7 +63,6 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             load(model);
             return View();
         }
-
         public ActionResult Update(int id)
         {
             var model = db.tblLand.Find(id);

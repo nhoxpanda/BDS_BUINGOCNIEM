@@ -49,17 +49,19 @@ namespace PROJECTBDS.Models
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string xmap { get; set; }
         public string ymap { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     
+        public virtual tblCustomer tblCustomer { get; set; }
         public virtual tblDictionary tblDictionary { get; set; }
         public virtual tblDictionary tblDictionary1 { get; set; }
         public virtual tblDictionary tblDictionary2 { get; set; }
         public virtual tblDictionary tblDictionary3 { get; set; }
         public virtual tblDictionary tblDictionary4 { get; set; }
         public virtual tblDistrict tblDistrict { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImage> tblImage { get; set; }
         public virtual tblProject tblProject { get; set; }
         public virtual tblProvince tblProvince { get; set; }
         public virtual tblWard tblWard { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblImage> tblImage { get; set; }
     }
 }

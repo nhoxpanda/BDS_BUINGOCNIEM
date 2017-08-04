@@ -83,7 +83,7 @@
                                     <td>@string.Format("{0:dd/MM/yyyy}", item.CreateDate)</td>
                                     <td>@item.tblProvince.Name</td>
                                     <td>@item.Date</td>
-                                    <td>@{WEBSITEBDSEntities db = new WEBSITEBDSEntities(); var x = db.tblDictionary.Find(item.TimeId);}@x.Title</td>
+                                    <td>@{Web_NiemBDSEntities db = new Web_NiemBDSEntities(); var x = db.tblDictionary.Find(item.TimeId);}@x.Title</td>
                                     <td>
                                         <a class="btn btn-xs btn-warning dropdown-toggle" href="/Admin/EventsManage/Update/@item.Id">
                                             Edit

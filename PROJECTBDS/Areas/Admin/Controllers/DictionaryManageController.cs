@@ -12,7 +12,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     {
         // GET: Admin/DictionaryManage
 
-        private WEBSITEBDSEntities _db = new WEBSITEBDSEntities();
+        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
         public ActionResult Index(int id)
         {
             var model = _db.tblDictionary.Where(p => p.CategoryId == id && p.Delete == false);

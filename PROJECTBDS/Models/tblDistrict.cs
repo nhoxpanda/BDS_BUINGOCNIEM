@@ -17,6 +17,7 @@ namespace PROJECTBDS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblDistrict()
         {
+            this.tblCustomer = new HashSet<tblCustomer>();
             this.tblLand = new HashSet<tblLand>();
             this.tblWard = new HashSet<tblWard>();
         }
@@ -25,6 +26,8 @@ namespace PROJECTBDS.Models
         public string Name { get; set; }
         public Nullable<int> ProvinceId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
         public virtual tblProvince tblProvince { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }

@@ -9,7 +9,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 {
     public class ImageManageController : Controller
     {
-        WEBSITEBDSEntities db = new WEBSITEBDSEntities();
+        Web_NiemBDSEntities db = new Web_NiemBDSEntities();
         public ActionResult Index()
         {
             //var model = db.tblImage.Where(n => n.DictionaryId == 44 || n.DictionaryId == 45 || n.DictionaryId == 46).ToList();

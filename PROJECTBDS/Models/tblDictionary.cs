@@ -17,6 +17,7 @@ namespace PROJECTBDS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblDictionary()
         {
+            this.tblImage = new HashSet<tblImage>();
             this.tblLand = new HashSet<tblLand>();
             this.tblLand1 = new HashSet<tblLand>();
             this.tblLand2 = new HashSet<tblLand>();
@@ -25,7 +26,6 @@ namespace PROJECTBDS.Models
             this.tblNews = new HashSet<tblNews>();
             this.tblNews1 = new HashSet<tblNews>();
             this.tblProjectDetail = new HashSet<tblProjectDetail>();
-            this.tblImage = new HashSet<tblImage>();
         }
     
         public int Id { get; set; }
@@ -37,6 +37,8 @@ namespace PROJECTBDS.Models
         public Nullable<int> CategoryId { get; set; }
     
         public virtual tblCategory tblCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImage> tblImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -53,7 +55,5 @@ namespace PROJECTBDS.Models
         public virtual ICollection<tblNews> tblNews1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblProjectDetail> tblProjectDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblImage> tblImage { get; set; }
     }
 }

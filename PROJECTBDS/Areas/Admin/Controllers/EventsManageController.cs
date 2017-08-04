@@ -14,7 +14,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         // GET: Admin/EventsManage
 
         // categoryid = 8
-        private WEBSITEBDSEntities _db = new WEBSITEBDSEntities();
+        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
         public ActionResult Index(int? page, string query, int? CategoryId)
         {
             ViewBag.query = query;
