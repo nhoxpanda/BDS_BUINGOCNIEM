@@ -41,6 +41,17 @@ namespace PROJECTBDS
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/homepage").Include(
+               "~/Content/assets/css/bootstrap.min.css",
+               "~/Content/assets/css/owl.carousel.css",
+               "~/Content/assets/css/owl.theme.css",
+               "~/Content/assets/css/fonts-css.css",
+               "~/Content/assets/css/style.css",
+               "~/Content/assets/css/responsive.css",
+               "~/Content/assets/css/custom.css"
+               ));
+
+
             bundles.Add(new StyleBundle("~/Content/Admin").Include(
                         "~/Content/bootstrap/css/bootstrap.css",
                         "~/Content/font-awesome-4.4.0/css/font-awesome.min.css",

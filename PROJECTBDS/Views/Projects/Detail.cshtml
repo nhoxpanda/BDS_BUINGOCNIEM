@@ -1,0 +1,444 @@
+﻿@{
+    
+}
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>CĂN HỘ JAMILA</h1>
+        <div class="search-bds">
+            <div class="title-sr">
+                <img src="http://sunlandsg.vn/themes/frontend/images/search-icon.png" alt="icon search">
+                Tìm kiếm bất động sản
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </div>
+            <div class="bg-search hide">
+                <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
+                    <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
+                    <select name="province" id="province">
+                        <option value="">Tỉnh/Thành phố</option>
+                        <option value="79">Hồ Chí Minh</option>
+                        <option value="1">Hà Nội</option>
+                        <option value="48">Đà Nẵng</option>
+                        <option value="2">Hà Giang</option>
+                        <option value="4">Cao Bằng</option>
+                        <option value="6">Bắc Kạn</option>
+                        <option value="8">Tuyên Quang</option>
+                        <option value="10">Lào Cai</option>
+                        <option value="11">Điện Biên</option>
+                        <option value="12">Lai Châu</option>
+                        <option value="14">Sơn La</option>
+                        <option value="15">Yên Bái</option>
+                        <option value="17">Hòa Bình</option>
+                        <option value="19">Thái Nguyên</option>
+                        <option value="20">Lạng Sơn</option>
+                        <option value="22">Quảng Ninh</option>
+                        <option value="24">Bắc Giang</option>
+                        <option value="25">Phú Thọ</option>
+                        <option value="26">Vĩnh Phúc</option>
+                        <option value="27">Bắc Ninh</option>
+                        <option value="30">Hải Dương</option>
+                        <option value="31">Hải Phòng</option>
+                        <option value="33">Hưng Yên</option>
+                        <option value="34">Thái Bình</option>
+                        <option value="35">Hà Nam</option>
+                        <option value="36">Nam Định</option>
+                        <option value="37">Ninh Bình</option>
+                        <option value="38">Thanh Hóa</option>
+                        <option value="40">Nghệ An</option>
+                        <option value="42">Hà Tĩnh</option>
+                        <option value="44">Quảng Bình</option>
+                        <option value="45">Quảng Trị</option>
+                        <option value="46">Thừa Thiên Huế</option>
+                        <option value="49">Quảng Nam</option>
+                        <option value="51">Quảng Ngãi</option>
+                        <option value="52">Bình Định</option>
+                        <option value="54">Phú Yên</option>
+                        <option value="56">Khánh Hòa</option>
+                        <option value="58">Ninh Thuận</option>
+                        <option value="60">Bình Thuận</option>
+                        <option value="62">Kon Tum</option>
+                        <option value="64">Gia Lai</option>
+                        <option value="66">Đắk Lắk</option>
+                        <option value="67">Đắk Nông</option>
+                        <option value="68">Lâm Đồng</option>
+                        <option value="70">Bình Phước</option>
+                        <option value="72">Tây Ninh</option>
+                        <option value="74">Bình Dương</option>
+                        <option value="75">Đồng Nai</option>
+                        <option value="77">Bà Rịa - Vũng Tàu</option>
+                        <option value="80">Long An</option>
+                        <option value="82">Tiền Giang</option>
+                        <option value="83">Bến Tre</option>
+                        <option value="84">Trà Vinh</option>
+                        <option value="86">Vĩnh Long</option>
+                        <option value="87">Đồng Tháp</option>
+                        <option value="89">An Giang</option>
+                        <option value="91">Kiên Giang</option>
+                        <option value="92">Cần Thơ</option>
+                        <option value="93">Hậu Giang</option>
+                        <option value="94">Sóc Trăng</option>
+                        <option value="95">Bạc Liêu</option>
+                        <option value="96">Cà Mau</option>
+                    </select>
+                    <select name="district" id="district" data-value="">
+                        <option value="">Quận/Huyện</option>
+                    </select>
+
+                    <select name="type">
+                        <option value="">Loại Bất động sản</option>
+                        <option value="2">Nhà phố</option>
+                        <option value="3">Căn hộ</option>
+                        <option value="4">Đất nền</option>
+                        <option value="5">Biệt thự</option>
+                    </select>
+                    <select name="method">
+                        <option value="">Loại giao dịch</option>
+                        <option value="sale">Cần bán</option>
+                        <option value="rent">Cho thuê</option>
+                        <option value="buy">Cần mua</option>
+                        <option value="forrent">Cần thuê</option>
+                    </select>
+
+                    <select name="area" style="display:none;">
+                        <option value="">Diện tích</option>
+                        <option value="22">&lt;= 30 m2</option>
+                        <option value="23">30 - 50 m2</option>
+                        <option value="24">50 - 80 m2</option>
+                        <option value="25">80 - 100</option>
+                        <option value="26">100 - 150 m2</option>
+                        <option value="27">150 - 200 m2</option>
+                        <option value="28">200 - 250 m2</option>
+                        <option value="29">250 - 300 m2</option>
+                        <option value="30">300 - 500 m2</option>
+                        <option value="31">&gt; 500 m2</option>
+                    </select>
+                    <select name="direction">
+                        <option value="">Hướng</option>
+                        <option value="">Chưa chọn</option>
+                        <option value="Đông">Đông</option>
+                        <option value="Tây">Tây</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Bắc">Bắc</option>
+                        <option value="Đông Bắc">Đông Bắc</option>
+                        <option value="Đông Nam">Đông Nam</option>
+                        <option value="Tây Bắc">Tây Bắc</option>
+                        <option value="Tây Nam">Tây Nam</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <select name="price" id="rePrice">
+                        <option value="">Khoảng giá</option>
+                        <option value="8">Từ 0 đến 500tr</option>
+                        <option value="9">Từ 500tr đến 1tỷ</option>
+                        <option value="10">Từ 1tỷ đến 2tỷ</option>
+                        <option value="11">Từ 2tỷ đến 4tỷ</option>
+                        <option value="12">Từ 4tỷ đến 7tỷ</option>
+                        <option value="13">Từ 7tỷ đến 10tỷ</option>
+                    </select>
+                    <button type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-bottom page-child">
+    <div class="container">
+        <div class="nav-content project-nav project-nav-horizontal">
+            <div class="row gutter-0">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="row gutter-0">
+                        <div class="col-xs-6 col-sm-3">
+                            <a class="project-item project-item-logo first">
+                                <i class="icon">
+                                    <img class="" src="/data/upload/image/project/thumb/logo-jamila_58f5908b0a52a.jpg" alt="">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/gioi-thieu" class="project-item project-about active">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 22 20" enable-background="new 0 0 22 20" xml:space="preserve" class="svg replaced-svg">
+<g>
+                                    <g>
+                                    <path fill="#979797" d="M20,0H4.6c-1.1,0-2,0.9-2,2.1v3.5H2c-1.1,0-2,1-2,2.1v10.1C0,19.1,0.9,20,2,20H20c1.1,0,2-1,2-2.1V2.1    C22,0.9,21.1,0,20,0z M2,18.6L2,18.6c-0.4,0-0.7-0.3-0.7-0.7V7.8c0-0.4,0.3-0.7,0.7-0.7h0.6v10.8c0,0.2,0,0.5,0.1,0.7H2z     M20.7,17.9c0,0.4-0.3,0.7-0.7,0.7H4.6c-0.4,0-0.7-0.3-0.7-0.7V2.1c0-0.4,0.3-0.7,0.7-0.7H20c0.4,0,0.7,0.3,0.7,0.7V17.9z M18,7.2    h-2.5v1.6H18V7.2z M15.5,11.5h3.6V9.9h-3.6V11.5z M15.5,14.2h3.1v-1.6h-3.1V14.2z M10,8.1l-2.9,3.1c0,0-0.1,0.1-0.1,0.1v2.5    c0,0.3,0.2,0.5,0.4,0.5h1.6v-2.6h2v2.6h1.6c0.2,0,0.4-0.2,0.4-0.5v-2.4c0,0-0.1-0.1-0.1-0.1L10,8.1z M10.6,6.4L10,5.8L9.4,6.4    l-3.7,3.9c-0.2,0.2-0.2,0.5,0,0.7c0.1,0.1,0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.3-0.1L10,7.1l3.7,3.9c0.1,0.1,0.2,0.1,0.3,0.1    c0.1,0,0.2,0,0.3-0.1c0.2-0.2,0.2-0.5,0-0.7L10.6,6.4z"></path>
+	</g>
+</g>
+</svg>
+                                </i>
+                                Giới thiệu
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/vi-tri" class="project-item project-location ">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 24 20" enable-background="new 0 0 24 20" xml:space="preserve" class="svg replaced-svg">
+<g>
+                                    <g>
+                                    <path fill="#979797" d="M23.8,8.5c-0.2-0.1-0.4-0.2-0.6-0.1l-4.2,0.9l-0.3-0.1c0,0.1-0.1,0.2-0.1,0.2c-0.1,0.2-0.1,0.3-0.2,0.5    c-0.2,0.4-0.3,0.8-0.5,1.1l-2.6,7.5l-6-3.3l3-3c-0.2-0.4-0.4-0.8-0.6-1.2l-3.9,3.9l-3.5,1.9l5.7-5.7l1.6-0.5    c-0.1-0.2-0.2-0.5-0.3-0.7C11.1,9.7,11,9.6,11,9.4L9.2,10c-0.1,0-0.2,0.1-0.3,0.2L0.2,19c-0.2,0.2-0.2,0.6,0,0.8    C0.3,19.9,0.5,20,0.7,20c0.1,0,0.2,0,0.4-0.1L8.1,16l7.1,3.9c0,0,0.1,0,0.1,0c0,0,0,0,0.1,0c0.1,0,0.1,0,0.2,0h0c0,0,0,0,0,0    c0.1,0,0.1,0,0.2,0c0,0,0,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0,0,0,0l7.4-4.1c0.2-0.1,0.3-0.3,0.3-0.5L24,9C24,8.8,23.9,8.6,23.8,8.5z     M22.4,15L16.8,18l2.7-7.7l3.1-0.6L22.4,15z M14.7,13.9c1.8,0,4.6-8.4,4.6-9.8c0-2.3-2.1-4.1-4.6-4.1c-2.5,0-4.6,1.8-4.6,4.1    C10.2,5.6,12.9,13.9,14.7,13.9z M12.5,4.1c0-1.1,1-2,2.2-2C16,2.1,17,3,17,4.1c0,1.1-1,2-2.2,2C13.5,6.1,12.5,5.2,12.5,4.1z"></path>
+	</g>
+</g>
+</svg>
+                                </i>
+                                Vị trí
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/tien-ich" class="project-item project-utilities ">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve" class="svg replaced-svg">
+<g>
+                                    <g>
+                                    <path fill="#979797" d="M0.8,5.8l2.7-0.3C3.8,5.6,4,5.3,4,5l0-0.3l0.2,0l0,0.3c0,0.3,0.3,0.5,0.6,0.5l2.7-0.3C7.8,5.2,8,5,8,4.7    l0-0.3l0.2,0l0,0.4c0,0.3,0.3,0.5,0.6,0.5l0.9-0.1l0.7,7.8c0,0.3,0.2,0.5,0.5,0.4c0.3,0,0.4-0.3,0.4-0.5L10.6,5l0.8-0.1    c0.3,0,0.5-0.3,0.5-0.6l0-0.4l0.2,0l0,0.4c0,0.3,0.3,0.5,0.6,0.5l2.7-0.3c0.3,0,0.5-0.3,0.5-0.6l0-0.4l0.2,0l0,0.5    c0,0.3,0.3,0.5,0.6,0.5l2.7-0.3c0.3,0,0.5-0.3,0.5-0.6c-0.4-2.3-7.6-3-9.7-2.8l0-0.4C10.1,0.1,9.9,0,9.7,0C9.4,0,9.2,0.2,9.2,0.5    l0,0.4c-2.6,0.3-9.2,2.5-9,4.4C0.3,5.7,0.5,5.9,0.8,5.8z M5.7,14.2l3.5,2.3c0.3,0.2,0.6,0.2,0.9,0.1l3.8-2l4,2.5    c0.6,0.2,1.1-0.2,1.3-0.8c0.1-0.6-0.2-1.2-0.8-1.3l-4.2-2.5c-0.2-0.1-0.4-0.1-0.6,0l0,0l-3.7,1.9l-3.1-2.1    c-0.5-0.3-1.2-0.2-1.5,0.3C5,13.2,5.2,13.9,5.7,14.2z M19,17.8l-5.5-1.9c-0.1,0-0.2,0-0.3,0l-3.6,1.8l-7.9-5.2    c-0.5-0.3-1.2-0.2-1.5,0.3C-0.1,13.3,0,14,0.5,14.3l2.1,1.3l-2.1,3.7c-0.1,0.2-0.1,0.5,0.1,0.6C0.8,20.1,1,20,1.1,19.8l2.3-3.6    l5.3,3.5v0c0.2,0.2,0.5,0.2,0.8,0.1l3.9-1.8l5.4,1.9c0.6,0,1.1-0.4,1.1-1C20,18.3,19.6,17.8,19,17.8z M5.4,11    c-0.2-0.8-1-1.4-1.8-1.2c-0.8,0.2-1.3,1-1.1,1.8c0.2,0.8,1,1.4,1.8,1.2C5.1,12.6,5.6,11.8,5.4,11z"></path>
+	</g>
+</g>
+</svg>
+                                </i>
+                                TIỆN ÍCH
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="row gutter-0">
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/thiet-ke" class="project-item project-plan ">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 29 20" enable-background="new 0 0 29 20" xml:space="preserve" class="svg replaced-svg">
+<g>
+                                    <g>
+                                    <path fill="#979797" d="M20.5,8.3v1.5h7.1v3.4h-7.4V2.3h-6.4V0h-1.5v2.3H8.8V0H7.4v2.3h-3v17.2h15.7v-4.9h7.4v3.4h-7.1v1.5H29V8.3    H20.5z M9.9,18.1h-4v-6.8h4V18.1z M18.6,18.1h-3.5c0-1.9,1.6-3.4,3.5-3.4V18.1z M18.6,9h-3.2v1.5h3.2v2.7c-2.8,0-5,2.2-5,4.9h-2.3    V9.7H5.9V3.8h1.5v2.3h1.5V3.8h3.4v2.3h1.5V3.8h4.9V9z M0.1,3.6h1.1v4.6H2V3.6h1.4V2.7H0.1V3.6z M2.1,13.9H1.2v5.2H0V20h3.4v-0.9    H2.1V13.9z M1.1,12.3c0.2,0.1,0.3,0.2,0.5,0.2l0-0.3c-0.2,0-0.4-0.1-0.5-0.1L1.1,12.3z M1.1,12.7c0.2,0.1,0.3,0.2,0.5,0.2l0-0.3    c-0.2,0-0.4-0.1-0.5-0.1L1.1,12.7z M1.6,11.4c0.1,0,0.3,0.1,0.5,0.4L2.3,12h0.2V11H2.2v0.5h0l-0.1-0.1c-0.2-0.2-0.3-0.3-0.6-0.3    c-0.2,0-0.4,0.2-0.4,0.5c0,0.2,0.1,0.3,0.1,0.4l0.2-0.1c0-0.1-0.1-0.2-0.1-0.3C1.4,11.4,1.5,11.4,1.6,11.4z M1.9,9.9V10H1.2v0.4    L2,10.9h0.2v-0.6h0.3V10H2.2V9.9H1.9z M1.9,10.6L1.9,10.6l-0.3-0.2c-0.1,0-0.2-0.1-0.2-0.1v0c0.1,0,0.2,0,0.2,0h0.3V10.6z     M1.6,9.2C1.5,9.1,1.3,9,1.1,9l0,0.3c0.2,0,0.4,0.1,0.5,0.1L1.6,9.2z M1.1,9.6c0.2,0,0.4,0.1,0.5,0.1l0-0.2    C1.5,9.5,1.3,9.4,1.1,9.4L1.1,9.6z"></path>
+	</g>
+</g>
+</svg>
+                                </i>
+                                Thiết kế
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/phuong-thuc-thanh-toan" class="project-item project-payment-methods ">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 27 19" enable-background="new 0 0 27 19" xml:space="preserve" class="svg replaced-svg">
+<path fill="#979797" d="M2.3,9.2L1.7,8.8l0.6-0.4L2.3,9.2z M3.2,9.1C3.2,9.1,3.1,9.1,3.2,9.1C3.1,9.1,3.1,9.1,3.2,9.1  C3.1,9.2,3.1,9.2,3.1,9.2c0,0,0,0,0.1,0h0.4c0,0,0.1,0,0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0-0.1,0H3.5V8.3L3.2,8.4c0,0,0,0-0.1,0  c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0l0.1,0v0.6H3.2z M4.2,9c0.1,0,0.1-0.1,0.1-0.2c0,0-0.1,0-0.1,0.1  C4.2,8.9,4.2,8.9,4.2,9C4.1,8.9,4,8.9,4,8.8C3.9,8.8,3.9,8.7,3.9,8.6c0-0.1,0-0.1,0.1-0.2c0-0.1,0.1-0.1,0.2-0.1  c0.1,0,0.1,0,0.2,0.1c0,0,0.1,0.1,0.1,0.2c0,0.1,0,0.1,0,0.2c0,0.1,0,0.2-0.2,0.3C4.2,9.2,4.1,9.2,4.1,9.2c-0.1,0-0.1,0-0.1,0  c0,0,0,0,0-0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0.1,0C4.1,9.1,4.2,9.1,4.2,9z M4.3,8.6c0-0.1,0-0.1-0.1-0.1  c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1c0,0,0.1,0,0.1,0C4.2,8.8,4.3,8.8,4.3,8.6z M4.7,8.9  C4.7,8.8,4.7,8.8,4.7,8.9c0-0.1,0-0.1,0-0.2c0,0,0-0.1,0-0.1c0-0.1,0-0.1,0.1-0.2c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.2,0.1  c0,0,0.1,0.1,0.1,0.2c0,0,0,0.1,0,0.1c0,0,0,0.1-0.1,0.1c0,0,0.1,0.1,0.1,0.1c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1c0,0-0.1,0.1-0.1,0.1  c0,0-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0c0,0-0.1-0.1-0.1-0.1c0,0,0-0.1,0-0.1C4.6,8.9,4.6,8.9,4.7,8.9z M4.8,8.6  C4.8,8.6,4.8,8.7,4.8,8.6c0.1,0.1,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0c0,0,0-0.1,0-0.1c0,0,0-0.1,0-0.1c0,0-0.1,0-0.1,0  C4.9,8.5,4.8,8.5,4.8,8.6C4.8,8.5,4.8,8.6,4.8,8.6z M4.8,9C4.8,9,4.8,9,4.8,9c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0,0,0,0,0-0.1  c0,0,0-0.1,0-0.1c0,0-0.1,0-0.1,0S4.8,8.9,4.8,9C4.8,8.9,4.8,9,4.8,9z M5.9,9L5.9,9C5.9,9.1,5.9,9.1,5.9,9c0.1,0.1,0.1,0.1,0.1,0.1  c0,0,0,0,0,0c0,0,0,0-0.1,0H5.7c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0.1,0h0V9H5.4V8.9l0.3-0.5h0.2v0.5c0,0,0,0,0.1,0  C5.9,8.9,5.9,8.9,5.9,9C5.9,9,5.9,9,5.9,9C5.9,9,5.9,9,5.9,9z M5.7,8.6L5.6,8.9h0.2V8.6z M7.6,8.4c0,0,0.1,0.1,0.1,0.1  c0,0.1,0,0.1,0,0.2v0.1c0,0.1,0,0.2-0.1,0.2c0,0.1-0.1,0.1-0.2,0.1c-0.1,0-0.1,0-0.1,0c0,0-0.1-0.1-0.1-0.1c0-0.1,0-0.1,0-0.2V8.7  c0-0.1,0-0.2,0.1-0.2c0-0.1,0.1-0.1,0.2-0.1C7.5,8.3,7.6,8.4,7.6,8.4z M7.6,8.7c0-0.1,0-0.1-0.1-0.2c0,0-0.1,0-0.1,0  c0,0-0.1,0-0.1,0c0,0-0.1,0.1-0.1,0.2v0.1c0,0.1,0,0.1,0.1,0.2c0,0,0.1,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0.1-0.1,0.1-0.2V8.7z M8,9.1  C8,9.1,8,9.1,8,9.1C8,9.1,8,9.1,8,9.1C8,9.2,8,9.2,8,9.2c0,0,0,0,0.1,0h0.4c0,0,0.1,0,0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0-0.1,0  H8.3V8.3L8,8.4c0,0,0,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0l0.1,0v0.6H8z M8.7,9.1v0.1h0.6V9.1c0,0,0-0.1,0-0.1  c0,0,0,0,0,0c0,0,0,0,0,0H8.9C9,9,9.1,8.9,9.1,8.8c0.1-0.1,0.1-0.1,0.1-0.1c0,0,0-0.1,0-0.1c0-0.1,0-0.1-0.1-0.2  C9.1,8.4,9.1,8.3,9,8.3c-0.1,0-0.1,0-0.1,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0  c0,0,0-0.1,0-0.1c0,0,0.1,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1C9.1,8.7,8.9,8.9,8.7,9.1z M9.7,9.1  c0,0-0.1,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0.1,0,0.1c0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.2,0,0.2-0.1  C10,9.1,10.1,9,10.1,8.9c0-0.1,0-0.2-0.1-0.2C9.9,8.7,9.9,8.6,9.8,8.6c0,0-0.1,0-0.1,0V8.5h0.3c0,0,0.1,0,0.1,0c0,0,0,0,0,0  c0,0,0,0,0,0c0,0,0,0-0.1,0H9.5v0.4c0,0,0,0,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0.1,0,0.1,0,0.2,0c0,0,0.1,0,0.1,0c0,0,0,0.1,0,0.1  c0,0.1,0,0.1,0,0.1C9.9,9.1,9.8,9.1,9.7,9.1z M11.3,8.6c0,0,0,0.1,0,0.1C11.3,8.7,11.3,8.7,11.3,8.6c0.1,0.1,0.1,0.1,0.1,0.1  c0.1,0,0.1,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.1,0-0.2,0c0,0-0.1-0.1-0.1-0.1  c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0.1-0.2c0-0.1,0.1-0.1,0.2-0.2c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.1,0c0,0,0,0,0,0.1c0,0,0,0,0,0  c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0-0.1,0-0.1,0C11.4,8.5,11.4,8.6,11.3,8.6z M11.3,8.9c0,0.1,0,0.1,0.1,0.1c0,0,0.1,0,0.1,0  c0,0,0.1,0,0.1,0c0,0,0-0.1,0-0.1c0,0,0-0.1,0-0.1c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0C11.4,8.9,11.3,8.9,11.3,8.9z M12.1,8.6  c0,0,0,0.1,0,0.1C12.1,8.7,12.1,8.7,12.1,8.6c0.1,0.1,0.1,0.1,0.1,0.1c0.1,0,0.1,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2  c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.1,0-0.2,0C12,9.1,12,9.1,12,9c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0.1-0.2  c0-0.1,0.1-0.1,0.2-0.2c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.1,0c0,0,0,0,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0  c0,0-0.1,0-0.1,0C12.2,8.5,12.1,8.6,12.1,8.6z M12.1,8.9c0,0.1,0,0.1,0.1,0.1c0,0,0.1,0,0.1,0s0.1,0,0.1,0c0,0,0-0.1,0-0.1  c0,0,0-0.1,0-0.1c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0C12.1,8.9,12.1,8.9,12.1,8.9z M12.6,9v0.1h0.6V9.1c0,0,0-0.1,0-0.1c0,0,0,0,0,0  c0,0,0,0,0,0h-0.3c0.1-0.1,0.2-0.2,0.3-0.2c0.1-0.1,0.1-0.1,0.1-0.1c0,0,0-0.1,0-0.1c0-0.1,0-0.1-0.1-0.2c-0.1-0.1-0.1-0.1-0.2-0.1  c-0.1,0-0.1,0-0.1,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1  c0,0,0.1,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1C13,8.7,12.9,8.8,12.6,9z M13.9,8.7c0,0,0-0.1,0-0.1  c0-0.1,0-0.1-0.1-0.2c-0.1-0.1-0.1-0.1-0.2-0.1c-0.1,0-0.1,0-0.1,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0  c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1c0,0,0.1,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1c0,0.1-0.2,0.2-0.4,0.4  v0.1H14V9.1c0,0,0-0.1,0-0.1c0,0,0,0,0,0c0,0,0,0,0,0h-0.3c0.1-0.1,0.2-0.2,0.3-0.2C13.9,8.8,13.9,8.7,13.9,8.7z M15.4,9L15.4,9  C15.4,9.1,15.4,9.1,15.4,9c0.1,0.1,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0,0-0.1,0h-0.2c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0  c0,0,0,0,0.1,0h0V9h-0.3V8.9l0.3-0.5h0.2v0.5c0,0,0,0,0.1,0C15.5,8.9,15.5,9,15.4,9C15.5,9,15.5,9,15.4,9C15.4,9,15.4,9,15.4,9z   M15.3,8.6l-0.2,0.3h0.2V8.6z M16.1,9L16.1,9C16.2,9.1,16.2,9.1,16.1,9c0.1,0.1,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0,0-0.1,0H16  c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0.1,0h0V9h-0.3V8.9L16,8.4h0.2v0.5c0,0,0,0,0.1,0C16.2,8.9,16.2,9,16.1,9  C16.2,9,16.2,9,16.1,9C16.2,9,16.2,9,16.1,9z M16,8.6l-0.2,0.3H16V8.6z M16.9,9L16.9,9C16.9,9.1,17,9.1,16.9,9C17,9.1,17,9.1,17,9.2  c0,0,0,0,0,0c0,0,0,0-0.1,0h-0.2c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0.1,0h0.1V9h-0.3V8.9l0.3-0.5h0.2v0.5  c0,0,0,0,0.1,0C17,8.9,17,9,16.9,9C17,9,17,9,16.9,9C17,9,16.9,9,16.9,9z M16.8,8.6l-0.2,0.3h0.2V8.6z M17.7,9L17.7,9  C17.7,9.1,17.7,9.1,17.7,9c0.1,0.1,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0,0-0.1,0h-0.2c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0  c0,0,0,0,0.1,0h0V9h-0.3V8.9l0.3-0.5h0.2v0.5c0,0,0,0,0.1,0C17.7,8.9,17.8,9,17.7,9C17.8,9,17.7,9,17.7,9C17.7,9,17.7,9,17.7,9z   M17.5,8.6l-0.2,0.3h0.2V8.6z M27,14.4c-0.1,0.9-0.4,1.6-0.9,2.2c-0.6,0.6-1.4,1-2.4,1.2V19l-2.2,0v-1.2c-1.2-0.2-2.1-0.8-2.6-1.7  c-0.5-0.9-0.8-1.8-0.8-2.7h2.2c0,0.6,0.1,1,0.3,1.3c0.2,0.3,0.5,0.6,0.9,0.7v-3.5c-0.2-0.1-0.3-0.1-0.5-0.2  c-0.2-0.1-0.3-0.1-0.5-0.2c-0.7-0.3-1.3-0.7-1.7-1.3c-0.4-0.6-0.6-1.3-0.5-2.1c0-0.7,0.3-1.4,0.8-2c0.5-0.7,1.3-1.1,2.4-1.3V3.7h2.2  v1.1c1.2,0.3,2,0.9,2.4,1.8c0.4,0.9,0.6,1.6,0.6,2.2h-2.1c0-0.4-0.1-0.7-0.2-1c-0.1-0.3-0.4-0.6-0.7-0.7v3.4  c0.2,0.1,0.5,0.1,0.7,0.2c0.2,0.1,0.4,0.2,0.7,0.3c0.7,0.3,1.2,0.8,1.6,1.4C26.9,13,27.1,13.7,27,14.4z M21.4,6.9  c-0.4,0.2-0.6,0.4-0.8,0.6c-0.2,0.3-0.2,0.5-0.2,0.9c0,0.4,0.1,0.6,0.3,0.8c0.2,0.2,0.4,0.4,0.7,0.5V6.9z M24.6,13.5  c-0.1-0.3-0.4-0.5-0.8-0.7c0,0,0,0-0.1,0c0,0-0.1,0-0.1-0.1v2.9c0.4-0.1,0.6-0.3,0.8-0.5c0.2-0.2,0.3-0.4,0.3-0.7  C24.8,14.1,24.7,13.7,24.6,13.5z M3.3,17c-1.3,0-2.4-1.1-2.4-2.5V7.5h17c0.1-0.5,0.4-1.1,0.8-1.6c0.4-0.6,1-1,1.7-1.2H0.9V3.4  C0.9,2.1,2,1,3.3,1h16c1.3,0,2.3,1,2.4,2.3h1c0-0.9-0.4-1.7-1-2.3v0c-0.6-0.6-1.4-1-2.3-1h0h-16h0h0C2.4,0,1.6,0.4,1,1  C0.4,1.6,0,2.5,0,3.4v0v0v11.1v0v0c0,0.9,0.4,1.8,1,2.4c0.6,0.6,1.4,1,2.3,1h0h0h0h16h0h0c0.3,0,0.6,0,0.8-0.1  c-0.5-0.2-0.9-0.5-1.3-0.9H3.3z"></path>
+</svg>
+                                </i>
+                                Phương thức thanh toán
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/can-ho-jamila/brochure" class="project-item project-process ">
+                                <i class="icon"><img class="svg" src="http://sunlandsg.vn/themes/frontend/images/project-process.svg" alt=""></i>
+                                BROCHURE
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="/du-an/lien-he/0?id=51" class="project-item project-contact ">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 22 14" enable-background="new 0 0 22 14" xml:space="preserve" class="svg replaced-svg">
+<g>
+                                    <g>
+                                    <path fill="#979797" d="M11,8.4L11,8.4c0.2,0,0.3,0,0.5-0.1l0,0c0,0,0,0,0,0L12,7.9L22,0c0,0-0.1,0-0.1,0H0.1c0,0-0.1,0-0.1,0    l10.5,8.2C10.6,8.3,10.8,8.4,11,8.4z M0,1.1v11.6L7.5,7L0,1.1z M14.5,7l7.5,5.7V1.1L14.5,7z M12.1,8.9c-0.3,0.2-0.7,0.4-1.1,0.4    c-0.4,0-0.8-0.1-1.1-0.4L8.2,7.6L0,13.9v0C0,13.9,0.1,14,0.1,14h21.8c0.1,0,0.1-0.1,0.1-0.1v0l-8.2-6.3L12.1,8.9z"></path>
+	</g>
+</g>
+</svg>
+                                </i>
+                                Liên hệ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="text-center">
+        <img class="project-logo" src="/data/upload/image/project/thumb/logo-jamila_58f5a460d8bc2.jpg" alt="">	    </div>-->
+        <!--<h2 class="page-title"></h2>-->
+        <div class="page-content editor-content">
+            <!---->
+
+            <div class="page-block page-text-block">
+                <h2 class="page-title">THÔNG TIN DỰ ÁN JAMILA KHANG ĐIỀN</h2>
+                <div class="page-content editor-content">
+                    <p style="text-align:center"><a href="http://sunlandsg.vn/du-an/can-ho-jamila/vi-tri" target="_blank"><img alt="Mở bán chính thức căn hộ Jamila Khang Điền Quận 9 - giá sốc từ Chủ Đầu Tư" src="http://sunlandsg.vn/data/upload/image_manual/project/jamila%20khang%20%C4%91i%E1%BB%81n/jamila-banner1_1.gif?1492673721370" style="border-style:solid; border-width:1px; height:347px; width:725px"></a></p>
+
+                    <p>
+                        <span style="font-size:14px">
+                            <span style="font-family:arial,helvetica,sans-serif">
+                                <strong>– Chủ đầu tư :</strong> Công ty Nhà Khang Điền.<br>
+                                <strong>– Nhà Thầu Chính :</strong> Công ty xây dựng Hòa Bình.<br>
+                                <strong>– Vị trí :</strong> Tọa lạc mặt tiền đường Song Hành, Liền kề khu biệt thự siêu sang The Venica<br>
+                                <strong>– Tên chính thức:</strong> <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank"><strong>DỰ ÁN JAMILA</strong></a><br>
+                                <strong>– Quy Mô Dự Án</strong> : 1.7ha.
+                            </span>
+                        </span>
+                    </p>
+
+                    <ul>
+                        <li>
+                            <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Hệ thống tiện ích rộng tới 7.000 m2 với 50 hạng mục tiện ích khác nhau</span></span></p>
+                        </li>
+                        <li>
+                            <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;4 tòa tháp nối với nhau tạo thành hình vòng cung với 867 căn hộ bao gồm 5 căn Duplex, ngaoif ra có 16 căn Shophouse</span></span></p>
+                        </li>
+                        <li>
+                            <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Mỗi tòa tháp căn hộ bao gồm 25 tầng. Trong đó: </span></span></p>
+                        </li>
+                    </ul>
+
+                    <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + Tầng Hầm để xe.</span></span></p>
+
+                    <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 2 Tầng trung tâm thương mại và các ShopHouse.</span></span></p>
+
+                    <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 21 Tầng còn lại dành cho tiện ích và căn hộ.</span></span></p>
+
+                    <p>
+                        <span style="font-size:14px">
+                            <span style="font-family:arial,helvetica,sans-serif">
+                                <strong>– Quản lý về chất lượng :</strong> SCQC<br>
+                                <strong>– Quản Lý Khu Dân Cư :</strong> CBRE<br>
+                                <strong>– Tiêu chuẩn bàn giao nhà :</strong> Hoàn thiện nội thất liền tường (<strong>nội thất cao cấp</strong>).<br>
+                                <strong>– Thời gian dự kiến bàn giao :</strong> chia làm 2 đợt.
+                            </span>
+                        </span>
+                    </p>
+
+                    <ul>
+                        <li>
+                            <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Đợt 1 : Vào quý 3 năm 2018.</span></span></p>
+                        </li>
+                        <li>
+                            <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Đợt 2 : Vào quý 1 năm 2019.</span></span></p>
+                        </li>
+                    </ul>
+
+                    <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>– Mở bán tháng 5/2017: </strong>Block D, Block C</span></span></p>
+
+                    <p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">- <strong>Tháng 6/2017:</strong> Mở bán Block A</span></span></p>
+
+                    <h2 style="text-align:center"><span style="font-size:20px"><span style="color:rgb(0, 128, 0)"><span style="font-family:arial,helvetica,sans-serif"><strong>NHẬN GIỮ CHỔ 50TR, NGÀY 21/6 MỞ BÁN BLOCK A CĂN HỘ JAMILA.</strong></span></span></span></h2>
+
+                    <p style="text-align:center"><a href="https://goo.gl/FtrPJb" target="_blank"><img alt="Nhận báo giá jamila" src="http://sunlandsg.vn/data/upload/image_manual/project/jamila%20khang%20%C4%91i%E1%BB%81n/nhanbaogiabutton.gif?1494490739860" style="height:84px; width:300px"></a></p>
+
+                    <h2 style="text-align:center"><span style="font-size:20px"><span style="font-family:arial,helvetica,sans-serif"><span style="color:rgb(255, 0, 0)"><strong>HOTLINE: 0938 779 660</strong></span></span></span></h2>
+
+                    <p>&nbsp;</p>
+
+                    <p style="text-align: center;"><iframe frameborder="0" height="480" src="https://www.youtube.com/embed/vXCgn1uO30M" width="853"></iframe></p>
+                </div>
+            </div>
+            <div class="clearfix"></div><div class="page-block page-text-block">
+                <h2 class="page-title">JAMILA Khang Điền - Cho cuộc sống tốt đẹp hơn</h2>
+                <div class="page-content editor-content">
+                    <h2 style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><em>Sau nhiều năm khẳng định thương hiệu với dòng sản phẩm nhà phố biệt thự trung, cao cấp, Khang Điền trở lại triển khai dự án <a href="http://sunlandsg.vn/tin-tuc/tai-sao-nen-dau-tu-can-ho-jamila-khang-dien-quan-9" target="_blank"><span style="color:#00ccff"><strong>căn hộ Jamila Khang Điền</strong></span></a> tọa lạc tại quận 9 với nhiều điểm nổi bật hứa hẹn sẽ gây tiếng vang lớn trên thị trường bất động sản. Nhờ uy tín của chủ đầu tư cùng với kinh nghiệm xây dựng các dự án bất động sản, dự án này chắc chắn sẽ mang đến sự an tâm, tin tưởng cho mọi khách hàng</em>.</span></span></h2>
+
+                    <p style="text-align:center"><img alt="Mặt bằng tổng thể dự án Jamila Khang Điền" src="http://sunlandsg.vn/data/upload/image_manual/project/jamila%20khang%20%C4%91i%E1%BB%81n/mat-bang-tong-the-Jamila.gif?1493189625212" style="height:505px; width:1200px"></p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dự án <a href="http://sunlandsg.vn/du-an/can-ho-jamila/vi-tri" target="_blank"><span style="color:rgb(0, 204, 255)"><strong>JAMILA</strong></span></a><strong> </strong>tọa lạc tại đường Song Hành, Quận 9 - 1 phút di chuyển đến Quận 2. <strong>Căn hộ Jamila</strong> nằm kế cận bên khu <strong>biệt thự The Venica</strong>. Nhờ nằm vị trí đắc địa mà <strong>căn hộ Jamila Khang Điền</strong> được thừa hưởng hệ thống cơ sở hạ tầng giao thông hiện đại như:</span></span></p>
+
+                    <ul>
+                        <li style="text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Đường Song Hành nối Quận 2 với quận 9</span></span></li>
+                        <li style="text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tuyến đường cao tốc TP. HCM - Long Thành - Dầu Giây</span></span></li>
+                        <li style="text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Trục đường Mai Chí Thọ, nối quận 1 với quận 2... </span></span></li>
+                    </ul>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Ngoài ra căn hộ Venica Khang Điền còn được thừa hưởng tiện ích từ các khu đô thị liền kế như: <em>khu biệt thự cao cấp <strong>The Venica</strong>, khu đô thị mới <strong>Thủ Thiêm</strong>, khu TDTT <strong>Rạch Chiế</strong></em><strong>c</strong>...</span></span></p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tâm huyết từ nhà phát triển dự án Khang Điền, <strong><a href="http://sunlandsg.vn/du-an/can-ho-jamila/thiet-ke" target="_blank"><span style="color:rgb(0, 204, 255)">JAMILA</span></a></strong> sẽ được xây dựng trở thành khu căn hộ cao cấp nhất Quận 9. </span></span></p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tổng thể dự án <em><strong>JAMILA Khang Điền</strong></em>: diện tích gần 2ha với 867 căn hộ được thiết kế hiện đại trên 4 Block, cùng 8.000m2 tiện ích.&nbsp;Đặc biệt tại <a href="http://sunlandsg.vn/du-an/can-ho-jamila/vi-tri" target="_blank"><span style="color:#00ccff"><strong>Jamila</strong></span></a> có thiết kế các tầng <strong>Shophouse</strong> và cả <strong>Penhouse</strong> bên cạnh các thiết kế <strong>1PN, 2PN, 3PN</strong>. Điều đó giúp khách hàng có thể lựa chọn dễ dàng theo nhu cầu và nguồn tài chính kinh tế, các căn hộ sẽ được thiết kế với cửa sổ lớn, ban công rộng, tất cả căn hộ đều có tầm nhìn ra bên ngoài đảm bảo ánh sáng có thể dung hòa cho từng căn phòng.</span></span></p>
+
+                    <p style="margin-left:0.25in; text-align:center"><img alt="Tiện ích cao cấp dự án Jamila Khang Điền Quận 2" src="http://sunlandsg.vn/data/upload/image_manual/project/jamila%20khang%20%C4%91i%E1%BB%81n/tien-ich-du-an-Jamila.gif?1493190471942" style="height:888px; width:1200px"></p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><strong>Jamila</strong> có đến 50 tiện ích và thiết kế cảnh quan xanh mát trong không gian sống hoàn hảo hòa mình vào thiên nhiên, tất cả được thiết kế tinh tế và bố cục hợp lý, đầy đủ tiện nghi cho cuộc sống ổn định và bền vững: coffee louge, shop house, BBQ, trường học, hệ thống hồ bơi, hồ tràn, quầy bar, phòng gym, khu vui chơi trẻ em, thẻ từ an ninh</p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><a href="http://sunlandsg.vn/du-an/can-ho-jamila/thiet-ke" target="_blank"><span style="color:#00ccff"><strong>Căn hộ Jamila Khang Điền</strong></span></a> mang đến một trải nghiệm khác về tiện ích xanh. Với 2 mặt dự án giáp 2.000m2 sông cùng 8.000m2 chỉ dành cho khu tiện ích, một môi trường sống với tiện ích không thua các khu <strong><em>căn hộ cao cấp</em> tại Quận 2</strong> như <em><strong>Palm Height</strong></em>, <strong><em>Estella Heigh</em></strong>, <em><strong>Vista Vert</strong></em>.., một cộng đồng dân cư cho những tri thức trẻ, những người có thu nhập trung bình. Ngoài ra khi sở hữu <em>căn hộ tiện ích cao cấp giá rẻ <strong>Jamila</strong></em> bạn còn được thừa hưởng những tiện ích theo tiêu chuẩn như <em>Trạm metro</em>.&nbsp;Các trường học cấp 1, 2, <em>trường Quốc tế AIS</em>, <em>Vincom Mega Mall</em>,<em> Parkson</em>, <em>Big C</em>, <em>Metro An Phú</em>, <em>Siêu thị CentralMart</em> – Vista. <em>Bệnh viện Quận 2</em>, <em>Phúc An Khang</em>.</span></span></p>
+
+                    <p style="margin-left:0.25in; text-align:justify"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dự án <a href="http://sunlandsg.vn/tin-tuc/khu-can-ho-jamila-khang-dien-quan-9" target="_blank"><span style="color:rgb(0, 204, 255)"><strong>căn hộ JAMILA</strong></span></a> hứa hẹn sẽ tạo nên một khu dân cư mới phát triển và năng động tại Quận 9.</span></span></p>
+
+                    <p style="text-align:center"><span style="font-size:18px"><span style="color:#008000"><span style="font-family:arial,helvetica,sans-serif"><strong>LIÊN HỆ NHẬN BÁO GIÁ VÀ TƯ VẤN BLOCK A, BLOCK B - CĂN HỘ JAMILA</strong></span></span></span></p>
+
+                    <p style="text-align:center"><span style="font-size:18px"><span style="font-family:arial,helvetica,sans-serif"><a href="https://goo.gl/FtrPJb" rel="nofollow" target="_blank"><img alt="" src="http://sunlandsg.vn/data/upload/image_manual/news/tin%20du%20an/dang-ky-mua-palmheights.png?1474637646757"></a></span></span></p>
+
+                    <p style="text-align:center"><span style="font-size:18px"><span style="font-family:arial,helvetica,sans-serif"><strong>SUNLANDSG – ĐƠN VỊ PHÂN PHỐI CHÍNH THỨC DỰ ÁN CĂN HỘ JAMILA KHANG ĐIỀN</strong></span></span></p>
+
+                    <p style="text-align:center"><span style="font-size:20px"><span style="font-family:arial,helvetica,sans-serif"><span style="color:rgb(255, 0, 0)"><strong>HOTLINE:&nbsp;0938 779 660</strong></span></span></span></p>
+
+                    <p style="text-align:center"><a href="http://sunlandsg.vn/du-an/can-ho-jamila/vi-tri" rel="nofollow" target="_blank"><span style="color:#006400"><span style="font-size:14px"><strong>XEM CHI TIẾT VỊ TRÍ - TIỆN ÍCH &gt;&gt;&gt;</strong></span></span></a></p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="page-bottom">
+            <div class="share-link">
+                <div class="inner">
+                    Share Link
+                    <a target="_blank" rel="nofollow" href="https://plus.google.com/share?url=http%3A%2F%2Fsunlandsg.vn%2Fdu-an%2Fcan-ho-jamila%2Fgioi-thieu"><span class="icon-google-plus-social-logotype"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsunlandsg.vn%2Fdu-an%2Fcan-ho-jamila%2Fgioi-thieu"><span class="icon-facebook-logo"></span></a>
+                </div>
+            </div>			<div class="project-other">
+                <h3 class="border-bottom">DỰ ÁN BẤT ĐỘNG SẢN</h3>
+                <div class="list-project">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/masteri-an-phu"><img alt="Masteri An Phú" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fcan-ho-masteri-an-phu-quan_5948dbcad0007.jpg&amp;w=735&amp;h=432&amp;fit=crop"></a>
+                                    <a href="/du-an/masteri-an-phu"><p>Masteri An Phú</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address">
+                                        <span>Quận 2 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/rosita-garden-khang-dien"><img alt="Rosita Garden" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2FAVATA-ROSITA_596dcb8024782.jpg&amp;w=735&amp;h=432&amp;fit=crop"></a>
+                                    <a href="/du-an/rosita-garden-khang-dien"><p>Rosita Garden</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address">
+                                        <span>Quận 9 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>3.2 tỷ</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/new-city-quan-2"><img alt="New City quận 2" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fnew-city-quan-2_596478eaab182.jpg&amp;w=735&amp;h=432&amp;fit=crop"></a>
+                                    <a href="/du-an/new-city-quan-2"><p>New City quận 2</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address">
+                                        <span>Quận 2 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/homyland-riverside"><img alt="Homyland Riverside" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fhomyland-riverside_59376dad904fd.jpg&amp;w=735&amp;h=432&amp;fit=crop"></a>
+                                    <a href="/du-an/homyland-riverside"><p>Homyland Riverside</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address">
+                                        <span>Quận 2 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>26 triệu/m2</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,346 @@
+﻿@{
+   
+}
+
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h2>Siêu thị địa ốc</h2>
+        <div class="search-bds">
+            <div class="title-sr">
+                <img src="http://sunlandsg.vn/themes/frontend/images/search-icon.png" alt="">
+                Tìm kiếm bất động sản
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </div>
+            <div class="bg-search hide">
+                <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
+                    <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
+                    <select name="province" id="province">
+                        <option value="">Tỉnh/Thành phố</option>
+                        <option value="79">Hồ Chí Minh</option>
+                        <option value="1">Hà Nội</option>
+                        <option value="48">Đà Nẵng</option>
+                        <option value="2">Hà Giang</option>
+                        <option value="4">Cao Bằng</option>
+                        <option value="6">Bắc Kạn</option>
+                        <option value="8">Tuyên Quang</option>
+                        <option value="10">Lào Cai</option>
+                        <option value="11">Điện Biên</option>
+                        <option value="12">Lai Châu</option>
+                        <option value="14">Sơn La</option>
+                        <option value="15">Yên Bái</option>
+                        <option value="17">Hòa Bình</option>
+                        <option value="19">Thái Nguyên</option>
+                        <option value="20">Lạng Sơn</option>
+                        <option value="22">Quảng Ninh</option>
+                        <option value="24">Bắc Giang</option>
+                        <option value="25">Phú Thọ</option>
+                        <option value="26">Vĩnh Phúc</option>
+                        <option value="27">Bắc Ninh</option>
+                        <option value="30">Hải Dương</option>
+                        <option value="31">Hải Phòng</option>
+                        <option value="33">Hưng Yên</option>
+                        <option value="34">Thái Bình</option>
+                        <option value="35">Hà Nam</option>
+                        <option value="36">Nam Định</option>
+                        <option value="37">Ninh Bình</option>
+                        <option value="38">Thanh Hóa</option>
+                        <option value="40">Nghệ An</option>
+                        <option value="42">Hà Tĩnh</option>
+                        <option value="44">Quảng Bình</option>
+                        <option value="45">Quảng Trị</option>
+                        <option value="46">Thừa Thiên Huế</option>
+                        <option value="49">Quảng Nam</option>
+                        <option value="51">Quảng Ngãi</option>
+                        <option value="52">Bình Định</option>
+                        <option value="54">Phú Yên</option>
+                        <option value="56">Khánh Hòa</option>
+                        <option value="58">Ninh Thuận</option>
+                        <option value="60">Bình Thuận</option>
+                        <option value="62">Kon Tum</option>
+                        <option value="64">Gia Lai</option>
+                        <option value="66">Đắk Lắk</option>
+                        <option value="67">Đắk Nông</option>
+                        <option value="68">Lâm Đồng</option>
+                        <option value="70">Bình Phước</option>
+                        <option value="72">Tây Ninh</option>
+                        <option value="74">Bình Dương</option>
+                        <option value="75">Đồng Nai</option>
+                        <option value="77">Bà Rịa - Vũng Tàu</option>
+                        <option value="80">Long An</option>
+                        <option value="82">Tiền Giang</option>
+                        <option value="83">Bến Tre</option>
+                        <option value="84">Trà Vinh</option>
+                        <option value="86">Vĩnh Long</option>
+                        <option value="87">Đồng Tháp</option>
+                        <option value="89">An Giang</option>
+                        <option value="91">Kiên Giang</option>
+                        <option value="92">Cần Thơ</option>
+                        <option value="93">Hậu Giang</option>
+                        <option value="94">Sóc Trăng</option>
+                        <option value="95">Bạc Liêu</option>
+                        <option value="96">Cà Mau</option>
+                    </select>
+                    <select name="district" id="district" data-value="">
+                        <option value="">Quận/Huyện</option>
+                    </select>
+
+                    <select name="type">
+                        <option value="">Loại Bất động sản</option>
+                        <option value="2">Nhà phố</option>
+                        <option value="3">Căn hộ</option>
+                        <option value="4">Đất nền</option>
+                        <option value="5">Biệt thự</option>
+                    </select>
+                    <select name="method">
+                        <option value="">Loại giao dịch</option>
+                        <option value="sale">Cần bán</option>
+                        <option value="rent">Cho thuê</option>
+                        <option value="buy">Cần mua</option>
+                        <option value="forrent">Cần thuê</option>
+                    </select>
+
+                    <select name="area" style="display:none;">
+                        <option value="">Diện tích</option>
+                        <option value="22">&lt;= 30 m2</option>
+                        <option value="23">30 - 50 m2</option>
+                        <option value="24">50 - 80 m2</option>
+                        <option value="25">80 - 100</option>
+                        <option value="26">100 - 150 m2</option>
+                        <option value="27">150 - 200 m2</option>
+                        <option value="28">200 - 250 m2</option>
+                        <option value="29">250 - 300 m2</option>
+                        <option value="30">300 - 500 m2</option>
+                        <option value="31">&gt; 500 m2</option>
+                    </select>
+                    <select name="direction">
+                        <option value="">Hướng</option>
+                        <option value="">Chưa chọn</option>
+                        <option value="Đông">Đông</option>
+                        <option value="Tây">Tây</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Bắc">Bắc</option>
+                        <option value="Đông Bắc">Đông Bắc</option>
+                        <option value="Đông Nam">Đông Nam</option>
+                        <option value="Tây Bắc">Tây Bắc</option>
+                        <option value="Tây Nam">Tây Nam</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <select name="price" id="rePrice">
+                        <option value="">Khoảng giá</option>
+                        <option value="8">Từ 0 đến 500tr</option>
+                        <option value="9">Từ 500tr đến 1tỷ</option>
+                        <option value="10">Từ 1tỷ đến 2tỷ</option>
+                        <option value="11">Từ 2tỷ đến 4tỷ</option>
+                        <option value="12">Từ 4tỷ đến 7tỷ</option>
+                        <option value="13">Từ 7tỷ đến 10tỷ</option>
+                    </select>
+                    <button type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-bottom page-event page-real">
+    <div class="container">
+        <div class="page-content editor-content">
+            <h1 class="page-title page-title-style-1">Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2</h1>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="page-gallery">
+                        <div class="lSSlideOuter">
+                            <div class="lSSlideWrapper usingCss" style="transition-duration: 400ms; transition-timing-function: ease;">
+                                <ul class="light-slider lightSlider lsGrab lSSlide" style="width: 1905px; height: 469px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
+                                    <li data-thumb="/images?path=image%2Frealestate%2F1_57ad1f9b9e6d1.jpg&amp;w=119&amp;h=86&amp;fit=crop" class="lslide active" style="width: 635px; margin-right: 0px;">
+                                        <img src="http://sunlandsg.vn/data/upload/image/realestate/1_57ad1f9b9e6d1.jpg" width="635" height="380" alt="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2" title="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2">
+                                    </li>
+                                    <li data-thumb="/images?path=image%2Frealestate%2F2_57ad1f9bbc0a7.jpg&amp;w=119&amp;h=86&amp;fit=crop" class="lslide" style="width: 635px; margin-right: 0px;">
+                                        <img src="http://sunlandsg.vn/data/upload/image/realestate/2_57ad1f9bbc0a7.jpg" width="635" height="380" alt="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2" title="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2">
+                                    </li>
+                                    <li data-thumb="/images?path=image%2Frealestate%2FKDC+CTY+KHANG+AN-PTN+Q+3-01-01-01_57ad1f9bdafef.jpg&amp;w=119&amp;h=86&amp;fit=crop" class="lslide" style="width: 635px; margin-right: 0px;">
+                                        <img src="http://sunlandsg.vn/data/upload/image/realestate/KDC CTY KHANG AN-PTN Q 3-01-01-01_57ad1f9bdafef.jpg" width="635" height="380" alt="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2" title="Bán đất nền KDC Khang An Q.9 dt: 8x20 hướng Nam giá 23tr/m2">
+                                    </li>
+                                </ul><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
+                            </div><ul class="lSPager lSGallery" style="margin-top: 10px; transition-duration: 400ms; width: 387.5px; transform: translate3d(0px, 0px, 0px);"><li style="width:100%;width:119px;margin-right:10px" class="active"><a href="#"><img src="/images?path=image%2Frealestate%2F1_57ad1f9b9e6d1.jpg&amp;w=119&amp;h=86&amp;fit=crop"></a></li><li style="width:100%;width:119px;margin-right:10px"><a href="#"><img src="/images?path=image%2Frealestate%2F2_57ad1f9bbc0a7.jpg&amp;w=119&amp;h=86&amp;fit=crop"></a></li><li style="width:100%;width:119px;margin-right:10px"><a href="#"><img src="/images?path=image%2Frealestate%2FKDC+CTY+KHANG+AN-PTN+Q+3-01-01-01_57ad1f9bdafef.jpg&amp;w=119&amp;h=86&amp;fit=crop"></a></li></ul>
+                        </div>
+                    </div>
+                    <div class="box box-attribute">
+                        <h3 class="box-title">Thông tin mô tả</h3>
+                        <div class="row gutter-5 mb-content">
+                            <p>Cần tiền nên chuyển nhượng lại một số lô đất thuộc &nbsp;khu dân cư Khang An, P.Phú Hữu, Q.9. Gần siêu thị Aeon Mall Q.9, &nbsp;cách Khu Công Nghệ cao 3 phút , cách Q.1 chỉ 12 phút cách Phú Mỹ Hưng 15 phút.</p>
+
+                            <p>DT: 6x16</p>
+
+                            <p>DT: 6x21</p>
+
+                            <p>DT: 8x20</p>
+
+                            <p>DT: 10x20</p>
+
+                            <p>Giá 23 tr/m2</p>
+
+                            <p>Khu dân cư hiện hữu, cơ sở hạ tầng hiện đại, gần chợ, trường học, bệnh viện…</p>
+
+                            <p>LH: 0909 128 189 Tuyết</p>
+
+                            <p>Email: <a href="mailto:aituyet1009@gmail.com">aituyet1009@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="box box-attribute">
+                        <h3 class="box-title">Bình luận</h3>
+                        <div class="row gutter-5 mb-content">
+                            <div class="box-comment facebook-conmment">
+                                <div id="fb-root" class="fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="http://staticxx.facebook.com/connect/xd_arbiter/r/XBwzv5Yrm_1.js?version=42#channel=fb856cf6962ccc&amp;origin=http%3A%2F%2Fsunlandsg.vn" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://staticxx.facebook.com/connect/xd_arbiter/r/XBwzv5Yrm_1.js?version=42#channel=fb856cf6962ccc&amp;origin=http%3A%2F%2Fsunlandsg.vn" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f2aa41861917304" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" src="https://www.facebook.com/connect/ping?client_id=264185527100832&amp;domain=sunlandsg.vn&amp;origin=1&amp;redirect_uri=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df2c53cd142a75a%26domain%3Dsunlandsg.vn%26origin%3Dhttp%253A%252F%252Fsunlandsg.vn%252Ffb856cf6962ccc%26relation%3Dparent&amp;response_type=token%2Csigned_request%2Ccode&amp;sdk=joey" style="display: none;"></iframe></div></div></div>
+                                <script>
+(function(d, s, id) {
+                                  var js, fjs = d.getElementsByTagName(s)[0];
+                                  if (d.getElementById(id)) return;
+                                  js = d.createElement(s); js.id = id;
+                                  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=264185527100832";
+                                  fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+
+                                <div class="fb-comments fb_iframe_widget" data-numposts="5" fb-xfbml-state="rendered"><span style="height: 176px; width: 550px;"><iframe id="f11d7b3c8739cfc" name="f3d36df7afa78ec" scrolling="no" title="Facebook Social Plugin" class="fb_ltr" src="https://www.facebook.com/plugins/comments.php?api_key=264185527100832&amp;channel_url=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df2997f72f35b434%26domain%3Dsunlandsg.vn%26origin%3Dhttp%253A%252F%252Fsunlandsg.vn%252Ffb856cf6962ccc%26relation%3Dparent.parent&amp;locale=vi_VN&amp;numposts=5&amp;sdk=joey&amp;title=B%C3%A1n%20%C4%91%E1%BA%A5t%20n%E1%BB%81n%20KDC%20Khang%20An%20Q.9%20dt%3A%208x20%20h%C6%B0%E1%BB%9Bng%20Nam%20gi%C3%A1%2023tr%2Fm2&amp;url=http%3A%2F%2Fsunlandsg.vn%2Fsieu-thi-dia-oc%2Fban-dat-nen-kdc-khang-an-q-9-dt-8x20-huong-nam-gia-12-5tr-m2&amp;version=v2.5&amp;width=550&amp;xid=http%253A%252F%252Fsunlandsg.vn%252Fsieu-thi-dia-oc%252Fban-dat-nen-kdc-khang-an-q-9-dt-8x20-huong-nam-gia-12-5tr-m2" style="border: none; overflow: hidden; height: 176px; width: 550px;"></iframe></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Các tiện ịch không cần dùng nũa bị ẩn-->
+                    <div class="box box-utilities box-utilities-border" style="display:none;">
+                        <div class="box-content">
+                            <div class="row gutter-5">
+                                <div class="col-xs-6 col-md-3">
+                                    <div class="item ">Pháp lý</div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="box box-utilities" style="display:none;">
+                        <h3 class="box-title">Tiện ích xung quanh</h3>
+                        <div class="box-content">
+                            <div class="row gutter-5">
+                                <div class="col-xs-6 col-md-3">
+                                    <div class="item ">Gần khu vui chơi</div>
+                                </div>
+                                <div class="col-xs-6 col-md-3">
+                                    <div class="item ">Gần nhà hàng/cafe</div>
+                                </div>
+                                <div class="col-xs-6 col-md-3">
+                                    <div class="item ">Gần chợ, siêu thị</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end các tiện ích-->
+                </div>
+                <div class="col-sm-5">
+                    <div class="box-real-detail">
+                        <div class="box box-attribute">
+                            <h3 class="box-title">đặc điểm chính</h3>
+                            <div class="row gutter-5">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-lvroom">Loại: <strong>Đất nền</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-dnroom"><strong>Cần bán</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-bedroom"><!--Dự án : --><strong>Dự án Khang An</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-area">Diện tích: <strong>160 m2</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-directions">Hướng: <strong>Nam</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-floors">Pháp lý: <strong>Hợp Đồng</strong></div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="item item-road">Đường rộng : <strong>12 m</strong></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--<h3 class="title box-title"></h3>-->
+                        <!--<p></p>-->
+                        <div class="address"><img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg"> Địa Chỉ:  KDC Khang An Q.9 - Quận 9 - Hồ Chí Minh</div>
+                        <a class="btn btn-block btn-showmap" id="btshowmap" data-lat="10.8428402" data-lng="106.8286851">Xem Vị trí trên Google Map</a>
+                        <div class="text-center price">
+                            Giá: <strong>23 Triệu/m2</strong>
+
+                        </div>
+                        <div class="box-datetime" style="display:none">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Mã đăng tin: <strong>SLSG100289</strong>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="glyphicon glyphicon-time"></span> Cập nhật: 08h - 12/08/2016
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-contact-info">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <h3 class="box-title box-sub-title">Liên hệ người đăng tin</h3>
+                                    <div class="name">Trần Thị Ái Tuyết</div>
+                                    <div class="email">Email: <a target="_blank" rel="nofollow" href="mailto:aituyet1009@gmail.com">aituyet1009@gmail.com</a></div>
+
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="avatar text-right">
+                                        <img class="thumb item-thumb" src="/images?path=image%2Fprofile%2F1.jpg&amp;w=255&amp;h=255&amp;fit=crop">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hotline text-center">
+                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><strong>0909128189</strong>
+                            </div>
+
+                        </div>
+                        <div class="box box-contact-form">
+                            <h3 class="box-title box-sub-title">Form Liên hệ người đăng tin</h3>
+                            <p>Bạn còn thắc mắc về căn hộ này, xin vui lòng nhập thông tin bên dưới để chúng tôi giải đáp bạn một cách nhanh chóng, dễ hiễu.</p>
+                            <!-- BEGIN ALERT -->
+                            <!-- END ALERT -->
+                            <form id="project_contact_form" class="project-contact-form" action="/sieu-thi-dia-oc/ban-dat-nen-kdc-khang-an-q-9-dt-8x20-huong-nam-gia-12-5tr-m2" method="post">
+                                <input type="hidden" name="_csrf" value="ZUVIRExhbEQ9dgkrNiI8KwMLDXMDKlkdLwg6HA8gKBwiFToMfSg2Pg=="><div class="form-group field-frontcontact-name required">
+                                    <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và Tên *"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-phone required">
+                                    <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Điện thoại *"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-email required">
+                                    <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email *"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-content">
+                                    <textarea id="frontcontact-content" class="form-control" name="FrontContact[content]" placeholder="Nội Dung"></textarea><span class="help-block"><div class="help-block"></div></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-submit btn-block btn-default">Gửi Email</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <!--<div class="box box-description">
+                <h3 class="box-title">Thông tin mô tả</h3>
+                <div class="box-content">
+                                    </div>
+            </div>-->
+        </div>
+        <div class="page-bottom">
+            <div class="share-link">
+                <div class="inner">
+                    Share Link
+                    <a target="_blank" rel="nofollow" href="https://plus.google.com/share?url=http%3A%2F%2Fsunlandsg.vn%2Fsieu-thi-dia-oc%2Fban-dat-nen-kdc-khang-an-q-9-dt-8x20-huong-nam-gia-12-5tr-m2"><span class="icon-google-plus-social-logotype"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsunlandsg.vn%2Fsieu-thi-dia-oc%2Fban-dat-nen-kdc-khang-an-q-9-dt-8x20-huong-nam-gia-12-5tr-m2"><span class="icon-facebook-logo"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

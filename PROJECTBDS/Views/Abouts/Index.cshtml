@@ -1,0 +1,277 @@
+﻿@{
+    
+}
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>Giới thiệu</h1>
+        <div class="search-bds">
+            <div class="title-sr">
+                <img src="http://sunlandsg.vn/themes/frontend/images/search-icon.png" alt="">
+                Tìm kiếm bất động sản
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </div>
+            <div class="bg-search hide">
+                <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
+                    <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
+                    <div class="row gutter-5">
+                        <div class="col-xs-6">
+                            <select name="province" id="province">
+                                <option value="">Tỉnh/Thành phố</option>
+                                <option value="79">Hồ Chí Minh</option>
+                                <option value="1">Hà Nội</option>
+                                <option value="48">Đà Nẵng</option>
+                                <option value="2">Hà Giang</option>
+                                <option value="4">Cao Bằng</option>
+                                <option value="6">Bắc Kạn</option>
+                                <option value="8">Tuyên Quang</option>
+                                <option value="10">Lào Cai</option>
+                                <option value="11">Điện Biên</option>
+                                <option value="12">Lai Châu</option>
+                                <option value="14">Sơn La</option>
+                                <option value="15">Yên Bái</option>
+                                <option value="17">Hòa Bình</option>
+                                <option value="19">Thái Nguyên</option>
+                                <option value="20">Lạng Sơn</option>
+                                <option value="22">Quảng Ninh</option>
+                                <option value="24">Bắc Giang</option>
+                                <option value="25">Phú Thọ</option>
+                                <option value="26">Vĩnh Phúc</option>
+                                <option value="27">Bắc Ninh</option>
+                                <option value="30">Hải Dương</option>
+                                <option value="31">Hải Phòng</option>
+                                <option value="33">Hưng Yên</option>
+                                <option value="34">Thái Bình</option>
+                                <option value="35">Hà Nam</option>
+                                <option value="36">Nam Định</option>
+                                <option value="37">Ninh Bình</option>
+                                <option value="38">Thanh Hóa</option>
+                                <option value="40">Nghệ An</option>
+                                <option value="42">Hà Tĩnh</option>
+                                <option value="44">Quảng Bình</option>
+                                <option value="45">Quảng Trị</option>
+                                <option value="46">Thừa Thiên Huế</option>
+                                <option value="49">Quảng Nam</option>
+                                <option value="51">Quảng Ngãi</option>
+                                <option value="52">Bình Định</option>
+                                <option value="54">Phú Yên</option>
+                                <option value="56">Khánh Hòa</option>
+                                <option value="58">Ninh Thuận</option>
+                                <option value="60">Bình Thuận</option>
+                                <option value="62">Kon Tum</option>
+                                <option value="64">Gia Lai</option>
+                                <option value="66">Đắk Lắk</option>
+                                <option value="67">Đắk Nông</option>
+                                <option value="68">Lâm Đồng</option>
+                                <option value="70">Bình Phước</option>
+                                <option value="72">Tây Ninh</option>
+                                <option value="74">Bình Dương</option>
+                                <option value="75">Đồng Nai</option>
+                                <option value="77">Bà Rịa - Vũng Tàu</option>
+                                <option value="80">Long An</option>
+                                <option value="82">Tiền Giang</option>
+                                <option value="83">Bến Tre</option>
+                                <option value="84">Trà Vinh</option>
+                                <option value="86">Vĩnh Long</option>
+                                <option value="87">Đồng Tháp</option>
+                                <option value="89">An Giang</option>
+                                <option value="91">Kiên Giang</option>
+                                <option value="92">Cần Thơ</option>
+                                <option value="93">Hậu Giang</option>
+                                <option value="94">Sóc Trăng</option>
+                                <option value="95">Bạc Liêu</option>
+                                <option value="96">Cà Mau</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <select name="district" id="district" data-value="">
+                                <option value="">Quận/Huyện</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row gutter-5">
+                        <div class="col-xs-6">
+                            <select name="type">
+                                <option value="">Loại Bất động sản</option>
+                                <option value="2">Nhà phố</option>
+                                <option value="3">Căn hộ</option>
+                                <option value="4">Đất nền</option>
+                                <option value="5">Biệt thự</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <select name="method">
+                                <option value="">Loại giao dịch</option>
+                                <option value="sale">Cần bán</option>
+                                <option value="rent">Cho thuê</option>
+                                <option value="buy">Cần mua</option>
+                                <option value="forrent">Cần thuê</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <select name="area" style="display:none;">
+                        <option value="">Diện tích</option>
+                        <option value="22">&lt;= 30 m2</option>
+                        <option value="23">30 - 50 m2</option>
+                        <option value="24">50 - 80 m2</option>
+                        <option value="25">80 - 100</option>
+                        <option value="26">100 - 150 m2</option>
+                        <option value="27">150 - 200 m2</option>
+                        <option value="28">200 - 250 m2</option>
+                        <option value="29">250 - 300 m2</option>
+                        <option value="30">300 - 500 m2</option>
+                        <option value="31">&gt; 500 m2</option>
+                    </select>
+                    <div class="row gutter-5">
+                        <div class="col-xs-6">
+                            <select name="direction">
+                                <option value="">Hướng</option>
+                                <option value="">Chưa chọn</option>
+                                <option value="Đông">Đông</option>
+                                <option value="Tây">Tây</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Bắc">Bắc</option>
+                                <option value="Đông Bắc">Đông Bắc</option>
+                                <option value="Đông Nam">Đông Nam</option>
+                                <option value="Tây Bắc">Tây Bắc</option>
+                                <option value="Tây Nam">Tây Nam</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <select name="price" id="rePrice">
+                                <option value="">Khoảng giá</option>
+                                <option value="8">Từ 0 đến 500tr</option>
+                                <option value="9">Từ 500tr đến 1tỷ</option>
+                                <option value="10">Từ 1tỷ đến 2tỷ</option>
+                                <option value="11">Từ 2tỷ đến 4tỷ</option>
+                                <option value="12">Từ 4tỷ đến 7tỷ</option>
+                                <option value="13">Từ 7tỷ đến 10tỷ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-bottom page-child page-news-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box box-news-detail editor-content">
+                    <div class="box-title box-title-border">
+                        Sơ lược công ty
+                    </div>
+                    <div class="box-content">
+                        <div class="news-detail">
+                            <p style="text-align:center"><img alt="" src="http://sunlandsg.vn/data/upload/image_manual/introduce/SALES.jpg?1469282888735"></p>
+
+                            <p style="text-align:justify">Sàn giao dịch BĐS <strong>SUNLAND SÀI GÒN</strong> được thành lập vào tháng 5 năm 2009 Chúng tôi có một đội ngũ chuyên viên tư vấn bất động sản có trình độ chuyên môn cao, giàu kinh nghiệm và luôn lấy chữ tín làm trọng. Phương châm làm việc của sàn SUNLAND SÀI GÒN là mang đến cho khách hàng của mình những sản phẩm có giá trị đích thực nhằm phục vụ cho nhu cầu phát triển kinh doanh của các doanh nghiệp cũng như nhu cầu an cư hoặc đầu tư vào bất động sản của từng cá nhân.</p>
+
+                            <p>Sàn giao dịch Bất động sản <strong>SUNLAND SÀI GÒN</strong> không chỉ thực hiện tốt các dịch vụ kinh doanh bất động sản, khai thác thị trường tiềm năng, mà sẵn sàng tư vấn cho khách hàng về quy hoạch, thủ tục pháp lý, chính sách tài chính về bất động sản... với đội ngũ nhân sự có trình độ, kinh nghiệm về thị trường bất động sản và các quy trình tư vấn chuyên nghiệp.</p>
+
+                            <p><strong>Hãy là đối tác với chúng tôi</strong></p>
+
+                            <p>
+                                Những dự án lớn gồm biệt thự, Đất nền, Nhà phố, Chung cư cao cấp, Biệt thự nghỉ dưỡng....Chúng tôi tự hào khi nói rằng chúng tôi có:<br>
+                                Là đơn vị phân phối chính thức của các chủ đầu tư uy tín trên thị trường BĐS Việt Nam, đặc biệt chúng tôi là đối tác chiến lược, là đơn vị được chỉ định làm đại diện chính thức phân phối cho tất cả các dự án của Khang Điền House, một chủ đầu tư uy tín với nhiều dự án đang phát triển ở KV Đông Bắc TP. HCM.
+                            </p>
+
+                            <p>Đến với chúng tôi khách hàng hoàn toàn yên tâm về tính chất pháp lý của các dự án vì chúng tôi luôn thẩm định kỹ trước khi chào bán. Chúng tôi là cầu nối thông tin trực tiếp, chính xác và phản hồi nhanh nhất những thắc mắc của KH đến CĐT và các đơn vị chức năng, cũng như chuyển tiếp, cập nhật định kỳ, thường xuyên những chính sách mới cho khách hàng.</p>
+
+                            <p>
+                                Một đội ngũ nhân viên là những broker chuyên nghiệp, nhiệt tình với châm ngôn “Thành công của khách hàng là tự hào của chúng tôi”<br>
+                                Một bộ máy quản lý là những nhân tài trong ngành kinh doanh BĐS luôn muốn đem đến cách thức định hướng thành công cho từng dòng sản phẩm được chào bán của chúng tôi.
+                            </p>
+
+                            <p><iframe align="middle" frameborder="0" height="595" scrolling="yes" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsunlandsg%2Fposts%2F1232236880144376%3A0&amp;width=500" style="border:none;overflow:hidden" width="650"></iframe></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-bottom">
+                    <div class="share-link">
+                        <div class="inner">
+                            Share Link
+                            <a target="_blank" rel="nofollow" href="https://plus.google.com/share?url=http%3A%2F%2Fsunlandsg.vn%2Fgioi-thieu%2Fso-luoc-cong-ty"><span class="icon-google-plus-social-logotype"></span></a>
+                            <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsunlandsg.vn%2Fgioi-thieu%2Fso-luoc-cong-ty"><span class="icon-facebook-logo"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box-sidebar box-category">
+                    <div class="box-title">
+                        giới thiệu
+                    </div>
+                    <div class="box-content">
+                        <ul>
+                            <li class="active"><a href="/gioi-thieu/so-luoc-cong-ty">Sơ lược công ty</a></li>
+                            <li><a href="/gioi-thieu/dich-vu">Dịch vụ</a></li>
+                            <li><a href="/gioi-thieu/tam-nhin-su-menh">Tầm nhìn - Sứ mệnh</a></li>
+                            <li><a href="/gioi-thieu/linh-vuc-kinh-doanh">Lĩnh vực kinh doanh</a></li>
+                            <li><a href="/gioi-thieu/so-do-to-chuc">Sơ đồ tổ chức</a></li>
+                            <li><a href="/gioi-thieu/doi-tac">Đối tác</a></li>
+                            <li><a href="/gioi-thieu/ve-khang-dien">Về Khang Điền</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-box">
+                    <div class="ads-r">
+                        <h4>Đăng ký<br> nhận tin bất động sản</h4>
+
+                        <div class="box-input">
+                            <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
+                                <input type="hidden" name="_csrf" value="UUtnRFhXMEYJeCYrIhRgKTcFInMXHAUfGwYVHBsWdB4WGxUMaR5qPA=="><div class="form-group field-frontcontact-name required">
+                                    <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-phone required">
+                                    <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-email required">
+                                    <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
+                                </div><div class="form-group field-frontcontact-type">
+
+                                    <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="5">
+
+                                    <div class="help-block"></div>
+                                </div><div class="form-group field-frontcontact-object_id">
+
+                                    <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
+
+                                    <div class="help-block"></div>
+                                </div><div class="form-group field-frontcontact-item_name">
+
+                                    <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
+
+                                    <div class="help-block"></div>
+                                </div>    	<div class="form-group">
+                                    <button type="submit" class="">Đăng ký</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="ads-banner">
+                        <div class="item">
+                            <a href="http://sunlandsg.vn/du-an/lucasta/mat-bang" target="_blank">
+                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" alt="LUCASTA - HẠNH PHÚC GIÁ BAO NHIÊU?">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
+                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner1_58f86e0ca90ad.gif" alt="MỞ BÁN CĂN HỘ JAMILA KHANG ĐIỀN QUẬN 9 - MẶT TIỀN SONG HÀNH - CHỈ TỪ 22.5TR/M2">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
+                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner4_58f86f0ad7ace.gif" alt="Căn hộ mặt tiền Song hành Quận 9 - mở bán chính thức 14,5tr/m2 - SunlandSG Phân phối chính thức">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
