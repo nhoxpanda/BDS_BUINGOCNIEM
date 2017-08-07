@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PROJECTBDS.Services.Home;
 
 namespace PROJECTBDS.Controllers
 {
     public class HomeController : Controller
     {
         private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+
+        private HomeServices data = new HomeServices();
+
         public ActionResult Index()
         {
-            return View();
+            var model = data.GetDuAnNoiBat();
+            return View(model);
         }
 
         public ActionResult About()

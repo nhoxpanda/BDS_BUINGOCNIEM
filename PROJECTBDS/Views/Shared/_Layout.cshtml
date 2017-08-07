@@ -15,7 +15,7 @@
     <meta name="keywords" content="" />
     <link rel="alternate" href="@domain" hreflang="vi-vn">
     <link rel="canonical" href="@domain" itemprop="url">
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
     @Styles.Render("~/Content/homepage")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -248,12 +248,14 @@
                     itemsTablet: [600, 2], //2 items between 600 and 0;
                     itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
                 });
-                $('.logo-load-next').click(function () {
-                    owllogo.trigger('owl.next');
-                })
-                $('.logo-load-prev').click(function () {
-                    owllogo.trigger('owl.prev');
-                })
+                $('.logo-load-next')
+                    .click(function () {
+                        owllogo.trigger('owl.next');
+                    });
+                $('.logo-load-prev')
+                    .click(function() {
+                        owllogo.trigger('owl.prev');
+                    });
             });
 
             //Check to see if the window is top if not then display button
@@ -281,15 +283,18 @@
                     $('.bg-menu-black').css('display', 'none');
                 });
                 //
-                $("#province").change(function () {
-                    $.getJSON('/Home/DistrictList?id=' + $('#province').val(), function (data) {
-                        var items = '';
-                        $.each(data, function (i, gd) {
-                            items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
-                        });
-                        $('#district').html(items);
+                $("#province")
+                    .change(function() {
+                        $.getJSON('/Home/DistrictList?id=' + $('#province').val(),
+                            function(data) {
+                                var items = '';
+                                $.each(data,
+                                    function(i, gd) {
+                                        items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                                    });
+                                $('#district').html(items);
+                            });
                     });
-                })
             });
         });
     </script>

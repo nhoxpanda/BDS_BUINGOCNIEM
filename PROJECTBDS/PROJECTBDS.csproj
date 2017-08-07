@@ -48,6 +48,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Content\ckfinder\bin\Debug\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.2.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -302,7 +310,9 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Home\HomeServices.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Home\DuAnNoiBatViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Css\bootstrap-select.css" />
