@@ -240,6 +240,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LoadData.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>db.tt</DependentUpon>
@@ -2467,6 +2468,7 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Projects\Detail.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Home\SieuThiDiaOc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

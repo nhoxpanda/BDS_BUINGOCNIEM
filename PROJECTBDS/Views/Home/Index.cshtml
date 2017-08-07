@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PROJECTBDS.ViewModels.Home.DuAnNoiBatViewModel>
+﻿@model PROJECTBDS.ViewModels.Home.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -20,11 +20,11 @@
         </div>
     </div>
 </section>
-@Html.Partial("_Partial_Project", Model)
+@Html.Partial("_Partial_Project", Model.DuAnNoiBat)
 <section class="content-bottom">
     <div class="container">
         <div class="row">
-            @Html.Partial("_Partial_Land")
+            @Html.Partial("_Partial_Land", Model.BatDongSan)
             @Html.Partial("_Partial_Event")
         </div>
     </div>

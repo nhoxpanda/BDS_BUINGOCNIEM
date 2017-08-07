@@ -41,3 +41,7 @@ border-radius:0
 }
 #myNavbar ul li a{color:#fff !important;background:none;text-decoration:none;padding:7px 15px !important}
 .bds-hot .glyphicon:hover{background:#C00 !important;}
+
+.box-item img {
+    max-height: 143px;
+}

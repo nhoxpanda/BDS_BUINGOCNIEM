@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PROJECTBDS.Services.Home;
+using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Controllers
 {
@@ -12,12 +13,32 @@ namespace PROJECTBDS.Controllers
     {
         private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
 
-        private HomeServices data = new HomeServices();
+        private readonly HomeServices _data = new HomeServices();
 
         public ActionResult Index()
         {
-            var model = data.GetDuAnNoiBat();
+            var model = new HomeViewModel
+            {
+                DuAnNoiBat = _data.GetDuAnNoiBat(),
+                BatDongSan = _data.GetBatDongSan()
+            };
             return View(model);
+        }
+
+        public ActionResult SieuThiDiaOc(string slug)
+        {
+            var id = slug.Split('-');
+            var idDuAn = string.Empty;
+
+            Land post = new Land();
+
+            if (id.Length <= 0) return View(post);
+
+            idDuAn = id[id.Length - 1];
+            post = _data.GetLand(int.Parse(idDuAn));
+
+            if (post == null) return HttpNotFound();
+            return View(post);
         }
 
         public ActionResult About()
