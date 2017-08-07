@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fcf0777bb696433a9af4ff0483680341" Name="Diagram1">
+      <Diagram DiagramId="ff5a3cc1d3f24c37b3f44965af7f6d40" Name="Diagram1">
+        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetRoles" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUserClaims" Width="1.5" PointX="14.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUserLogins" Width="1.5" PointX="14.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUsers" Width="1.5" PointX="12" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblCategory" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblCompany" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblConfig" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
@@ -15,9 +19,11 @@
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblLand" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblNews" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblProject" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.tblProjectDetail" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Web_NiemBDSModel.tblProjectDetail" Width="1.5" PointX="12.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblProvince" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Web_NiemBDSModel.tblWard" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="Web_NiemBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Web_NiemBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblDictionary_tblCategory" ManuallyRouted="false" />
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblCustomer_tblCustomer1" ManuallyRouted="false" />
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblCustomer_tblDistrict" ManuallyRouted="false" />
@@ -43,14 +49,7 @@
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblLand_tblWard" ManuallyRouted="false" />
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblNews_tblProvince" ManuallyRouted="false" />
         <AssociationConnector Association="Web_NiemBDSModel.FK_tblProjectDetail_tblProject" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="0.75" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetRoles" Width="1.5" PointX="12.375" PointY="2.5" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUserClaims" Width="1.5" PointX="16.875" PointY="3.625" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUserLogins" Width="1.5" PointX="16.875" PointY="1" />
-        <EntityTypeShape EntityType="Web_NiemBDSModel.AspNetUsers" Width="1.5" PointX="14.625" PointY="1.375" />
-        <AssociationConnector Association="Web_NiemBDSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="Web_NiemBDSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="Web_NiemBDSModel.AspNetUserRoles" />
+        <AssociationConnector Association="Web_NiemBDSModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

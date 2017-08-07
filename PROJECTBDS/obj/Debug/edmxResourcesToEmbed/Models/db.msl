@@ -1,8 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WEBSITEBDSModelStoreContainer" CdmEntityContainer="WEBSITEBDSEntities">
+  <EntityContainerMapping StorageEntityContainer="Web_NiemBDSModelStoreContainer" CdmEntityContainer="Web_NiemBDSEntities">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tblCategory">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCategory">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCategory">
         <MappingFragment StoreEntitySet="tblCategory">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -14,7 +59,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblCompany">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblCompany">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCompany">
         <MappingFragment StoreEntitySet="tblCompany">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -27,7 +72,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblConfig">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblConfig">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblConfig">
         <MappingFragment StoreEntitySet="tblConfig">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -50,8 +95,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomer">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblCustomer">
+        <MappingFragment StoreEntitySet="tblCustomer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="WardId" ColumnName="WardId" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tblDictionary">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDictionary">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblDictionary">
         <MappingFragment StoreEntitySet="tblDictionary">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -64,7 +129,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblDistrict">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblDistrict">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblDistrict">
         <MappingFragment StoreEntitySet="tblDistrict">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -72,8 +137,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblImage">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblImage">
+        <MappingFragment StoreEntitySet="tblImage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
+          <ScalarProperty Name="LandId" ColumnName="LandId" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tblLand">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblLand">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblLand">
         <MappingFragment StoreEntitySet="tblLand">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -104,11 +182,12 @@
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="xmap" ColumnName="xmap" />
           <ScalarProperty Name="ymap" ColumnName="ymap" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblNews">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblNews">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblNews">
         <MappingFragment StoreEntitySet="tblNews">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -126,7 +205,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblProject">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProject">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProject">
         <MappingFragment StoreEntitySet="tblProject">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -140,8 +219,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblProjectDetail">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProjectDetail">
+        <MappingFragment StoreEntitySet="tblProjectDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tblProvince">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProvince">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblProvince">
         <MappingFragment StoreEntitySet="tblProvince">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -149,7 +240,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblWard">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblWard">
+      <EntityTypeMapping TypeName="Web_NiemBDSModel.tblWard">
         <MappingFragment StoreEntitySet="tblWard">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -157,30 +248,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tblProjectDetail">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblProjectDetail">
-        <MappingFragment StoreEntitySet="tblProjectDetail">
-          <ScalarProperty Name="Orders" ColumnName="Orders" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblImage">
-      <EntityTypeMapping TypeName="WEBSITEBDSModel.tblImage">
-        <MappingFragment StoreEntitySet="tblImage">
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Orders" ColumnName="Orders" />
-          <ScalarProperty Name="LandId" ColumnName="LandId" />
-          <ScalarProperty Name="DictionaryId" ColumnName="DictionaryId" />
-          <ScalarProperty Name="URL" ColumnName="URL" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="Web_NiemBDSModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

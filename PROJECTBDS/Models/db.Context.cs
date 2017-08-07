@@ -25,6 +25,10 @@ namespace PROJECTBDS.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<tblCategory> tblCategory { get; set; }
         public virtual DbSet<tblCompany> tblCompany { get; set; }
         public virtual DbSet<tblConfig> tblConfig { get; set; }
@@ -38,10 +42,5 @@ namespace PROJECTBDS.Models
         public virtual DbSet<tblProjectDetail> tblProjectDetail { get; set; }
         public virtual DbSet<tblProvince> tblProvince { get; set; }
         public virtual DbSet<tblWard> tblWard { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

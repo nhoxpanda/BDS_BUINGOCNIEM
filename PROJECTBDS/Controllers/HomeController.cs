@@ -9,7 +9,7 @@ namespace PROJECTBDS.Controllers
 {
     public class HomeController : Controller
     {
-        private WEBSITEBDSEntities _db = new WEBSITEBDSEntities();
+        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
         public ActionResult Index()
         {
             return View();

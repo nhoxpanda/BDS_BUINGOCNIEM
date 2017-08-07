@@ -30,6 +30,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             }
             return View(model.ToPagedList(pageN,30));
         }
+         [ValidateInput(false)]
         public ActionResult Create(tblLand model, IEnumerable<HttpPostedFileBase> ListImage)
         {
 
@@ -71,6 +72,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(tblLand model, IEnumerable<HttpPostedFileBase> ListImage)
         {
             if (ListImage!=null)
