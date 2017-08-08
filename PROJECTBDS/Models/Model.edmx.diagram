@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9162c960bf8144b69d2bac7353aef6de" Name="Diagram1">
+        <EntityTypeShape EntityType="LandSoftModel.AspNetRoles" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.AspNetUserClaims" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.AspNetUserLogins" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.AspNetUsers" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblCategory" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblCompany" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblConfig" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblCustomer" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblDictionary" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblDistrict" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblImage" Width="1.5" PointX="12" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblLand" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblNews" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblProject" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblProjectDetail" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblProvince" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LandSoftModel.tblWard" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <AssociationConnector Association="LandSoftModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblDictionary_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblCustomer_tblCustomer1" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblCustomer_tblDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblCustomer_tblProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblCustomer_tblWard" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLand_tblCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblImage_tblDictionary" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLandCategory_tblDictionaryCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLandDirection_tblDictionaryDirection" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLandRule_tblDictionaryRule" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLandType_tblDictionaryType" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLandUnit_tblDictionaryUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblNews_tblDictionary" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblNews_tblDictionaryTime" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblProjectDetail_tblDictionary" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblDistrict_tblProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLand_tblDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblProject_tblDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblWard_tblDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblImage_tblLand" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblImage_tblProject" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLand_tblProject" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLand_tblProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblLand_tblWard" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblNews_tblProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblProject_tblProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.FK_tblProjectDetail_tblProject" ManuallyRouted="false" />
+        <AssociationConnector Association="LandSoftModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

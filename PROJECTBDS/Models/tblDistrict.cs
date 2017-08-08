@@ -19,6 +19,7 @@ namespace PROJECTBDS.Models
         {
             this.tblCustomer = new HashSet<tblCustomer>();
             this.tblLand = new HashSet<tblLand>();
+            this.tblProject = new HashSet<tblProject>();
             this.tblWard = new HashSet<tblWard>();
         }
     
@@ -31,6 +32,8 @@ namespace PROJECTBDS.Models
         public virtual tblProvince tblProvince { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblProject> tblProject { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWard> tblWard { get; set; }
     }

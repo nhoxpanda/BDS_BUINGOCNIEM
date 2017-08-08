@@ -109,17 +109,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Xã(Phường)</label>
+                                        <label class="control-label col-lg-2 col-md-2">Tỉnh (Thành)</label>
                                         <div class="col-lg-2 col-md-2">
-                                            @Html.DropDownListFor(model => model.WardId, ViewBag.WardId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
                                         </div>
                                         <label class="control-label col-lg-2 col-md-2">Huyện (Quận)</label>
                                         <div class="col-lg-2 col-md-2">
-                                            @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
                                         </div>
-                                        <label class="control-label col-lg-2 col-md-2">Tỉnh (Thành)</label>
+                                        <label class="control-label col-lg-2 col-md-2">Xã(Phường)</label>
                                         <div class="col-lg-2 col-md-2">
-                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.WardId, ViewBag.WardId as List<SelectListItem>, new { name = "Name", id = "WardId", @class = "form-control" })
                                         </div>
                                     </div>
 
@@ -133,7 +133,6 @@
                                             @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Mô tả</label>
                                         <div class="col-lg-10 col-md-10">
@@ -176,7 +175,9 @@
         </div>
     </div>
 </section>
-
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
 @section scripts{
     <script>
         CKEDITOR.replace("Content");
@@ -207,6 +208,49 @@
                 }
             });
         }
-        </script>
+
+
+        function getChildren(provinceId, target, controller, valueDefault) {
+            var textValue = "<option value=''>" + valueDefault + "</option>";
+            $(target).html(textValue);
+            var defaultValue = $(target).data("value");
+            if (provinceId !== "") {
+                $(target).html("<option value=''>Loading...</option>").prop('disabled', true);
+                $.ajax({
+                    'url': "@domain/Admin/api/" + controller,
+                    'type': "post",
+                    'data': { 'ProvinceId': provinceId },
+                    success: function (data) {
+                        $(target).html(textValue);
+                        $.each(data, function (index, val) {
+                            $(target).append("<option value='" + val.Id + "' " + (defaultValue === val.Id ? "selected" : "") + ">" + val.Name + "</option>");
+                        });
+                    },
+                    error: function (msg) {
+                        $(target).html(textValue);
+                    },
+                    complete: function () {
+                        $(target).prop("disabled", false);
+                    }
+                });
+            }
+        }
+        jQuery(document).ready(function ($) {
+            $("#ProvinceId").change(function (event) {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+                $("#WardId").html("<option value=''></option>");
+            });
+
+            $("#DistrictId").change(function (event) {
+                getChildren($(this).val(), "#WardId", "Ward", "Phường/Xã");
+            });
+
+            if ($("#ProvinceId").val() !== "") {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            }
+        });
+    </script>
+    
+
 }
 

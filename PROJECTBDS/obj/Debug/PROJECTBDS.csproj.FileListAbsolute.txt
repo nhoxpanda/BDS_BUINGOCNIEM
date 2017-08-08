@@ -364,8 +364,10 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PROJECTBDS.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PROJECTBDS.pdb
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Antlr3.Runtime.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\CKFinder.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\EntityFramework.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\EntityFramework.SqlServer.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Humanizer.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.Agent.Intercept.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.DependencyCollector.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -391,7 +393,12 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Newtonsoft.Json.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Owin.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PagedList.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PagedList.Mvc.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Net.Http.Formatting.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Cors.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Helpers.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.Cors.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.WebHost.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Mvc.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Optimization.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Razor.dll
@@ -400,6 +407,7 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.WebPages.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.WebPages.Razor.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\WebGrease.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\CKFinder.pdb
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.DependencyCollector.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.Web.xml
@@ -408,6 +416,10 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.ApplicationInsights.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PagedList.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PagedList.Mvc.xml
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Net.Http.Formatting.xml
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.xml
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.Cors.xml
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Http.WebHost.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Helpers.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Mvc.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.Optimization.xml
@@ -431,12 +443,6 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.Owin.Security.OAuth.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.Owin.Security.Google.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.Owin.Security.Twitter.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.csprojResolveAssemblyReference.cache
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.dll
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.pdb
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.dll
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.xml
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Humanizer.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\af\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\ar\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\bg\Humanizer.resources.dll
@@ -477,3 +483,6 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\vi\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-CN\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hans\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hant\Humanizer.resources.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.pdb
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.csprojResolveAssemblyReference.cache

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using PROJECTBDS.Areas.Admin.Services;
 using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
@@ -13,47 +15,66 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     public class LandManageController : Controller
     {
 
-        Web_NiemBDSEntities db = new Web_NiemBDSEntities();
+        LandSoftEntities db = new LandSoftEntities();
+
+        private readonly LandServices _data;
+        private const int RowsPerPage = 2;
+
+        public LandManageController()
+        {
+            _data = new LandServices();
+        }
         // GET: Admin/LandManage
-        public ActionResult Index(int? page,string query)
+        public ActionResult Index(int? page, string query)
         {
             ViewBag.query = query;
             int pageN = page ?? 1;
-            var model = new List<tblLand>();
+            IQueryable<tblLand> model;
             if (!string.IsNullOrEmpty(query))
             {
-                model = db.tblLand.Where(q => q.Title.Contains(query) || q.MetaTitle.Contains(query)).OrderByDescending(n => n.CreateDate).ToList();
+                model =
+                    db.tblLand.Where(q => q.Title.Contains(query) || q.MetaTitle.Contains(query))
+                        .OrderByDescending(n => n.CreateDate);
             }
             else
             {
-                model = db.tblLand.OrderBy(n => n.CreateDate).ToList();
+                model = db.tblLand.OrderByDescending(t => t.Id);
             }
-            return View(model.ToPagedList(pageN,30));
+            return View(model.ToPagedList(pageN, RowsPerPage));
         }
-         [ValidateInput(false)]
-        public ActionResult Create(tblLand model, IEnumerable<HttpPostedFileBase> ListImage)
+        [ValidateInput(false)]
+        public ActionResult Create(tblLand model, IEnumerable<HttpPostedFileBase> listImage)
         {
 
             if (Request["btnSave"] != null)
             {
                 model.CreateDate = DateTime.Now;
-               
+                model.Area = Request["DienTich"];
                 db.tblLand.Add(model);
                 db.SaveChanges();
-                int id = model.Id;
-                if (ListImage != null)
+
+                var id = model.Id;
+
+                if (listImage != null)
                 {
-                    foreach (var item in ListImage)
+                    foreach (var item in listImage)
                     {
-                        String newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
-                        String path = Server.MapPath("~/Images/News/" + newName);
+                        if (item == null) continue;
+
+                        var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy}");
+
+                        var path = Server.MapPath("~/Uploads/News/" + newName);
+
                         item.SaveAs(path);
-                        tblImage a = new tblImage();
-                        a.Image = newName;
-                        a.URL = path;
-                        a.LandId = id;
-                        a.DictionaryId = 47;
-                        db.tblImage.Add(a);
+
+                        var image = new tblImage
+                        {
+                            Image = newName,
+                            URL = "/Uploads/News/" + newName,
+                            LandId = id,
+                            DictionaryId = 47
+                        };
+                        db.tblImage.Add(image);
 
                     }
 
@@ -61,47 +82,90 @@ namespace PROJECTBDS.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            load(model);
+            Load(model);
             return View();
         }
         public ActionResult Update(int id)
         {
             var model = db.tblLand.Find(id);
-            load(model);
+            Load(model);
             ViewBag.LsImage = db.tblImage.Where(n => n.LandId == id && n.DictionaryId == 47).ToList();
             return View(model);
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Update(tblLand model, IEnumerable<HttpPostedFileBase> ListImage)
+        public ActionResult Update(tblLand model, IEnumerable<HttpPostedFileBase> listImage)
         {
-            if (ListImage!=null)
-            {
-                foreach (var item in ListImage)
-                    {
-                        String newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
-                        String path = Server.MapPath("~/Images/News/" + newName);
-                        item.SaveAs(path);
-                        tblImage a = new tblImage();
-                        a.Image = newName;
-                        a.URL = path;
-                        a.LandId = model.Id;
-                        a.DictionaryId = 47;
-                        db.tblImage.Add(a);
+                foreach (var item in listImage)
+                {
+                    if (item == null) continue;
 
-                    }
-            }
+                    var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy}");
+
+                    var path = Server.MapPath("~/Uploads/News/" + newName);
+
+                    item.SaveAs(path);
+
+                    var a = new tblImage
+                    {
+                        Image = newName,
+                        URL = "/Uploads/News/" + newName,
+                        LandId = model.Id,
+                        DictionaryId = 47
+                    };
+                    db.tblImage.Add(a);
+
+                }
+            model.Area = string.Empty;
+            model.Area = Request["DienTich"];
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public void DeleteFile(string file, string folder)
+        {
+            var location = System.Web.HttpContext.Current.Server.MapPath(folder);
+
+            var fileName = file;
+
+            if (location == null) return;
+
+            var path = Path.Combine(location, fileName);
+            var fileOrg = new FileInfo(path);
+            if (fileOrg.Exists)
+            {
+                fileOrg.Delete();
+            }
+        }
+        public void DeleteImage(int landId)
+        {
+            try
+            {
+                var model = db.tblImage.Where(p => p.LandId == landId);
+                foreach (var image in model)
+                {
+                    db.tblImage.Remove(image);
+                    DeleteFile(image.Image, "~/Uploads/News/");
+                }
+                db.SaveChanges();
+            }
+            catch
+            {
+                // ignored
+            }
         }
         public ActionResult Delete(int id)
         {
             try
             {
+                DeleteImage(id);
+
                 var model = db.tblLand.FirstOrDefault(p => p.Id == id);
-                db.tblLand.Remove(model);
+
+                if (model != null) db.tblLand.Remove(model);
+
                 db.SaveChanges();
+
                 return Json(1, JsonRequestBehavior.AllowGet);
             }
             catch
@@ -110,7 +174,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             }
         }
 
-        public void load(tblLand model)
+        public void Load(tblLand model)
         {
             //ds dự án
             ViewBag.ProjectId = new SelectList(db.tblProject, "Id", "Title", model.ProjectId);

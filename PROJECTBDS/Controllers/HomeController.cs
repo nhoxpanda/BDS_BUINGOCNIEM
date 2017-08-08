@@ -11,7 +11,7 @@ namespace PROJECTBDS.Controllers
 {
     public class HomeController : Controller
     {
-        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private readonly LandSoftEntities _db = new LandSoftEntities();
 
         private readonly HomeServices _data = new HomeServices();
 
@@ -28,16 +28,14 @@ namespace PROJECTBDS.Controllers
         public ActionResult SieuThiDiaOc(string slug)
         {
             var id = slug.Split('-');
-            var idDuAn = string.Empty;
 
-            Land post = new Land();
+            if (id.Length <= 0) return HttpNotFound();
 
-            if (id.Length <= 0) return View(post);
-
-            idDuAn = id[id.Length - 1];
-            post = _data.GetLand(int.Parse(idDuAn));
+            var idDuAn = id[id.Length - 1];
+            var post = _data.GetLand(int.Parse(idDuAn));
 
             if (post == null) return HttpNotFound();
+
             return View(post);
         }
 

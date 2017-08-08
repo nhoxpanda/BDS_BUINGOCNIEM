@@ -41,10 +41,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="control-label col-lg-4 col-md-4">Image</label>
+                                            <label class="control-label col-lg-4 col-md-4">Hình đại diện</label>
                                             <div class="col-lg8 col-md-8">
                                                 <img style="width:100px; height:100px; border:1px solid #0094ff" id="_Image" title="Image đại diện" />
-                                                <input type="button" class="btn btn-danger" onclick="openfile()" value="open" />
+                                                <input type="button" class="btn btn-danger" onclick="BrowseServer()" value="open" />
                                                 @Html.HiddenFor(model => model.Image)
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Ảnh</label>
+                                        <label class="control-label col-lg-2 col-md-2">Các hình khác</label>
                                         <div class="col-lg-10 col-md-10">
                                             <input type="file" name="ListImage" id="ListImage" multiple class="form-control" />
                                         </div>
@@ -91,12 +91,23 @@
 @section scripts{
     <script>
         CKEDITOR.replace("Content");
-        function openfile() {
+
+        function BrowseServer() {
+            // You can use the "CKFinder" class to render CKFinder in a page:
             var finder = new CKFinder();
-            //finder.basePath = '../';
+            finder.basePath = '../';	// The path for the installation of CKFinder (default = "/ckfinder/").
             finder.selectActionFunction = SetFileField;
             finder.popup();
+
+            // It can also be done in a single line, calling the "static"
+            // popup( basePath, width, height, selectFunction ) function:
+            // CKFinder.popup( '../', null, null, SetFileField ) ;
+            //
+            // The "popup" function can also accept an object as the only argument.
+            // CKFinder.popup( { basePath : '../', selectActionFunction : SetFileField } ) ;
         }
+
+        // This is a sample function which is called when a file is selected in CKFinder.
         function SetFileField(fileUrl) {
             $('#_Image').attr('src', fileUrl);
             $('#Image').val(fileUrl);

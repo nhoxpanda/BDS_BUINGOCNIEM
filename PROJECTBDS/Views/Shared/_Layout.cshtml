@@ -283,18 +283,18 @@
                     $('.bg-menu-black').css('display', 'none');
                 });
                 //
-                $("#province")
-                    .change(function() {
-                        $.getJSON('/Home/DistrictList?id=' + $('#province').val(),
-                            function(data) {
-                                var items = '';
-                                $.each(data,
-                                    function(i, gd) {
-                                        items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
-                                    });
-                                $('#district').html(items);
-                            });
-                    });
+                //$("#province")
+                //    .change(function() {
+                //        $.getJSON('/Home/DistrictList?id=' + $('#province').val(),
+                //            function(data) {
+                //                var items = '';
+                //                $.each(data,
+                //                    function(i, gd) {
+                //                        items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                //                    });
+                //                $('#district').html(items);
+                //            });
+                //    });
             });
         });
     </script>

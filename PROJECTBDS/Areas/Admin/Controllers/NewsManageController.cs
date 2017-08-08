@@ -13,7 +13,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     public class NewsManageController : Controller
     {
         // GET: Admin/NewsManage
-        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private LandSoftEntities _db = new LandSoftEntities();
         public ActionResult Index(int? page, string query, int? CategoryId)
         {
             ViewBag.query = query;

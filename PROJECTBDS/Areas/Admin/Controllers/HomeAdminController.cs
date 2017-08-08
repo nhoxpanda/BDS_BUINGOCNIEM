@@ -11,7 +11,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     public class HomeAdminController : Controller
     {
         // GET: Admin/HomeAdmin
-        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private LandSoftEntities _db = new LandSoftEntities();
         public ActionResult Index()
         {
             return View();

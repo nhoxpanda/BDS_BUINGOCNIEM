@@ -50,6 +50,7 @@ namespace PROJECTBDS.Models
         public string xmap { get; set; }
         public string ymap { get; set; }
         public Nullable<int> CustomerId { get; set; }
+        public bool IsDelete { get; set; }
     
         public virtual tblCustomer tblCustomer { get; set; }
         public virtual tblDictionary tblDictionary { get; set; }

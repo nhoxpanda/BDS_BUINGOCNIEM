@@ -4,20 +4,20 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using PROJECTBDS.Models;
 using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Services.Home
 {
     public class HomeServices
     {
-        private IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
 
-        public List<DuAnNoiBatViewModel> GetDuAnNoiBat(int take=0)
+        public List<DuAnNoiBatViewModel> GetDuAnNoiBat(int take = 0)
         {
-            var query = "SELECT p.id, title, Content as excerpt, MetaTitle, metadesc, m.Image, Price, v.Name as Province, t.Name as District " +
+            var query = "SELECT p.id, title, Content as excerpt, MetaTitle, metadesc, p.Image, Price, v.Name as Province, t.Name as District " +
                         "FROM tblProject p " +
-                        "LEFT JOIN tblImage m ON (m.ProjectId = p.Id) " +
                         "LEFT JOIN tblProvince v ON(v.Id = p.ProvinceId) " +
                         "LEFT JOIN tblDistrict t ON(t.Id = p.DistrictId and v.Id = t.ProvinceId) " +
                         "ORDER BY p.id DESC ";
@@ -82,5 +82,15 @@ namespace PROJECTBDS.Services.Home
         }
 
 
+        public List<JsonHome> GetDistricts(long idProvince)
+        {
+            var query = "SELECT  Id, Name " +
+                        "FROM tblDistrict " +
+                        "WHERE ProvinceId = " + idProvince;
+
+            return (List<JsonHome>)_db.Query<JsonHome>(query);
+        }
+
     }
+
 }

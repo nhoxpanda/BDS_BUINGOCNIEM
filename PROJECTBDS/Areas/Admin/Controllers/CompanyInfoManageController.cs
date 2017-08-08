@@ -12,7 +12,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     public class CompanyInfoManageController : Controller
     {
         // GET: Admin/CompanyInfoManage
-        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private LandSoftEntities _db = new LandSoftEntities();
         public ActionResult Index(int? page, string query)
         {
             ViewBag.query = query;

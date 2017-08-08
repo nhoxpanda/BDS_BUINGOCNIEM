@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls;
+﻿using System.Collections.Generic;
 
 namespace PROJECTBDS.ViewModels.Home
 {
+
+    public class JsonHome
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 
     public class HomeViewModel
     {

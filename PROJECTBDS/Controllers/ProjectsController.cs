@@ -12,7 +12,7 @@ namespace PROJECTBDS.Controllers
 {
     public class ProjectsController : Controller
     {
-        Web_NiemBDSEntities db = new Web_NiemBDSEntities();
+        LandSoftEntities db = new LandSoftEntities();
 
         private HomeServices data = new HomeServices();
 

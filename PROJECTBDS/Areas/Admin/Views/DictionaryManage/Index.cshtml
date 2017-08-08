@@ -30,19 +30,21 @@
                     <table id="tableDictionary" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 100px">#</th>
+                                <th style="width: 50px">#</th>
                                 <th>@dic.Title</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var c in Model)
+                            @foreach (var item in Model)
                             {
-                                <tr id="rowItem@(c.Id)">
-                                    <td style="width: 100px">
-                                        <a class="cursorpointer" onclick="editItem(@c.Id)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a> |
-                                        <a class="cursorpointer" onclick="deleteItem(@c.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                <tr id="rowItem@(item.Id)">
+                                    <td>@item.Id</td>
+                                    <td><a onclick="editItem(@item.Id)">@item.Title</a></td>
+                                    <td style="width: 80%">
+                                        <a class="cursorpointer" onclick="deleteItem(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
                                     </td>
-                                    <td>@c.Title</td>
+
                                 </tr>
                             }
                         </tbody>

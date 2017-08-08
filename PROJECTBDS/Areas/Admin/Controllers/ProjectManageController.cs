@@ -1,6 +1,7 @@
 ﻿using PROJECTBDS.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,21 +15,23 @@ namespace PROJECTBDS.Areas.Admin.Controllers
     {
         // GET: Admin/ProjectManage
         #region Quản lý dự án
-        private Web_NiemBDSEntities db = new Web_NiemBDSEntities();
+        private LandSoftEntities db = new LandSoftEntities();
+
+        private const int RowsPerPage = 2;
         public ActionResult Index(int? page, string query)
         {
             int pageN = page ?? 1;
             ViewBag.query = query;
-            var model = new List<tblProject>();
+            IQueryable<tblProject> model;
             if (!string.IsNullOrEmpty(query))
             {
-                model = db.tblProject.Where(q => q.Title.Contains(query) || q.MetaTitle.Contains(query)).OrderByDescending(n => n.CreateDate).ToList();
+                model = db.tblProject.Where(q => q.Title.Contains(query) || q.MetaTitle.Contains(query)).OrderByDescending(n => n.CreateDate);
             }
             else
             {
-                model = db.tblProject.OrderByDescending(n => n.CreateDate).ToList();
+                model = db.tblProject.OrderByDescending(n => n.Id);
             }
-            return View(model.ToPagedList(pageN, 30));
+            return View(model.ToPagedList(pageN, RowsPerPage));
         }
         [ValidateInput(false)]
         public ActionResult CreateProject(tblProject model, IEnumerable<HttpPostedFileBase> ListImage)
@@ -38,27 +41,32 @@ namespace PROJECTBDS.Areas.Admin.Controllers
                 model.CreateDate = DateTime.Now;
                 db.tblProject.Add(model);
                 db.SaveChanges();
-                int idPro = model.Id;
-                if (ListImage != null)
-                {
-                    foreach (var item in ListImage)
-                    {
-                        String newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
-                        String path = Server.MapPath("~/Images/News/" + newName);
-                        item.SaveAs(path);
-                        tblImage a = new tblImage();
-                        a.Image = newName;
-                        a.URL = path;
-                        a.ProjectId = idPro;
-                        a.DictionaryId = 47;
-                        db.tblImage.Add(a);
+                var idPro = model.Id;
 
-                    }
-                    db.SaveChanges();
+                if (ListImage == null) return RedirectToAction("Index");
+
+                foreach (var item in ListImage)
+                {
+                    if (item == null) continue;
+
+                    var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
+                    var path = Server.MapPath("~/Uploads/News/" + newName);
+                    item.SaveAs(path);
+                    var image = new tblImage
+                    {
+                        Image = newName,
+                        URL = "/Uploads/News/" + newName,
+                        ProjectId = idPro,
+                        DictionaryId = 47
+                    };
+                    db.tblImage.Add(image);
+
                 }
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(model);
         }
         public ActionResult EditProject(int id)
         {
@@ -68,36 +76,76 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditProject(tblProject model, IEnumerable<HttpPostedFileBase> ListImage)
+        public ActionResult EditProject(tblProject model, List<HttpPostedFileBase> listImage)
         {
-
-            if (ListImage != null)
+            
+            foreach (var item in listImage)
             {
-                foreach (var item in ListImage)
-                {
-                    String newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
-                    String path = Server.MapPath("~/Images/News/" + newName);
-                    item.SaveAs(path);
-                    tblImage a = new tblImage();
-                    a.Image = newName;
-                    a.URL = path;
-                    a.ProjectId = model.Id;
-                    a.DictionaryId = 47;
-                    db.tblImage.Add(a);
+                if (item == null) continue;
 
-                }
+                var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'),$"{DateTime.Now:_ddMMyyyy}");
+
+                var path = Server.MapPath("/Uploads/News/" + newName);
+
+                item.SaveAs(path);
+
+                var image = new tblImage
+                {
+                    Image = newName,
+                    URL = "/Uploads/News/" + newName,
+                    ProjectId = model.Id,
+                    DictionaryId = 47
+                };
+
+                db.tblImage.Add(image);
             }
+
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public void DeleteFile(string file, string folder)
+        {
+            var location = System.Web.HttpContext.Current.Server.MapPath(folder);
+
+            var fileName = file;
+
+            if (location == null) return;
+
+            var path = Path.Combine(location, fileName);
+            FileInfo fileOrg = new FileInfo(path);
+            if (fileOrg.Exists)
+            {
+                fileOrg.Delete();
+            }
+        }
+        public void DeleteImage(int projectId)
+        {
+            try
+            {
+                var model = db.tblImage.Where(p => p.ProjectId == projectId);
+                foreach (var image in model)
+                {
+                    db.tblImage.Remove(image);
+                    DeleteFile(image.Image, "~/Uploads/News/");
+                }
+                db.SaveChanges();
+            }
+            catch
+            {
+                // ignored
+            }
         }
         public ActionResult DeleteProject(int id)
         {
             try
             {
+                DeleteImage(id);
                 var model = db.tblProject.Find(id);
+                if (model == null) return Json(1, JsonRequestBehavior.AllowGet);
                 db.tblProject.Remove(model);
                 db.SaveChanges();
+
                 return Json(1, JsonRequestBehavior.AllowGet);
             }
             catch

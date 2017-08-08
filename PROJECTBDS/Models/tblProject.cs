@@ -31,11 +31,17 @@ namespace PROJECTBDS.Models
         public string Content { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public bool Delete { get; set; }
+        public Nullable<int> ProvinceId { get; set; }
+        public Nullable<int> DistrictId { get; set; }
+        public string Price { get; set; }
+        public string Logo { get; set; }
     
+        public virtual tblDistrict tblDistrict { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblImage> tblImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLand> tblLand { get; set; }
+        public virtual tblProvince tblProvince { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblProjectDetail> tblProjectDetail { get; set; }
     }

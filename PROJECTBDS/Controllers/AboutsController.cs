@@ -12,7 +12,7 @@ namespace PROJECTBDS.Controllers
     public class AboutsController : Controller
     {
         // GET: Abouts
-        private Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private LandSoftEntities _db = new LandSoftEntities();
         public ActionResult Index(int? page)
         {
             return View();

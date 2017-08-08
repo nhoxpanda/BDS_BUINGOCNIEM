@@ -1,4 +1,5 @@
 ﻿@using Humanizer
+@using PROJECTBDS.Infrastructure
 @model IEnumerable<PROJECTBDS.ViewModels.Home.DuAnNoiBatViewModel>
 <section class="content-bg">
     <div class="container">
@@ -20,8 +21,8 @@
                             <div class="item">
                                 <div class="item-project">
                                     <div class="box-item">
-                                        <a href="/du-an/melosa"><img title="Melosa Garden" alt="Melosa Garden" src="~/Images/News/@item.Image" /></a>
-                                        <a href="/du-an/melosa">
+                                        <a href="/du-an/@item.Title.UrlFriendly()-@item.Id"><img title="@item.Title" alt="@item.Title" src="@item.Image" /></a>
+                                        <a href="/du-an/@item.Title.UrlFriendly()-@item.Id">
                                             <p>@item.Title</p>
                                         </a>
 
@@ -31,7 +32,7 @@
                                             <span>@item.Address</span>
                                         </div>
                                         <div class="bottom-dn">
-                                            <span>Giá bán</span><label><b>@(item.Price) tr/m2</b></label>
+                                            <span>Giá bán</span><label><b>@(item.Price)</b></label>
                                         </div>
                                     </div>
                                 </div>

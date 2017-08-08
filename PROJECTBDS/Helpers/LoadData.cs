@@ -8,7 +8,7 @@ namespace PROJECTBDS.Helpers
 {
     public static class LoadData
     {
-        private static Web_NiemBDSEntities _db = new Web_NiemBDSEntities();
+        private static LandSoftEntities _db = new LandSoftEntities();
 
         public static List<tblProvince> ProvinceList()
         {
