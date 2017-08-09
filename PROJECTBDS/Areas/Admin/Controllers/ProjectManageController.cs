@@ -17,7 +17,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         #region Quản lý dự án
         private LandSoftEntities db = new LandSoftEntities();
 
-        private const int RowsPerPage = 2;
+        private const int RowsPerPage = 5;
         public ActionResult Index(int? page, string query)
         {
             int pageN = page ?? 1;
@@ -66,12 +66,20 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name", model.ProvinceId);
+            //chọn quận huyện 
+            ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name", model.DistrictId);
             return View(model);
         }
         public ActionResult EditProject(int id)
         {
             var model = db.tblProject.Find(id);
+            if (model == null) return HttpNotFound();
+
             ViewBag.LsImage = db.tblImage.Where(n => n.ProjectId == id && n.DictionaryId == 47).ToList();
+            ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name", model.ProvinceId);
+            ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name", model.DistrictId);
+
             return View(model);
         }
         [HttpPost]
@@ -113,7 +121,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             if (location == null) return;
 
             var path = Path.Combine(location, fileName);
-            FileInfo fileOrg = new FileInfo(path);
+            var fileOrg = new FileInfo(path);
             if (fileOrg.Exists)
             {
                 fileOrg.Delete();
@@ -191,8 +199,11 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             try
             {
                 var model = db.tblProjectDetail.Find(id);
-                db.tblProjectDetail.Remove(model);
+
+                if (model != null) db.tblProjectDetail.Remove(model);
+
                 db.SaveChanges();
+
                 return Json(1, JsonRequestBehavior.AllowGet);
             }
             catch

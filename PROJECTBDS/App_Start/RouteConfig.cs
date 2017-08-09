@@ -9,10 +9,16 @@ namespace PROJECTBDS
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+               name: "DuAn",
+               url: "du-an/{slug}/{key}",
+               defaults: new { controller = "Home", action = "DuAn", key = UrlParameter.Optional }
+           );
             routes.MapRoute(
                name: "SieuThiDiaOc",
                url: "sieu-thi-dia-oc/{slug}",
-               defaults: new { controller = "Home", action = "SieuThiDiaOc", id = UrlParameter.Optional }
+               defaults: new { controller = "Home", action = "SieuThiDiaOc"}
            );
             routes.MapRoute(
                 name: "Default",

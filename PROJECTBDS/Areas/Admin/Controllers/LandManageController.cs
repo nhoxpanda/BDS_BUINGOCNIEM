@@ -17,13 +17,9 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 
         LandSoftEntities db = new LandSoftEntities();
 
-        private readonly LandServices _data;
-        private const int RowsPerPage = 2;
+        private const int RowsPerPage = 5;
 
-        public LandManageController()
-        {
-            _data = new LandServices();
-        }
+
         // GET: Admin/LandManage
         public ActionResult Index(int? page, string query)
         {
@@ -42,6 +38,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             }
             return View(model.ToPagedList(pageN, RowsPerPage));
         }
+
         [ValidateInput(false)]
         public ActionResult Create(tblLand model, IEnumerable<HttpPostedFileBase> listImage)
         {
@@ -85,6 +82,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             Load(model);
             return View();
         }
+
         public ActionResult Update(int id)
         {
             var model = db.tblLand.Find(id);
@@ -92,6 +90,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             ViewBag.LsImage = db.tblImage.Where(n => n.LandId == id && n.DictionaryId == 47).ToList();
             return View(model);
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Update(tblLand model, IEnumerable<HttpPostedFileBase> listImage)

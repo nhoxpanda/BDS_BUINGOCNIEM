@@ -1,0 +1,153 @@
+﻿@using PROJECTBDS.Models
+@model PROJECTBDS.Models.tblProjectDetail
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    var domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+@section scripts {
+    <script>
+        // Select all tabs
+        $('.nav-tabs a')
+            .click(function(e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        CKEDITOR.replace("Content");
+       
+        
+        jQuery(document)
+            .ready(function($) {
+                $("#DictionaryId")
+                    .change(function (e) {
+                        console.log("detect change dropdown");
+
+                        if ($(this).val() !== "") {
+                            var datanew = "";
+                            $.ajax({
+                                'url': "@domain/Admin/api/project",
+                                'type': "post",
+                                'data': {
+                                    'ProjectId': parseInt($("#ProjectId").val()),
+                                    "DictionaryId": parseInt($("#DictionaryId").val())
+                                },
+                                beforeSend: function () {
+                                    CKEDITOR.instances['Content'].setData("<div></div>");
+                                    //$("#Content").val("");
+                                    $("#Title").val("");
+                                    $("#Orders").val("");
+                                    datanew = "";
+                                },
+                                success: function (data) {
+                                    console.log("send data");
+                                   $.each(data, function (index, val) {
+                                        //$("#Content").val(val.Content);
+                                        $("#Title").val(val.Title);
+                                        $("#Orders").val(val.Orders);
+                                        datanew = val.Content;
+                                    });
+                                },
+                                error: function (msg) {
+                                    alert("Something wrong request data");
+                                },
+                                complete: function () {
+                                    //$('.box-body').show();
+                                    CKEDITOR.instances["Content"].setData(datanew);
+
+                                }
+                            });
+
+                            
+
+                        }
+                    });
+            });
+    </script>
+
+}
+
+<section class="content-header">
+    <h1>
+        Chi tiết dự án
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Chi tiết dự án</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <div class="callout callout-info lead">
+                    <a href="@Url.Action("Index", "ProjectManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    <a class="btn btn-success" href="@Url.Action("CreateProject", "ProjectManage")"><i class="fa fa-plus"></i>Thêm mới</a>
+                </div>
+            </div>
+
+            <div class="box-body" id="data-customer">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DictionaryId, "DictionaryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.DropDownList("DictionaryId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DictionaryId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Dự án</label>
+                            <div class="col-md-10">
+                                @Html.TextBox("Title", Model.Title ?? "", new {@class = "form-control"})
+
+                                @{
+                                    var tblProject = ViewBag.Project as tblProject;
+                                }
+                                @if (tblProject != null)
+                                {
+                                    @Html.Hidden("ProjectId", tblProject.Id)
+                                }
+                                @Html.ValidationMessageFor(model => model.ProjectId, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Orders, htmlAttributes: new {@class = "control-label col-md-2"})
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Orders, new {htmlAttributes = new {@class = "form-control", type = "number"}})
+                                @Html.ValidationMessageFor(model => model.Orders, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Content, htmlAttributes: new {@class = "control-label col-md-2"})
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Content, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

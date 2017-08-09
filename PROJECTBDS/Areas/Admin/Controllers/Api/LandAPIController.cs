@@ -1,8 +1,6 @@
 ﻿using System.Web.Http;
+using PROJECTBDS.Areas.Admin.Dto;
 using PROJECTBDS.Areas.Admin.Services;
-using PROJECTBDS.Areas.Dto;
-using PROJECTBDS.DTO;
-using PROJECTBDS.Services.Home;
 
 namespace PROJECTBDS.Areas.Admin.Controllers.Api
 {
@@ -35,6 +33,23 @@ namespace PROJECTBDS.Areas.Admin.Controllers.Api
             var districts = _context.GetWards(dto.ProvinceId);
 
             return Ok(districts);
+        }
+    }
+
+
+    public class ProjectController : ApiController
+    {
+        private readonly LandServices _context;
+        public ProjectController()
+        {
+            _context = new LandServices();
+        }
+       
+        [HttpPost]
+        public IHttpActionResult GetProject(ProjectDto dto)
+        {
+            
+            return Ok(_context.GetProjectDetail(dto.ProjectId, dto.DictionaryId));
         }
     }
 }

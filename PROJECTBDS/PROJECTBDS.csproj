@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -250,10 +252,12 @@
     <Compile Include="Areas\Admin\Controllers\ImageManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\LandManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectManageController.cs" />
     <Compile Include="Areas\Admin\Models\LoadDataAdmin.cs" />
     <Compile Include="Areas\Admin\Services\LandServices.cs" />
-    <Compile Include="Areas\Dto\LandDto.cs" />
+    <Compile Include="Areas\Admin\Dto\LandDto.cs" />
+    <Compile Include="Areas\Admin\ViewModels\JsonForProject.cs" />
     <Compile Include="Controllers\AboutsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\HomeController.cs" />
@@ -282,6 +286,7 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EnumProject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model.Context.cs">
@@ -351,6 +356,7 @@
     <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker.min.js" />
     <Content Include="Areas\Admin\Content\JS\bootstrap-select.min.js" />
     <Content Include="Areas\Admin\Content\JS\bootstrap-colorpicker-plus.min.js" />
+    <Content Include="Areas\Admin\Scripts\admin.js" />
     <Content Include="Content\assets\css\bootstrap.css" />
     <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\custom.css" />
@@ -363,6 +369,7 @@
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\fonts\icomoon.svg" />
     <Content Include="Content\assets\images\close-menu.svg" />
+    <Content Include="Content\assets\images\contact_icon.svg" />
     <Content Include="Content\assets\images\icon-address-2.jpg" />
     <Content Include="Content\assets\images\icon-area.png" />
     <Content Include="Content\assets\images\icon-bedroom.png" />
@@ -372,6 +379,10 @@
     <Content Include="Content\assets\images\icon-lvroom.png" />
     <Content Include="Content\assets\images\icon-menu.svg" />
     <Content Include="Content\assets\images\icon-road.png" />
+    <Content Include="Content\assets\images\project-about.svg" />
+    <Content Include="Content\assets\images\project-location.svg" />
+    <Content Include="Content\assets\images\project-plan.svg" />
+    <Content Include="Content\assets\images\project-utilities.svg" />
     <Content Include="Content\assets\img\banner-melosa-sunland_5799b15770f9a.jpg" />
     <Content Include="Content\assets\img\bg-footer-png.png" />
     <Content Include="Content\assets\img\bg-footer-red.png" />
@@ -3155,9 +3166,16 @@
     <Content Include="Views\Projects\Detail.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Home\SieuThiDiaOc.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProjectDetails\Index.cshtml" />
+    <Content Include="Views\Home\DuAn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Dto\" />
     <Folder Include="Content\ckeditor\plugins\autocorrect\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\base64image\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\bootstrapVisibility\" />
@@ -3193,6 +3211,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
@@ -3200,6 +3219,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

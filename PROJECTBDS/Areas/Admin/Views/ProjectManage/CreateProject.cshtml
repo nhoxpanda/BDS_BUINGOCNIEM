@@ -52,13 +52,35 @@
                                     </div>
 
                                     <div class="form-group">
-
                                         <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
                                         <div class="col-lg-4 col-md-4">
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control", required = "required" })
                                         </div>
                                     </div>
-
+                                   
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-4 col-md-4">Thành Phố/Tỉnh</label>
+                                                <div class="col-lg-3 col-md-3">
+                                                    @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
+                                                </div>
+                                                <label class="control-label col-lg-2 col-md-2">Quận/Huyện</label>
+                                                <div class="col-lg-3 col-md-3">
+                                                    @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-1 col-md-1">Giá</label>
+                                                <div class="col-lg-3 col-md-3">
+                                                    @Html.TextBoxFor(model => model.Price, new {@class = "form-control", required = "required"})
+                                                </div>
+                                            </div>
+                                         
+                                        </div>
+                                    </div>
                                     <div class="form-group" style="padding-right:15px;">
                                         <label class="control-label col-lg-2 col-md-2">Mô tả</label>
                                         <div class="col-lg-10 col-md-10">
@@ -87,8 +109,11 @@
         </div>
     </div>
 </section>
-
+@{
+    var domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
 @section scripts{
+    <script src="~/Areas/Admin/Scripts/admin.js"></script>
     <script>
         CKEDITOR.replace("Content");
 
@@ -112,5 +137,20 @@
             $('#_Image').attr('src', fileUrl);
             $('#Image').val(fileUrl);
         }
+
+        jQuery(document).ready(function ($) {
+            $("#ProvinceId").change(function (event) {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện", "@domain");
+                $("#WardId").html("<option value=''></option>");
+            });
+
+            $("#DistrictId").change(function (event) {
+                getChildren($(this).val(), "#WardId", "Ward", "Phường/Xã", "@domain");
+            });
+
+            if ($("#ProvinceId").val() !== "") {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện", "@domain");
+            }
+        });
     </script>
 }

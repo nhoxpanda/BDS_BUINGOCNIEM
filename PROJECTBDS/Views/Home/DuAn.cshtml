@@ -1,0 +1,237 @@
+﻿@using PROJECTBDS.Infrastructure
+@using PROJECTBDS.Models
+@model tblProject
+@{
+    ViewBag.Title = "DuAn";
+
+    var itemTongQuan = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.TongQuan);
+
+    var itemViTri = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.ViTri);
+
+    var viTri = new tblDictionary();
+
+    if (itemViTri != null)
+    {
+        viTri = itemViTri.tblDictionary;
+    }
+    var itemTienIch = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.TienIch);
+
+    var tienIch = new tblDictionary();
+
+    if (itemTienIch != null)
+    {
+        tienIch = itemTienIch.tblDictionary;
+    }
+
+    var itemMatBang = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.MatBangTongThe);
+
+    var matBang = new tblDictionary();
+
+    if (itemMatBang != null)
+    {
+        matBang = itemMatBang.tblDictionary;
+    }
+
+    var slugProject = Model.Title.UrlFriendly() + "-" + Model.Id;
+
+
+}
+<section class="content-bottom page-child">
+    <div class="container">
+        <div class="nav-content project-nav project-nav-horizontal">
+            <div class="row gutter-0">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="row gutter-0">
+                        <div class="col-xs-6 col-sm-3">
+                            <a class="project-item project-item-logo">
+                                <i class="icon">
+                                    <img class="" src="@Model.Image" alt="">
+                                </i>
+                            </a>
+                        </div>
+
+                        @if (itemTongQuan != null)
+                        {<div class="col-xs-6 col-sm-3">
+                            <a href="@Url.RouteUrl("DuAn",
+                                             new
+                                             {
+                                                 slug = slugProject,
+                                                 key = itemTongQuan.Title.UrlFriendly() + "-" + itemTongQuan.DictionaryId
+                                             })" class="project-item project-about ">
+                                <i class="icon">
+                                    <img class="svg" src="~/Content/assets/images/project-about.svg" alt="About" />
+                                </i>
+                                Tổng quan
+                            </a>
+                        </div>
+                        }
+
+
+                        @if (itemViTri != null)
+                        { <div class="col-xs-6 col-sm-3">
+                            <a href="@Url.RouteUrl("DuAn",
+                                             new
+                                             {
+                                                 slug = slugProject,
+                                                 key = viTri.Title.UrlFriendly() + "-" + itemViTri.DictionaryId
+                                             })" class="project-item project-location ">
+                                <i class="icon">
+                                    <img class="svg" alt="Location" src="~/Content/assets/images/project-location.svg" />
+                                </i>
+                                Vị trí
+                            </a>
+                        </div>
+                        }
+
+
+                        @if (itemTienIch != null)
+                        { <div class="col-xs-6 col-sm-3">
+                            <a href="@Url.RouteUrl("DuAn",
+                                         new
+                                         {
+                                             slug = slugProject,
+                                             key = tienIch.Title.UrlFriendly() + "-" + itemTienIch.DictionaryId
+                                         })" class="project-item project-utilities ">
+                                <i class="icon">
+                                    <img class="svg" src="~/Content/assets/images/project-utilities.svg" alt="Utilities" />
+                                </i>
+                                Tiện ích
+                            </a>
+                        </div>
+                        }
+                        @if (itemMatBang != null)
+                        {
+                            <div class="col-xs-6 col-sm-3">
+                                <a href="@Url.RouteUrl("DuAn",
+                                             new
+                                             {
+                                                 slug = slugProject,
+                                                 key = matBang.Title.UrlFriendly() + "-" + itemMatBang.DictionaryId
+                                             })" class="project-item project-plan ">
+                                    <i class="icon">
+                                        <img class="svg" src="~/Content/assets/images/project-plan.svg"/>
+                                    </i>
+                                    Mặt bằng
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+                    <div class="row gutter-0">
+                        <div class="col-xs-6 col-sm-3">
+                            <a href="#" class="project-item project-contact ">
+                                <i class="icon">
+                                    <img src="~/Content/assets/images/contact_icon.svg" />
+                                </i>
+                                Liên hệ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+        <div class="page-content editor-content">
+
+            @if (Model.Content == null)
+            {
+                <div class="page-block page-text-block">
+                    <h2 class="page-title">@ViewBag.KeyDetails.Title</h2>
+                    <div class="page-content editor-content">
+                        @Html.Raw(ViewBag.KeyDetails.Content)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="page-block page-text-block">
+                    <h2 class="page-title">@itemTongQuan.Title</h2>
+                    <div class="page-content editor-content">
+                        @Html.Raw(itemTongQuan.Content)
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+        <div class="page-bottom">
+            <div class="share-link">
+                <div class="inner">
+                    Share Link
+                    <a target="_blank" rel="nofollow" href="https://plus.google.com/share?url=http%3A%2F%2Fsunlandsg.vn%2Fdu-an%2Fmasteri-an-phu%2Fmat-bang"><span class="icon-google-plus-social-logotype"></span></a>
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsunlandsg.vn%2Fdu-an%2Fmasteri-an-phu%2Fmat-bang"><span class="icon-facebook-logo"></span></a>
+                </div>
+            </div>			<div class="project-other">
+                <h3 class="border-bottom">DỰ ÁN BẤT ĐỘNG SẢN</h3>
+                <div class="list-project">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/swan-bay"><img alt="SWAN BAY" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fswanbay_59842a8ea63de.jpg&w=735&h=432&fit=crop" /></a>
+                                    <a href="/du-an/swan-bay"><p>SWAN BAY</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
+                                        <span>Nhơn Trạch - Đồng Nai</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/rosita-garden-khang-dien"><img alt="Rosita Garden" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2FAVATA-ROSITA_596dcb8024782.jpg&w=735&h=432&fit=crop" /></a>
+                                    <a href="/du-an/rosita-garden-khang-dien"><p>Rosita Garden</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
+                                        <span>Quận 9 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>3.2 tỷ</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/new-city-quan-2"><img alt="New City quận 2" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fnew-city-quan-2_596478eaab182.jpg&w=735&h=432&fit=crop" /></a>
+                                    <a href="/du-an/new-city-quan-2"><p>New City quận 2</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
+                                        <span>Quận 2 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="box-item">
+                                <div class="border-list">
+                                    <a href="/du-an/homyland-riverside"><img alt="Homyland Riverside" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fhomyland-riverside_59376dad904fd.jpg&w=735&h=432&fit=crop" /></a>
+                                    <a href="/du-an/homyland-riverside"><p>Homyland Riverside</p></a>
+                                    <div class="address2">
+                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
+                                        <span>Quận 2 - Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="bottom-dn">
+                                        <span>Giá bán</span><label><b>26 triệu/m2</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

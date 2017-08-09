@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Dapper;
+using PROJECTBDS.Areas.Admin.Controllers.Api;
+using PROJECTBDS.Areas.Admin.ViewModels;
 using PROJECTBDS.Models;
 using PROJECTBDS.ViewModels.Home;
 
@@ -31,6 +33,16 @@ namespace PROJECTBDS.Areas.Admin.Services
                         "WHERE DistrictId = " + idDistrict;
 
             return (List<JsonHome>)_db.Query<JsonHome>(query);
+        }
+
+        public List<JsonForProject> GetProjectDetail(int dtoProjectId, int dtoDictionaryId)
+        {
+            var query = "SELECT *" +
+                        "FROM tblprojectdetail " +
+                        "WHERE projectid = " + dtoProjectId + " " +
+                        "AND DictionaryId = " + dtoDictionaryId;
+
+            return (List<JsonForProject>)_db.Query<JsonForProject>(query);
         }
     }
 }

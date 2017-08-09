@@ -39,6 +39,52 @@ namespace PROJECTBDS.Controllers
             return View(post);
         }
 
+        public ActionResult DuAn(string slug, string key)
+        {
+            if (string.IsNullOrEmpty(slug)) return HttpNotFound();
+
+            var db = new LandSoftEntities();
+
+            var id = slug.Split('-');
+
+            if (id.Length <= 0) return HttpNotFound();
+
+            var idDuAn = id[id.Length - 1];
+
+            var idnew = 0;
+
+            if (!int.TryParse(idDuAn, out idnew)) return HttpNotFound();
+
+            var post = db.tblProject.Include("tblProjectDetail").FirstOrDefault(t => t.Id == idnew);
+
+            if (post == null) return HttpNotFound();
+
+            if (string.IsNullOrEmpty(key)) return View(post);
+
+            var idDic = key.Split('-');
+
+            if (idDic.Length > 0)
+            {
+                var idDa = idDic[idDic.Length - 1];
+
+                var idNew = 0;
+                if (int.TryParse(idDa, out idNew))
+                {
+                    var detail = db.tblProjectDetail.FirstOrDefault(a => a.DictionaryId == idNew && a.ProjectId == idnew);
+
+                    if (detail != null)
+                    {
+                        ViewBag.KeyDetails = detail;
+                        post.Title = null;
+                        post.Content = null;
+                    }
+                }
+
+            }
+
+            return View(post);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
