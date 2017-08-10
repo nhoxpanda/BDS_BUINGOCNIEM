@@ -117,20 +117,20 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class=" field-frontprofile-province_id">
-                                        @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Title", id = "ProvinceId", @class = "form-control" })
                                         <div class="help-block"></div>
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-4">
                                     <div class=" field-frontprofile-district_id">
-                                        @Html.DropDownListFor(model => model.DistrictId, null, new { name = "Title", id = "Id", @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.DistrictId, null, new { name = "Title", id = "DistrictId", @class = "form-control" })
                                         <div class="help-block"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" field-frontprofile-ward_id">
-                                        @Html.DropDownListFor(model => model.WardId, null, new { name = "Title", id = "Id", @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.WardId, null, new { name = "Title", id = "WardId", @class = "form-control" })
 
                                         <div class="help-block">@Html.ValidationMessageFor(model => model.ProvinceId)</div>
                                     </div>

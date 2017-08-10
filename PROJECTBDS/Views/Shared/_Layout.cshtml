@@ -40,15 +40,15 @@
                         <a class="close-r" href="/#"><img class="close-r" src="/Content/assets/img/close-menu.svg" alt=""></a>
                     </div>
                     @{
-                        if (Session["UserName"] != null)
+                        if (Auth.User != null)
                                 {
                             <div class="login">
                                 <strong>@Html.Encode(User.Identity.Name)</strong>  
-                                <a rel="nofollow" href="@Session["login"]">Profile của tôi</a>
+                                <a rel="nofollow" href="@Session["login"]">@Auth.User.Username Profile của tôi</a>
                                 <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
                             </div>
                         }
-                        else
+                        if (Auth.User == null)
                         {
                             <div class="login-menu">
                                 <a rel="nofollow" href="@Url.RouteUrl("DangNhap")">Đăng nhập</a>|
@@ -95,8 +95,23 @@
         <div class="container">
             <div class="right-top">
                 <div class="login">
-                    <a rel="nofollow" href="/dang-nhap">Đăng nhập</a>
-                    <a rel="nofollow" href="/dang-ky">Đăng ký</a>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="login">
+                                <strong></strong>
+                                <a rel="nofollow" href="@Url.Action("Profile", "User")">Profile của @Html.Encode(User.Identity.Name.ToUpper())</a>
+                                <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="login">
+                                <a rel="nofollow" href="@Url.RouteUrl("DangNhap")">Đăng nhập</a>|
+                                <a rel="nofollow" href="@Url.RouteUrl("DangKy")">Đăng ký</a>
+                            </div>
+                        }
+                    }
                 </div>
                 <div class="social">
                     <a target="_blank" rel="nofollow" href="skype:jsgiang?chat"><span class="icon-social-buttons-skype"></span></a>

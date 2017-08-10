@@ -19,7 +19,9 @@ namespace PROJECTBDS.ViewModels
         [Required(ErrorMessage = "Mật khẩu không để trống"), MinLength(3, ErrorMessage = "Mật khẩu ít nhất 3 ký tự")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
+
+        public string Email { get; set; }
+
         public virtual bool CheckPassword(string password)
         {
             return BCrypt.Net.BCrypt.Verify(password, Password);

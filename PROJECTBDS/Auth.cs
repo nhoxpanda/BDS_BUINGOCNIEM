@@ -6,46 +6,46 @@ using PROJECTBDS.ViewModels;
 
 namespace PROJECTBDS
 {
-    public class UserSettingsServiceModelBinder : IModelBinder
-    {
-        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            var username = string.Empty;
+    //public class UserSettingsServiceModelBinder : IModelBinder
+    //{
+    //    public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+    //    {
+    //        var username = string.Empty;
 
-            if (controllerContext.HttpContext.Session != null)
-            {
-                username = (string)controllerContext.HttpContext.Session["Username"];
-            }
+    //        if (controllerContext.HttpContext.Session != null)
+    //        {
+    //            username = (string)controllerContext.HttpContext.Session["Username"];
+    //        }
 
-            return username;
-        }
-    }
-    public class AreaAuthorizeAttribute : AuthorizeAttribute
-    {
-        private readonly string _area;
+    //        return username;
+    //    }
+    //}
+    //public class AreaAuthorizeAttribute : AuthorizeAttribute
+    //{
+    //    private readonly string _area;
 
-        public AreaAuthorizeAttribute(string area)
-        {
-            this._area = area;
-        }
+    //    public AreaAuthorizeAttribute(string area)
+    //    {
+    //        this._area = area;
+    //    }
 
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            var loginUrl = "";
+    //    protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+    //    {
+    //        var loginUrl = "";
 
-            switch (_area)
-            {
-                case "Admin":
-                    loginUrl = "~/Admin/";
-                    break;
-                case "Members":
-                    loginUrl = "~/User/Login";
-                    break;
-            }
+    //        switch (_area)
+    //        {
+    //            case "Admin":
+    //                loginUrl = "~/Admin/";
+    //                break;
+    //            case "Members":
+    //                loginUrl = "~/User/Login";
+    //                break;
+    //        }
 
-            filterContext.Result = new RedirectResult(loginUrl + "?returnUrl=" + filterContext.HttpContext.Request.Url.PathAndQuery);
-        }
-    }
+    //        filterContext.Result = new RedirectResult(loginUrl + "?returnUrl=" + filterContext.HttpContext.Request.Url.PathAndQuery);
+    //    }
+    //}
 
     public class Auth
     {
@@ -71,7 +71,8 @@ namespace PROJECTBDS
                 user = new UserViewLogin
                 {
                     Username = userCus.Username,
-                    UserId = userCus.Id
+                    UserId = userCus.Id,
+                    Email = userCus.Email
                 };
 
                 HttpContext.Current.Items[UserKey] = user;

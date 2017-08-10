@@ -15,13 +15,6 @@ namespace PROJECTBDS.Controllers
     {
         LandSoftEntities db = new LandSoftEntities();
 
-        private HttpCookie CreateStudentCookie(string value)
-        {
-            HttpCookie User = new HttpCookie("LandSoft");
-            User.Value = value;
-            User.Expires = DateTime.Now.AddHours(1);
-            return User;
-        }
         // GET: Register
         public ActionResult Register()
         {
@@ -133,6 +126,12 @@ namespace PROJECTBDS.Controllers
         }
 
         public ActionResult Create()
+        {
+            return View();
+        }
+
+
+        public ActionResult Profile()
         {
             return View();
         }
