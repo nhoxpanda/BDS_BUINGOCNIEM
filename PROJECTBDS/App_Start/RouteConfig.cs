@@ -11,6 +11,17 @@ namespace PROJECTBDS
 
 
             routes.MapRoute(
+               name: "DangKy",
+               url: "dang-ky/",
+               defaults: new { controller = "User", action = "Register",}
+           );
+
+            routes.MapRoute(
+               name: "DangNhap",
+               url: "dang-nhap/",
+               defaults: new { controller = "User", action = "Login"}
+           );
+            routes.MapRoute(
                name: "DuAn",
                url: "du-an/{slug}/{key}",
                defaults: new { controller = "Home", action = "DuAn", key = UrlParameter.Optional }

@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CKFinder, Version=2.5.0.2791, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKFinder.dll</HintPath>
@@ -257,7 +261,9 @@
     <Compile Include="Areas\Admin\Models\LoadDataAdmin.cs" />
     <Compile Include="Areas\Admin\Services\LandServices.cs" />
     <Compile Include="Areas\Admin\Dto\LandDto.cs" />
+    <Compile Include="Areas\Admin\Models\EnumCategory.cs" />
     <Compile Include="Areas\Admin\ViewModels\JsonForProject.cs" />
+    <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AboutsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\HomeController.cs" />
@@ -267,11 +273,13 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\HomeDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LoadData.cs" />
+    <Compile Include="Infrastructure\RoleProvider.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
@@ -286,7 +294,6 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EnumProject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model.Context.cs">
@@ -346,7 +353,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Home\HomeServices.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EnumAccountType.cs" />
+    <Compile Include="ViewModels\EnumProject.cs" />
+    <Compile Include="ViewModels\EnumGender.cs" />
     <Compile Include="ViewModels\Home\DuAnNoiBatViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Css\bootstrap-select.css" />
@@ -383,6 +394,7 @@
     <Content Include="Content\assets\images\project-location.svg" />
     <Content Include="Content\assets\images\project-plan.svg" />
     <Content Include="Content\assets\images\project-utilities.svg" />
+    <Content Include="Content\assets\images\search-icon.png" />
     <Content Include="Content\assets\img\banner-melosa-sunland_5799b15770f9a.jpg" />
     <Content Include="Content\assets\img\bg-footer-png.png" />
     <Content Include="Content\assets\img\bg-footer-red.png" />
@@ -2944,6 +2956,7 @@
     <Content Include="Images\News\_thumbs\Files\new-icon_16062017.png" />
     <Content Include="Images\News\_thumbs\Files\phongthuy.png" />
     <Content Include="Images\News\_thumbs\Images\phongthuy.png" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -3172,10 +3185,12 @@
     <Content Include="Areas\Admin\Views\ProjectDetails\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProjectDetails\Index.cshtml" />
     <Content Include="Views\Home\DuAn.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Dto\" />
     <Folder Include="Content\ckeditor\plugins\autocorrect\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\base64image\dialogs\" />
     <Folder Include="Content\ckeditor\plugins\bootstrapVisibility\" />

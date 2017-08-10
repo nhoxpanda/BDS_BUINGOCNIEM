@@ -39,10 +39,24 @@
                         <a href="/"><img class="search-mobile" src="/Content/assets/img/search-mobile.svg" alt=""></a>
                         <a class="close-r" href="/#"><img class="close-r" src="/Content/assets/img/close-menu.svg" alt=""></a>
                     </div>
-                    <div class="login-menu">
-                        <a rel="nofollow" href="/dang-nhap">Đăng nhập</a>|
-                        <a rel="nofollow" href="/dang-ky">Đăng ký</a>
-                    </div>
+                    @{
+                        if (Session["UserName"] != null)
+                                {
+                            <div class="login">
+                                <strong>@Html.Encode(User.Identity.Name)</strong>  
+                                <a rel="nofollow" href="@Session["login"]">Profile của tôi</a>
+                                <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="login-menu">
+                                <a rel="nofollow" href="@Url.RouteUrl("DangNhap")">Đăng nhập</a>|
+                                <a rel="nofollow" href="@Url.RouteUrl("DangKy")">Đăng ký</a>
+                            </div>
+                        }
+                    }
+                    
                     <div class="menu-mobile2">
                         <a class="menu-default" href="/">
                             <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Sàn giao dịch bất sản Sunland">
@@ -119,7 +133,7 @@
                     </ul>
 
                 </div>
-                <a href="/dang-nhap">
+                <a href="@Url.Action("Create", "User")">
                     <div class="ad-button">
                         <span class="icon-dangtin"> </span>
                         <b>Đăng tin</b>

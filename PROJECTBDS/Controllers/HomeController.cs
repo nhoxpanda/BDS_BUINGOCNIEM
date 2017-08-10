@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.SessionState;
 using PROJECTBDS.Services.Home;
 using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Controllers
 {
+    [Authorize(Roles = "User")]
     public class HomeController : Controller
     {
         private readonly LandSoftEntities _db = new LandSoftEntities();

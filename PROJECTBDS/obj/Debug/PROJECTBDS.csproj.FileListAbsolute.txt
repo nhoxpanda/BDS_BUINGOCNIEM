@@ -363,6 +363,7 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PROJECTBDS.dll.config
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PROJECTBDS.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\PROJECTBDS.pdb
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Antlr3.Runtime.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\BCrypt.Net.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\CKFinder.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\EntityFramework.dll
@@ -406,6 +407,8 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.WebPages.Deployment.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.WebPages.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\System.Web.WebPages.Razor.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\WebGrease.dll
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\BCrypt.Net.pdb
+D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\BCrypt.Net.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\CKFinder.pdb
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Dapper.xml
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\Microsoft.AI.DependencyCollector.xml
@@ -483,6 +486,5 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\vi\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-CN\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hans\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hant\Humanizer.resources.dll
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.csprojResolveAssemblyReference.cache
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.pdb

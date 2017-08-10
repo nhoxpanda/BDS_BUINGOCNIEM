@@ -1,0 +1,307 @@
+﻿@using PROJECTBDS.ViewModels
+@model PROJECTBDS.ViewModels.UserViewModel
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>Đăng ký</h1>
+    </div>
+</section>
+<style>
+    input.input-validation-error{
+        border-color: #a94442;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    }
+    .validation-summary-errors {
+        list-style-position: inside;
+        list-style-type: none;
+        color: red;
+        padding-bottom: 30px;
+    }
+    .validation-summary-errors ul {
+        padding-left: 0;
+
+    }
+.field-validation-error {
+    color: #a94442;
+}
+</style>
+<section class="content-bottom page-child page-register">
+<div class="container">
+<div class="row">
+<div class="col-md-9">
+    <div class="box box-news-detail">
+        <div class="box-title box-title-border">
+            Đăng ký thành viên
+        </div>
+        <div class="box-content">
+            <div class="news-detail">
+                <p>Mời bạn đăng kí thành viên để được hưởng nhiều lợi ích và hỗ trợ từ chúng tôi</p>
+            </div>
+            <div class="register-form-wraper">
+                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group field-frontuser-username required">
+                        <label class="col-sm-3 col-md-2 control-label" for="Username">Tên đăng nhập <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Username)
+                        </div>
+                    </div>
+                    <div class="form-group field-frontuser-newpassword required">
+                        <label class="col-sm-3 col-md-2 control-label" for="Password">Mật khẩu <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.Password)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontuser-newpasswordconfirm required">
+                        <label class="col-sm-3 col-md-2 control-label" for="RePassword">Gõ lại mật khẩu <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.PasswordFor(model => model.RePassword, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.RePassword)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-name required">
+                        <label class="col-sm-3 col-md-2 control-label" for="FullName">Họ &amp; Tên <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.FullName)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-gender">
+                        <label class="col-sm-3 col-md-2 control-label" for="gender">Giới tính :</label>
+                        <div class="col-sm-9 col-md-8">
+                            <div id="gender">
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nam, new { @checked = "checked" }) Nam
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nu) Nữ
+                                </label>
+                            </div>
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.Gender)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-birthday">
+                        <label class="col-sm-3 col-md-2 control-label" for="frontprofile-birthday">Ngày sinh :</label>
+                        <div class="col-sm-9 col-md-8">
+                            <div id="frontprofile-birthday-kvdate" class="input-group date">
+                                <span class="input-group-addon kv-date-calendar" title="Select date">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span><span class="input-group-addon kv-date-remove" title="Clear field">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </span>
+                                <input type="text" id="frontprofile-birthday" class="krajee-datepicker form-control" name="FrontProfile[birthday]" data-datepicker-source="frontprofile-birthday-kvdate" data-datepicker-type="2" data-krajee-kvDatepicker="kvDatepicker_afe764fc">
+                            </div>
+                            <div class="help-block">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-md-2" for="event-alias">Địa chỉ</label>
+                        <div class="col-sm-9 col-md-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class=" field-frontprofile-province_id">
+                                        @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class=" field-frontprofile-district_id">
+                                        @Html.DropDownListFor(model => model.DistrictId, null, new { name = "Title", id = "Id", @class = "form-control" })
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class=" field-frontprofile-ward_id">
+                                        @Html.DropDownListFor(model => model.WardId, null, new { name = "Title", id = "Id", @class = "form-control" })
+
+                                        <div class="help-block">@Html.ValidationMessageFor(model => model.ProvinceId)</div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-address">
+                        <label class="col-sm-3 col-md-2 control-label" for="address">Khu vực sinh sống :</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontuser-email required">
+                        <label class="col-sm-3 col-md-2 control-label" for="Email">Địa Chỉ Email <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.Email)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-phone required">
+                        <label class="col-sm-3 col-md-2 control-label" for="Phone">Địên thoại <span>(*)</span>:</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.Phone)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-skype">
+                        <label class="col-sm-3 col-md-2 control-label" for="Skype">Skype :</label>
+                        <div class="col-sm-9 col-md-8">
+                            @Html.TextBoxFor(model => model.Skype, new { @class = "form-control" })
+                            <div class="help-block">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field-frontprofile-account_type">
+                        <label class="col-sm-3 col-md-2 control-label" for="frontprofile-account_type">Loại tài khoản :</label>
+                        <div class="col-sm-9 col-md-8">
+                            <input type="hidden" name="FrontProfile[account_type]" value="">
+                            <div id="frontprofile-account_type">
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(model => model.LoaiTaiKhoan, (int)EnumAccountType.ChinhChu, new { @checked = "checked" }) Chính Chủ
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(model => model.LoaiTaiKhoan, (int)EnumAccountType.MuaGioi) Mua giới
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(model => model.LoaiTaiKhoan, (int)EnumAccountType.Congty) Công ty
+                                </label>
+                            </div>
+                            <div class="help-block">
+                                <div class="help-block">@Html.ValidationMessageFor(model => model.LoaiTaiKhoan)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-8">
+                            <button type="submit" class="btn btn-default">Đăng ký</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="box-search box-search-fixtop">
+        <div class="box-title">
+            Tìm kiếm bất động sản
+        </div>
+    </div>
+    <div class="event-box">
+        <div class="ads-r">
+            <h4>Đăng ký<br /> nhận tin bất động sản</h4>
+
+            <div class="box-input">
+                <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
+                    <input type="hidden" name="_csrf" value="TkF2aXFEZFUhIEEvPgcqHwYrPxsyKxZtNCMSAxsHCSAbOUYEHS8FMw=="><div class="form-group field-frontcontact-name required">
+                        <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
+                    </div><div class="form-group field-frontcontact-phone required">
+                        <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
+                    </div><div class="form-group field-frontcontact-email required">
+                        <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
+                    </div><div class="form-group field-frontcontact-type">
+
+                        <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="5">
+
+                        <div class="help-block"></div>
+                    </div><div class="form-group field-frontcontact-object_id">
+
+                        <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
+
+                        <div class="help-block"></div>
+                    </div><div class="form-group field-frontcontact-item_name">
+
+                        <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
+
+                        <div class="help-block"></div>
+                    </div>    	<div class="form-group">
+                        <button type="submit" class="">Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="ads-banner">
+            <div class="item">
+                <a href="http://sunlandsg.vn/du-an/lucasta/mat-bang" target='_blank'>
+                    <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" alt="LUCASTA - HẠNH PHÚC GIÁ BAO NHIÊU?" />
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section scripts{
+    <script>
+        function getChildren(provinceId, target, controller, valueDefault) {
+            var textValue = "<option value=''>" + valueDefault + "</option>";
+            $(target).html(textValue);
+            var defaultValue = $(target).data("value");
+            if (provinceId !== "") {
+                $(target).html("<option value=''>Loading...</option>").prop('disabled', true);
+                $.ajax({
+                    'url': "@domain/Admin/api/" + controller,
+                    'type': "post",
+                    'data': { 'ProvinceId': provinceId },
+                    success: function (data) {
+                        $(target).html(textValue);
+                        $.each(data, function (index, val) {
+                            $(target).append("<option value='" + val.Id + "' " + (defaultValue === val.Id ? "selected" : "") + ">" + val.Name + "</option>");
+                        });
+                    },
+                    error: function (msg) {
+                        $(target).html(textValue);
+                    },
+                    complete: function () {
+                        $(target).prop("disabled", false);
+                    }
+                });
+            }
+        }
+        jQuery(document).ready(function ($) {
+            $("#ProvinceId").change(function (event) {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+                $("#WardId").html("<option value=''></option>");
+            });
+
+            $("#DistrictId").change(function (event) {
+                getChildren($(this).val(), "#WardId", "Ward", "Phường/Xã");
+            });
+
+            if ($("#ProvinceId").val() !== "") {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            }
+        });
+    </script>
+}
+

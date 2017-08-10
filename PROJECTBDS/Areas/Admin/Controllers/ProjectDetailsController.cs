@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using PROJECTBDS.Areas.Admin.Models;
 using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
@@ -39,7 +40,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             var project = db.tblProject.FirstOrDefault(t => t.Id == id);
             if (project == null) return HttpNotFound();
             ViewBag.Project = project;
-            ViewBag.DictionaryId = new SelectList(db.tblDictionary.Where(t=>t.CategoryId == 10), "Id", "Title");
+            ViewBag.DictionaryId = new SelectList(db.tblDictionary.Where(t=>t.CategoryId == (int)EnumCategory.MenuDuAn), "Id", "Title");
             var projectDetail = db.tblProjectDetail.FirstOrDefault(t => t.ProjectId == project.Id && t.DictionaryId == 35);
             return View(projectDetail ?? new tblProjectDetail());
         }
