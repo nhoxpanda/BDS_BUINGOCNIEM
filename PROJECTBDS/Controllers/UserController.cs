@@ -32,9 +32,9 @@ namespace PROJECTBDS.Controllers
         {
             ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name");
             //chọn quận huyện 
-            ViewBag.DistrictId = new SelectList(null, "Id", "Name");
+            ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name");
             //chon xã phường 
-            ViewBag.WardId = new SelectList(null, "Id", "Name");
+            ViewBag.WardId = new SelectList(db.tblWard, "Id", "Name");
 
             var customer = db.tblCustomer.Where(t => t.Email.Equals(form.Email.Trim()));
             if (customer.Any())

@@ -10,7 +10,6 @@ using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Controllers
 {
-    [Authorize(Roles = "User")]
     public class HomeController : Controller
     {
         private readonly LandSoftEntities _db = new LandSoftEntities();

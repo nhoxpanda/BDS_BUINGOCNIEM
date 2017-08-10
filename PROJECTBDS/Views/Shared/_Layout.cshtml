@@ -18,7 +18,7 @@
     @*@Styles.Render("~/Content/css")*@
     @Styles.Render("~/Content/homepage")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("css", false)
 </head>
 <body style="zoom: 1;">
     <div class="bg-menu-black"></div>
@@ -99,7 +99,6 @@
                         if (User.Identity.IsAuthenticated)
                         {
                             <div class="login">
-                                <strong></strong>
                                 <a rel="nofollow" href="@Url.Action("Profile", "User")">Profile của @Html.Encode(User.Identity.Name.ToUpper())</a>
                                 <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
                             </div>
