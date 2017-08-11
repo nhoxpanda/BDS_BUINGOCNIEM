@@ -1,4 +1,5 @@
-﻿@model PROJECTBDS.ViewModels.RealViewModel
+﻿@using PROJECTBDS.ViewModels
+@model PROJECTBDS.ViewModels.RealViewModel
 
 
 <section class="content-bottom page-child page-profile">
@@ -74,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="price">
-                                                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá" })
+                                                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá", type="number", min = "1" })
                                                 @Html.ValidationMessageFor(m => m.Price)
                                             </div>
                                         </div>
@@ -245,42 +246,7 @@
                 }
             </div>
             <div class="col-md-3">
-                <div class="box box-border box-profile box-profile-sidebar">
-                    <div class="box-title">
-                        Trang cá nhân
-                    </div>
-                    <div class="box-content">
-                        <div class="text-center profile-info">
-                            <img src="http://sunlandsg.vn/themes/frontend/images/avatar.jpg" class="avatar img-responsive img-circle" />
-                            <label class="member-name">Năm Long</label>
-
-                        </div>
-
-                        <div class="box-child">
-                            <div class="box-child-title">
-                                Quản lý thông tin cá nhân
-                            </div>
-                            <div class="box-child-content">
-                                <ul>
-                                    <li><a href="/user">Thay đổi thông tin cá nhân</a></li>
-                                    <li><a href="/member/changepass">Thay đổi mật khẩu</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="box-child">
-                            <div class="box-child-title">
-                                Quản lý tin rao
-                            </div>
-                            <div class="box-child-content">
-                                <ul>
-                                    <li><a href="/member/real">Quản lí tin đăng</a></li>
-                                    <li><a href="/member/real-add">Đăng tin mới</a></li>
-                                    <li><a href="/member/real-contact">Liên hệ người đăng tin</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_UserPartial", ViewBag.User as UserProfileViewModel)
             </div>
         </div>
     </div>

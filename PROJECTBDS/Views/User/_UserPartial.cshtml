@@ -1,0 +1,38 @@
+﻿@model PROJECTBDS.ViewModels.UserProfileViewModel
+
+<div class="box box-border box-profile box-profile-sidebar">
+    <div class="box-title">
+        Trang cá nhân
+    </div>
+    <div class="box-content">
+        <div class="text-center profile-info">
+            <img src="@Model.Avatar" class="avatar img-responsive img-circle" style="width: 145px;">
+            <label class="member-name">@Model.FullName</label>
+
+        </div>
+
+        <div class="box-child">
+            <div class="box-child-title">
+                Quản lý thông tin cá nhân
+            </div>
+            <div class="box-child-content">
+                <ul>
+                    <li><a href="@Url.Action("Index","User")">Thay đổi thông tin cá nhân</a></li>
+                    <li><a href="@Url.Action("ChangePass","User")">Thay đổi mật khẩu</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-child">
+            <div class="box-child-title">
+                Quản lý tin rao
+            </div>
+            <div class="box-child-content">
+                <ul>
+                    <li><a href="@Url.Action("RealIndex","User")">Quản lí tin đăng</a></li>
+                    <li><a href="@Url.Action("RealAdd","User")">Đăng tin mới</a></li>
+                    <li><a href="@Url.Action("RealContact","User")">Liên hệ người đăng tin</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

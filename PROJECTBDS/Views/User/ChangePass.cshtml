@@ -1,0 +1,43 @@
+﻿@using PROJECTBDS.ViewModels
+@model ChangePassUserViewModel
+
+<section class="content-bottom page-child page-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box box-border box-profile">
+                    <div class="box-title">
+                        Thay đổi mật khẩu
+                    </div>
+                    <div class="box-content">
+                        @using (Html.BeginForm("ChangePass", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="form-group field-user-newpassword required has-error">
+                                <label class="col-sm-3 col-md-2 control-label" for="Password1">Mật khẩu mới <span>(*)</span>:</label>
+                                <div class="col-sm-9 col-md-8">
+                                    @Html.PasswordFor(t => t.Password1, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password1)
+                                </div>
+                            </div>
+                            <div class="form-group field-user-newpasswordconfirm required">
+                                <label class="col-sm-3 col-md-2 control-label" for="Password2">Gõ lại mật khẩu <span>(*)</span>:</label>
+                                <div class="col-sm-9 col-md-8">
+                                    @Html.PasswordFor(t => t.Password2, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password2)
+                                </div>
+                            </div>
+                            <div class="margin-top-10">
+                                <button type="submit" class="btn btn-default">Đổi mật khẩu</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                @Html.Partial("_UserPartial", ViewBag.User as UserProfileViewModel)
+            </div>
+        </div>
+    </div>
+</section>

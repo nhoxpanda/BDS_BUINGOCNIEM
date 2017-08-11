@@ -17,7 +17,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         #region Quản lý dự án
         private LandSoftEntities db = new LandSoftEntities();
 
-        private const int RowsPerPage = 5;
+        private const int RowsPerPage = 15;
         public ActionResult Index(int? page, string query)
         {
             int pageN = page ?? 1;

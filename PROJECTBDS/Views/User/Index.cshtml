@@ -1,0 +1,234 @@
+﻿@using PROJECTBDS.ViewModels
+@model PROJECTBDS.ViewModels.UserEditViewModel
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>trang cá nhân</h1>
+    </div>
+</section>
+<section class="content-bottom page-child page-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box box-border box-profile">
+                    <div class="box-title">
+                        Thay đổi thông tin cá nhân
+                    </div>
+                    <div class="box-content">
+                        @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="box-child">
+                                <div class="box-child-title">
+                                    Thông tin cá nhân
+                                </div>
+                                <div class="box-child-content">
+                                    <div class="form-group field-profile-name">
+                                        <label class="col-sm-3 col-md-2 control-label" for="Fullname">Họ tên :</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            @Html.TextBoxFor(t => t.FullName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.FullName)
+                                        </div>
+                                    </div>
+                                    <div class="form-group field-frontprofile-birthday">
+                                        <label class="col-sm-3 col-md-2 control-label" for="birthday">Ngày sinh :</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            <div id="frontprofile-birthday-kvdate" class="input-group date">
+                                                <span class="input-group-addon kv-date-calendar" title="Select date">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </span><span class="input-group-addon kv-date-remove" title="Clear field">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </span>
+                                                @Html.TextBoxFor(t => t.Birthday, new { @class = "form-control" })
+                                            </div>
+                                            <div class="help-block">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group field-profile-gender">
+                                        <label class="col-sm-3 col-md-2 control-label" for="profile-gender">Giới tính :</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            <div id="gender">
+                                                <label class="radio-inline">
+                                                    @{
+                                                        var checkNa = "";
+                                                        var checkNb = "";
+                                                        if (Model.Gender == EnumGender.Nam)
+                                                        {
+                                                            checkNa = "checked";
+                                                            checkNb = "";
+                                                        }
+                                                        else
+                                                        {
+                                                            checkNa = "";
+                                                            checkNb = "checked";
+
+                                                        }
+                                                        if (!string.IsNullOrEmpty(checkNa))
+                                                        {
+                                                            @Html.RadioButtonFor(model => model.Gender, (int) EnumGender.Nam, new {@checked = checkNa})
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.RadioButtonFor(model => model.Gender, (int) EnumGender.Nam)
+                                                        }
+                                                    }Nam
+                                                </label>
+                                                <label class="radio-inline">
+                                                    @if (!string.IsNullOrEmpty(checkNb))
+                                                    {
+                                                        @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nu, new { @checked = checkNb })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nu)
+                                                    }Nữ
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3 col-md-2" for="event-alias">Địa chỉ</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class=" field-profile-province_id">
+                                                        @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { name = "Title", id = "ProvinceId", @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-4">
+                                                    <div class=" field-profile-district_id">
+                                                        @Html.DropDownListFor(model => model.DistrictId, Model.Districts, new { name = "Title", id = "DistrictId", @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class=" field-profile-ward_id">
+                                                        @Html.DropDownListFor(model => model.WardId, Model.Wards, new { name = "Title", id = "WardId", @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group field-profile-address">
+                                        <label class="col-sm-3 col-md-2 control-label" for="Country">Khu vực sống:</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            @Html.TextBoxFor(t => t.Country, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Country)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-child">
+                                <div class="box-child-title">
+                                    Thông tin liên hệ
+                                </div>
+                                <div class="box-child-content">
+                                    <div class="form-group field-profile-phone">
+                                        <label class="col-sm-3 col-md-2 control-label" for="Country">Điện thoại :</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            @Html.TextBoxFor(t => t.Phone, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Phone)
+                                        </div>
+                                    </div>
+                                    <div class="form-group field-profile-skype">
+                                        <label class="col-sm-3 col-md-2 control-label" for="Skype">Skype :</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            @Html.TextBoxFor(t => t.Skype, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Skype)
+                                        </div>
+                                    </div>
+                                    <div class="form-group field-profile-imagefile">
+                                        <label class="col-sm-3 col-md-2 control-label" for="file">Hình đại diện (255 x 145)</label>
+                                        <div class="col-sm-9 col-md-8">
+                                            <input type="file" class="form-control" name="file" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-8">
+                                        <button type="submit" class="btn btn-default btn-special">Lưu</button>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                @Html.Partial("_UserPartial", ViewBag.User as UserProfileViewModel)
+            </div>
+        </div>
+    </div>
+</section>
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section scripts{
+    <script>
+        function getChildren(provinceId, target, controller, valueDefault) {
+            var textValue = "<option value=''>" + valueDefault + "</option>";
+            $(target).html(textValue);
+            var defaultValue = $(target).data("value");
+            if (provinceId !== "") {
+                $(target).html("<option value=''>Loading...</option>").prop('disabled', true);
+                $.ajax({
+                    'url': "@domain/Admin/api/" + controller,
+                    'type': "post",
+                    'data': { 'ProvinceId': provinceId },
+                    success: function (data) {
+                        $(target).html(textValue);
+                        $.each(data,
+                            function (index, val) {
+                                $(target)
+                                    .append("<option value='" +
+                                        val.Id +
+                                        "' " +
+                                        (defaultValue === val.Id ? "selected" : "") +
+                                        ">" +
+                                        val.Name +
+                                        "</option>");
+                            });
+                    },
+                    error: function (msg) {
+                        $(target).html(textValue);
+                    },
+                    complete: function () {
+                        $(target).prop("disabled", false);
+                    }
+                });
+            }
+        }
+
+        jQuery(document)
+            .ready(function ($) {
+                $("#ProvinceId")
+                    .change(function (event) {
+                        getChildren($(this).val(), "#DistrictId", "Land", "...");
+                        $("#DistrictId").val('');
+                    });
+                $("#DistrictId")
+                    .change(function (event) {
+                        getChildren($(this).val(), "#WardId", "Ward", "...");
+                    });
+
+            });
+    </script>
+
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('#frontprofile-birthday-kvdate').datetimepicker(
+            {
+                locale: 'vi',
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
+}

@@ -44,7 +44,7 @@
                                 {
                             <div class="login">
                                 <strong>@Html.Encode(User.Identity.Name)</strong>  
-                                <a rel="nofollow" href="@Url.Action("ProfileUser", "User", new {Id = Auth.User.UserId })">@Auth.User.Username Profile của tôi</a>
+                                <a rel="nofollow" href="@Url.Action("Index", "User")">@Auth.User.Username Profile của tôi</a>
                                 <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
                             </div>
                         }
@@ -99,7 +99,7 @@
                         if (User.Identity.IsAuthenticated)
                         {
                             <div class="login">
-                                <a rel="nofollow" href="@Url.Action("ProfileUser", "User", new {Id = Auth.User.UserId })">Profile của @Html.Encode(User.Identity.Name.ToUpper())</a>
+                                <a rel="nofollow" href="@Url.Action("Index", "User")">Profile của @Html.Encode(User.Identity.Name.ToUpper())</a>
                                 <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
                             </div>
                         }

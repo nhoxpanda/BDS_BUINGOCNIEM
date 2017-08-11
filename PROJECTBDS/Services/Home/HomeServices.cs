@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 using PROJECTBDS.Models;
+using PROJECTBDS.ViewModels;
 using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Services.Home
@@ -92,6 +93,25 @@ namespace PROJECTBDS.Services.Home
                         "WHERE ProvinceId = " + idProvince;
 
             return (List<JsonHome>)_db.Query<JsonHome>(query);
+        }
+
+
+        public void UpdateUser(UserEditViewModel f)
+        {
+
+            var query = "UPDATE tblCustomer SET " +
+                        " Image = '" + f.Image + "'" +
+                        " , Phone = '" + f.Phone + "'" +
+                        " , Skype = '" + f.Skype + "'" +
+                        " , Birthday = '" + f.Birthday + "'" +
+                        " , Address = N'" + f.Country + "'" +
+                        " , ProvinceId = " + f.ProvinceId +
+                        " , FullName = N'" + f.FullName + "'" +
+                        " , WardId = " + f.WardId +
+                        " , Sex = " + (f.Gender == EnumGender.Nam ? 1 : 0) +
+                        " , DistrictId = " + f.DistrictId + " WHERE id = " + f.UserId;
+
+            _db.Execute(query);
         }
 
     }

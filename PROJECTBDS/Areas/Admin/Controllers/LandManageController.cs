@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
-using PagedList.Mvc;
-using PROJECTBDS.Areas.Admin.Services;
 using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
