@@ -150,10 +150,11 @@
             }
             else
             {
+            
                 <div class="page-block page-text-block">
-                    <h2 class="page-title">@itemTongQuan.Title</h2>
+                    <h2 class="page-title">@(itemTongQuan != null ? itemTongQuan.Title : "") </h2>
                     <div class="page-content editor-content">
-                        @Html.Raw(itemTongQuan.Content)
+                        @Html.Raw(itemTongQuan != null ? itemTongQuan.Content : "")
                     </div>
                 </div>
             }
