@@ -71,5 +71,8 @@ namespace PROJECTBDS.ViewModels.Home
     {
         public string Content { get; set; }
         public string Address { get; set; }
+
+        public string ClientName { get; set; }
+        public string ClientEmail { get; set; }
     }
 }

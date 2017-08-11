@@ -65,6 +65,8 @@ namespace PROJECTBDS.Services.Home
                         ",d6.Title as PhapLy " +
                         ",d7.Title as DuAn " +
                         ",l.Price as Gia " +
+                        ",d8.FullName as ClientName " +
+                        ",d8.Email as ClientEmail " +
                         "FROM tblLand l " +
                         "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId) " +
                         "LEFT JOIN tblDistrict d0 ON(d0.Id = l.DistrictId) " +
@@ -75,6 +77,7 @@ namespace PROJECTBDS.Services.Home
                         "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) " +
                         "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) " +
                         "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) " +
+                        "LEFT JOIN tblCustomer d8 ON(d8.Id = l.CustomerId) " +
                         "WHERE l.Id = " + idLand +
                         " ORDER BY l.Id DESC";
 

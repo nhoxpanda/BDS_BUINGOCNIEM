@@ -95,28 +95,35 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Update(tblLand model, IEnumerable<HttpPostedFileBase> listImage)
         {
-                foreach (var item in listImage)
+            var dba = new LandSoftEntities();
+            var la = dba.tblLand.Find(model.Id);
+
+            if (la == null) return RedirectToAction("Update");
+           
+            foreach (var item in listImage)
+            {
+                if (item == null) continue;
+
+                var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy}");
+
+                var path = Server.MapPath("~/Uploads/News/" + newName);
+
+                item.SaveAs(path);
+
+                var a = new tblImage
                 {
-                    if (item == null) continue;
+                    Image = newName,
+                    URL = "/Uploads/News/" + newName,
+                    LandId = model.Id,
+                    DictionaryId = 47
+                };
+                db.tblImage.Add(a);
 
-                    var newName = item.FileName.Insert(item.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy}");
-
-                    var path = Server.MapPath("~/Uploads/News/" + newName);
-
-                    item.SaveAs(path);
-
-                    var a = new tblImage
-                    {
-                        Image = newName,
-                        URL = "/Uploads/News/" + newName,
-                        LandId = model.Id,
-                        DictionaryId = 47
-                    };
-                    db.tblImage.Add(a);
-
-                }
+            }
             model.Area = string.Empty;
             model.Area = Request["DienTich"];
+            model.CustomerId = la.CustomerId;
+            model.CreateDate = la.CreateDate;
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

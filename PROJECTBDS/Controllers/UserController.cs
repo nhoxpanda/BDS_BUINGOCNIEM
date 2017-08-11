@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.SessionState;
 using Microsoft.AspNet.Identity;
+using PROJECTBDS.Areas.Admin.Dto;
 using PROJECTBDS.Models;
 using PROJECTBDS.ViewModels;
 
@@ -18,7 +21,6 @@ namespace PROJECTBDS.Controllers
         // GET: Register
         public ActionResult Register()
         {
-            var model = db.tblLand;
 
             ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name");
             //chọn quận huyện 
@@ -125,15 +127,66 @@ namespace PROJECTBDS.Controllers
 
         }
 
-        public ActionResult Create()
+
+
+        public ActionResult ProfileUser(int Id)
         {
             return View();
         }
 
+        public ActionResult RealAdd()
+        {
+            
+            var model = new RealViewModel
+            {
+                Projects = new SelectList(db.tblProject, "Id", "Title"),
+                Provinces = new SelectList(db.tblProvince, "Id", "Name"),
+                Districts = new SelectList(db.tblDistrict, "Id", "Name"),
+                Methods = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title"),
+                Types = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title"),
+                Units = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title"),
+                Rules = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title"),
+                Directions = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
+            };
 
-        public ActionResult Profile()
+            return View(model);
+        }
+
+        public ActionResult RealIndex()
         {
             return View();
+        }
+        [HttpPost, ValidateAntiForgeryToken,ValidateInput(false)]
+        public ActionResult RealAdd(RealViewModel f, List<HttpPostedFileBase> imagesUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var land = new tblLand
+                {
+                    Address = f.Address,
+                    Area = f.Area,
+                    Code = f.BlockCode,
+                    Content = f.Content,
+                    CreateDate = DateTime.Now,
+                    CustomerId = Auth.User.UserId,
+                    DirectionId = f.DirectionId,
+                    ProjectId = f.ProjectId,
+                    TypeId = f.TypeId,
+                    Price = f.Price,
+                    ProvinceId = f.ProvinceId,
+                    DistrictId = f.DistrictId,
+                    UnitId = f.UnitId,
+                    Title = f.Title,
+                    Email = f.ClientEmail,
+                    Phone = f.ClientCellPhone,
+                    Road = f.Facede,
+                    RuleId = f.RuleId,
+                };
+                db.tblLand.Add(land);
+                db.SaveChanges();
+                return RedirectToAction("RealAdd");
+            }
+            return View(f);
         }
     }
 }

@@ -1,0 +1,371 @@
+﻿@model PROJECTBDS.ViewModels.RealViewModel
+
+
+<section class="content-bottom page-child page-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                @using (Html.BeginForm("RealAdd", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-post-real" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="box box-profile box-real">
+                        <div class="box-title">Thông tin cơ bản</div>
+                        <div class="box-content">
+
+                            <div class="form-group field-re-title required">
+                                <label class="control-label col-md-3" for="title">Tiêu đề</label>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(t => t.Title, new { @class = "form-control", placeholder = "Nhập tiêu đề" })
+                                    @Html.ValidationMessageFor(m => m.Title)
+                                </div>
+                            </div>
+                            <div class="form-group field-re-address">
+                                <label class="control-label col-md-3" for="address">Địa chỉ</label>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(t => t.Address, new { @class = "form-control", placeholder = "Nhập địa chỉ" })
+                                    @Html.ValidationMessageFor(m => m.Address)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="event-alias">Tỉnh thành/Quận huyện</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class=" field-re-province_id">
+                                                @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { name = "Title", id = "ProvinceId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class=" field-re-district_id required">
+                                                @Html.DropDownListFor(model => model.DistrictId, Model.Districts, new { name = "Title", id = "DistrictId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="event-alias">Phương thức/Loại</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class=" field-re-method">
+                                                @Html.DropDownListFor(model => model.MethodId, Model.Methods, new { name = "Title", id = "MethodId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class=" field-re-type">
+                                                @Html.DropDownListFor(model => model.TypeId, Model.Types, new { name = "Title", id = "TypeId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--giá và đơn vị-->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="event-alias">Giá/ Đơn vị giá</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="price">
+                                                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá" })
+                                                @Html.ValidationMessageFor(m => m.Price)
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class=" field-re-price_unit">
+                                                @Html.DropDownListFor(model => model.UnitId, Model.Units, new { name = "Title", id = "UnitId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Hướng nhà và pháp lý-->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="event-alias">Hướng nhà (*)</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class=" field-re-direction required">
+                                                @Html.DropDownListFor(model => model.DirectionId, Model.Directions, new { name = "Title", id = "DirectionId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class=" field-re-phaply required">
+                                                @Html.DropDownListFor(model => model.RuleId, Model.Rules, new { name = "Title", id = "RuleId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Dự án-->
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="event-alias">Dự án (*)</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class=" field-re-project_id required">
+                                        @Html.DropDownListFor(model => model.ProjectId, Model.Projects, new { name = "Title", id = "ProjectId", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group field-re-code_lot">
+                                <label class="control-label col-md-3" for="BlockCode">Mã Lô/Căn</label>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(t => t.BlockCode, new { @class = "form-control", placeholder = "Nhập vị trí/Mã căn" })
+                                    @Html.ValidationMessageFor(m => m.BlockCode)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!--duong truoc nha-->
+                                <label class="control-label col-md-3" for="Facede">Đường trước nhà</label>
+                                <div class="col-md-9 col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class=" field-re-front required">
+                                                @Html.TextBoxFor(t => t.Facede, new { @class = "form-control", placeholder = "Nhập đường mặt tiền (m)" })
+                                                @Html.ValidationMessageFor(m => m.Facede)
+                                            </div>
+                                        </div>
+                                        <!--diện tích-->
+                                        <div class="col-md-6">
+                                            <div class=" field-re-area required">
+                                                @Html.TextBoxFor(t => t.Area, new { @class = "form-control", placeholder = "Nhập diện tích (dài x rộng)" })
+                                                @Html.ValidationMessageFor(m => m.Area)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box box-profile box-real">
+                        <div class="box-title">thông tin mô tả</div>
+                        <div class="box-content">
+                            <div class="form-group field-re-description required">
+                                <label class="control-label col-md-3" for="Content">Mô tả</label>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(t => t.Content, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Content)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box-profile box-real">
+                        <div class="box-title">Hình ảnh</div>
+                        <div class="box-content">
+                            <div class="form-group field-re-thumb">
+                                <label class="col-md-3 control-label no-padding-right">
+                                    <label class="control-label" for="re-thumb">Thumb (720x532)</label>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="hidden" name="Re[thumb]" value="">
+                                    <input type="file" id="re-thumb" class="file-loading" name="ImageThumb" accept="image/*" data-krajee-fileinput="fileinput_9046b37b">
+                                </div>
+                            </div>
+                            <div class="form-group field-re-file_name">
+                                <label class="col-md-3 control-label no-padding-right">
+                                    <label class="control-label" for="re-file_name">Tên file (720x532)</label>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="hidden" name="Re[file_name][]" value="">
+                                    <input type="file" id="re-file_name" class="file-loading" name="Image" multiple accept="image/*" data-krajee-fileinput="fileinput_9046b37b">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box-profile box-real box-real-client">
+                        <!-- hide -->
+                        <div class="box-title">Người ký gửi</div><div class="box-content">
+                           
+                            <div class="form-group field-reclient-name">
+                                <label class="control-label col-md-3" for="ClientName">Tên</label>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(t => t.ClientName, new { @class = "form-control", placeholder = "Nhập tên" })
+                                    @Html.ValidationMessageFor(m => m.ClientName)
+                                </div>
+                            </div>
+                                <div class="form-group field-reclient-address">
+                                    <label class="control-label col-md-3" for="ClientAddress">Địa chỉ</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(t => t.ClientAddress, new { @class = "form-control", placeholder = "Nhập địa chỉ" })
+                                        @Html.ValidationMessageFor(m => m.ClientAddress)
+                                    </div>
+                                </div>
+                                <div class="form-group field-reclient-company">
+                                    <label class="control-label col-md-3" for="ClientCompany">Công ty</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(t => t.ClientCompany, new { @class = "form-control", placeholder = "Nhập Công ty" })
+                                        @Html.ValidationMessageFor(m => m.ClientAddress)
+                                    </div>
+                                </div>
+                                <div class="form-group field-reclient-mobile">
+                                    <label class="control-label col-md-3" for="ClientCellPhone">Điện thoại di động</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(t => t.ClientCellPhone, new { @class = "form-control", placeholder = "Nhập mobile" })
+                                        @Html.ValidationMessageFor(m => m.ClientCellPhone)
+                                    </div>
+                                </div>
+
+                                    <div class="form-group field-reclient-phone">
+                                        <label class="control-label col-md-3" for="ClientPhone">Điện thoại bàn</label>
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(t => t.ClientPhone, new { @class = "form-control", placeholder = "Nhập điện thoại" })
+                                            @Html.ValidationMessageFor(m => m.ClientPhone)
+                                        </div>
+                                    </div>
+                                        <div class="form-group field-reclient-email">
+                                            <label class="control-label col-md-3" for="ClientEmail">Địa chỉ Email</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(t => t.ClientEmail, new { @class = "form-control", placeholder = "Nhập Email" })
+                                                @Html.ValidationMessageFor(m => m.ClientEmail)
+                                            </div>
+                                        </div>
+                                </div>
+                    </div>
+                    <link href="http://sunlandsg.vn/themes/frontend/css/uploadfile.css" rel="stylesheet">
+                    <link href="http://sunlandsg.vn/themes/frontend/css/uploadfile.custom.css" rel="stylesheet">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-success">Tạo Mới</button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="col-md-3">
+                <div class="box box-border box-profile box-profile-sidebar">
+                    <div class="box-title">
+                        Trang cá nhân
+                    </div>
+                    <div class="box-content">
+                        <div class="text-center profile-info">
+                            <img src="http://sunlandsg.vn/themes/frontend/images/avatar.jpg" class="avatar img-responsive img-circle" />
+                            <label class="member-name">Năm Long</label>
+
+                        </div>
+
+                        <div class="box-child">
+                            <div class="box-child-title">
+                                Quản lý thông tin cá nhân
+                            </div>
+                            <div class="box-child-content">
+                                <ul>
+                                    <li><a href="/user">Thay đổi thông tin cá nhân</a></li>
+                                    <li><a href="/member/changepass">Thay đổi mật khẩu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-child">
+                            <div class="box-child-title">
+                                Quản lý tin rao
+                            </div>
+                            <div class="box-child-content">
+                                <ul>
+                                    <li><a href="/member/real">Quản lí tin đăng</a></li>
+                                    <li><a href="/member/real-add">Đăng tin mới</a></li>
+                                    <li><a href="/member/real-contact">Liên hệ người đăng tin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("Content");
+        function getChildren(provinceId, target, controller, valueDefault) {
+            var textValue = "<option value=''>" + valueDefault + "</option>";
+            $(target).html(textValue);
+            var defaultValue = $(target).data("value");
+            if (provinceId !== "") {
+                $(target).html("<option value=''>Loading...</option>").prop('disabled', true);
+                $.ajax({
+                    'url': "@domain/Admin/api/" + controller,
+                    'type': "post",
+                    'data': { 'ProvinceId': provinceId },
+                    success: function (data) {
+                        $(target).html(textValue);
+                        $.each(data, function (index, val) {
+                            $(target).append("<option value='" + val.Id + "' " + (defaultValue === val.Id ? "selected" : "") + ">" + val.Name + "</option>");
+                        });
+                    },
+                    error: function (msg) {
+                        $(target).html(textValue);
+                    },
+                    complete: function () {
+                        $(target).prop("disabled", false);
+                    }
+                });
+            }
+        }
+        jQuery(document).ready(function ($) {
+            $("#DistrictId").html("<option value=''></option>");
+
+            $("#ProvinceId").change(function (event) {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            });
+
+            if ($("#ProvinceId").val() !== "") {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            }
+        });
+    </script>
+}
+
+@section css{
+    <style>
+        textarea {
+            height: 280px;
+            border: 2px solid green;
+            box-sizing: boder-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            font-size: 11px;
+        }
+
+        input.input-validation-error {
+            border-color: #a94442;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+
+        .validation-summary-errors {
+            list-style-position: inside;
+            list-style-type: none;
+            color: red;
+            padding-bottom: 30px;
+        }
+
+            .validation-summary-errors ul {
+                padding-left: 0;
+            }
+
+        .field-validation-error {
+            color: #a94442;
+        }
+    </style>
+}

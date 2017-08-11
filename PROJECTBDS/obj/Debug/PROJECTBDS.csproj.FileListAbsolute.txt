@@ -488,4 +488,3 @@ D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hans\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\bin\zh-Hant\Humanizer.resources.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.dll
 D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.pdb
-D:\LandSoft\BDS_BUINGOCNIEM\PROJECTBDS\obj\Debug\PROJECTBDS.csprojResolveAssemblyReference.cache

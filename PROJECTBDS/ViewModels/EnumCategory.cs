@@ -1,4 +1,4 @@
-﻿namespace PROJECTBDS.Areas.Admin.Models
+﻿namespace PROJECTBDS.ViewModels
 {
     public enum EnumCategory
     {

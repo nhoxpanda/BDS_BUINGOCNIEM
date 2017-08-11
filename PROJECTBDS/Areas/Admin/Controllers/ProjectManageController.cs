@@ -107,7 +107,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 
                 db.tblImage.Add(image);
             }
-
+            
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -261,7 +261,6 @@
     <Compile Include="Areas\Admin\Models\LoadDataAdmin.cs" />
     <Compile Include="Areas\Admin\Services\LandServices.cs" />
     <Compile Include="Areas\Admin\Dto\LandDto.cs" />
-    <Compile Include="Areas\Admin\Models\EnumCategory.cs" />
     <Compile Include="Areas\Admin\ViewModels\JsonForProject.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AboutsController.cs" />
@@ -354,9 +353,12 @@
     <Compile Include="Services\Home\HomeServices.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EnumAccountType.cs" />
+    <Compile Include="ViewModels\EnumCategory.cs" />
     <Compile Include="ViewModels\EnumProject.cs" />
     <Compile Include="ViewModels\EnumGender.cs" />
+    <Compile Include="ViewModels\EnumTypeMethod.cs" />
     <Compile Include="ViewModels\Home\DuAnNoiBatViewModel.cs" />
+    <Compile Include="ViewModels\RealViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3221,6 +3223,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0_rc2.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -3282,7 +3285,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\ProfileUser.cshtml" />
+    <Content Include="Views\User\RealAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
