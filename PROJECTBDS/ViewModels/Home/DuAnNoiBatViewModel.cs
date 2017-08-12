@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PROJECTBDS.ViewModels.Home
 {
@@ -44,6 +45,8 @@ namespace PROJECTBDS.ViewModels.Home
         public string District { get; set; }
 
         public string Image { get; set; }
+        public string Unit { get; set; }
+
     }
 
     public class DuAnBdsViewModel
@@ -65,6 +68,22 @@ namespace PROJECTBDS.ViewModels.Home
         public string DuAn { get; set; }
         public string Gia { get; set; }
 
+
+
+        public string DisplayPrice()
+        {
+            if (string.IsNullOrEmpty(Gia) || Gia.Equals("0")) return "Thỏa thuận";
+
+            decimal number;
+
+            var value = string.Empty;
+
+            if (!decimal.TryParse(Gia, out number)) return value;
+
+            if (number % 1 == 0) value = Convert.ToDecimal(Gia).ToString("N0") + " " + DonVi;
+            if (number % 1 != 0) value = Convert.ToDecimal(Gia).ToString("N2") + " " + DonVi;
+            return value;
+        }
     }
 
     public class Land : DuAnBdsViewModel

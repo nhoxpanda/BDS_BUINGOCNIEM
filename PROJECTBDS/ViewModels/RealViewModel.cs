@@ -21,10 +21,10 @@ namespace PROJECTBDS.ViewModels
         public int DistrictId { get; set; }
 
         [Required(ErrorMessage = "Chọn phương thức thanh toán")]
-        public int MethodId { get; set; }
+        public int TypeId { get; set; }
 
         [Required(ErrorMessage = "Chọn kiểu bất động sản")]
-        public int TypeId { get; set; }
+        public int CategoryId { get; set; }
 
         public decimal Price { get; set; }
 
@@ -64,8 +64,8 @@ namespace PROJECTBDS.ViewModels
 
         public SelectList Projects { get; set; }
 
-        public SelectList Methods { get; set; }
         public SelectList Types { get; set; }
+        public SelectList Categories { get; set; }
 
         public SelectList Rules { get; set; }
 

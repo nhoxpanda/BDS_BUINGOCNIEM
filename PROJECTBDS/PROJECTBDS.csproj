@@ -3286,14 +3286,15 @@
     <Content Include="Views\Home\DuAn.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\ProfileUser.cshtml" />
     <Content Include="Views\User\RealAdd.cshtml" />
     <Content Include="Views\User\RealIndex.cshtml" />
     <Content Include="Views\User\_UserPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ChangePass.cshtml" />
     <Content Include="Views\User\RealContact.cshtml" />
-    <Content Include="Views\User\EditReal.cshtml" />
+    <Content Include="Views\User\RealEdit.cshtml" />
+    <Content Include="Views\User\_FormReal.cshtml" />
+    <Content Include="Views\Shared\_HeaderPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

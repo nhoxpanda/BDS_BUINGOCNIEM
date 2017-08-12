@@ -2,7 +2,7 @@
 @using PagedList.Mvc
 @using PROJECTBDS.ViewModels
 @model PagedList.IPagedList<PROJECTBDS.Models.tblLand>
-
+@Html.Partial("_HeaderPage","Trang cá nhân")
 <section class="content-bottom page-child page-profile">
     <div class="container">
         <div class="row">
@@ -16,11 +16,11 @@
                             <table class="table real-member-table">
                                 <thead>
                                 <tr>
-                                    <th>Mã tin</th>
-                                    <th style="width:40%">Tiêu đề</th>
-                                    <th>Trạng thái</th>
+                                    <th style="width: 30px">#</th>
+                                    <th style="width: 55px">Image</th>
+                                    <th style="width:55%">Tiêu đề</th>
                                     <th>Ngày đăng</th>
-                                    <th style="width:142px;">Action</th>
+                                    <th style="width:100px;">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -28,12 +28,12 @@
                                 {
                                     <tr>
                                         <td>@item.Id</td>
-                                        <td><a href="@Url.Action("EditReal", "User", new {id = item.Id })">@item.Title.Truncate(150)</a></td>
-                                        <td></td>
+                                        <td><a href="@Url.Action("RealEdit", "User", new {id = item.Id })"><img src="@item.Image" alt="@item.Title" style="width: 50px" /></a></td>
+                                        <td><a href="@Url.Action("RealEdit", "User", new {id = item.Id })">@item.Title.Truncate(150)</a></td>
                                         <td>@Convert.ToDateTime(item.CreateDate).ToString("dd/MM/yyyy")</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Actions">
-                                                <a class="btn btn-sm btn-success" href="@Url.Action("EditReal", "User", new {id = item.Id})">Sửa</a>
+                                                <a class="btn btn-sm btn-success" href="@Url.Action("RealEdit", "User", new {id = item.Id})">Sửa</a>
                                                 <a class="btn btn-sm btn-warning" href="@Url.Action("DeleteReal", "User", new {id = item.Id})">Xóa</a>
                                             </div>
                                         </td>

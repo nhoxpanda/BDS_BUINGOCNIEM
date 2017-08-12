@@ -38,14 +38,14 @@ namespace PROJECTBDS.Services.Home
                         ",d7.Title as DuAn " +
                         ",l.Price as Gia " +
                         "FROM tblLand l " +
-                        "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId) " +
+                        "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId)  " +
                         "LEFT JOIN tblDistrict d0 ON(d0.Id = l.DistrictId) " +
                         "LEFT JOIN tblWard d5 ON(d5.Id = l.WardId) " +
-                        "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) " +
-                        "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) " +
-                        "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) " +
-                        "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) " +
-                        "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) " +
+                        "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) AND d1.CategoryId = 3 " +
+                        "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) AND d2.CategoryId = 1 " +
+                        "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) AND d3.CategoryId = 12 " +
+                        "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) AND d4.CategoryId = 2 " +
+                        "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) AND d6.CategoryId = 4 " +
                         "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) " +
                         "ORDER BY l.Id DESC";
 
@@ -72,11 +72,11 @@ namespace PROJECTBDS.Services.Home
                         "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId) " +
                         "LEFT JOIN tblDistrict d0 ON(d0.Id = l.DistrictId) " +
                         "LEFT JOIN tblWard d5 ON(d5.Id = l.WardId) " +
-                        "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) " +
-                        "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) " +
-                        "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) " +
-                        "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) " +
-                        "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) " +
+                        "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) AND d1.CategoryId = 3 " +
+                        "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) AND d2.CategoryId = 1 " +
+                        "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) AND d3.CategoryId = 12 " +
+                        "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) AND d4.CategoryId = 2 " +
+                        "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) AND d6.CategoryId = 4 " +
                         "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) " +
                         "LEFT JOIN tblCustomer d8 ON(d8.Id = l.CustomerId) " +
                         "WHERE l.Id = " + idLand +

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 using PagedList;
@@ -120,8 +118,8 @@ namespace PROJECTBDS.Controllers
                 Projects = new SelectList(_db.tblProject, "Id", "Title"),
                 Provinces = new SelectList(_db.tblProvince, "Id", "Name"),
                 Districts = new SelectList(_db.tblDistrict, "Id", "Name"),
-                Methods = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title"),
-                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title"),
+                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title"),
+                Categories = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title"),
                 Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title"),
                 Rules = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title"),
                 Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
@@ -184,7 +182,7 @@ namespace PROJECTBDS.Controllers
             throw new NotImplementedException();
         }
 
-        public ActionResult EditReal(int id)
+        public ActionResult RealEdit(int id)
         {
             var r = _db.tblLand.Find(id);
 
@@ -203,17 +201,19 @@ namespace PROJECTBDS.Controllers
                 DistrictId = r.DirectionId ?? default(int),
                 Price = r.Price ?? default(decimal),
                 BlockCode = r.Code,
-                DirectionId = r.DirectionId ?? default(int),
                 Facede = r.Road,
-                MethodId = r.TypeId ?? default(int),
+
+                CategoryId = r.CategoryId ?? default(int),
                 RuleId =  r.RuleId ?? default(int),
                 UnitId = r.UnitId ?? default(int),
                 TypeId = r.TypeId ?? default(int),
+                DirectionId = r.DirectionId ?? default(int),
+
                 Projects = new SelectList(_db.tblProject, "Id", "Title", r.ProjectId),
                 Provinces = new SelectList(_db.tblProvince, "Id", "Name", r.ProvinceId),
-                Districts = new SelectList(_db.tblDistrict, "Id", "Name", r.DistrictId),
-                Methods = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title", r.CategoryId),
-                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title", r.TypeId),
+                Districts = new SelectList(_db.tblDistrict.Where(t=>t.ProvinceId == r.ProvinceId), "Id", "Name", r.DistrictId),
+                Categories = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title", r.CategoryId),
+                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title", r.TypeId),
                 Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title", r.UnitId),
                 Rules = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title", r.RuleId),
                 Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title")
@@ -222,7 +222,7 @@ namespace PROJECTBDS.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult EditReal(RealViewModel f, HttpPostedFileBase image)
+        public ActionResult RealEdit(RealViewModel f, HttpPostedFileBase image)
         {
             var r = _db.tblLand.Find(f.Id);
 
@@ -235,18 +235,20 @@ namespace PROJECTBDS.Controllers
             r.Code = f.BlockCode;
             r.Content = f.Content;
             r.CustomerId = Auth.User.UserId;
-            r.DirectionId = f.DirectionId;
             r.ProjectId = f.ProjectId;
-            r.TypeId = f.TypeId;
             r.Price = f.Price;
             r.ProvinceId = f.ProvinceId;
             r.DistrictId = f.DistrictId;
-            r.UnitId = f.UnitId;
             r.Title = f.Title;
             r.Email = f.ClientEmail;
             r.Phone = f.ClientCellPhone;
             r.Road = f.Facede;
+            
+            r.CategoryId = f.CategoryId;
+            r.TypeId = f.TypeId;
             r.RuleId = f.RuleId;
+            r.UnitId = f.UnitId;
+            r.DirectionId = f.DirectionId;
 
             if (image.AllowFile())
             {
@@ -262,7 +264,7 @@ namespace PROJECTBDS.Controllers
             _db.Entry(r).State = EntityState.Modified;
             _db.SaveChanges();
             TempData["Update"] = "Cập nhật thành công";
-            return RedirectToAction("EditReal", new {Id = r.Id });
+            return RedirectToAction("RealEdit", new {Id = r.Id });
         }
 
         public ActionResult Index()

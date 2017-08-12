@@ -1,21 +1,21 @@
 ﻿@using PROJECTBDS.ViewModels
-@model PROJECTBDS.ViewModels.RealViewModel
+@model RealViewModel
 @Html.Partial("_HeaderPage", "Trang cá nhân")
 <section class="content-bottom page-child page-profile">
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                @using (Html.BeginForm("RealAdd", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-post-real" }))
+                @using (Html.BeginForm("RealEdit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-post-real" }))
                 {
                     @Html.Partial("_FormReal", Model)
-                }
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-success">Thêm mới</button>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
             <div class="col-md-3">
                 @Html.Partial("_UserPartial", ViewBag.User as UserProfileViewModel)
@@ -23,7 +23,6 @@
         </div>
     </div>
 </section>
-
 @{
     string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
 }
@@ -60,19 +59,32 @@
             }
         }
         jQuery(document).ready(function ($) {
-            $("#DistrictId").html("<option value=''></option>");
-
             $("#ProvinceId").change(function (event) {
                 getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
             });
 
-            if ($("#ProvinceId").val() !== "") {
-                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
-            }
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+                bootbox.alert("5344343");
+            });
+    </script>
+    @if (TempData["Update"] != null)
+    {
+        <script>
+            bootbox.alert("@TempData["Update"]");
+            var dialog = bootbox.dialog({
+                message: '<p class="text-center">Please wait while we do something...</p>',
+                closeButton: true
+            });
+            // do something in the background
+            dialog.modal('hide');
+        </script>
+    }
 }
-
 @section css{
     <style>
         textarea {
