@@ -101,9 +101,7 @@ namespace PROJECTBDS.Controllers
                 form.Password = string.Empty;
                 return View(form);
             }
-
-            Session.Add("UserName", user.Username);
-            System.Web.HttpContext.Current.Session["UserName"] = user.Username;
+            
             FormsAuthentication.SetAuthCookie(user.Username, true);
 
             Session.Timeout = 60;
@@ -140,9 +138,7 @@ namespace PROJECTBDS.Controllers
 
             return View(model.ToPagedList(pageN, RowsPerPage));
         }
-
         
-
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult RealAdd(RealViewModel f, HttpPostedFileBase image)
         {
@@ -170,21 +166,12 @@ namespace PROJECTBDS.Controllers
                 RuleId = f.RuleId,
             };
 
-            if (image != null && image.AllowFile() && image.ContentLength > 0)
-            {
-                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Reals\");
-                
-                var newName = image.FileName.Insert(image.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
-
-                var path = Server.MapPath("~/Uploads/Reals/" + newName);
-
-                if (!string.IsNullOrEmpty(newName))
-                {
-                    image.SaveAs(path);
-                    land.Image = "/Uploads/Reals/" + newName;
-                }
+            if (image.AllowFile())
+            {                
+                var newName = image.GetNewFileName();
+                image.SaveFileToFolder("/Uploads/Reals/", newName);
+                land.Image = "/Uploads/Reals/" + newName;
             }
-
 
             _db.tblLand.Add(land);
             _db.SaveChanges();
@@ -261,25 +248,17 @@ namespace PROJECTBDS.Controllers
             r.Road = f.Facede;
             r.RuleId = f.RuleId;
 
-            if (image != null && image.AllowFile() && image.ContentLength > 0)
+            if (image.AllowFile())
             {
-                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Reals\");
-
                 if (r.Image != null)
                 {
                     FileExtensions.DeleteFile(r.Image.Split('/').Last(), "~/Uploads/Reals/");
                 }
-                var newName = image.FileName.Insert(image.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
-
-                var path = Server.MapPath("~/Uploads/Reals/" + newName);
-
-                if (!string.IsNullOrEmpty(newName))
-                {
-                    image.SaveAs(path);
-                    r.Image = "/Uploads/Reals/" + newName;
-                }
+                var newName = image.GetNewFileName();
+                image.SaveFileToFolder("/Uploads/Reals/", newName);
+                r.Image = "/Uploads/Reals/" + newName;
             }
-
+            
             _db.Entry(r).State = EntityState.Modified;
             _db.SaveChanges();
             TempData["Update"] = "Cập nhật thành công";
@@ -334,24 +313,16 @@ namespace PROJECTBDS.Controllers
             user.FullName = f.FullName;
             user.WardId = f.WardId;
             user.Sex = f.Gender == EnumGender.Nam ? true : false;
-
-            if (file != null  && file.AllowFile() && file.ContentLength > 0)
+            
+            if (file.AllowFile())
             {
-                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Avatars\");
-
                 if (user.Image != null)
                 {
-
                     FileExtensions.DeleteFile(user.Image.Split('/').Last(), "~/Uploads/Avatars/");
                 }
-                var newName = file.FileName.Insert(file.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
-                var path = Server.MapPath("~/Uploads/Avatars/" + newName);
-
-                if (!string.IsNullOrEmpty(newName))
-                {
-                    file.SaveAs(path);
-                    user.Image = "/Uploads/Avatars/" + newName;
-                }
+                var newName = file.GetNewFileName();
+                file.SaveFileToFolder("/Uploads/Avatars/", newName);
+                user.Image = "/Uploads/Avatars/" + newName;
             }
             _db.Entry(user).State = EntityState.Modified;
             _db.SaveChanges();
@@ -382,15 +353,13 @@ namespace PROJECTBDS.Controllers
 
             if (m == null) return RedirectToAction("Index", "Home");
 
-            if (ModelState.IsValid)
-            {
-                m.Password = BCrypt.Net.BCrypt.HashPassword(f.Password1, 13);
-                _db.Entry(m).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            if (!ModelState.IsValid) return View(f);
 
-            return View(f);
+            m.Password = BCrypt.Net.BCrypt.HashPassword(f.Password1, 13);
+            _db.Entry(m).State = EntityState.Modified;
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

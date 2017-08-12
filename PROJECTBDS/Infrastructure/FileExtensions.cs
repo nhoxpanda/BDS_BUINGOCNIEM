@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 
 namespace PROJECTBDS.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace PROJECTBDS.Infrastructure
 
         public static bool AllowFile(this HttpPostedFileBase file)
         {
-            var allowedExtensions = new[] { ".jpg", ".png", ".gif", "jpge" };
+            var allowedExtensions = new[] { ".jpg", ".png", ".gif", ".jpge" };
 
             if (!file.HasFile()) return false;
 
@@ -23,6 +24,20 @@ namespace PROJECTBDS.Infrastructure
 
             return extension != null && allowedExtensions.Contains(extension.ToLower()) ? true : false;
         }
+        
+        public static string GetNewFileName(this HttpPostedFileBase file)
+        {
+            return file.FileName.Insert(file.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
+        }
+        
+        //file.SaveFileToFolder("/Uploads/News/", "abc.jpg");
+        public static void SaveFileToFolder(this HttpPostedFileBase file, string folder, string filename)
+        {
+            Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + folder.Replace(@"\",@"\"));
+            var path = HttpContext.Current.Server.MapPath("~"+ folder + filename);
+            file.SaveAs(path);
+        }
+
         //FileExtensions.DeleteFile(image.Image, "~/Uploads/News/");
         public static void DeleteFile(string file, string folder)
         {
