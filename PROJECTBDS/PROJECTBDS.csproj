@@ -280,6 +280,7 @@
     <Compile Include="Helpers\LoadData.cs" />
     <Compile Include="Infrastructure\RoleProvider.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Infrastructure\UserViewBagAttribute.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -3291,6 +3292,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ChangePass.cshtml" />
     <Content Include="Views\User\RealContact.cshtml" />
+    <Content Include="Views\User\EditReal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

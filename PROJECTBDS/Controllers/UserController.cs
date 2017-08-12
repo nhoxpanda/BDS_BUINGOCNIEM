@@ -6,46 +6,40 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using PagedList;
+using PROJECTBDS.Infrastructure;
 using PROJECTBDS.Models;
 using PROJECTBDS.ViewModels;
 
 namespace PROJECTBDS.Controllers
 {
+    [UserViewBag]
     public class UserController : Controller
     {
-        LandSoftEntities db = new LandSoftEntities();
+        readonly LandSoftEntities _db = new LandSoftEntities();
 
-        private void CheckLoggin()
-        {
-            RedirectToAction("Index", !User.Identity.IsAuthenticated ? "Home" : "User");
-        }
-        // GET: Register
+        public int RowsPerPage = 15;
+
         public ActionResult Register()
         {
-
-            ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name");
-            //chọn quận huyện 
-            ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name");
-            //chon xã phường 
-            ViewBag.WardId = new SelectList(db.tblWard, "Id", "Name");
+            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
+            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
+            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
             return View();
         }
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(UserViewModel form, HttpPostedFileBase imageUser)
         {
-            ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name");
-            //chọn quận huyện 
-            ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name");
-            //chon xã phường 
-            ViewBag.WardId = new SelectList(db.tblWard, "Id", "Name");
+            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
+            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
+            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
 
-            var customer = db.tblCustomer.Where(t => t.Email.Equals(form.Email.Trim()));
+            var customer = _db.tblCustomer.Where(t => t.Email.Equals(form.Email.Trim()));
             if (customer.Any())
             {
                 ModelState.AddModelError("Email", "Email này đã có người sử dụng. Vui lòng sử dụng email khác");
             }
 
-            customer = db.tblCustomer.Where(t => t.Username == form.Username.Trim());
+            customer = _db.tblCustomer.Where(t => t.Username == form.Username.Trim());
             if (customer.Any())
             {
                 ModelState.AddModelError("Username", "Username đã có người sử dụng. Vui lòng sử dụng Username khác!");
@@ -78,7 +72,6 @@ namespace PROJECTBDS.Controllers
             return View(form);
         }
 
-
         public ActionResult Login()
         {
             return View();
@@ -94,11 +87,11 @@ namespace PROJECTBDS.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Login(UserViewLogin form, string returnUrl)
         {
-            var user = db.tblCustomer.FirstOrDefault(e => e.Username == form.Username);
+            var user = _db.tblCustomer.FirstOrDefault(e => e.Username == form.Username);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(form.Password, user.Password))
             {
-                ModelState.AddModelError("Username", "Username or password is incorrect");
+                ModelState.AddModelError("Username", "Username hoặc password không chính sát");
             }
 
             if (!ModelState.IsValid)
@@ -118,34 +111,20 @@ namespace PROJECTBDS.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
-
-
         }
-
-
+        
         public ActionResult RealAdd()
         {
-            CheckLoggin();
-            var idUser = Auth.User.UserId;
-
-            if (idUser < 0) Logout();
-
-            var u = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == idUser);
-
-            if (u == null) return HttpNotFound();
-
-            ViewBag.User = new UserProfileViewModel { FullName = u.FullName, Avatar = u.Image };
-
             var model = new RealViewModel
             {
-                Projects = new SelectList(db.tblProject, "Id", "Title"),
-                Provinces = new SelectList(db.tblProvince, "Id", "Name"),
-                Districts = new SelectList(db.tblDistrict, "Id", "Name"),
-                Methods = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title"),
-                Types = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title"),
-                Units = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title"),
-                Rules = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title"),
-                Directions = new SelectList(db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
+                Projects = new SelectList(_db.tblProject, "Id", "Title"),
+                Provinces = new SelectList(_db.tblProvince, "Id", "Name"),
+                Districts = new SelectList(_db.tblDistrict, "Id", "Name"),
+                Methods = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title"),
+                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title"),
+                Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title"),
+                Rules = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title"),
+                Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
             };
 
             return View(model);
@@ -153,61 +132,46 @@ namespace PROJECTBDS.Controllers
 
         public ActionResult RealIndex(int? page, string query)
         {
-            CheckLoggin();
+            IQueryable<tblLand> model = _db.tblLand.Where(t => t.CustomerId == Auth.User.UserId).OrderByDescending(t => t.Id);
 
-            var idUser = Auth.User.UserId;
-
-            if (idUser < 0) Logout();
-
-            var m = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == idUser);
-
-            if (m == null) return HttpNotFound();
-
-            ViewBag.User = new UserProfileViewModel { FullName = m.FullName, Avatar = m.Image };
-
-            IQueryable<tblLand> model = db.tblLand.Where(t => t.CustomerId == Auth.User.UserId).OrderByDescending(t => t.Id);
-
-            int pageN = page ?? 1;
-
-            ViewBag.User = new UserProfileViewModel { FullName = m.FullName, Avatar = m.Image };
+            var pageN = page ?? 1;
 
             return View(model.ToPagedList(pageN, RowsPerPage));
         }
 
-        public int RowsPerPage = 15;
+        
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult RealAdd(RealViewModel f, List<HttpPostedFileBase> imagesUser)
         {
-            CheckLoggin();
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(f);
+
+            var land = new tblLand
             {
-                var land = new tblLand
-                {
-                    Address = f.Address,
-                    Area = f.Area,
-                    Code = f.BlockCode,
-                    Content = f.Content,
-                    CreateDate = DateTime.Now,
-                    CustomerId = Auth.User.UserId,
-                    DirectionId = f.DirectionId,
-                    ProjectId = f.ProjectId,
-                    TypeId = f.TypeId,
-                    Price = f.Price,
-                    ProvinceId = f.ProvinceId,
-                    DistrictId = f.DistrictId,
-                    UnitId = f.UnitId,
-                    Title = f.Title,
-                    Email = f.ClientEmail,
-                    Phone = f.ClientCellPhone,
-                    Road = f.Facede,
-                    RuleId = f.RuleId,
-                };
-                db.tblLand.Add(land);
-                db.SaveChanges();
-                return RedirectToAction("RealAdd");
-            }
-            return View(f);
+                Address = f.Address,
+                Area = f.Area,
+                Code = f.BlockCode,
+                Content = f.Content,
+                CreateDate = DateTime.Now,
+                CustomerId = Auth.User.UserId,
+                DirectionId = f.DirectionId,
+                ProjectId = f.ProjectId,
+                TypeId = f.TypeId,
+                Price = f.Price,
+                ProvinceId = f.ProvinceId,
+                DistrictId = f.DistrictId,
+                UnitId = f.UnitId,
+                Title = f.Title,
+                Email = f.ClientEmail,
+                Phone = f.ClientCellPhone,
+                Road = f.Facede,
+                RuleId = f.RuleId,
+            };
+
+            _db.tblLand.Add(land);
+            _db.SaveChanges();
+
+            return RedirectToAction("RealAdd");
         }
 
         public ActionResult DeleteReal()
@@ -217,22 +181,91 @@ namespace PROJECTBDS.Controllers
 
         public ActionResult EditReal(int id)
         {
-            throw new NotImplementedException();
+            var r = _db.tblLand.Find(id);
+
+            if (r == null) return HttpNotFound();
+
+            var model = new RealViewModel
+            {
+                Id = r.Id,
+                ProjectId = r.ProjectId ?? default(int),
+                Title = r.Title,
+                Area = r.Area,
+                Content = r.Content,
+                Address = r.Address,
+                ProvinceId = r.ProvinceId ?? default(int),
+                Image = r.Image,
+                DistrictId = r.DirectionId ?? default(int),
+                Price = r.Price ?? default(decimal),
+                BlockCode = r.Code,
+                DirectionId = r.DirectionId ?? default(int),
+                Facede = r.Road,
+                MethodId = r.TypeId ?? default(int),
+                RuleId =  r.RuleId ?? default(int),
+                UnitId = r.UnitId ?? default(int),
+                TypeId = r.TypeId ?? default(int),
+                Projects = new SelectList(_db.tblProject, "Id", "Title", r.ProjectId),
+                Provinces = new SelectList(_db.tblProvince, "Id", "Name", r.ProvinceId),
+                Districts = new SelectList(_db.tblDistrict, "Id", "Name", r.DistrictId),
+                Methods = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title", r.CategoryId),
+                Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title", r.TypeId),
+                Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title", r.UnitId),
+                Rules = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title", r.RuleId),
+                Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
+
+            };
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult EditReal(RealViewModel f, HttpPostedFileBase image)
+        {
+            var r = _db.tblLand.Find(f.Id);
+
+            if (r == null) return HttpNotFound();
+
+            if (!ModelState.IsValid) return View(f);
+
+            r.Address = f.Address;
+            r.Area = f.Area;
+            r.Code = f.BlockCode;
+            r.Content = f.Content;
+            r.CustomerId = Auth.User.UserId;
+            r.DirectionId = f.DirectionId;
+            r.ProjectId = f.ProjectId;
+            r.TypeId = f.TypeId;
+            r.Price = f.Price;
+            r.ProvinceId = f.ProvinceId;
+            r.DistrictId = f.DistrictId;
+            r.UnitId = f.UnitId;
+            r.Title = f.Title;
+            r.Email = f.ClientEmail;
+            r.Phone = f.ClientCellPhone;
+            r.Road = f.Facede;
+            r.RuleId = f.RuleId;
+         
+            if (image != null && image.ContentLength > 0)
+            {
+                var newName = image.FileName.Insert(image.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
+                var path = Server.MapPath("~/Uploads/Avatars/" + newName);
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    image.SaveAs(path);
+                    r.Image = "/Uploads/Avatars/" + newName;
+                }
+            }
+
+            _db.Entry(r).State = EntityState.Modified;
+            _db.SaveChanges();
+            TempData["Update"] = "Cập nhật thành công";
+            return RedirectToAction("EditReal", new {Id = r.Id });
         }
 
         public ActionResult Index()
         {
-            CheckLoggin();
-
-            var idUser = Auth.User.UserId;
-
-            if (idUser < 0) Logout();
-
-            var m = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == idUser);
+            var m = _db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == Auth.User.UserId);
 
             if (m == null) return HttpNotFound();
-
-            ViewBag.User = new UserProfileViewModel { FullName = m.FullName, Avatar = m.Image };
 
             var user = new UserEditViewModel
             {
@@ -245,22 +278,19 @@ namespace PROJECTBDS.Controllers
                 Skype = m.Skype,
                 Image = m.Image,
                 Birthday = m.Birthday ?? default(DateTime),
-                Provinces = new SelectList(db.tblProvince, "Id", "Name", m.ProvinceId),
-                Districts = new SelectList(db.tblDistrict.Where(t => t.ProvinceId == m.ProvinceId), "Id", "Name", m.DistrictId),
-                Wards = new SelectList(db.tblWard.Where(t => t.DistrictId == m.DistrictId), "Id", "Name", m.WardId),
+                Provinces = new SelectList(_db.tblProvince, "Id", "Name", m.ProvinceId),
+                Districts = new SelectList(_db.tblDistrict.Where(t => t.ProvinceId == m.ProvinceId), "Id", "Name", m.DistrictId),
+                Wards = new SelectList(_db.tblWard.Where(t => t.DistrictId == m.DistrictId), "Id", "Name", m.WardId),
                 Country = m.Address
             };
-
-
+            
             return View(user);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult UpdateUser(UserEditViewModel f, HttpPostedFileBase file)
         {
-            var userId = Auth.User.UserId;
-
-            var user = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == userId);
+            var user = _db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == Auth.User.UserId);
 
             if (user == null) Logout();
 
@@ -275,11 +305,9 @@ namespace PROJECTBDS.Controllers
             user.WardId = f.WardId;
             user.Sex = f.Gender == EnumGender.Nam ? true : false;
 
-            var imageAvatar = Request["file"];
             if (file != null && file.ContentLength > 0)
             {
-                var newName = file.FileName.Insert(file.FileName.LastIndexOf('.'),
-                    $"{DateTime.Now:_ddMMyyyy_hhss}");
+                var newName = file.FileName.Insert(file.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
                 var path = Server.MapPath("~/Uploads/Avatars/" + newName);
                 if (!string.IsNullOrEmpty(newName))
                 {
@@ -287,8 +315,8 @@ namespace PROJECTBDS.Controllers
                     user.Image = "/Uploads/Avatars/" + newName;
                 }
             }
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(user).State = EntityState.Modified;
+            _db.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -300,17 +328,10 @@ namespace PROJECTBDS.Controllers
 
         public ActionResult ChangePass()
         {
-            CheckLoggin();
 
-            var idUser = Auth.User.UserId;
-
-            if (idUser < 0) Logout();
-
-            var m = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == idUser);
+            var m = _db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == Auth.User.UserId);
 
             if (m == null) return RedirectToAction("Index", "Home");
-
-            ViewBag.User = new UserProfileViewModel { FullName = m.FullName, Avatar = m.Image };
 
             return View(new ChangePassUserViewModel());
         }
@@ -318,22 +339,16 @@ namespace PROJECTBDS.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ChangePass(ChangePassUserViewModel f)
         {
-            var idUser = Auth.User.UserId;
 
-            if (idUser < 0) Logout();
-
-            var m = db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == idUser);
+            var m = _db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == Auth.User.UserId);
 
             if (m == null) return RedirectToAction("Index", "Home");
-
-            ViewBag.User = new UserProfileViewModel { FullName = m.FullName, Avatar = m.Image };
-
 
             if (ModelState.IsValid)
             {
                 m.Password = BCrypt.Net.BCrypt.HashPassword(f.Password1, 13);
-                db.Entry(m).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(m).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

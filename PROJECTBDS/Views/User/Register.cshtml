@@ -1,5 +1,5 @@
 ﻿@using PROJECTBDS.ViewModels
-@model PROJECTBDS.ViewModels.UserViewModel
+@model UserViewModel
 
 @section css{
     <style>
@@ -24,15 +24,13 @@
             color: #a94442;
         }
     </style>
-<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 }
 <section class="head-bg-bottom">
     <div class="container">
         <h1>Đăng ký</h1>
     </div>
 </section>
-
-
 <section class="content-bottom page-child page-register">
     <div class="container">
         <div class="row">
@@ -145,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group field-frontprofile-address">
-                                    <label class="col-sm-3 col-md-2 control-label" for="address">Khu vực sinh sống :</label>
+                                    <label class="col-sm-3 col-md-2 control-label" for="Address">Khu vực sinh sống :</label>
                                     <div class="col-sm-9 col-md-8">
                                         @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
                                         <div class="help-block">

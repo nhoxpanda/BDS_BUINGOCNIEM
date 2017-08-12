@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Permissions;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Microsoft.Owin.BuilderProperties;
-using PROJECTBDS.Models;
 
 namespace PROJECTBDS.ViewModels
 {
     public class RealViewModel
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Nhập tiêu đề")]
         [MinLength(10, ErrorMessage = "Ít nhất 10 ký tự")]
         public string Title { get; set; }
