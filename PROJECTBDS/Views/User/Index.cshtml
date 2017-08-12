@@ -12,6 +12,10 @@
             <div class="col-md-9">
                 <div class="box box-border box-profile">
                     <div class="box-title">
+                        @if (TempData["Error"] != null)
+                        {
+                            @TempData["Error"]
+                        }
                         Thay đổi thông tin cá nhân
                     </div>
                     <div class="box-content">
@@ -68,11 +72,11 @@
                                                         }
                                                         if (!string.IsNullOrEmpty(checkNa))
                                                         {
-                                                            @Html.RadioButtonFor(model => model.Gender, (int) EnumGender.Nam, new {@checked = checkNa})
+                                                            @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nam, new { @checked = checkNa })
                                                         }
                                                         else
                                                         {
-                                                            @Html.RadioButtonFor(model => model.Gender, (int) EnumGender.Nam)
+                                                            @Html.RadioButtonFor(model => model.Gender, (int)EnumGender.Nam)
                                                         }
                                                     }Nam
                                                 </label>
@@ -96,17 +100,20 @@
                                                 <div class="col-md-4">
                                                     <div class=" field-profile-province_id">
                                                         @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { name = "Title", id = "ProvinceId", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(m => m.ProvinceId)
                                                     </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-4">
                                                     <div class=" field-profile-district_id">
                                                         @Html.DropDownListFor(model => model.DistrictId, Model.Districts, new { name = "Title", id = "DistrictId", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(m => m.DistrictId)
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class=" field-profile-ward_id">
                                                         @Html.DropDownListFor(model => model.WardId, Model.Wards, new { name = "Title", id = "WardId", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(m => m.WardId)
                                                     </div>
                                                 </div>
                                                 <!--/span-->
@@ -145,17 +152,17 @@
                                     <div class="form-group field-profile-imagefile">
                                         <label class="col-sm-3 col-md-2 control-label" for="file">Hình đại diện (255 x 145)</label>
                                         <div class="col-sm-9 col-md-8">
-                                            <input type="file" class="form-control" name="file" />
+                                            <input type="file" class="form-control" name="file" accept="image/*" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-8">
-                                        <button type="submit" class="btn btn-default btn-special">Lưu</button>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-8">
+                                    <button type="submit" class="btn btn-default btn-special">Lưu</button>
                                 </div>
-                        }
+                            </div>
+                                                        }
                     </div>
                 </div>
             </div>
@@ -210,6 +217,7 @@
                     .change(function (event) {
                         getChildren($(this).val(), "#DistrictId", "Land", "...");
                         $("#DistrictId").val('');
+                        $("#WardId").val('');
                     });
                 $("#DistrictId")
                     .change(function (event) {
@@ -218,7 +226,8 @@
 
             });
     </script>
-
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/moment-with-locales.min.js"></script>
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
@@ -231,4 +240,39 @@
             });
         });
     </script>
+}
+
+@section css{
+    <style>
+        textarea {
+            height: 280px;
+            border: 2px solid green;
+            box-sizing: boder-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            font-size: 11px;
+        }
+
+        input.input-validation-error {
+            border-color: #a94442;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+
+        .validation-summary-errors {
+            list-style-position: inside;
+            list-style-type: none;
+            color: red;
+            padding-bottom: 30px;
+        }
+
+            .validation-summary-errors ul {
+                padding-left: 0;
+            }
+
+        .field-validation-error {
+            color: #a94442;
+        }
+    </style>
 }

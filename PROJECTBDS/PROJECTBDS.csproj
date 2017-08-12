@@ -278,6 +278,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LoadData.cs" />
+    <Compile Include="Infrastructure\FileExtensions.cs" />
     <Compile Include="Infrastructure\RoleProvider.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Infrastructure\UserViewBagAttribute.cs" />

@@ -1,10 +1,6 @@
 ﻿using PROJECTBDS.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.SessionState;
 using PROJECTBDS.Services.Home;
 using PROJECTBDS.ViewModels.Home;
 
@@ -44,8 +40,6 @@ namespace PROJECTBDS.Controllers
         {
             if (string.IsNullOrEmpty(slug)) return HttpNotFound();
 
-            var db = new LandSoftEntities();
-
             var id = slug.Split('-');
 
             if (id.Length <= 0) return HttpNotFound();
@@ -56,7 +50,7 @@ namespace PROJECTBDS.Controllers
 
             if (!int.TryParse(idDuAn, out idnew)) return HttpNotFound();
 
-            var post = db.tblProject.Include("tblProjectDetail").FirstOrDefault(t => t.Id == idnew);
+            var post = _db.tblProject.Include("tblProjectDetail").FirstOrDefault(t => t.Id == idnew);
 
             if (post == null) return HttpNotFound();
 
@@ -71,7 +65,7 @@ namespace PROJECTBDS.Controllers
                 var idNew = 0;
                 if (int.TryParse(idDa, out idNew))
                 {
-                    var detail = db.tblProjectDetail.FirstOrDefault(a => a.DictionaryId == idNew && a.ProjectId == idnew);
+                    var detail = _db.tblProjectDetail.FirstOrDefault(a => a.DictionaryId == idNew && a.ProjectId == idnew);
 
                     if (detail != null)
                     {

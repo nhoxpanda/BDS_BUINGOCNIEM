@@ -99,8 +99,13 @@ namespace PROJECTBDS.ViewModels
 
         public DateTime Birthday { get; set; }
         public EnumGender Gender { get; set; }
+        [Required(ErrorMessage = "Chọn Tỉnh/Thành Phố")]
         public int ProvinceId { get; set; }
+
+        [Required(ErrorMessage = "Chọn Huyện/Quận")]
         public int DistrictId { get; set; }
+
+        [Required(ErrorMessage = "Chọn Xã/Phường")]
         public int WardId { get; set; }
 
         public string Country { get; set; }

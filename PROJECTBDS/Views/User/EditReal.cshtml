@@ -76,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="price">
-                                                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá", type = "number", min = "1" })
+                                                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá", type = "number", min = "0" })
                                                 @Html.ValidationMessageFor(m => m.Price)
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@
                     <div class="box box-profile box-real">
                         <div class="box-title">Hình ảnh</div>
                         <div class="box-content">
-                            <div class="form-group field-re-thumb">
+                            @*<div class="form-group field-re-thumb">
                                 <label class="col-md-3 control-label no-padding-right">
                                     <label class="control-label" for="re-thumb">Thumb (720x532)</label>
                                 </label>
@@ -173,13 +173,12 @@
                                     <input type="hidden" name="Re[thumb]" value="">
                                     <input type="file" id="re-thumb" class="file-loading" name="ImageThumb" accept="image/*" data-krajee-fileinput="fileinput_9046b37b">
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="form-group field-re-file_name">
                                 <label class="col-md-3 control-label no-padding-right">
                                     <label class="control-label" for="re-file_name">Tên file (720x532)</label>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="hidden" name="Re[file_name][]" value="">
                                     <input type="file" id="re-file_name" class="file-loading" name="Image" multiple accept="image/*" data-krajee-fileinput="fileinput_9046b37b">
                                 </div>
                             </div>

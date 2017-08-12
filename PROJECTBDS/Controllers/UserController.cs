@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 using PagedList;
@@ -17,7 +18,7 @@ namespace PROJECTBDS.Controllers
     {
         readonly LandSoftEntities _db = new LandSoftEntities();
 
-        public int RowsPerPage = 15;
+        int RowsPerPage = 15;
 
         public ActionResult Register()
         {
@@ -26,6 +27,7 @@ namespace PROJECTBDS.Controllers
             ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
             return View();
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(UserViewModel form, HttpPostedFileBase imageUser)
         {
@@ -110,7 +112,7 @@ namespace PROJECTBDS.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "User");
         }
         
         public ActionResult RealAdd()
@@ -142,7 +144,7 @@ namespace PROJECTBDS.Controllers
         
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult RealAdd(RealViewModel f, List<HttpPostedFileBase> imagesUser)
+        public ActionResult RealAdd(RealViewModel f, HttpPostedFileBase image)
         {
             if (!ModelState.IsValid) return View(f);
 
@@ -168,10 +170,26 @@ namespace PROJECTBDS.Controllers
                 RuleId = f.RuleId,
             };
 
+            if (image != null && image.AllowFile() && image.ContentLength > 0)
+            {
+                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Reals\");
+                
+                var newName = image.FileName.Insert(image.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
+
+                var path = Server.MapPath("~/Uploads/Reals/" + newName);
+
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    image.SaveAs(path);
+                    land.Image = "/Uploads/Reals/" + newName;
+                }
+            }
+
+
             _db.tblLand.Add(land);
             _db.SaveChanges();
 
-            return RedirectToAction("RealAdd");
+            return RedirectToAction("RealIndex");
         }
 
         public ActionResult DeleteReal()
@@ -211,8 +229,7 @@ namespace PROJECTBDS.Controllers
                 Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title", r.TypeId),
                 Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title", r.UnitId),
                 Rules = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.PhapLy), "Id", "Title", r.RuleId),
-                Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title"),
-
+                Directions = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.HuongNha), "Id", "Title")
             };
             return View(model);
         }
@@ -243,15 +260,23 @@ namespace PROJECTBDS.Controllers
             r.Phone = f.ClientCellPhone;
             r.Road = f.Facede;
             r.RuleId = f.RuleId;
-         
-            if (image != null && image.ContentLength > 0)
+
+            if (image != null && image.AllowFile() && image.ContentLength > 0)
             {
+                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Reals\");
+
+                if (r.Image != null)
+                {
+                    FileExtensions.DeleteFile(r.Image.Split('/').Last(), "~/Uploads/Reals/");
+                }
                 var newName = image.FileName.Insert(image.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
-                var path = Server.MapPath("~/Uploads/Avatars/" + newName);
+
+                var path = Server.MapPath("~/Uploads/Reals/" + newName);
+
                 if (!string.IsNullOrEmpty(newName))
                 {
                     image.SaveAs(path);
-                    r.Image = "/Uploads/Avatars/" + newName;
+                    r.Image = "/Uploads/Reals/" + newName;
                 }
             }
 
@@ -286,16 +311,21 @@ namespace PROJECTBDS.Controllers
             
             return View(user);
         }
+        
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult UpdateUser(UserEditViewModel f, HttpPostedFileBase file)
         {
-            var user = _db.tblCustomer.AsNoTracking().FirstOrDefault(t => t.Id == Auth.User.UserId);
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Hãy chọn Tình/Thành Phố và Quận/Huyện, Xã/Phường";
+                return RedirectToAction("Index");
+            }
+            var user = _db.tblCustomer.FirstOrDefault(t => t.Id == Auth.User.UserId);
 
             if (user == null) Logout();
 
             user.DistrictId = f.DistrictId;
-            user.Image = f.Image;
             user.Phone = f.Phone;
             user.Skype = f.Skype;
             user.Birthday = f.Birthday;
@@ -305,10 +335,18 @@ namespace PROJECTBDS.Controllers
             user.WardId = f.WardId;
             user.Sex = f.Gender == EnumGender.Nam ? true : false;
 
-            if (file != null && file.ContentLength > 0)
+            if (file != null  && file.AllowFile() && file.ContentLength > 0)
             {
+                Directory.CreateDirectory(HostingEnvironment.ApplicationPhysicalPath + @"\Uploads\Avatars\");
+
+                if (user.Image != null)
+                {
+
+                    FileExtensions.DeleteFile(user.Image.Split('/').Last(), "~/Uploads/Avatars/");
+                }
                 var newName = file.FileName.Insert(file.FileName.LastIndexOf('.'), $"{DateTime.Now:_ddMMyyyy_hhss}");
                 var path = Server.MapPath("~/Uploads/Avatars/" + newName);
+
                 if (!string.IsNullOrEmpty(newName))
                 {
                     file.SaveAs(path);
