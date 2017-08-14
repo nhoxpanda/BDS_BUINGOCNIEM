@@ -1,27 +1,34 @@
-﻿using PROJECTBDS.Models;
+﻿using System;
+using PROJECTBDS.Models;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.WebPages;
+using PagedList;
+using PROJECTBDS.Infrastructure;
 using PROJECTBDS.Services.Home;
 using PROJECTBDS.ViewModels.Home;
 
 namespace PROJECTBDS.Controllers
 {
+    [UserViewBag]
     public class HomeController : Controller
     {
         private readonly LandSoftEntities _db = new LandSoftEntities();
 
         private readonly HomeServices _data = new HomeServices();
+        private const int PostsPerPage = 10;
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            var pageNumber = page ?? 1;
+           
             var model = new HomeViewModel
             {
                 DuAnNoiBat = _data.GetDuAnNoiBat(),
-                BatDongSan = _data.GetBatDongSan()
+                BatDongSan = _data.GetBatDongSan().OrderByDescending(t=>t.Id).ToPagedList(pageNumber, PostsPerPage)
             };
             return View(model);
         }
-
         public ActionResult SieuThiDiaOc(string slug)
         {
             var id = slug.Split('-');
@@ -54,7 +61,14 @@ namespace PROJECTBDS.Controllers
 
             if (post == null) return HttpNotFound();
 
-            if (string.IsNullOrEmpty(key)) return View(post);
+
+            var duAnKhac =
+                _db.tblProject.Include("tblProjectDetail")
+                    .Where(t => t.Id != post.Id)
+                    .OrderByDescending(t => t.Id)
+                    .Take(4).ToList();
+
+            if (string.IsNullOrEmpty(key)) return View(new DuAnViewModel { DuAn = post, DuAnKhac = _data.GetDuAnNoiBat(4, post.Id.ToString()) });
 
             var idDic = key.Split('-');
 
@@ -74,10 +88,54 @@ namespace PROJECTBDS.Controllers
                         post.Content = null;
                     }
                 }
-
             }
 
-            return View(post);
+
+            return View(new DuAnViewModel { DuAn = post, DuAnKhac = _data.GetDuAnNoiBat(4, post.Id.ToString()) });
+        }
+        //http://localhost:56788/tim-kiem-bat-dong-san?
+        //s=1111
+        //&province=4
+        //&district=55
+        //&type=1
+        //&method=5
+        //&area=Di%E1%BB%87n+t%C3%ADch
+        //&direction=9
+        //&price=0%7C500
+        public ActionResult TimKiemBatDongSan(int? page)
+        {
+            //string s, int? province, int? district,
+            //int? type, int? method, int? direction,
+            //string price;
+
+            var s = Request["s"]; 
+            var province = Request["province"].AsInt(); 
+            var district = Request["district"].AsInt(); 
+            var type = Request["type"].AsInt(); 
+            var method = Request["method"].AsInt(); 
+            var direction = Request["direction"].AsInt(); 
+            var price = Request["price"];
+
+            var priceS = price.Split('|');
+            var priceFrom = 0;
+            var priceTo = 0;
+            var flag = false || priceS.Length > 1 && 
+                       int.TryParse(priceS[0], out priceFrom) &&
+                       int.TryParse(priceS[1], out priceTo);
+
+            IQueryable<tblLand> results = 
+                _db.tblLand.Where(t=>t.Title.ToLower().Contains(s.ToLower()) || 
+                                    t.ProvinceId == province ||
+                                    t.DistrictId == district ||
+                                    t.CategoryId == method ||
+                                    t.DistrictId == direction ||
+                                    t.TypeId == type ||
+                                    (t.Price <= priceFrom && t.Price >= priceTo)
+                                    );
+
+            var pageNumber = page ?? 1;
+           
+            return View(results.OrderByDescending(t=>t.Id).ToPagedList(pageNumber, PostsPerPage));
         }
 
         public ActionResult About()

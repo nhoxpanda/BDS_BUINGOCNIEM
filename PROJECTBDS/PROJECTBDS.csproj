@@ -360,6 +360,7 @@
     <Compile Include="ViewModels\EnumGender.cs" />
     <Compile Include="ViewModels\EnumTypeMethod.cs" />
     <Compile Include="ViewModels\Home\DuAnNoiBatViewModel.cs" />
+    <Compile Include="ViewModels\Home\DuAnViewModel.cs" />
     <Compile Include="ViewModels\RealViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -3264,7 +3265,7 @@
     <Content Include="Views\Shared\_Partial_Event.cshtml" />
     <Content Include="Views\Shared\_Partial_Land.cshtml" />
     <Content Include="Views\Shared\_Partial_Partner.cshtml" />
-    <Content Include="Views\Shared\_Partial_Project.cshtml" />
+    <Content Include="Views\Home\_Partial_Project.cshtml" />
     <Content Include="Views\Shared\_Partial_Search.cshtml" />
     <Content Include="Views\Shared\_Partial_Slider.cshtml" />
     <Content Include="Views\Abouts\Index.cshtml" />
@@ -3295,6 +3296,8 @@
     <Content Include="Views\User\RealEdit.cshtml" />
     <Content Include="Views\User\_FormReal.cshtml" />
     <Content Include="Views\Shared\_HeaderPage.cshtml" />
+    <Content Include="Views\Home\_DuAnKhac.cshtml" />
+    <Content Include="Views\Home\TimKiemBatDongSan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

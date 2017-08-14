@@ -1,0 +1,25 @@
+﻿@using PROJECTBDS.Infrastructure
+@model List<PROJECTBDS.ViewModels.Home.DuAnNoiBatViewModel>
+@foreach (var item in Model)
+{
+    <div class="col-md-3 col-sm-6 col-xs-12">
+
+        <div class="box-item">
+            <div class="border-list">
+                <a href="@Url.RouteUrl("DuAn", new {slug = item.Title.UrlFriendly() + "-" + item.Id})">
+                    <img alt="@item.Title" class="img-responsive" src="@item.Image"/>
+                </a>
+                <a href="@Url.RouteUrl("DuAn", new {slug = item.Title.UrlFriendly() + "-" + item.Id})">
+                    <p>@item.Title</p>
+                </a>
+                <div class="address2">
+                    <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address"/>
+                    <span>@item.Address</span>
+                </div>
+                <div class="bottom-dn">
+                    <span>Giá bán</span><label><b>@item.Price</b></label>
+                </div>
+            </div>
+        </div>
+    </div>
+}

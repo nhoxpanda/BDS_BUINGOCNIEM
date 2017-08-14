@@ -1,13 +1,13 @@
 ﻿@using PROJECTBDS.Infrastructure
 @using PROJECTBDS.Models
 @using PROJECTBDS.ViewModels
-@model tblProject
+@model PROJECTBDS.ViewModels.Home.DuAnViewModel
 @{
     ViewBag.Title = "DuAn";
 
-    var itemTongQuan = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.TongQuan);
+    var itemTongQuan = Model.DuAn.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.DuAn.Id && t.DictionaryId == (int)EnumProject.TongQuan);
 
-    var itemViTri = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.ViTri);
+    var itemViTri = Model.DuAn.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.DuAn.Id && t.DictionaryId == (int)EnumProject.ViTri);
 
     var viTri = new tblDictionary();
 
@@ -15,7 +15,7 @@
     {
         viTri = itemViTri.tblDictionary;
     }
-    var itemTienIch = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.TienIch);
+    var itemTienIch = Model.DuAn.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.DuAn.Id && t.DictionaryId == (int)EnumProject.TienIch);
 
     var tienIch = new tblDictionary();
 
@@ -24,7 +24,7 @@
         tienIch = itemTienIch.tblDictionary;
     }
 
-    var itemMatBang = Model.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.Id && t.DictionaryId == (int)EnumProject.MatBangTongThe);
+    var itemMatBang = Model.DuAn.tblProjectDetail.FirstOrDefault(t => t.ProjectId == Model.DuAn.Id && t.DictionaryId == (int)EnumProject.MatBangTongThe);
 
     var matBang = new tblDictionary();
 
@@ -33,7 +33,7 @@
         matBang = itemMatBang.tblDictionary;
     }
 
-    var slugProject = Model.Title.UrlFriendly() + "-" + Model.Id;
+    var slugProject = Model.DuAn.Title.UrlFriendly() + "-" + Model.DuAn.Id;
 
 
 }
@@ -46,7 +46,7 @@
                         <div class="col-xs-6 col-sm-3">
                             <a class="project-item project-item-logo">
                                 <i class="icon">
-                                    <img class="" src="@Model.Image" alt="">
+                                    <img class="" src="@Model.DuAn.Image" alt="@Model.DuAn.Title">
                                 </i>
                             </a>
                         </div>
@@ -139,7 +139,7 @@
 
         <div class="page-content editor-content">
 
-            @if (Model.Content == null)
+            @if (Model.DuAn.Content == null)
             {
                 <div class="page-block page-text-block">
                     <h2 class="page-title">@ViewBag.KeyDetails.Title</h2>
@@ -171,66 +171,7 @@
                 <h3 class="border-bottom">DỰ ÁN BẤT ĐỘNG SẢN</h3>
                 <div class="list-project">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="box-item">
-                                <div class="border-list">
-                                    <a href="/du-an/swan-bay"><img alt="SWAN BAY" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fswanbay_59842a8ea63de.jpg&w=735&h=432&fit=crop" /></a>
-                                    <a href="/du-an/swan-bay"><p>SWAN BAY</p></a>
-                                    <div class="address2">
-                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
-                                        <span>Nhơn Trạch - Đồng Nai</span>
-                                    </div>
-                                    <div class="bottom-dn">
-                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="box-item">
-                                <div class="border-list">
-                                    <a href="/du-an/rosita-garden-khang-dien"><img alt="Rosita Garden" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2FAVATA-ROSITA_596dcb8024782.jpg&w=735&h=432&fit=crop" /></a>
-                                    <a href="/du-an/rosita-garden-khang-dien"><p>Rosita Garden</p></a>
-                                    <div class="address2">
-                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
-                                        <span>Quận 9 - Hồ Chí Minh</span>
-                                    </div>
-                                    <div class="bottom-dn">
-                                        <span>Giá bán</span><label><b>3.2 tỷ</b></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="box-item">
-                                <div class="border-list">
-                                    <a href="/du-an/new-city-quan-2"><img alt="New City quận 2" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fnew-city-quan-2_596478eaab182.jpg&w=735&h=432&fit=crop" /></a>
-                                    <a href="/du-an/new-city-quan-2"><p>New City quận 2</p></a>
-                                    <div class="address2">
-                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
-                                        <span>Quận 2 - Hồ Chí Minh</span>
-                                    </div>
-                                    <div class="bottom-dn">
-                                        <span>Giá bán</span><label><b>LH: 0938 779 660</b></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="box-item">
-                                <div class="border-list">
-                                    <a href="/du-an/homyland-riverside"><img alt="Homyland Riverside" class="img-responsive" src="/images?path=image%2Fproject%2Fthumb%2Fhomyland-riverside_59376dad904fd.jpg&w=735&h=432&fit=crop" /></a>
-                                    <a href="/du-an/homyland-riverside"><p>Homyland Riverside</p></a>
-                                    <div class="address2">
-                                        <img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg" alt="icon address" />
-                                        <span>Quận 2 - Hồ Chí Minh</span>
-                                    </div>
-                                    <div class="bottom-dn">
-                                        <span>Giá bán</span><label><b>26 triệu/m2</b></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @Html.Partial("_DuAnKhac", Model.DuAnKhac)
                     </div>
                 </div>
             </div>

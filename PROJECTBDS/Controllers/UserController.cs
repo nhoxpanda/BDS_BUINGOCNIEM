@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using PROJECTBDS.Infrastructure;
 using PROJECTBDS.Models;
+using PROJECTBDS.Services.Home;
 using PROJECTBDS.ViewModels;
 
 namespace PROJECTBDS.Controllers
@@ -15,24 +19,17 @@ namespace PROJECTBDS.Controllers
     public class UserController : Controller
     {
         readonly LandSoftEntities _db = new LandSoftEntities();
-
+        HomeServices _data = new HomeServices();
         int RowsPerPage = 15;
 
         public ActionResult Register()
         {
-            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
-            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
-            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(UserViewModel form, HttpPostedFileBase imageUser)
         {
-            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
-            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
-            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
-
             var customer = _db.tblCustomer.Where(t => t.Email.Equals(form.Email.Trim()));
             if (customer.Any())
             {
@@ -68,8 +65,29 @@ namespace PROJECTBDS.Controllers
                 };
                 data.tblCustomer.Add(user);
                 data.SaveChanges();
+
+                using (var database = new LandSoftEntities())
+                {
+                    var role = database.AspNetRoles.Where(t => t.Name.Equals("User")).ToList();
+
+                    var userAsp = new AspNetUsers
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserName = form.Username,
+                        SecurityStamp = BCrypt.Net.BCrypt.HashString(form.Username),
+                        PhoneNumber = form.Phone,
+                        LockoutEndDateUtc = DateTime.MaxValue,
+                        PasswordHash = form.Password,
+                        Email = form.Email,
+                        AspNetRoles = role
+                    };
+
+                    database.AspNetUsers.Add(userAsp);
+                    database.SaveChanges();
+                }
+              
             }
-            return View(form);
+            return RedirectToAction("Login");
         }
 
         public ActionResult Login()
@@ -87,11 +105,11 @@ namespace PROJECTBDS.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Login(UserViewLogin form, string returnUrl)
         {
-            var user = _db.tblCustomer.FirstOrDefault(e => e.Username == form.Username);
+            var user = _db.tblCustomer.FirstOrDefault(e => e.Username == form.Username || e.Email == form.Username);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(form.Password, user.Password))
             {
-                ModelState.AddModelError("Username", "Username hoặc password không chính sát");
+                ModelState.AddModelError("Username", "Username hoặc password không chính sác");
             }
 
             if (!ModelState.IsValid)
@@ -99,7 +117,7 @@ namespace PROJECTBDS.Controllers
                 form.Password = string.Empty;
                 return View(form);
             }
-            
+
             FormsAuthentication.SetAuthCookie(user.Username, true);
 
             Session.Timeout = 60;
@@ -110,7 +128,7 @@ namespace PROJECTBDS.Controllers
             }
             return RedirectToAction("Index", "User");
         }
-        
+
         public ActionResult RealAdd()
         {
             var model = new RealViewModel
@@ -136,7 +154,7 @@ namespace PROJECTBDS.Controllers
 
             return View(model.ToPagedList(pageN, RowsPerPage));
         }
-        
+
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult RealAdd(RealViewModel f, HttpPostedFileBase image)
         {
@@ -165,7 +183,7 @@ namespace PROJECTBDS.Controllers
             };
 
             if (image.AllowFile())
-            {                
+            {
                 var newName = image.GetNewFileName();
                 image.SaveFileToFolder("/Uploads/Reals/", newName);
                 land.Image = "/Uploads/Reals/" + newName;
@@ -177,11 +195,33 @@ namespace PROJECTBDS.Controllers
             return RedirectToAction("RealIndex");
         }
 
-        public ActionResult DeleteReal()
+        public ActionResult RealDelete(int id)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var images = _db.tblImage.Where(t => t.LandId == id);
 
+                var model = _db.tblLand.Find(id);
+
+                if (model == null) return Json(0, JsonRequestBehavior.AllowGet);
+
+                foreach (var image in images)
+                {
+                    model.tblImage.Remove(image);
+                    FileExtensions.DeleteFile(image.Image.Split('/').Last(), "~/Uploads/Reals/");
+                }
+                FileExtensions.DeleteFile(model.Image.Split('/').Last(), "~/Uploads/Reals/");
+                _db.tblLand.Remove(model);
+                _db.SaveChanges();
+
+                return Json(1, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult RealEdit(int id)
         {
             var r = _db.tblLand.Find(id);
@@ -204,14 +244,14 @@ namespace PROJECTBDS.Controllers
                 Facede = r.Road,
 
                 CategoryId = r.CategoryId ?? default(int),
-                RuleId =  r.RuleId ?? default(int),
+                RuleId = r.RuleId ?? default(int),
                 UnitId = r.UnitId ?? default(int),
                 TypeId = r.TypeId ?? default(int),
                 DirectionId = r.DirectionId ?? default(int),
 
                 Projects = new SelectList(_db.tblProject, "Id", "Title", r.ProjectId),
                 Provinces = new SelectList(_db.tblProvince, "Id", "Name", r.ProvinceId),
-                Districts = new SelectList(_db.tblDistrict.Where(t=>t.ProvinceId == r.ProvinceId), "Id", "Name", r.DistrictId),
+                Districts = new SelectList(_db.tblDistrict.Where(t => t.ProvinceId == r.ProvinceId), "Id", "Name", r.DistrictId),
                 Categories = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiBds), "Id", "Title", r.CategoryId),
                 Types = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.LoaiGd), "Id", "Title", r.TypeId),
                 Units = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int)EnumCategory.GiaCa), "Id", "Title", r.UnitId),
@@ -243,7 +283,7 @@ namespace PROJECTBDS.Controllers
             r.Email = f.ClientEmail;
             r.Phone = f.ClientCellPhone;
             r.Road = f.Facede;
-            
+
             r.CategoryId = f.CategoryId;
             r.TypeId = f.TypeId;
             r.RuleId = f.RuleId;
@@ -260,11 +300,11 @@ namespace PROJECTBDS.Controllers
                 image.SaveFileToFolder("/Uploads/Reals/", newName);
                 r.Image = "/Uploads/Reals/" + newName;
             }
-            
+
             _db.Entry(r).State = EntityState.Modified;
             _db.SaveChanges();
             TempData["Update"] = "Cập nhật thành công";
-            return RedirectToAction("RealEdit", new {Id = r.Id });
+            return RedirectToAction("RealEdit", new { Id = r.Id });
         }
 
         public ActionResult Index()
@@ -289,10 +329,10 @@ namespace PROJECTBDS.Controllers
                 Wards = new SelectList(_db.tblWard.Where(t => t.DistrictId == m.DistrictId), "Id", "Name", m.WardId),
                 Country = m.Address
             };
-            
+
             return View(user);
         }
-        
+
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult UpdateUser(UserEditViewModel f, HttpPostedFileBase file)
@@ -315,7 +355,7 @@ namespace PROJECTBDS.Controllers
             user.FullName = f.FullName;
             user.WardId = f.WardId;
             user.Sex = f.Gender == EnumGender.Nam ? true : false;
-            
+
             if (file.AllowFile())
             {
                 if (user.Image != null)

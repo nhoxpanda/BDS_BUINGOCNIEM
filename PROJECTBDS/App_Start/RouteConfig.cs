@@ -9,6 +9,11 @@ namespace PROJECTBDS
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+               name: "TimKiemBatDongSan",
+               url: "tim-kiem-bat-dong-san/",
+               defaults: new { controller = "Home", action = "TimKiemBatDongSan" }
+           );
 
             routes.MapRoute(
                name: "DangKy",

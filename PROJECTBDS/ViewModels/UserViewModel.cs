@@ -28,7 +28,7 @@ namespace PROJECTBDS.ViewModels
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Username không để trống", AllowEmptyStrings = false)]
-        [RegularExpression("(^[a-zA-Z0-9_'-]+$)", ErrorMessage = "Username chỉ chứa các ký tự chữ, số và _")]
+        [RegularExpression("(^[a-zA-Z0-9_@.'-]+$)", ErrorMessage = "Username chỉ chứa các ký tự chữ, số và _")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Mật khẩu không để trống"), MinLength(3, ErrorMessage = "Mật khẩu ít nhất 3 ký tự")]

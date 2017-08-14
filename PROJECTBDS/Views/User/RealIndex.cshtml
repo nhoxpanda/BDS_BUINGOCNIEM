@@ -26,7 +26,7 @@
                                 <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
+                                    <tr id="post@(item.Id)">
                                         <td>@item.Id</td>
                                         <td><a href="@Url.Action("RealEdit", "User", new {id = item.Id })"><img src="@item.Image" alt="@item.Title" style="width: 50px" /></a></td>
                                         <td><a href="@Url.Action("RealEdit", "User", new {id = item.Id })">@item.Title.Truncate(150)</a></td>
@@ -34,7 +34,7 @@
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Actions">
                                                 <a class="btn btn-sm btn-success" href="@Url.Action("RealEdit", "User", new {id = item.Id})">Sửa</a>
-                                                <a class="btn btn-sm btn-warning" href="@Url.Action("DeleteReal", "User", new {id = item.Id})">Xóa</a>
+                                                <a class="btn btn-sm btn-warning" onclick="deletePost(@item.Id);">Xóa</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -54,3 +54,39 @@
         </div>
     </div>
 </section>
+
+@section scripts {
+    <script>
+        
+        function deletePost(id) {
+            bootbox.dialog({
+                title: 'Xác nhận xóa',
+                message: "Bạn muốn xóa tin đăng này! Việc này sẽ không thể phục hồi.",
+                buttons: {
+                    ok: {
+                        label: 'Đồng ý',
+                        className: 'btn-success',
+                        callback: function () {
+                            var dataPost = { id: id };
+                            $.ajax({
+                                type: "POST",
+                                url: '/User/RealDelete',
+                                data: JSON.stringify(dataPost),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function () {
+                                    $("#post" + id).fadeOut();
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: 'Hủy',
+                        className: 'btn-danger'
+                        }
+                }
+            });
+            
+        }
+    </script>
+}

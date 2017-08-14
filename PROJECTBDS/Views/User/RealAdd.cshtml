@@ -8,14 +8,15 @@
                 @using (Html.BeginForm("RealAdd", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-post-real" }))
                 {
                     @Html.Partial("_FormReal", Model)
-                }
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-success">Thêm mới</button>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-success">Thêm mới</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+                
             </div>
             <div class="col-md-3">
                 @Html.Partial("_UserPartial", ViewBag.User as UserProfileViewModel)

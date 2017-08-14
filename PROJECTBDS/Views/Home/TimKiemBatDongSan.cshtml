@@ -1,0 +1,225 @@
+﻿@Html.Partial("_HeaderPage", "SIÊU THỊ ĐỊA ỐC")
+@using Humanizer
+@using PagedList.Mvc
+@using PROJECTBDS.Infrastructure
+@using PROJECTBDS.Models
+@model PagedList.IPagedList<PROJECTBDS.Models.tblLand>
+
+@helper DisplayPrice(tblLand data)
+{
+    var db = new LandSoftEntities();
+
+    var gia = data.Price.ToString();
+
+    var donVi = db.tblDictionary.FirstOrDefault(t => t.Id == data.UnitId && t.CategoryId == 12);
+
+        if (string.IsNullOrEmpty(gia) || gia.Equals("0"))
+        {
+        @:Thỏa thuận
+        return;
+        }
+
+decimal number;
+
+var value = string.Empty;
+
+if (!decimal.TryParse(gia, out number))
+{
+            @value
+            return;
+        }
+
+        if (number % 1 == 0)
+        {
+            if (donVi != null)
+            {
+                value = Convert.ToDecimal(gia).ToString("N0") + " " + donVi.Title;
+            }
+        }
+        if (number % 1 != 0)
+        {
+            if (donVi != null)
+            {
+                value = Convert.ToDecimal(gia).ToString("N2") + " " + donVi.Title;
+            }
+        }
+                        @value;
+        }
+<section class="content-bottom page-event page-real">
+    <div class="container">
+        <div class="row">
+            <div class="news-list col-md-9">
+                <div class="news-list">
+                    <div class="news-box">
+                        <div class="title-news">
+                            <h2>Tìm kiếm bất động sản</h2>
+                            <span></span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="content-news-lst">
+                            <div class="search-result">Có @Model.Count kết quả tìm kiếm Bất động sản</div>
+                            <ul>
+                                @foreach (var item in Model)
+                                {
+                                    <li>
+                                        <a href="@Url.RouteUrl("SieuThiDiaOc", new {slug = item.Title.UrlFriendly()+"-"+item.Id})">
+                                            <img src="@item.Image" alt="">
+                                        </a>
+                                        <div class="r-listnews">
+                                            <div class="right-listnews">
+                                                <a href="@Url.RouteUrl("SieuThiDiaOc", new {slug = item.Title.UrlFriendly()+"-"+item.Id})">
+                                                    @item.Title
+                                                </a>
+                                                @Html.Raw(item.Content.Truncate(120))
+                                            </div>
+                                            <div class="address-icon">
+                                                <span class="icon-address-box"></span> @item.Address
+                                            </div>
+                                            <div class="right-icon">
+                                                <span style="float: none; margin-top: 0; font-size: 18px;">Giá</span><label><b>@DisplayPrice(item)</b></label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-ul" style="height: 35px;">
+                        <ul class="pagination">
+                            @Html.PagedListPager(Model, page => Url.Action("TimKiemBatDongSan", "Home",
+                                new
+                                {
+                                    page,
+                                    s = Request["s"],
+                                    province = Request["province"],
+                                    district = Request["district"],
+                                    type = Request["type"],
+                                    method = Request["method"],
+                                    direction = Request["direction"],
+                                    price = Request["price"]
+                                }))
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="event-box col-md-3">
+                <div class="search-bds">
+                    <div class="title-sr">
+                        <img src="~/Content/assets/images/search-icon.png" alt="Tìm kiếm">
+                        Tìm kiếm bất động sản
+                    </div>
+                    <div class="bg-search">
+                        <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
+                            <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
+                            @Html.DropDownList("ProvinceId", ViewBag.ProvinceId as SelectList, new { Id = "ProvinceId", Name = "province", @class = "form-control" })
+                            @Html.DropDownList("DistrictId", ViewBag.DistrictId as SelectList, new { Id = "DistrictId", Name = "district", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, new { Id = "TypeId", Name = "type", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Types as SelectList, new { Id = "MethodId", Name = "method", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Directions as SelectList, new { Id = "DirectionId", Name = "direction", @class = "form-control" })
+
+                            <select name="price" id="rePrice">
+                                <option value="">Khoảng giá</option>
+                                <option value="8">Từ 0 đến 500tr</option>
+                                <option value="9">Từ 500tr đến 1tỷ</option>
+                                <option value="10">Từ 1tỷ đến 2tỷ</option>
+                                <option value="11">Từ 2tỷ đến 4tỷ</option>
+                                <option value="12">Từ 4tỷ đến 7tỷ</option>
+                                <option value="13">Từ 7tỷ đến 10tỷ</option>
+                            </select>
+                            <button type="submit">Tìm kiếm</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ads-r">
+                    <h4>Đăng ký<br> nhận tin bất động sản</h4>
+
+                    <div class="box-input">
+                        <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
+                            <input type="hidden" name="_csrf" value="bVhaX2NVZWorOTgcAWAfOVQvNmslMVZZMiEvMy8bPBA.HhNmVmIxDw=="><div class="form-group field-frontcontact-name required">
+                                <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
+                            </div><div class="form-group field-frontcontact-phone required">
+                                <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
+                            </div><div class="form-group field-frontcontact-email required">
+                                <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
+                            </div><div class="form-group field-frontcontact-type">
+
+                                <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="5">
+
+                                <div class="help-block"></div>
+                            </div><div class="form-group field-frontcontact-object_id">
+
+                                <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
+
+                                <div class="help-block"></div>
+                            </div><div class="form-group field-frontcontact-item_name">
+
+                                <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
+
+                                <div class="help-block"></div>
+                            </div>    	<div class="form-group">
+                                <button type="submit" class="">Đăng ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="ads-banner">
+                    <div class="item">
+                        <a href="http://sunlandsg.vn/du-an/lucasta/mat-bang" target="_blank">
+                            <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" alt="LUCASTA - HẠNH PHÚC GIÁ BAO NHIÊU?">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
+                            <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner1_58f86e0ca90ad.gif" alt="MỞ BÁN CĂN HỘ JAMILA KHANG ĐIỀN QUẬN 9 - MẶT TIỀN SONG HÀNH - CHỈ TỪ 22.5TR/M2">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
+                            <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner4_58f86f0ad7ace.gif" alt="Căn hộ mặt tiền Song hành Quận 9 - mở bán chính thức 14,5tr/m2 - SunlandSG Phân phối chính thức">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{
+    string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section scripts{
+    <script>
+        function getChildren(provinceId, target, controller, valueDefault) {
+            var textValue = "<option value=''>" + valueDefault + "</option>";
+            $(target).html(textValue);
+            var defaultValue = $(target).data("value");
+            if (provinceId !== "") {
+                $(target).html("<option value=''>Loading...</option>").prop('disabled', true);
+                $.ajax({
+                    'url': "@domain/Admin/api/" + controller,
+                    'type': "post",
+                    'data': { 'ProvinceId': provinceId },
+                    success: function (data) {
+                        $(target).html(textValue);
+                        $.each(data, function (index, val) {
+                            $(target).append("<option value='" + val.Id + "' " + (defaultValue === val.Id ? "selected" : "") + ">" + val.Name + "</option>");
+                        });
+                    },
+                    error: function (msg) {
+                        $(target).html(textValue);
+                    },
+                    complete: function () {
+                        $(target).prop("disabled", false);
+                    }
+                });
+            }
+        }
+        jQuery(document).ready(function ($) {
+           $("#ProvinceId").change(function (event) {
+                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            });
+        });
+    </script>
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PagedList;
 
 namespace PROJECTBDS.ViewModels.Home
 {
@@ -12,14 +13,13 @@ namespace PROJECTBDS.ViewModels.Home
 
     public class HomeViewModel
     {
-        public List<DuAnBdsViewModel> BatDongSan { get; set; }
+        public IPagedList<DuAnBdsViewModel> BatDongSan { get; set; }
         public List<DuAnNoiBatViewModel> DuAnNoiBat { get; set; }
 
     }
 
     public class DuAnNoiBatViewModel
     {
-
         public int Id { get; set; }
         public string Title { get; set; }
         public string Slug { get; set; }
@@ -93,5 +93,6 @@ namespace PROJECTBDS.ViewModels.Home
 
         public string ClientName { get; set; }
         public string ClientEmail { get; set; }
+        public string Phone { get; set; }
     }
 }

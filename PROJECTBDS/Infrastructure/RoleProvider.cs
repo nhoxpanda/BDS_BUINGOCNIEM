@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using PROJECTBDS;
+using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Infrastructure
 {
@@ -12,6 +15,16 @@ namespace PROJECTBDS.Infrastructure
 
         public override string[] GetRolesForUser(string username)
         {
+            var db = new LandSoftEntities();
+
+            var roles = db.AspNetUsers.Include(t => t.AspNetRoles).FirstOrDefault(t => t.UserName == username);
+
+            if (roles == null) return new[] { "User" };
+
+            var roleUser = roles.AspNetRoles.FirstOrDefault();
+
+            if (roleUser != null) return new []{ roleUser.Name };
+
             return new[] { "User" };
         }
 

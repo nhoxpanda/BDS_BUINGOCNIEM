@@ -78,7 +78,7 @@
                         <div class="address"><img src="http://sunlandsg.vn/themes/frontend/images/icon-address-2.jpg">@Model.Address</div>
                         <a class="btn btn-block btn-showmap" id="btshowmap" data-lat="10.8428402" data-lng="106.8286851">Xem Vị trí trên Google Map</a>
                         <div class="text-center price">
-                            Giá: <strong>@Model.Gia</strong>
+                            Giá: <strong>@Model.DisplayPrice()</strong>
 
                         </div>
                      
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="hotline text-center">
-                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><strong>0909128189</strong>
+                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><strong>@Model.Phone</strong>
                             </div>
 
                         </div>
