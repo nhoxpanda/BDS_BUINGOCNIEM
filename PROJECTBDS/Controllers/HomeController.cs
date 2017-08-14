@@ -116,7 +116,12 @@ namespace PROJECTBDS.Controllers
             var direction = Request["direction"].AsInt(); 
             var price = Request["price"];
 
-            var priceS = price.Split('|');
+            var priceIndex = price.IndexOf("|", StringComparison.Ordinal);
+            var priceS = new string[] {};
+            if (priceIndex == 0)
+            {
+                priceS = price.Split('|');
+            }
             var priceFrom = 0;
             var priceTo = 0;
             var flag = false || priceS.Length > 1 && 

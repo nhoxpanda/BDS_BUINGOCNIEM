@@ -15,6 +15,12 @@ namespace PROJECTBDS.Helpers
             return _db.tblProvince.OrderBy(p => p.Name).ToList();
         }
 
+
+        public static List<tblDistrict> DistrictList(int idProvince)
+        {
+            return _db.tblDistrict.Where(t=>t.ProvinceId == idProvince).OrderBy(p => p.Name).ToList();
+        }
+
         /// <summary>
         /// Loại BĐS
         /// </summary>

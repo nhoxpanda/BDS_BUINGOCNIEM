@@ -33,32 +33,9 @@ namespace PROJECTBDS.Infrastructure
                 ? new UserProfileViewModel { FullName = user.FullName, Avatar = user.Image } 
                 : new UserProfileViewModel();
 
-            
-            var dis = filterContext.HttpContext.Request.QueryString["district"].AsInt();
-            
-            filterContext.Controller.ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name", filterContext.HttpContext.Request.QueryString["province"].AsInt());
-
-            if (dis > 0)
-            {
-                filterContext.Controller.ViewBag.DistrictId = new SelectList(_db.tblDistrict.Where(t=>t.ProvinceId == dis), "Id", "Name",
-                    filterContext.HttpContext.Request["district"]);
-
-            }
-            else
-            {
-                filterContext.Controller.ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name", filterContext.HttpContext.Request.QueryString["district"]);
-
-            }
-
             filterContext.Controller.ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
-            filterContext.Controller.ViewBag.Categories = new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int) EnumCategory.LoaiBds), "Id",
-                "Title", filterContext.HttpContext.Request.QueryString["type"].AsInt());
-            filterContext.Controller.ViewBag.Types =
-                new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int) EnumCategory.LoaiGd), "Id", "Title", filterContext.HttpContext.Request.QueryString["method"].AsInt());
-            filterContext.Controller.ViewBag.Directions =
-                new SelectList(_db.tblDictionary.Where(m => m.CategoryId == (int) EnumCategory.HuongNha), "Id", "Title", filterContext.HttpContext.Request.QueryString["direction"].AsInt());
-
-
+            filterContext.Controller.ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
+            filterContext.Controller.ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
         }
     }
 }

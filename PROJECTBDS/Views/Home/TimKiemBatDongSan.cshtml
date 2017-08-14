@@ -1,6 +1,7 @@
 ﻿@Html.Partial("_HeaderPage", "SIÊU THỊ ĐỊA ỐC")
 @using Humanizer
 @using PagedList.Mvc
+@using PROJECTBDS.Helpers
 @using PROJECTBDS.Infrastructure
 @using PROJECTBDS.Models
 @model PagedList.IPagedList<PROJECTBDS.Models.tblLand>
@@ -113,12 +114,79 @@ if (!decimal.TryParse(gia, out number))
                     <div class="bg-search">
                         <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
                             <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
-                            @Html.DropDownList("ProvinceId", ViewBag.ProvinceId as SelectList, new { Id = "ProvinceId", Name = "province", @class = "form-control" })
-                            @Html.DropDownList("DistrictId", ViewBag.DistrictId as SelectList, new { Id = "DistrictId", Name = "district", @class = "form-control" })
-                            @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, new { Id = "TypeId", Name = "type", @class = "form-control" })
-                            @Html.DropDownList("CategoryId", ViewBag.Types as SelectList, new { Id = "MethodId", Name = "method", @class = "form-control" })
-                            @Html.DropDownList("CategoryId", ViewBag.Directions as SelectList, new { Id = "DirectionId", Name = "direction", @class = "form-control" })
-
+                            @*@Html.DropDownList("ProvinceId", ViewBag.ProvinceId as List<SelectListItem>, new { Id = "ProvinceId", Name = "province", @class = "form-control" })
+                            @Html.DropDownList("DistrictId", ViewBag.DistrictId as List<SelectListItem>, new { Id = "DistrictId", Name = "district", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Categories as List<SelectListItem>, new { Id = "TypeId", Name = "type", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Types as List<SelectListItem>, new { Id = "MethodId", Name = "method", @class = "form-control" })
+                            @Html.DropDownList("CategoryId", ViewBag.Directions as List<SelectListItem>, new { Id = "DirectionId", Name = "direction", @class = "form-control" })*@
+                            <select name="province" id="ProvinceId">
+                                <option>Tỉnh/Thành phố</option>
+                                @foreach (var item in LoadData.ProvinceList())
+                                {
+                                    var selected = "";
+                                    var value = Request.QueryString["province"].AsInt();
+                                    if (value == item.Id)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option value="@item.Id" @selected >@item.Name</option>
+                                }
+                            </select>
+                            <select name="district" id="district" data-value="">
+                                <option value="">Quận/Huyện</option>
+                                @if (Request.QueryString["district"].AsInt() > 0)
+                                {
+                                    foreach (var item in LoadData.DistrictList(Request.QueryString["province"].AsInt()))
+                                    {
+                                        var selected = "";
+                                        var value = Request.QueryString["district"].AsInt();
+                                        if (value == item.Id)
+                                        {
+                                            selected = "selected";
+                                        }
+                                        <option value="@item.Id" @selected>@item.Name</option>
+                                    }
+                                }
+                            </select>
+                            <select name="type">
+                                <option>Loại Bất động sản</option>
+                                @foreach (var item in LoadData.CategoryList())
+                                {
+                                    var selected = "";
+                                    var value = Request.QueryString["type"].AsInt();
+                                    if (value == item.Id)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option value="@item.Id" @selected>@item.Title</option>
+                                }
+                            </select>
+                            <select name="method">
+                                <option>Loại giao dịch</option>
+                                @foreach (var item in LoadData.TransactionList())
+                                {
+                                    var selected = "";
+                                    var value = Request.QueryString["method"].AsInt();
+                                    if (value == item.Id)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option value="@item.Id" @selected>@item.Title</option>
+                                }
+                            </select>
+                            <select name="direction">
+                                <option>Hướng</option>
+                                @foreach (var item in LoadData.DirectionList())
+                                {
+                                    var selected = "";
+                                    var value = Request.QueryString["direction"].AsInt();
+                                    if (value == item.Id)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option value="@item.Id" @selected>@item.Title</option>
+                                }
+                            </select>
                             <select name="price" id="rePrice">
                                 <option value="">Khoảng giá</option>
                                 <option value="8">Từ 0 đến 500tr</option>
