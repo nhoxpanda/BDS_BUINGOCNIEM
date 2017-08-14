@@ -10,6 +10,18 @@ namespace PROJECTBDS
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "DSDiaOc",
+               url: "sieu-thi-dia-oc",
+               defaults: new { controller = "Lands", action = "Index" }
+            );
+
+            routes.MapRoute(
+              name: "DSDuAn",
+              url: "du-an",
+              defaults: new { controller = "Projects", action = "Index" }
+           );
+
+            routes.MapRoute(
                name: "LienHe",
                url: "lien-he",
                defaults: new { controller = "Home", action = "Contact" }

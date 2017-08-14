@@ -12,23 +12,15 @@ namespace PROJECTBDS.Controllers
 {
     public class ProjectsController : Controller
     {
-        private LandSoftEntities db = new LandSoftEntities();
-        private HomeServices data = new HomeServices();
+        private LandSoftEntities _db = new LandSoftEntities();
+        private HomeServices _data = new HomeServices();
 
         public ActionResult Index(int? page)
         {
-            //int pageN = page ?? 1;
-            //var model = db.tblProject.ToList();
-            //return View(model.ToPagedList(pageN, 30));
-            var model = data.GetDuAnNoiBat();
-            return View();
-
-        }
-
-        public ActionResult Detail(int? id)
-        {
-            var model = db.tblProject.Find(id);
-            return View(model);
+            int pageN = page ?? 1;
+            var model = _data.GetDuAnNoiBat();
+            ViewBag.LeftColumn = _data.GetDuAnNoiBat(5, "0");
+            return View(model.ToPagedList(pageN, 30));
         }
     }
 }

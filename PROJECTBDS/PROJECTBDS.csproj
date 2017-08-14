@@ -3228,6 +3228,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr8-master\js\toastr8.min.js.map" />
+    <Content Include="Areas\Admin\Views\ConfigManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactManage\Subscribe.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3322,6 +3325,8 @@
     <Content Include="Views\Home\TimKiemBatDongSan.cshtml" />
     <Content Include="Views\Shared\_Partial_Advertisement.cshtml" />
     <Content Include="Views\Shared\_Partial_Subscribe.cshtml" />
+    <Content Include="Views\News\Cate.cshtml" />
+    <Content Include="Views\News\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

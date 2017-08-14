@@ -21,11 +21,11 @@ namespace PROJECTBDS.Controllers
         public ActionResult Index(int? page)
         {
             var pageNumber = page ?? 1;
-           
+
             var model = new HomeViewModel
             {
-                DuAnNoiBat = _data.GetDuAnNoiBat(),
-                BatDongSan = _data.GetBatDongSan().OrderByDescending(t=>t.Id).ToPagedList(pageNumber, PostsPerPage)
+                DuAnNoiBat = _data.Get15DuAnNoiBat(),
+                BatDongSan = _data.GetBatDongSan().OrderByDescending(t => t.Id).ToPagedList(pageNumber, PostsPerPage)
             };
             return View(model);
         }
