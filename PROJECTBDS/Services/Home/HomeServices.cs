@@ -15,7 +15,6 @@ namespace PROJECTBDS.Services.Home
     {
         private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-
         public List<DuAnNoiBatViewModel> GetDuAnNoiBat()
         {
             var query = "SELECT p.id, title, Content as excerpt, MetaTitle, metadesc, p.Image, Price, v.Name as Province, t.Name as District " +
@@ -26,12 +25,12 @@ namespace PROJECTBDS.Services.Home
             return (List<DuAnNoiBatViewModel>)_db.Query<DuAnNoiBatViewModel>(query);
         }
 
-        public List<DuAnNoiBatViewModel> GetDuAnNoiBat(int take,string notIn)
+        public List<DuAnNoiBatViewModel> GetDuAnNoiBat(int take, string notIn)
         {
-            var query = "SELECT top "+ take +" p.id, title, Content as excerpt, MetaTitle, metadesc, p.Image, Price, v.Name as Province, t.Name as District " +
+            var query = "SELECT top " + take + " p.id, title, Content as excerpt, MetaTitle, metadesc, p.Image, Price, v.Name as Province, t.Name as District " +
                         "FROM tblProject p " +
                         "LEFT JOIN tblProvince v ON(v.Id = p.ProvinceId) " +
-                        "LEFT JOIN tblDistrict t ON(t.Id = p.DistrictId and v.Id = t.ProvinceId) WHERE p.Id NOT IN(" + notIn + ") "+
+                        "LEFT JOIN tblDistrict t ON(t.Id = p.DistrictId and v.Id = t.ProvinceId) WHERE p.Id NOT IN(" + notIn + ") " +
                         "ORDER BY p.id DESC ";
             return (List<DuAnNoiBatViewModel>)_db.Query<DuAnNoiBatViewModel>(query);
         }
@@ -59,7 +58,7 @@ namespace PROJECTBDS.Services.Home
                 "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) AND d4.CategoryId = 2 " +
                 "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) AND d6.CategoryId = 4 " +
                 "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) ";
-                 //       "ORDER BY l.Id DESC";
+            //       "ORDER BY l.Id DESC";
 
             //var query = "SELECT * FROM " +
             //        "(SELECT ROW_NUMBER() OVER(ORDER BY l.Id) AS Numero, " +
@@ -124,7 +123,6 @@ namespace PROJECTBDS.Services.Home
             return _db.Query<Land>(query).Single();
         }
 
-
         public List<JsonHome> GetDistricts(long idProvince)
         {
             var query = "SELECT  Id, Name " +
@@ -133,7 +131,6 @@ namespace PROJECTBDS.Services.Home
 
             return (List<JsonHome>)_db.Query<JsonHome>(query);
         }
-
 
         public void UpdateUser(UserEditViewModel f)
         {
@@ -153,13 +150,18 @@ namespace PROJECTBDS.Services.Home
             _db.Execute(query);
         }
 
+        public List<tblImage> GetImageByCate(int id)
+        {
+            var query = "SELECT * FROM tblImage WHERE DictionaryId = " + id + " ORDER BY Orders";
+            return (List<tblImage>)_db.Query<tblImage>(query);
+        }
+
         public void RealDelete(int id)
         {
             var query = "DELETE FROM tblLand WHERE Id = " + id;
 
             _db.Execute(query);
         }
-
     }
 
 }

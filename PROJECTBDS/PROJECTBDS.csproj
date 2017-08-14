@@ -295,6 +295,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model.Context.cs">
@@ -312,6 +315,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SplitString_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -319,6 +328,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblConfig.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblContact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblCustomer.cs">
@@ -353,12 +365,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Home\HomeServices.cs" />
+    <Compile Include="Services\News\AboutServices.cs" />
+    <Compile Include="Services\News\EventServices.cs" />
+    <Compile Include="Services\News\NewServices.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EnumAccountType.cs" />
     <Compile Include="ViewModels\EnumCategory.cs" />
     <Compile Include="ViewModels\EnumProject.cs" />
     <Compile Include="ViewModels\EnumGender.cs" />
     <Compile Include="ViewModels\EnumTypeMethod.cs" />
+    <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\Home\DuAnNoiBatViewModel.cs" />
     <Compile Include="ViewModels\Home\DuAnViewModel.cs" />
     <Compile Include="ViewModels\RealViewModel.cs" />
@@ -1471,6 +1487,11 @@
     <Content Include="Content\ckfinder\skins\v1\skin.js" />
     <Content Include="Content\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\toastr8-master\css\toastr8.css" />
+    <Content Include="Content\toastr8-master\css\toastr8.min.css" />
+    <Content Include="Content\toastr8-master\img\win8.jpg" />
+    <Content Include="Content\toastr8-master\js\toastr8.js" />
+    <Content Include="Content\toastr8-master\js\toastr8.min.js" />
     <Content Include="Content\__ckfinder\bin\Debug\CKFinder.dll" />
     <Content Include="Content\__ckfinder\bin\Debug\CKFinder.pdb" />
     <Content Include="Content\__ckfinder\bin\Release\CKFinder.dll" />
@@ -3206,6 +3227,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\toastr8-master\js\toastr8.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3298,6 +3320,8 @@
     <Content Include="Views\Shared\_HeaderPage.cshtml" />
     <Content Include="Views\Home\_DuAnKhac.cshtml" />
     <Content Include="Views\Home\TimKiemBatDongSan.cshtml" />
+    <Content Include="Views\Shared\_Partial_Advertisement.cshtml" />
+    <Content Include="Views\Shared\_Partial_Subscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

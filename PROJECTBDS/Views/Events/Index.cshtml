@@ -1,5 +1,8 @@
-﻿@{
-}
+﻿@using PROJECTBDS.ViewModels
+@using PROJECTBDS.Helpers
+@using PROJECTBDS.Infrastructure
+@using PagedList.Mvc
+@model PagedList.IPagedList<EventViewModel>
 
 <section class="head-bg-bottom">
     <div class="container">
@@ -16,25 +19,28 @@
                         Danh sách sự kiện
                     </div>
                     <div class="box-content">
-                        <div class="news-list events-list">
-                            <a href="/su-kien/le-cong-bo-va-gioi-thieu-du-an-can-ho-jamila" class="item">
-                                <div class="item-image"><img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/post/thumb/can-ho-jamila-khang-dien-q9(8)_5912b8e492caa.jpg"></div>
-                                <div class="item-info">
-                                    <h3 class="item-title">LỄ CÔNG BỐ VÀ GIỚI THIỆU DỰ ÁN CĂN HỘ JAMILA</h3>
-                                    <div class="item-description">Ngày 21/5/2017, Khang Điền sẽ chính thức ra mắt thị trường dòng sản phẩm căn hộ đầu tiên tại quận 9. sản phẩm có tên gọi JAMILA. </div>
-                                </div>
-                                <div class="item-bottom">
-                                    <div class="attribute"><span class="glyphicon glyphicon-time"></span>08h - 21/05/2017</div>
-                                    <div class="attribute attribute-location"><span class="glyphicon glyphicon glyphicon-map-marker"></span>Đường Song Hành, quận 9, TP. Hồ Chí Minh - Quận 9  -  Hồ Chí Minh</div>
-
-                                </div>
-                            </a>
-                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="news-list events-list">
+                                <a href="/su-kien/@item.Title.UrlFriendly()-sk@(item.Id)" title="@item.Title" class="item">
+                                    <div class="item-image">
+                                        <img class="img-responsive" src="@item.Image" title="@item.Title" style="width: 255px"></div>
+                                    <div class="item-info">
+                                        <h3 class="item-title">@item.Title</h3>
+                                        <div class="item-description">@item.Desc</div>
+                                    </div>
+                                    <div class="item-bottom">
+                                        <div class="attribute"><span class="glyphicon glyphicon-time"></span>@string.Format("{0:hh:mm tt - dd/MM/yyyy}", item.Date)</div>
+                                        <div class="attribute attribute-location"><span class="glyphicon glyphicon glyphicon-map-marker"></span>@item.Address - @item.District - @item.Province</div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                         <div class="pagination-wraper text-center">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }) )
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-3">
                 <div class="box-search box-search-fixtop">
@@ -42,88 +48,25 @@
                         Tìm kiếm sự kiện
                     </div>
                     <div class="box-content">
-
-                        <form id="eventSearchForm" role="form" action="/tim-kiem-su-kien" method="get">
-                            <input type="text" name="s" id="s" class="form-control" placeholder="Nhập tin cần tìm" value="">
-                            <select name="timetype" id="timetype" class="form-control">
-                                <option value="">Tất cả các thời gian</option>
-                                <option value="1">Sắp diễn ra</option>
-                                <option value="2">Đang diễn ra</option>
-                                <option value="3">Đã diễn ra</option>
-                                <option value="4">Chọn ngày diễn ra</option>
+                        <div id="eventSearchForm">
+                            <select name="timetype" id="txtTimeTypeSearchEvent" class="form-control">
+                                <option value="0">Tất cả các thời gian</option>
+                                @foreach (var item in LoadData.TimeList())
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
+                                <option value="-1">Chọn ngày diễn ra</option>
                             </select>
-                            <input type="text" name="day" id="day" placeholder="Nhập ngày cần tìm" value="" data-provide="datepicker" data-date-format="dd/mm/yyyy" class="form-control hide">
-                            <select name="province" id="province" class="form-control">
-                                <option value="">Tỉnh/Thành phố</option>
-                                <option value="79">Hồ Chí Minh</option>
-                                <option value="1">Hà Nội</option>
-                                <option value="48">Đà Nẵng</option>
-                                <option value="2">Hà Giang</option>
-                                <option value="4">Cao Bằng</option>
-                                <option value="6">Bắc Kạn</option>
-                                <option value="8">Tuyên Quang</option>
-                                <option value="10">Lào Cai</option>
-                                <option value="11">Điện Biên</option>
-                                <option value="12">Lai Châu</option>
-                                <option value="14">Sơn La</option>
-                                <option value="15">Yên Bái</option>
-                                <option value="17">Hòa Bình</option>
-                                <option value="19">Thái Nguyên</option>
-                                <option value="20">Lạng Sơn</option>
-                                <option value="22">Quảng Ninh</option>
-                                <option value="24">Bắc Giang</option>
-                                <option value="25">Phú Thọ</option>
-                                <option value="26">Vĩnh Phúc</option>
-                                <option value="27">Bắc Ninh</option>
-                                <option value="30">Hải Dương</option>
-                                <option value="31">Hải Phòng</option>
-                                <option value="33">Hưng Yên</option>
-                                <option value="34">Thái Bình</option>
-                                <option value="35">Hà Nam</option>
-                                <option value="36">Nam Định</option>
-                                <option value="37">Ninh Bình</option>
-                                <option value="38">Thanh Hóa</option>
-                                <option value="40">Nghệ An</option>
-                                <option value="42">Hà Tĩnh</option>
-                                <option value="44">Quảng Bình</option>
-                                <option value="45">Quảng Trị</option>
-                                <option value="46">Thừa Thiên Huế</option>
-                                <option value="49">Quảng Nam</option>
-                                <option value="51">Quảng Ngãi</option>
-                                <option value="52">Bình Định</option>
-                                <option value="54">Phú Yên</option>
-                                <option value="56">Khánh Hòa</option>
-                                <option value="58">Ninh Thuận</option>
-                                <option value="60">Bình Thuận</option>
-                                <option value="62">Kon Tum</option>
-                                <option value="64">Gia Lai</option>
-                                <option value="66">Đắk Lắk</option>
-                                <option value="67">Đắk Nông</option>
-                                <option value="68">Lâm Đồng</option>
-                                <option value="70">Bình Phước</option>
-                                <option value="72">Tây Ninh</option>
-                                <option value="74">Bình Dương</option>
-                                <option value="75">Đồng Nai</option>
-                                <option value="77">Bà Rịa - Vũng Tàu</option>
-                                <option value="80">Long An</option>
-                                <option value="82">Tiền Giang</option>
-                                <option value="83">Bến Tre</option>
-                                <option value="84">Trà Vinh</option>
-                                <option value="86">Vĩnh Long</option>
-                                <option value="87">Đồng Tháp</option>
-                                <option value="89">An Giang</option>
-                                <option value="91">Kiên Giang</option>
-                                <option value="92">Cần Thơ</option>
-                                <option value="93">Hậu Giang</option>
-                                <option value="94">Sóc Trăng</option>
-                                <option value="95">Bạc Liêu</option>
-                                <option value="96">Cà Mau</option>
+                            <input type="date" name="day" id="txtDaySearchEvent" placeholder="Nhập ngày cần tìm" value="" data-provide="datepicker" data-date-format="dd/mm/yyyy" class="form-control hide">
+                            <select name="province" id="txtProvinceSearchEvent" class="form-control">
+                                <option value="0">Tỉnh/Thành phố</option>
+                                @foreach (var item in LoadData.ProvinceList())
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             </select>
-                            <button class="btn btn-block" type="submit">Tìm kiếm</button>
-                        </form>
-
-
-
+                            <button class="btn btn-block" id="btnSearchEvent" type="button">Tìm kiếm</button>
+                        </div>
                     </div>
                 </div>
                 <div class="box-sidebar box-event-hot">
@@ -133,58 +76,7 @@
                     <div class="box-content">
                     </div>
                 </div>
-                <div class="event-box">
-                    <div class="ads-r">
-                        <h4>Đăng ký<br> nhận tin sự kiện</h4>
-
-                        <div class="box-input">
-                            <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
-                                <input type="hidden" name="_csrf" value="dXpNbzBzWmItSQwASjAKDRM0CFh/OG87Pzc/N3MyHjoyKj8nAToAGA=="><div class="form-group field-frontcontact-name required">
-                                    <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-phone required">
-                                    <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-email required">
-                                    <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-type">
-
-                                    <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="1">
-
-                                    <div class="help-block"></div>
-                                </div><div class="form-group field-frontcontact-object_id">
-
-                                    <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
-
-                                    <div class="help-block"></div>
-                                </div><div class="form-group field-frontcontact-item_name">
-
-                                    <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
-
-                                    <div class="help-block"></div>
-                                </div>    	<div class="form-group">
-                                    <button type="submit" class="">Đăng ký</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="ads-banner">
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/lucasta/mat-bang" target="_blank">
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" alt="LUCASTA - HẠNH PHÚC GIÁ BAO NHIÊU?">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner1_58f86e0ca90ad.gif" alt="MỞ BÁN CĂN HỘ JAMILA KHANG ĐIỀN QUẬN 9 - MẶT TIỀN SONG HÀNH - CHỈ TỪ 22.5TR/M2">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target="_blank">
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner4_58f86f0ad7ace.gif" alt="Căn hộ mặt tiền Song hành Quận 9 - mở bán chính thức 14,5tr/m2 - SunlandSG Phân phối chính thức">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_Partial_Subscribe")
             </div>
         </div>
     </div>

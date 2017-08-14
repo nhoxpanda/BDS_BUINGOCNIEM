@@ -1,1 +1,23 @@
 ﻿
+@using PROJECTBDS.Models
+@model IEnumerable<tblImage>
+
+<div class="logo-box">
+    <div class="title-logo">Chủ đầu tư & đối tác uy tín</div>
+    <div class="carousel-wrapper">
+        <div class="customNavigation">
+            <a class="btn logo-load-prev glyphicon glyphicon-menu-left"></a>
+            <a class="btn logo-load-next glyphicon glyphicon-menu-right"></a>
+        </div>
+        <div class="logo-load owl-carousel owl-theme">
+            @foreach (var item in Model)
+            {
+                <div class="owl-item">
+                    <a href="@item.URL" target="_blank">
+                        <img class="img-responsive" src="~/Images/Sliders/@item.Image" alt="@item.URL">
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

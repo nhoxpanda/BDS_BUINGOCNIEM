@@ -12,7 +12,6 @@
         <li class="active">Thêm mới image</li>
     </ol>
 </section>
-
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -24,36 +23,29 @@
                             <div class="row" style="margin-top: 20px">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Tiêu đề</label>
+                                        <label class="control-label col-lg-2 col-md-2">Link</label>
                                         <div class="col-lg-4 col-md-4">
-                                            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(model => model.URL, new { @class = "form-control" })
                                         </div>
                                         <label class="control-label col-lg-2 col-md-2">Ảnh</label>
                                         <div class="col-lg-4 col-md-4">
-
-                                            <img src="" id="_Image" style="width:100px;height:100px;border:1px solid #ff6a00" />
-                                            <input name="url" id="url" style="display:none" /><input type="button" class="btn btn-n" onclick="openfile()" value="Open">
+                                            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type = "file", required = "required" })
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Loại ảnh</label>
                                         <div class="col-lg-4 col-md-4">
-
                                             @Html.DropDownListFor(model => model.DictionaryId, ViewBag.DictionaryId as List<SelectListItem>, new { name = "Title", id = "DictionaryId", @class = "selectpicker" })
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Order</label>
-                                        <div class="col-lg-10 col-md-10">
-                                            @Html.TextBoxFor(model => model.Orders, new { @class = "form-control" })
+                                        <label class="control-label col-lg-2 col-md-2">Thứ tự hiển thị</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Orders, new { @class = "form-control", type = "number" })
                                         </div>
                                     </div>
-                                 
                                     <div class="form-group">
                                         <div class="col-lg-10 col-md-10 col-md-offset-2">
                                             <button class="btn  btn-success" name="btnSave" type="submit">Lưu lại</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -64,26 +56,10 @@
         </div>
     </div>
 </section>
-
 @section scripts{
     <script src="~/Areas/Admin/Content/JS/bootstrap-select.min.js"></script>
-    <script>
-        function openfile() {
-            var finder = new CKFinder();
-            //finder.basePath = '../';
-            finder.selectActionFunction = SetFileField;
-            finder.popup();
-        }
-        function SetFileField(fileUrl) {
-            $('#_Image').attr('src', fileUrl);
-             $('#url').val(fileUrl);
-        }
-    </script>
 }
-
-
 
 @section style{
     <link href="~/Areas/Admin/Content/Css/bootstrap-select.min.css" rel="stylesheet" />
 }
-

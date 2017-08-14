@@ -1,6 +1,7 @@
 ﻿@using PROJECTBDS.Helpers
 @{
     string domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+    var config = LoadData.Config();
 }
 <!DOCTYPE html>
 <html>
@@ -41,9 +42,9 @@
                     </div>
                     @{
                         if (Auth.User != null)
-                                {
+                        {
                             <div class="login">
-                                <strong>@Html.Encode(User.Identity.Name)</strong>  
+                                <strong>@Html.Encode(User.Identity.Name)</strong>
                                 <a rel="nofollow" href="@Url.Action("Index", "User")">@Auth.User.Username Profile của tôi</a>
                                 <a rel="nofollow" href="@Url.Action("Logout", "User")">Thoát</a>
                             </div>
@@ -56,7 +57,7 @@
                             </div>
                         }
                     }
-                    
+
                     <div class="menu-mobile2">
                         <a class="menu-default" href="/">
                             <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Sàn giao dịch bất sản Sunland">
@@ -70,7 +71,7 @@
                             <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Dự án bất động sản mới">
                             Dự án
                         </a>
-                        <a class="menu-about" href="/gioi-thieu">
+                        <a class="menu-about" href="/gioi-thieu/so-luoc-cong-ty-2">
                             <img class="search-mobile" src="~/Content/assets/img/icon-menu.svg" alt="Giới thiệu sàn giao dịch bất động sản Sunland">
                             Giới thiệu
                         </a>
@@ -113,10 +114,10 @@
                     }
                 </div>
                 <div class="social">
-                    <a target="_blank" rel="nofollow" href="skype:jsgiang?chat"><span class="icon-social-buttons-skype"></span></a>
-                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/sunlandsg/"><span class="icon-facebook-logo"></span></a>
-                    <a target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+SunlandH%E1%BB%93Ch%C3%ADMinh"><span class="icon-google-plus-social-logotype"></span></a>
-                    <a target="_blank" rel="nofollow" href="https://www.youtube.com/channel/UCo_caVoxyXoGbQrxNAHhQVw"><span class="icon-youtube-play-button"></span></a>
+                    <a target="_blank" rel="nofollow" href="skype:@config.Skype?chat"><span class="icon-social-buttons-skype"></span></a>
+                    <a target="_blank" rel="nofollow" href="@config.Facebook"><span class="icon-facebook-logo"></span></a>
+                    <a target="_blank" rel="nofollow" href="@config.GooglePlus"><span class="icon-google-plus-social-logotype"></span></a>
+                    <a target="_blank" rel="nofollow" href="@config.Youtube"><span class="icon-youtube-play-button"></span></a>
                 </div>
             </div>
         </div>
@@ -132,22 +133,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/" title="Bất động sản Bùi Ngọc Niệm"><img alt="Bất động sản Bùi Ngọc Niệm" src="/Content/assets/img/logo.png"></a>
+                    <a class="navbar-brand" href="/" title="Bất động sản Bùi Ngọc Niệm">
+                        <img alt="Bất động sản Bùi Ngọc Niệm" src="~/Images/@config.Logo">
+                    </a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="menu-content collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="menu-realestate"><a href="/sieu-thi-dia-oc" title="Siêu thị dự án, siêu thị địa ốc">Siêu thị địa ốc</a></li>
                         <li class="menu-projects"><a href="/du-an" title="Dự án bất động sản">Dự án</a></li>
-                        <li class="menu-about"><a href="/gioi-thieu" title="Giới thiệu sàn giao dịch bất động sản Sunland">Giới thiệu</a></li>
+                        <li class="menu-about"><a href="/gioi-thieu/so-luoc-cong-ty-2" title="Giới thiệu sàn giao dịch bất động sản Sunland">Giới thiệu</a></li>
                         <li class="menu-news"><a href="/tin-tuc" title="Tin bất động sản, khuyến mãi">Tin BĐS - Khuyến mãi</a></li>
                         <li class="menu-events"><a href="/su-kien" title="Sự kiện, Event các dự án mới">Sự kiện</a></li>
                         <li class="menu-contact"><a href="/lien-he" title="Liên hệ Sàn giao dịch bất động sản Sunland">Liên hệ</a></li>
                     </ul>
 
                 </div>
-                <a href="@Url.Action("Create", "User")">
+                <a href="@Url.Action("RealAdd", "User")">
                     <div class="ad-button">
                         <span class="icon-dangtin"> </span>
                         <b>Đăng tin</b>
@@ -163,8 +165,7 @@
             <div class="row gutter-0">
                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                     <div class="left-logo">
-                        <a href="/"><img src="/Content/assets/img/logo-footer1.jpg"></a>
-                        <a href="/"><img src="/Content/assets/img/logo-footer2.jpg"></a>
+                        <a href="/"><img src="~/Images/@config.Logo"></a>
                     </div>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
@@ -176,42 +177,25 @@
             </div>
             <div class="address-footer">
                 <div class="row">
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-8 col-xs-12">
                         <div class="colums1-footer no-border">
-                            <h6>SÀN GIAO DỊCH BĐS Bùi Ngọc Niệm</h6>
+                            <h6>@config.Name</h6>
                             <div class="footer-ad">
                                 <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                                85A, Phan Kế Bính, P. ĐaKao, Quận 1, TP. HCM
+                                @config.Address
                             </div>
                             <div class="footer-ad">
                                 <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                                ĐT: (08) 3910.2522 – Fax: (08) 3823.0210
+                                ĐT: @config.Phone – Fax: @config.Fax
                             </div>
                             <div class="footer-ad">
                                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                <a target="_blank" href="mailto:info@sunland.vn" style="">info@sunland.vn</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="colums1-footer ">
-                            <h6>SÀN GIAO DỊCH BĐS Bùi Ngọc Niệm - QUẬN 9</h6>
-                            <div class="footer-ad">
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                                505 Liên Phường, P. Phước Long B, Quận 9, TP. HCM
-                            </div>
-                            <div class="footer-ad">
-                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                                ĐT: (08) 6280.6166 – Fax: (08) 6280.6168
-                            </div>
-                            <div class="footer-ad">
-                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                <a target="_blank" href="mailto:info@sunland.vn" style="">info@sunland.vn</a>
+                                <a target="_blank" href="mailto:@config.Email" style="">@config.Email</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4 col-xs-12" style="overflow:hidden">
-                        <a href="https://www.facebook.com/sunlandsg" target="_blank" rel="nofollow" style="overflow:hidden">
+                        <a href="@config.Facebook" target="_blank" rel="nofollow" style="overflow:hidden">
                             <img src="/Content/assets/img/fanpage.jpg">
                         </a>
                     </div>
@@ -221,17 +205,16 @@
         <div class="bottom-footer">
             <div class="container p-footer text-center">
                 <p>
-                    © 2017 Copyright by <span>BĐS BÙI NGỌC NIỆM</span>. Developed by DIP Vietnam<br>
-                    Giấy phép ĐKKD số 0312632653 do Sở Kế hoạch và Đầu tư TPHCM cấp ngày 20/01/2014
+                    © 2017 Copyright by <span>@config.Name</span>. Developed by DIP Vietnam<br>
+                    Giấy phép ĐKKD số @config.LicenseNumber do Sở Kế hoạch và Đầu tư @config.IssuedPlace cấp ngày @string.Format("{0:dd/MM/yyyy}", config.IssuedDate)
                 </p>
                 <ul>
                     <li><a href="/dang-nhap">Đăng tin miễn phí</a></li>
                     <li><a href="/sieu-thi-dia-oc" title="Siêu thị dự án">Siêu thị địa ốc</a></li>
                     <li><a href="/du-an" title="Dự án bất động sản, chung cư, nhà phố">Dự án</a></li>
-                    <li><a href="/gioi-thieu" title="Giới thiệu sàn giao dịch bất động sản Sunland">Giới thiệu</a></li>
+                    <li><a href="/gioi-thieu" title="Giới thiệu sàn giao dịch bất động sản">Giới thiệu</a></li>
                     <li><a href="/tin-tuc" title="Tin bất động sản">Tin tức</a></li>
                     <li><a href="/su-kien" title="Sự kiện bất động sản diễn ra trong tuần">Sự kiện</a></li>
-                    <li><a href="/#">Tuyển dụng</a></li>
                     <li class="last"><a href="/lien-he" title="Liên hệ giao dịch bất động sản">Liên hệ</a></li>
                 </ul>
             </div>
@@ -246,15 +229,16 @@
         </a>
     </div>
     <div class="skype-pixel">
-        <a href="skype:"><span class="icon-social-buttons-skype"></span> Hỗ trợ skype</a>
+        <a href="skype:@config.Skype?chat"><span class="icon-social-buttons-skype"></span> Hỗ trợ skype</a>
     </div>
     <div class="phone-pixel">
-        <a href="tel:0938 779 660"><span class="icon-telephone-auricular-with-cable"></span><b>0938 779 660<b></b></b></a><b>
+        <a href="tel:@config.Hotline"><span class="icon-telephone-auricular-with-cable"></span><b>@config.Hotline<b></b></b></a><b>
             <b>
             </b>
         </b>
     </div>
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Content/assets/js/jquery.js"></script>
     <script type="text/javascript" src="/Content/assets/js/conversion.js"></script>
@@ -265,6 +249,7 @@
     <script src="/Content/assets/js/owl.carousel.js"></script>
     <script src="/Content/assets/js/img2svg.js"></script>
     <script src="/Content/assets/js/bootbox.min.js"></script>
+    <script src="~/Content/toastr8-master/js/toastr8.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery(document).ready(function ($) {
@@ -281,7 +266,7 @@
                         owllogo.trigger('owl.next');
                     });
                 $('.logo-load-prev')
-                    .click(function() {
+                    .click(function () {
                         owllogo.trigger('owl.prev');
                     });
             });
@@ -327,5 +312,43 @@
         });
     </script>
     @RenderSection("scripts", required: false)
+    <script>
+        $('.head-bg-bottom .search-bds .title-sr').click(function () {
+            $(this).next().toggleClass('hide');
+        });
+        $('.box-sidebar.box-category a').each(function (i, o) {
+            if ($(this).attr('href') == window.location.pathname) {
+                $(this).parent().addClass('active');
+            }
+        });
+        function OnSuccessSubscribe() {
+            $("#subscribe-form").trigger("reset");
+            toastr8.success({
+                message: "Đăng ký nhận tin thành công. Cảm ơn bạn!",
+                title: "Thông báo",
+            });
+        }
+        $("#btnSearchNews").click(function () {
+            window.location = '/tim-kiem-tin-tuc?s=' + $("#txtSearchNews").val() + '&page=1';
+        })
+        $("#btnSearchEvent").click(function () {
+            window.location = '/tim-kiem-su-kien?s=' + $("#txtSearchEvent").val() + '&timetype= ' + $("#txtTimeTypeSearchEvent").val() + '&day=' + $("#txtDaySearchEvent").val() + '&province=' + $("#txtProvinceSearchEvent").val() + '&page=1';
+        })
+        jQuery(document).ready(function ($) {
+            loadDayFilter();
+            $('#eventSearchForm #timetype').change(function () {
+                loadDayFilter();
+            });
+        });
+
+        function loadDayFilter() {
+            if ($('#eventSearchForm #timetype').val() == '-1') {
+                $('#eventSearchForm #day').removeClass('hide');
+            }
+            else {
+                $('#eventSearchForm #day').addClass('hide');
+            }
+        }
+    </script>
 </body>
 </html>

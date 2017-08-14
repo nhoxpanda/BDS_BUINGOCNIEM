@@ -1,0 +1,13 @@
+﻿@using PROJECTBDS.Models
+@model IEnumerable<tblImage>
+
+<div class="ads-banner">
+    @foreach (var item in Model)
+    {
+        <div class="item">
+            <a href="@item.URL" target="_blank">
+                <img class="img-responsive" src="~/Images/Sliders/@item.Image" alt="@item.URL">
+            </a>
+        </div>
+    }
+</div>

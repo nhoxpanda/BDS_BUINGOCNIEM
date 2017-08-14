@@ -32,14 +32,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Tiêu đề</label>
-                                        <div class="col-lg-4 col-md-4">
+                                        <div class="col-lg-10 col-md-10">
                                             @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "required" })
-                                        </div>
-                                        <label class="control-label col-lg-2 col-md-2">Hình đại diện</label>
-                                        <div class="col-lg-4 col-md-4">
-
-                                            <img src="" id="_Image" style="width:100px;height:100px;border:1px solid #ff6a00" />
-                                            <input name="Image" id="Image" style="display:none" /><input type="button" class="btn btn-n" onclick="openfile()" value="Open">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -48,14 +42,12 @@
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Meta Description</label>
                                         <div class="col-lg-10 col-md-10">
                                             @Html.TextAreaFor(model => model.MetaDesc, new { @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Mô tả</label>
                                         <div class="col-lg-10 col-md-10">
@@ -87,15 +79,5 @@
 @section scripts{
     <script>
         CKEDITOR.replace("Contents");
-        function openfile() {
-            var finder = new CKFinder();
-            //finder.basePath = '../';
-            finder.selectActionFunction = SetFileField;
-            finder.popup();
-        }
-        function SetFileField(fileUrl) {
-            $('#_Image').attr('src', fileUrl);
-             $('#Image').val(fileUrl);
-        }
     </script>
 }

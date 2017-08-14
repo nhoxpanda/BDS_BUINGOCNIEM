@@ -12,8 +12,7 @@ namespace PROJECTBDS.Controllers
 {
     public class ProjectsController : Controller
     {
-        LandSoftEntities db = new LandSoftEntities();
-
+        private LandSoftEntities db = new LandSoftEntities();
         private HomeServices data = new HomeServices();
 
         public ActionResult Index(int? page)

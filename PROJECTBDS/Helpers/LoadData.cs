@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,12 +13,6 @@ namespace PROJECTBDS.Helpers
         public static List<tblProvince> ProvinceList()
         {
             return _db.tblProvince.OrderBy(p => p.Name).ToList();
-        }
-
-
-        public static List<tblDistrict> DistrictList(int idProvince)
-        {
-            return _db.tblDistrict.Where(t=>t.ProvinceId == idProvince).OrderBy(p => p.Name).ToList();
         }
 
         /// <summary>
@@ -64,6 +58,24 @@ namespace PROJECTBDS.Helpers
         public static List<tblDictionary> CateNewsList()
         {
             return _db.tblDictionary.Where(p => p.CategoryId == 6 && p.Delete == false).ToList();
+        }
+
+        /// <summary>
+        /// Danh mục thời gian
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblDictionary> TimeList()
+        {
+            return _db.tblDictionary.Where(p => p.CategoryId == 9 && p.Delete == false).ToList();
+        }
+
+        /// <summary>
+        /// cấu hình
+        /// </summary>
+        /// <returns></returns>
+        public static tblConfig Config()
+        {
+            return _db.tblConfig.Find(1);
         }
 
 

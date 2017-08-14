@@ -1,0 +1,85 @@
+﻿@using PROJECTBDS.ViewModels
+@using PROJECTBDS.Helpers
+@using PROJECTBDS.Infrastructure
+@using PagedList.Mvc
+@model PagedList.IPagedList<EventViewModel>
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>Sự kiện</h1>
+    </div>
+</section>
+<section class="content-bottom page-event">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <!-- project-2-->
+                <div class="box box-news-list box-events-list">
+                    <div class="box-title box-title-border">
+                        Danh sách sự kiện
+                    </div>
+                    <div class="news-list events-list">
+                        <div class="search-result">Có @Model.Count() kết quả tìm kiếm Sự kiện</div>
+                        @foreach (var item in Model)
+                        {
+                            <a href="/su-kien/@item.Title.UrlFriendly()-sk@(item.Id)" title="@item.Title" class="item">
+                                <div class="item-image">
+                                    <img class="img-responsive" src="@item.Image" title="@item.Title" style="width: 255px">
+                                </div>
+                                <div class="item-info">
+                                    <h3 class="item-title">@item.Title</h3>
+                                    <div class="item-description">@item.Desc</div>
+                                </div>
+                                <div class="item-bottom">
+                                    <div class="attribute"><span class="glyphicon glyphicon-time"></span>@string.Format("{0:hh:mm tt - dd/MM/yyyy}", item.Date)</div>
+                                    <div class="attribute attribute-location"><span class="glyphicon glyphicon glyphicon-map-marker"></span>@item.Address - @item.District - @item.Province</div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="pagination-wraper text-center">
+                        @Html.PagedListPager(Model, page => "/tim-kiem-su-kien?s=" + ViewBag.Keyword + "&timetype=" + ViewBag.TimeType + "&day=" + ViewBag.Day + "&province=" + ViewBag.Province + "&page=" + page)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box-search box-search-fixtop">
+                    <div class="box-title">
+                        Tìm kiếm sự kiện
+                    </div>
+                    <div class="box-content">
+                        <div id="eventSearchForm">
+                            <input type="text" name="s" id="txtSearchEvent" class="form-control" placeholder="Nhập tin cần tìm" value="">
+                            <select name="timetype" id="txtTimeTypeSearchEvent" class="form-control">
+                                <option value="0">Tất cả các thời gian</option>
+                                @foreach (var item in LoadData.TimeList())
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
+                                <option value="-1">Chọn ngày diễn ra</option>
+                            </select>
+                            <input type="date" name="day" id="txtDaySearchEvent" placeholder="Nhập ngày cần tìm" value="" data-provide="datepicker" data-date-format="dd/mm/yyyy" class="form-control hide">
+                            <select name="province" id="txtProvinceSearchEvent" class="form-control">
+                                <option value="0">Tỉnh/Thành phố</option>
+                                @foreach (var item in LoadData.ProvinceList())
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <button class="btn btn-block" id="btnSearchEvent" type="button">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-sidebar box-event-hot">
+                    <div class="box-title">
+                        Sự kiện sắp diễn ra
+                    </div>
+                    <div class="box-content">
+                    </div>
+                </div>
+                @Html.Partial("_Partial_Subscribe")
+            </div>
+        </div>
+
+    </div>
+</section>

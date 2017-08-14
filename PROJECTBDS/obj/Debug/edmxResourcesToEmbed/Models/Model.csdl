@@ -95,6 +95,8 @@
     <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MetaKeyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IssuedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tblCustomer">
     <Key>
@@ -155,6 +157,7 @@
     <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblDistrict" FromRole="tblDistrict" ToRole="tblLand" />
     <NavigationProperty Name="tblProject" Relationship="Self.FK_tblProject_tblDistrict" FromRole="tblDistrict" ToRole="tblProject" />
     <NavigationProperty Name="tblWard" Relationship="Self.FK_tblWard_tblDistrict" FromRole="tblDistrict" ToRole="tblWard" />
+    <NavigationProperty Name="tblNews" Relationship="LandSoftModel.FK_tblNews_tblDistrict" FromRole="tblDistrict" ToRole="tblNews" />
   </EntityType>
   <EntityType Name="tblImage">
     <Key>
@@ -237,6 +240,10 @@
     <NavigationProperty Name="tblDictionary" Relationship="Self.FK_tblNews_tblDictionary" FromRole="tblNews" ToRole="tblDictionary" />
     <NavigationProperty Name="tblDictionary1" Relationship="Self.FK_tblNews_tblDictionaryTime" FromRole="tblNews" ToRole="tblDictionary" />
     <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblNews_tblProvince" FromRole="tblNews" ToRole="tblProvince" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictId" Type="Int32" />
+    <NavigationProperty Name="tblDistrict" Relationship="LandSoftModel.FK_tblNews_tblDistrict" FromRole="tblNews" ToRole="tblDistrict" />
+    <Property Name="Map" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tblProject">
     <Key>
@@ -791,5 +798,64 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="LandSoftModel.C__MigrationHistory" />
+    <EntitySet Name="sysdiagrams" EntityType="LandSoftModel.sysdiagrams" />
+    <EntitySet Name="tblContact" EntityType="LandSoftModel.tblContact" />
+    <AssociationSet Name="FK_tblNews_tblDistrict" Association="LandSoftModel.FK_tblNews_tblDistrict">
+      <End Role="tblDistrict" EntitySet="tblDistrict" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(LandSoftModel.SplitString_Result)">
+      <Parameter Name="String" Mode="In" Type="String" />
+      <Parameter Name="Delimiter" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tblNews_tblDistrict">
+    <End Type="LandSoftModel.tblDistrict" Role="tblDistrict" Multiplicity="0..1" />
+    <End Type="LandSoftModel.tblNews" Role="tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDistrict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SplitString_Result">
+    <Property Type="Int64" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Data" Nullable="true" MaxLength="4000" />
+  </ComplexType>
 </Schema>

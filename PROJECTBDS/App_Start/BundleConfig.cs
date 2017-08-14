@@ -48,7 +48,8 @@ namespace PROJECTBDS
                "~/Content/assets/css/fonts-css.css",
                "~/Content/assets/css/style.css",
                "~/Content/assets/css/responsive.css",
-               "~/Content/assets/css/custom.css"
+               "~/Content/assets/css/custom.css",
+               "~/Content/toastr8-master/css/toastr8.min.css"
                ));
 
 

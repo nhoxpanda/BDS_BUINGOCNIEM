@@ -11,12 +11,12 @@ namespace PROJECTBDS.Controllers
 {
     public class LandsController : Controller
     {
-        LandSoftEntities db = new LandSoftEntities();
+        private LandSoftEntities db = new LandSoftEntities();
         public ActionResult Index(int? page)
         {
             int pageN = page ?? 1;
             var model = db.tblLand.ToList();
-            return View(model.ToPagedList(pageN,30));
+            return View(model.ToPagedList(pageN, 30));
         }
 
         public ActionResult Detail(int? id)

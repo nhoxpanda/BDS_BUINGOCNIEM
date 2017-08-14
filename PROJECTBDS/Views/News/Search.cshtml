@@ -1,0 +1,79 @@
+﻿@using PROJECTBDS.Models
+@using PROJECTBDS.ViewModels
+@using PROJECTBDS.Infrastructure
+@using PROJECTBDS.Services.News
+@using PROJECTBDS.Helpers
+@using PagedList.Mvc
+@model PagedList.IPagedList<EventViewModel>
+@{
+    var CategoryList = ViewBag.CategoryList as List<CategoryNewsViewModel>;
+    ViewBag.Title = "Tìm kiếm tin tức";
+    ViewBag.Desc = "Tìm kiếm tin tức";
+}
+
+<section class="head-bg-bottom">
+    <div class="container">
+        <h2>Tin bất động sản</h2>
+    </div>
+</section>
+<section class="content-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box box-news-list">
+                    <div class="box-title box-title-border">
+                        Tìm kiếm tin tức
+                    </div>
+                    <div class="box-content">
+                        <div class="news-list">
+                            <div class="search-result">Có @Model.Count kết quả tìm kiếm Tin tức</div>
+                            @foreach (var item in Model)
+                            {
+                                <a href="/tin-tuc/@item.Title.UrlFriendly()-tt@(item.Id)" class="item">
+                                    <div class="item-image"><img class="img-responsive" src="@item.Image" style="width: 160px"></div>
+                                    <div class="item-info">
+                                        <h3 class="item-title">@item.Title</h3>
+                                        <div class="item-description">@item.Desc</div>
+                                    </div>
+                                    <div class="item-bottom">
+                                        <span class="glyphicon glyphicon-time"></span>@string.Format("{0:hh:mm tt - dd/MM/yyyy}", item.CreateDate)								<span href="/tin-tuc/bo-suu-tap-anh-dong-vui-nhon-cua-sun" class="corner">xem chi tiết</span>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="pagination-wraper text-center">
+                            @Html.PagedListPager(Model, page => "/tim-kiem-tin-tuc?s="+ ViewBag.Keyword + "&page = " + page)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box-search box-search-fixtop">
+                    <div class="box-title">
+                        Tìm kiếm tin tức
+                    </div>
+                    <div class="box-content">
+                        <div>
+                            <input type="text" name="s" id="txtSearchNews" placeholder="Nhập tin cần tìm" class="form-control" value="@ViewBag.Keyword" />
+                            <button id="btnSearchNews" type="button" class="btn btn-block">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-sidebar box-category">
+                    <div class="box-title">
+                        danh mục tin tức
+                    </div>
+                    <div class="box-content">
+                        <ul>
+                            @foreach (var item in CategoryList)
+                            {
+                                <li><a href="/tin-tuc/danh-muc-tin-tuc/@item.Title.UrlFriendly()-ds@(item.Id)">@item.Title</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                @Html.Partial("_Partial_Subscribe")
+            </div>
+        </div>
+    </div>
+</section>

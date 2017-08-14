@@ -157,50 +157,94 @@ namespace PROJECTBDS.Controllers
             return View();
         }
 
-        /// <summary>
-        /// sự kiện
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _Partial_Event()
-        {
-            return PartialView("_Partial_Event");
-        }
 
-        /// <summary>
-        /// nhà đất
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _Partial_Land()
-        {
-            return PartialView("_Partial_Land");
-        }
+            public ActionResult SendEmail(tblContact model)
+            {
+                model.Date = DateTime.Now;
+                _db.tblContact.Add(model);
+                _db.SaveChanges();
+                return Json(JsonRequestBehavior.AllowGet);
+            }
 
-        /// <summary>
-        /// đối tác
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _Partial_Partner()
-        {
-            return PartialView("_Partial_Partner");
-        }
+            /// <summary>
+            /// sự kiện
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Event()
+            {
+                return PartialView("_Partial_Event");
+            }
 
-        /// <summary>
-        /// dự án
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _Partial_Project()
-        {
-            return PartialView("_Partial_Project");
-        }
+            /// <summary>
+            /// nhà đất
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Land()
+            {
+                return PartialView("_Partial_Land");
+            }
 
-        /// <summary>
-        /// danh sách quận huyện
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public JsonResult DistrictList(int? id)
-        {
-            return Json(new SelectList(_db.tblDistrict.Where(p => p.ProvinceId == id).ToList(), "Id", "Name"), JsonRequestBehavior.AllowGet);
+            /// <summary>
+            /// đối tác
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Partner()
+            {
+                var model = _data.GetImageByCate(46).ToList();
+                return PartialView("_Partial_Partner", model);
+            }
+
+            /// <summary>
+            /// slider
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Slider()
+            {
+                var model = _data.GetImageByCate(44).ToList();
+                return PartialView("_Partial_Slider", model);
+            }
+            /// <summary>
+            /// đối tác
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Advertisement()
+            {
+                var model = _data.GetImageByCate(45).ToList();
+                return PartialView("_Partial_Advertisement", model);
+            }
+
+            /// <summary>
+            /// dự án
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult _Partial_Project()
+            {
+                return PartialView("_Partial_Project");
+            }
+
+            /// <summary>
+            /// danh sách quận huyện
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
+            public JsonResult DistrictList(int? id)
+            {
+                return Json(new SelectList(_db.tblDistrict.Where(p => p.ProvinceId == id).ToList(), "Id", "Name"), JsonRequestBehavior.AllowGet);
+            }
+
+
+            public ActionResult Subscribe(FormCollection fc)
+            {
+                var model = new tblContact()
+                {
+                    Email = fc["ContactEmail"],
+                    Name = fc["ContactName"],
+                    Phone = fc["ContactPhone"],
+                    Date = DateTime.Now,
+                };
+                _db.tblContact.Add(model);
+                _db.SaveChanges();
+                return Json(JsonRequestBehavior.AllowGet);
+            }
         }
-    }
 }

@@ -1,0 +1,162 @@
+﻿@model PROJECTBDS.Models.tblConfig
+
+@{
+    ViewBag.Title = "Cấu hình";
+}
+
+<section class="content-header">
+    <h1>
+        Cấu hình
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Cấu hình</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                @using (Html.BeginForm("Index", "ConfigManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Logo)
+
+                    <div class="box-header">
+                        <div class="callout callout-info lead">
+                            <a href="@Url.Action("Index", "ConfigManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                            <button class="btn btn-danger" id="btnSave" name="btnSave"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#home">Thông tin công ty</a></li>
+                                <li><a data-toggle="tab" href="#menu1">Mạng xã hội</a></li>
+                                <li><a data-toggle="tab" href="#menu2">Đăng ký bộ công thương</a></li>
+                                <li><a data-toggle="tab" href="#menu3">SEO</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade in active" style="padding-top: 20px;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Tên công ty</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                            </div>
+                                            <label class="control-label col-lg-2 col-md-2">Hotline</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Hotline, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Điện thoại</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                                            </div>
+                                            <label class="control-label col-lg-2 col-md-2">Email</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Địa chỉ</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Fax</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
+                                            </div>
+                                            <label class="control-label col-lg-2 col-md-2">Logo</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", type = "file" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Mã nhúng bản đồ</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                @Html.TextBoxFor(model => model.Map, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu1" class="tab-pane fade" style="padding-top: 20px;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Facebook</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Facebook, new { @class = "form-control" })
+                                            </div>
+                                            <label class="control-label col-lg-2 col-md-2">Skype</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Skype, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Google plus</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.GooglePlus, new { @class = "form-control" })
+                                            </div>
+                                            <label class="control-label col-lg-2 col-md-2">Youtube</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.Youtube, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu2" class="tab-pane fade" style="padding-top: 20px;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Số giấy phép</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.LicenseNumber, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Ngày cấp</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.IssuedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Nơi cấp</label>
+                                            <div class="col-lg-4 col-md-4">
+                                                @Html.TextBoxFor(model => model.IssuedPlace, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu3" class="tab-pane fade" style="padding-top: 20px;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">MetaTitle (SEO)</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">MetaDescription (SEO)</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                @Html.TextBoxFor(model => model.MetaDesc, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">MetaKeyword (SEO)</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                @Html.TextBoxFor(model => model.MetaKeyword, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

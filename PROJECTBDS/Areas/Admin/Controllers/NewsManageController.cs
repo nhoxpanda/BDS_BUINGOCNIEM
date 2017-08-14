@@ -27,7 +27,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             {
                 if (CateID == 0)
                 {
-                    model = _db.tblNews.Where(n => n.tblDictionary.CategoryId==6).OrderByDescending(p => p.CreateDate).ToList();
+                    model = _db.tblNews.Where(n => n.tblDictionary.CategoryId == 6).OrderByDescending(p => p.CreateDate).ToList();
                 }
                 else
                 {
@@ -46,9 +46,9 @@ namespace PROJECTBDS.Areas.Admin.Controllers
                 }
             }
 
-            return View(model.ToPagedList(pageN,pageS));//
+            return View(model.ToPagedList(pageN, pageS));//
         }
-         [ValidateInput(false)]
+        [ValidateInput(false)]
         public ActionResult Create(tblNews model)
         {
             if (Request["btnSave"] != null)

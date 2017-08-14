@@ -31,6 +31,8 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 
             return View(model.ToPagedList(pageN, pageS));//
         }
+
+        [ValidateInput(false)]
         public ActionResult Create(tblNews model)
         {
             if (Request["btnSave"] != null)
@@ -48,7 +50,9 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             var model = _db.tblNews.Find(id);   
             return View(model);
         }
+
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(tblNews model)
         {
             _db.Entry(model).State = System.Data.Entity.EntityState.Modified;
@@ -59,7 +63,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         {
             try
             {
-                var model = _db.tblNews.FirstOrDefault(p => p.Id == id);
+                var model = _db.tblNews.Find(id);
                 _db.tblNews.Remove(model);
                 _db.SaveChanges();
                 return Json(1, JsonRequestBehavior.AllowGet);

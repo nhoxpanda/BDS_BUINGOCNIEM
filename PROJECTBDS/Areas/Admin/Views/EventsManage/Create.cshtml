@@ -1,4 +1,5 @@
-﻿@model PROJECTBDS.Models.tblNews
+﻿@using PROJECTBDS.Helpers
+@model PROJECTBDS.Models.tblNews
 @{
     ViewBag.Title = "Thêm mới";
 }
@@ -13,7 +14,6 @@
         <li class="active">Thêm mới</li>
     </ol>
 </section>
-
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -37,7 +37,6 @@
                                         </div>
                                         <label class="control-label col-lg-2 col-md-2">Hình đại diện</label>
                                         <div class="col-lg-4 col-md-4">
-
                                             <img src="" id="_Image" style="width:100px;height:100px;border:1px solid #ff6a00" />
                                             <input name="Image" id="Image" style="display:none" /><input type="button" class="btn btn-n" onclick="openfile()" value="Open">
                                         </div>
@@ -45,8 +44,11 @@
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Loại tin</label>
                                         <div class="col-lg-4 col-md-4">
-
                                             @Html.DropDownListFor(model => model.CateId, ViewBag.CateId as List<SelectListItem>, new { name = "Title", id = "CateId", @class = "form-control" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Trạng Thái</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.TimeId, ViewBag.TimeId as List<SelectListItem>, new { name = "Title", id = "TimeId", @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -55,7 +57,6 @@
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
                                         </div>
                                     </div>
-                                   
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Meta Description</label>
                                         <div class="col-lg-10 col-md-10">
@@ -63,21 +64,35 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Thành phố</label>
+                                        <label class="control-label col-lg-2 col-md-2">Địa chỉ</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <select class="form-control" name="ProvinceId" id="ProvinceId">
+                                                <option>Chọn tỉnh/tp</option>
+                                                @foreach (var item in LoadData.ProvinceList())
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <select class="form-control" name="DistrictId" id="DistrictId">
+                                                <option>Chọn quận/huyện</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Mã nhúng bản đồ</label>
                                         <div class="col-lg-10 col-md-10">
-                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "Id", @class = "form-control" })
+                                            @Html.TextAreaFor(model => model.Map, new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Ngày diễn ra</label>
                                         <div class="col-lg-10 col-md-10">
                                             @Html.TextBoxFor(model => model.Date, new { @class = "form-control", type = "datetime-local" })
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2 col-md-2">Trạng Thái</label>
-                                        <div class="col-lg-10 col-md-10">
-                                            @Html.DropDownListFor(model => model.TimeId, ViewBag.TimeId as List<SelectListItem>, new { name = "Title", id = "TimeId", @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -96,7 +111,6 @@
                                         <div class="col-lg-10 col-md-10 col-md-offset-2">
                                             <button class="btn  btn-success" name="btnSave" type="submit">Lưu lại</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +121,6 @@
         </div>
     </div>
 </section>
-
 @section scripts{
     <script>
         CKEDITOR.replace("Contents");
@@ -119,7 +132,16 @@
         }
         function SetFileField(fileUrl) {
             $('#_Image').attr('src', fileUrl);
-             $('#Image').val(fileUrl);
+            $('#Image').val(fileUrl);
         }
+        $("#ProvinceId").change(function () {
+            $.getJSON('/Events/DistrictId?id=' + $('#ProvinceId').val(), function (data) {
+                var items = "";
+                $.each(data, function (i, gd) {
+                    items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                });
+                $('#DistrictId').html(items);
+            });
+        })
     </script>
 }

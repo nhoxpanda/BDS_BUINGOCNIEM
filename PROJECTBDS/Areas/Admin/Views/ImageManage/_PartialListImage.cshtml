@@ -5,9 +5,9 @@
         <tr>
             <th> # </th>
             <th> Ảnh </th>
-            <th> Tiêu đề</th>
+            <th> Link</th>
             <th> Loại </th>
-            <th> Order</th>
+            <th> Thứ tự hiển thị</th>
             <th> Actions </th>
         </tr>
     </thead>
@@ -18,10 +18,10 @@
             <tr class="odd gradeX" id="post@(item.Id)">
                 <td> @(i = i + 1) </td>
                 <td>
-                    <img src="@item.URL" style="width:100px; height:100px;border:1px solid #ff0000" />
+                    <img src="~/Images/Sliders/@item.Image" class="img-responsive" style="width:200px; border:1px solid #ff0000" />
                 </td>
                 <td>
-                    <a href="#" title="#" target="_blank">@item.Image</a>
+                    <a href="#" title="#" target="_blank">@item.URL</a>
                 </td>
                 <td>@item.tblDictionary.Title</td>
                 <td>@item.Orders</td>

@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LandSoftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -51,6 +61,16 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="tblCategory">
     <Key>
       <PropertyRef Name="Id" />
@@ -87,6 +107,7 @@
     <Property Name="Fax" Type="nvarchar" MaxLength="50" />
     <Property Name="Map" Type="nvarchar(max)" />
     <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssuedDate" Type="datetime" />
     <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="IssuedPlace" Type="nvarchar" MaxLength="50" />
     <Property Name="Skype" Type="nvarchar" MaxLength="50" />
@@ -96,6 +117,19 @@
     <Property Name="MetaTitle" Type="nvarchar(max)" />
     <Property Name="MetaDesc" Type="nvarchar(max)" />
     <Property Name="MetaKeyword" Type="nvarchar(max)" />
+    <Property Name="Logo" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="tblCustomer">
     <Key>
@@ -200,6 +234,9 @@
     <Property Name="ProvinceId" Type="int" />
     <Property Name="Date" Type="datetime" />
     <Property Name="TimeId" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="Map" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tblProject">
     <Key>
@@ -553,6 +590,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tblNews_tblDistrict">
+    <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+    <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDistrict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblNews">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tblNews_tblProvince">
     <End Role="tblProvince" Type="Self.tblProvince" Multiplicity="0..1" />
     <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
@@ -625,15 +674,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="String" Type="nvarchar" Mode="In" />
+    <Parameter Name="Delimiter" Type="nchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Id" Type="bigint" />
+          <Property Name="Data" Type="nvarchar" MaxLength="4000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <EntityContainer Name="LandSoftModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContact" EntityType="Self.tblContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblDictionary" EntityType="Self.tblDictionary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
@@ -742,6 +806,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_tblNews_tblDictionaryTime" Association="Self.FK_tblNews_tblDictionaryTime">
       <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblNews" EntitySet="tblNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblDistrict" Association="Self.FK_tblNews_tblDistrict">
+      <End Role="tblDistrict" EntitySet="tblDistrict" />
       <End Role="tblNews" EntitySet="tblNews" />
     </AssociationSet>
     <AssociationSet Name="FK_tblNews_tblProvince" Association="Self.FK_tblNews_tblProvince">

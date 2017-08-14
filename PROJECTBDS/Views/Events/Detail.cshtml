@@ -1,17 +1,100 @@
-﻿@{
-    Layout = null;
+﻿@using PROJECTBDS.ViewModels
+@using PROJECTBDS.Helpers
+@using PROJECTBDS.Infrastructure
+@model EventViewModel
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Desc = Model.MetaDesc;
+    string _curDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+<section class="head-bg-bottom">
+    <div class="container">
+        <h1>Sự kiện</h1>
     </div>
-</body>
-</html>
+</section>
+<section class="content-bottom page-news-detail page-event-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box box-news-detail editor-content">
+                    <div class="box-title box-title-border">
+                        @Model.Title
+                    </div>
+                    <div class="box-content">
+                        <div class="news-detail">
+                            <p class="box-summary">
+                                <strong>
+                                    @Model.Desc
+                                </strong>
+                            </p>
+                            <div class="box-info">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="description">
+                                            <div class="item item-date">@string.Format("{0:hh:mm tt - dd/MM/yyyy}", Model.Date)</div>
+                                            <div class="item item-location">
+                                                @Model.Address<br>
+                                                @Model.District - @Model.Province
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.Raw(Model.Map)
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.Raw(Model.Contents)
+                        </div>
+                    </div>
+                </div>
+                <div class="page-bottom">
+                    <div class="share-link">
+                        <div class="inner">
+                            Share Link
+                            <a target="_blank" rel="nofollow" href="https://plus.google.com/share?url=@_curDomain/su-kien/@Model.Title.UrlFriendly()-sk@(Model.Id)"><span class="icon-google-plus-social-logotype"></span></a>
+                            <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=@_curDomain/su-kien/@Model.Title.UrlFriendly()-sk@(Model.Id)"><span class="icon-facebook-logo"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box-search box-search-fixtop">
+                    <div class="box-title">
+                        Tìm kiếm sự kiện
+                    </div>
+                    <div class="box-content">
+                        <div id="eventSearchForm">
+                            <input type="text" name="s" id="txtSearchEvent" class="form-control" placeholder="Nhập tin cần tìm" value="">
+                            <select name="timetype" id="txtTimeTypeSearchEvent" class="form-control">
+                                <option value="0">Tất cả các thời gian</option>
+                                @foreach (var item in LoadData.TimeList())
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
+                                <option value="-1">Chọn ngày diễn ra</option>
+                            </select>
+                            <input type="date" name="day" id="txtDaySearchEvent" placeholder="Nhập ngày cần tìm" value="" data-provide="datepicker" data-date-format="dd/mm/yyyy" class="form-control hide">
+                            <select name="province" id="txtProvinceSearchEvent" class="form-control">
+                                <option value="0">Tỉnh/Thành phố</option>
+                                @foreach (var item in LoadData.ProvinceList())
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <button class="btn btn-block" id="btnSearchEvent" type="button">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-sidebar box-event-hot">
+                    <div class="box-title">
+                        Sự kiện sắp diễn ra
+                    </div>
+                    <div class="box-content">
+                    </div>
+                </div>
+                @Html.Partial("_Partial_Subscribe")
+            </div>
+        </div>
+    </div>
+</section>

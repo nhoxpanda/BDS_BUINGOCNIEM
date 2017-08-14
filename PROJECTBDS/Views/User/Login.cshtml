@@ -83,58 +83,7 @@
                         Tìm kiếm bất động sản
                     </div>
                 </div>
-                <div class="event-box">
-                    <div class="ads-r">
-                        <h4>Đăng ký<br /> nhận tin bất động sản</h4>
-
-                        <div class="box-input">
-                            <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
-                                <input type="hidden" name="_csrf" value="WEozalpNY2I3KwQsFQ4tKBAgehgZIhFaIihXADAODhcNMgMHNiYCBA=="><div class="form-group field-frontcontact-name required">
-                                    <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-phone required">
-                                    <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-email required">
-                                    <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
-                                </div><div class="form-group field-frontcontact-type">
-
-                                    <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="5">
-
-                                    <div class="help-block"></div>
-                                </div><div class="form-group field-frontcontact-object_id">
-
-                                    <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
-
-                                    <div class="help-block"></div>
-                                </div><div class="form-group field-frontcontact-item_name">
-
-                                    <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
-
-                                    <div class="help-block"></div>
-                                </div>    	<div class="form-group">
-                                    <button type="submit" class="">Đăng ký</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="ads-banner">
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/lucasta/mat-bang" target='_blank'>
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/hanh-phuc-gia-bao-nhieu_57e4c604d5bd9.gif" alt="LUCASTA - HẠNH PHÚC GIÁ BAO NHIÊU?" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target='_blank'>
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner1_58f86e0ca90ad.gif" alt="MỞ BÁN CĂN HỘ JAMILA KHANG ĐIỀN QUẬN 9 - MẶT TIỀN SONG HÀNH - CHỈ TỪ 22.5TR/M2" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="http://sunlandsg.vn/du-an/can-ho-jamila/gioi-thieu" target='_blank'>
-                                <img class="img-responsive" src="http://sunlandsg.vn/data/upload/image/banner/Jamila_Right_Banner4_58f86f0ad7ace.gif" alt="Căn hộ mặt tiền Song hành Quận 9 - mở bán chính thức 14,5tr/m2 - SunlandSG Phân phối chính thức" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_Partial_Subscribe")
             </div>
         </div>
     </div>

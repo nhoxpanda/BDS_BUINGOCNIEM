@@ -1,4 +1,5 @@
 ﻿using PROJECTBDS.Models;
+using PROJECTBDS.Services.News;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,12 @@ namespace PROJECTBDS.Controllers
     {
         // GET: Abouts
         private LandSoftEntities _db = new LandSoftEntities();
-        public ActionResult Index(int? page)
+        private AboutServices data = new AboutServices();
+        public ActionResult Index(int id)
         {
-            return View();
-        }
-
-        public ActionResult Detail(int? id)
-        {
-            return View();
+            var model = data.GetAboutDetail(id).FirstOrDefault();
+            ViewBag.AboutList = data.GetAboutList();
+            return View(model);
         }
     }
 }

@@ -23,11 +23,18 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             List<tblImage> Model = db.tblImage.Where(n => n.DictionaryId == id).ToList();
             return PartialView("_PartialListImage",Model);
         }
-        public ActionResult CreateImage(tblImage model)
+        public ActionResult CreateImage(tblImage model, HttpPostedFileBase Image)
         {
             if (Request["btnSave"] != null)
             {
-          
+                // Image
+                if (Image != null)
+                {
+                    String newName = Image.FileName.Insert(Image.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
+                    String path = Server.MapPath("~/Images/Sliders/" + newName);
+                    Image.SaveAs(path);
+                    model.Image = newName;
+                }
                 db.tblImage.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -42,9 +49,18 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             ViewBag.DictionaryId = new SelectList(db.tblDictionary.Where(n => n.Id == 44 || n.Id == 45 || n.Id == 46).ToList(), "Id", "Title", model.DictionaryId);
             return PartialView("_PartialEditImage", model);
         }
+
         [HttpPost]
-        public ActionResult EditImageS(tblImage model)
-        {
+        public ActionResult EditImageS(tblImage model, HttpPostedFileBase Image)
+        { 
+            // Image
+            if (Image != null)
+            {
+                String newName = Image.FileName.Insert(Image.FileName.LastIndexOf('.'), String.Format("{0:_ddMMyyyy}", DateTime.Now));
+                String path = Server.MapPath("~/Images/Sliders/" + newName);
+                Image.SaveAs(path);
+                model.Image = newName;
+            }
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

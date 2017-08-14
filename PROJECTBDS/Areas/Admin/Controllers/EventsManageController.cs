@@ -59,7 +59,6 @@ namespace PROJECTBDS.Areas.Admin.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name", model.ProvinceId);
             ViewBag.CateId = new SelectList(_db.tblDictionary.Where(p => p.CategoryId == 8).ToList(), "Id", "Title", model.CateId);
             ViewBag.TimeId = new SelectList(_db.tblDictionary.Where(p => p.CategoryId == 9).ToList(), "Id", "Title", model.TimeId);
             return View();
@@ -78,7 +77,6 @@ namespace PROJECTBDS.Areas.Admin.Controllers
         {
             _db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
-            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name", model.ProvinceId);
             ViewBag.CateId = new SelectList(_db.tblDictionary.Where(p => p.CategoryId == 8).ToList(), "Id", "Title", model.CateId);
             ViewBag.TimeId = new SelectList(_db.tblDictionary.Where(p => p.CategoryId == 9).ToList(), "Id", "Title", model.TimeId);
             return RedirectToAction("Index");
