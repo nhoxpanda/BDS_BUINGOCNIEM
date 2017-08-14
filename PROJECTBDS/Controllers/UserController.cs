@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using PROJECTBDS.Infrastructure;
 using PROJECTBDS.Models;
@@ -24,12 +21,19 @@ namespace PROJECTBDS.Controllers
 
         public ActionResult Register()
         {
+            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
+            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
+            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(UserViewModel form, HttpPostedFileBase imageUser)
         {
+            ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
+            ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
+            ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
+
             var customer = _db.tblCustomer.Where(t => t.Email.Equals(form.Email.Trim()));
             if (customer.Any())
             {
@@ -85,7 +89,7 @@ namespace PROJECTBDS.Controllers
                     database.AspNetUsers.Add(userAsp);
                     database.SaveChanges();
                 }
-              
+
             }
             return RedirectToAction("Login");
         }

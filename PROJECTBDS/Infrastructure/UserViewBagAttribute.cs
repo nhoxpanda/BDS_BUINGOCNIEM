@@ -33,9 +33,7 @@ namespace PROJECTBDS.Infrastructure
                 ? new UserProfileViewModel { FullName = user.FullName, Avatar = user.Image } 
                 : new UserProfileViewModel();
 
-            filterContext.Controller.ViewBag.WardId = new SelectList(_db.tblWard, "Id", "Name");
-            filterContext.Controller.ViewBag.ProvinceId = new SelectList(_db.tblProvince, "Id", "Name");
-            filterContext.Controller.ViewBag.DistrictId = new SelectList(_db.tblDistrict, "Id", "Name");
+           
         }
     }
 }

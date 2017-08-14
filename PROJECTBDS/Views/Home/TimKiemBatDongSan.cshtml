@@ -113,7 +113,7 @@ if (!decimal.TryParse(gia, out number))
                     </div>
                     <div class="bg-search">
                         <form id="realSearchForm" role="form" action="/tim-kiem-bat-dong-san" method="get">
-                            <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="">
+                            <input type="text" name="s" id="s" placeholder="Nhập tên dự án hoặc vị trí" value="@Request.QueryString["s"]">
                             @*@Html.DropDownList("ProvinceId", ViewBag.ProvinceId as List<SelectListItem>, new { Id = "ProvinceId", Name = "province", @class = "form-control" })
                             @Html.DropDownList("DistrictId", ViewBag.DistrictId as List<SelectListItem>, new { Id = "DistrictId", Name = "district", @class = "form-control" })
                             @Html.DropDownList("CategoryId", ViewBag.Categories as List<SelectListItem>, new { Id = "TypeId", Name = "type", @class = "form-control" })
@@ -132,7 +132,7 @@ if (!decimal.TryParse(gia, out number))
                                     <option value="@item.Id" @selected >@item.Name</option>
                                 }
                             </select>
-                            <select name="district" id="district" data-value="">
+                            <select name="district" id="DistrictId">
                                 <option value="">Quận/Huyện</option>
                                 @if (Request.QueryString["district"].AsInt() > 0)
                                 {
