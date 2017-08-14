@@ -8,6 +8,7 @@ using PROJECTBDS.ViewModels;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProjectDetailsController : Controller
     {
         private LandSoftEntities db = new LandSoftEntities();

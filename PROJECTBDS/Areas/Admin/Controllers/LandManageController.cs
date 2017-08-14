@@ -9,7 +9,7 @@ using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class LandManageController : Controller
     {
 

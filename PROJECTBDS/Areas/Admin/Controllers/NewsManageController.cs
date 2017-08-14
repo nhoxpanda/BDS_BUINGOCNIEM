@@ -9,7 +9,7 @@ using PagedList;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class NewsManageController : Controller
     {
         // GET: Admin/NewsManage

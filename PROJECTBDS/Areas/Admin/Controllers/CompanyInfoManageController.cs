@@ -8,7 +8,7 @@ using PagedList;
 using PagedList.Mvc;
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CompanyInfoManageController : Controller
     {
         // GET: Admin/CompanyInfoManage

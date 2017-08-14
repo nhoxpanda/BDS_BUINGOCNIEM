@@ -8,6 +8,7 @@ using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ImageManageController : Controller
     {
         LandSoftEntities db = new LandSoftEntities();

@@ -7,7 +7,7 @@ using PROJECTBDS.Models;
 
 namespace PROJECTBDS.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CategoryNewsManageController : Controller
     {
         // GET: Admin/CategoryNewsManageController
