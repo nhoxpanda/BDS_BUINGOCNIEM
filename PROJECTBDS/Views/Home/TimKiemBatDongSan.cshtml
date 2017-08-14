@@ -119,7 +119,7 @@ if (!decimal.TryParse(gia, out number))
                             @Html.DropDownList("CategoryId", ViewBag.Categories as List<SelectListItem>, new { Id = "TypeId", Name = "type", @class = "form-control" })
                             @Html.DropDownList("CategoryId", ViewBag.Types as List<SelectListItem>, new { Id = "MethodId", Name = "method", @class = "form-control" })
                             @Html.DropDownList("CategoryId", ViewBag.Directions as List<SelectListItem>, new { Id = "DirectionId", Name = "direction", @class = "form-control" })*@
-                            <select name="province" id="ProvinceId">
+                            <select name="province" id="TinhId">
                                 <option>Tỉnh/Thành phố</option>
                                 @foreach (var item in LoadData.ProvinceList())
                                 {
@@ -132,7 +132,7 @@ if (!decimal.TryParse(gia, out number))
                                     <option value="@item.Id" @selected >@item.Name</option>
                                 }
                             </select>
-                            <select name="district" id="DistrictId">
+                            <select name="district" id="QuanId">
                                 <option value="">Quận/Huyện</option>
                                 @if (Request.QueryString["district"].AsInt() > 0)
                                 {
@@ -285,8 +285,8 @@ if (!decimal.TryParse(gia, out number))
             }
         }
         jQuery(document).ready(function ($) {
-           $("#ProvinceId").change(function (event) {
-                getChildren($(this).val(), "#DistrictId", "Land", "Quận/Huyện");
+            $("#TinhId").change(function (event) {
+               getChildren($(this).val(), "#QuanId", "Land", "Quận/Huyện");
             });
         });
     </script>
