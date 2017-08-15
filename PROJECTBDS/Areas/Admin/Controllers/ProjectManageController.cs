@@ -66,6 +66,8 @@ namespace PROJECTBDS.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+            // loại dự án
+            ViewBag.TypeId = new SelectList(db.tblDictionary.Where(p=>p.CategoryId == 14), "Id", "Title");
             ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name", model.ProvinceId);
             //chọn quận huyện 
             ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name", model.DistrictId);
@@ -79,6 +81,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             ViewBag.LsImage = db.tblImage.Where(n => n.ProjectId == id && n.DictionaryId == 47).ToList();
             ViewBag.ProvinceId = new SelectList(db.tblProvince, "Id", "Name", model.ProvinceId);
             ViewBag.DistrictId = new SelectList(db.tblDistrict, "Id", "Name", model.DistrictId);
+            ViewBag.TypeId = new SelectList(db.tblDictionary.Where(p => p.CategoryId == 14), "Id", "Title", model.TypeId);
 
             return View(model);
         }
@@ -162,6 +165,7 @@ namespace PROJECTBDS.Areas.Admin.Controllers
             }
         }
         #endregion
+
         #region Chi tiết dự án
         public ActionResult DetailProject(int id)
         {

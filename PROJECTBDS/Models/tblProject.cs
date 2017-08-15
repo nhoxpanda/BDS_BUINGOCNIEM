@@ -57,6 +57,8 @@ public partial class tblProject
 
     public string Logo { get; set; }
 
+    public Nullable<int> TypeId { get; set; }
+
 
 
     public virtual tblDistrict tblDistrict { get; set; }
@@ -74,6 +76,8 @@ public partial class tblProject
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<tblProjectDetail> tblProjectDetail { get; set; }
+
+    public virtual tblDictionary tblDictionary { get; set; }
 
 }
 

@@ -186,7 +186,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="nvarchar" MaxLength="500" />
     <Property Name="Desc" Type="nvarchar(max)" />
     <Property Name="Content" Type="nvarchar(max)" />
@@ -217,6 +217,8 @@
     <Property Name="ymap" Type="nvarchar" MaxLength="500" />
     <Property Name="CustomerId" Type="int" />
     <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="Bedroom" Type="int" />
+    <Property Name="Bathroom" Type="int" />
   </EntityType>
   <EntityType Name="tblNews">
     <Key>
@@ -255,6 +257,7 @@
     <Property Name="DistrictId" Type="int" />
     <Property Name="Price" Type="nvarchar" MaxLength="200" />
     <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+    <Property Name="TypeId" Type="int" />
   </EntityType>
   <EntityType Name="tblProjectDetail">
     <Key>
@@ -662,6 +665,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tblProjectType_tblDictionaryType">
+    <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+    <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblProject">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tblWard_tblDistrict">
     <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
     <End Role="tblWard" Type="Self.tblWard" Multiplicity="*" />
@@ -831,6 +846,10 @@
     <AssociationSet Name="FK_tblProjectDetail_tblProject" Association="Self.FK_tblProjectDetail_tblProject">
       <End Role="tblProject" EntitySet="tblProject" />
       <End Role="tblProjectDetail" EntitySet="tblProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProjectType_tblDictionaryType" Association="Self.FK_tblProjectType_tblDictionaryType">
+      <End Role="tblDictionary" EntitySet="tblDictionary" />
+      <End Role="tblProject" EntitySet="tblProject" />
     </AssociationSet>
     <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
       <End Role="tblDistrict" EntitySet="tblDistrict" />

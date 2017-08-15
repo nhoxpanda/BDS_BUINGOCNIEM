@@ -6,7 +6,7 @@
 <script src="~/Content/ckfinder/ckfinder.js"></script>
 <section class="content-header">
     <h1>
-        Thêm mới
+        CẬP NHẬT
     </h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -34,6 +34,11 @@
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="row">
+                                                <label class="control-label col-lg-4 col-md-4">Mã nhà đất</label>
+                                                <div class="col-lg-8 col-md-8">
+                                                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+                                                </div>
+                                                <br /><br /><br />
                                                 <label class="control-label col-lg-4 col-md-4">Tiêu đề</label>
                                                 <div class="col-lg-8 col-md-8">
                                                     @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
@@ -44,7 +49,6 @@
                                                     @Html.TextBoxFor(model => model.MetaDesc, new { @class = "form-control" })
                                                 </div>
                                             </div>
-
                                         </div>
                                         @Html.HiddenFor(model => model.Id)
                                         @Html.HiddenFor(model => model.Code)
@@ -64,17 +68,13 @@
                                                 @Html.HiddenFor(model => model.Image)
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="form-group">
-
                                         <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
                                         <div class="col-lg-4 col-md-4">
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Chọn dự án</label>
                                         <div class="col-lg-4 col-md-4">
@@ -85,7 +85,6 @@
                                             @Html.DropDownListFor(model => model.RuleId, ViewBag.RuleId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Đường rộng</label>
                                         <div class="col-lg-4 col-md-4">
@@ -96,7 +95,6 @@
                                             @Html.DropDownListFor(model => model.DirectionId, ViewBag.DirectionId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Loại giao dịch</label>
                                         <div class="col-lg-4 col-md-4">
@@ -107,7 +105,6 @@
                                             @Html.DropDownListFor(model => model.CategoryId, ViewBag.CategoryId as List<SelectListItem>, new { name = "Title", id = "Id", @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Tỉnh (Thành)</label>
                                         <div class="col-lg-2 col-md-2">
@@ -122,7 +119,6 @@
                                             @Html.DropDownListFor(model => model.WardId, ViewBag.WardId as List<SelectListItem>, new { name = "Name", id = "WardId", @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Địa chỉ</label>
                                         <div class="col-lg-4 col-md-4">
@@ -136,7 +132,17 @@
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Diện tích</label>
                                         <div class="col-lg-4 col-md-4">
-                                            <input type="text" class="form-control" name="DienTich" value="@Model.Area"/>
+                                            <input type="text" class="form-control" name="DienTich" value="@Model.Area" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Số phòng ngủ</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Bedroom, new { @class = "form-control", type = "number" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Số phòng tắm</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Bathroom, new { @class = "form-control", type = "number" })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -163,15 +169,13 @@
 
                                             }
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <button type="submit" name="btnSave" class="btn btn-success">Save</button>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -197,8 +201,7 @@
             $('#_Image').attr('src', fileUrl);
             $('#Image').val(fileUrl);
         }
-        function hide_image(id)
-        {
+        function hide_image(id) {
             $(id).css("Display", "none");
         }
         function DeleteImage(id) {
@@ -253,7 +256,5 @@
 
         });
     </script>
-    
 
 }
-

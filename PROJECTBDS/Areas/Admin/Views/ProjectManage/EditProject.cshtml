@@ -1,5 +1,4 @@
 ﻿@model PROJECTBDS.Models.tblProject
-
 @{
     ViewBag.Title = "Chỉnh sửa dự án";
 }
@@ -18,7 +17,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                @using (Html.BeginForm("EditProject","ProjectManage" ,FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("EditProject", "ProjectManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="box-body">
@@ -39,12 +38,11 @@
                                                     @Html.TextBoxFor(model => model.MetaDesc, new { @class = "form-control" })
                                                 </div>
                                             </div>
-
                                         </div>
                                         @Html.HiddenFor(model => model.Id)
                                         @Html.HiddenFor(model => model.Desc)
                                         @Html.HiddenFor(model => model.Delete)
-                                        @Html.HiddenFor(model=>model.CreateDate)
+                                        @Html.HiddenFor(model => model.CreateDate)
                                         <div class="col-md-6">
                                             <label class="control-label col-lg-4 col-md-4">Hình đại diện</label>
                                             <div class="col-lg8 col-md-8">
@@ -53,42 +51,35 @@
                                                 @Html.HiddenFor(model => model.Image)
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="form-group">
-
                                         <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
                                         <div class="col-lg-4 col-md-4">
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
                                         </div>
                                     </div>
-                                    
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-4 col-md-4">Thành Phố/Tỉnh</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
-                                                </div>
-                                                <label class="control-label col-lg-2 col-md-2">Quận/Huyện</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Thành Phố/Tỉnh</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-1 col-md-1">Giá</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control", required = "required" })
-                                                </div>
-                                            </div>
-
+                                        <label class="control-label col-lg-2 col-md-2">Quận/Huyện</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Giá</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Loại dự án</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownList("TypeId", null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">Mô tả</label>
                                         <div class="col-lg-10 col-md-10">
@@ -108,20 +99,17 @@
 
                                                 <div style="width:70px;height:100px; text-align:center; float:left" id="Image_@item.Id">
                                                     <img style="width:70px; height:70px" src="@item.URL" />
-                                                    <input class="btn btn-success" value="Xóa" type="button" onclick="DeleteImage(@item.Id)"/>
+                                                    <input class="btn btn-success" value="Xóa" type="button" onclick="DeleteImage(@item.Id)" />
                                                 </div>
 
                                             }
                                         </div>
-
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <button type="submit" name="btnSave" class="btn btn-success">Save</button>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -137,7 +125,7 @@
 @section scripts{
     <script src="~/Areas/Admin/Scripts/admin.js"></script>
     <script>
-        
+
         CKEDITOR.replace("Content");
         function openfile() {
             var finder = new CKFinder();
@@ -176,10 +164,6 @@
         });
     </script>
 }
-
-
-
-
 
 
 

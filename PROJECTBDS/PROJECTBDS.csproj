@@ -3293,7 +3293,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Partial_Event.cshtml" />
-    <Content Include="Views\Shared\_Partial_Land.cshtml" />
+    <Content Include="Views\Shared\_Partial_LandForRent.cshtml" />
     <Content Include="Views\Shared\_Partial_Partner.cshtml" />
     <Content Include="Views\Home\_Partial_Project.cshtml" />
     <Content Include="Views\Shared\_Partial_Search.cshtml" />
@@ -3332,6 +3332,7 @@
     <Content Include="Views\Shared\_Partial_Subscribe.cshtml" />
     <Content Include="Views\News\Cate.cshtml" />
     <Content Include="Views\News\Search.cshtml" />
+    <Content Include="Views\Shared\_Partial_LandSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,7 +25,8 @@ namespace PROJECTBDS.Controllers
             var model = new HomeViewModel
             {
                 DuAnNoiBat = _data.Get15DuAnNoiBat(),
-                BatDongSan = _data.GetBatDongSan().OrderByDescending(t => t.Id).ToPagedList(pageNumber, PostsPerPage)
+                BatDongSanBan = _data.GetBatDongSanBan().ToList(),
+                BatDongSanChoThue = _data.GetBatDongSanChoThue().ToList()
             };
             return View(model);
         }
@@ -108,28 +109,28 @@ namespace PROJECTBDS.Controllers
             //int? type, int? method, int? direction,
             //string price;
 
-            var s = Request["s"]; 
-            var province = Request["province"].AsInt(); 
-            var district = Request["district"].AsInt(); 
-            var type = Request["type"].AsInt(); 
-            var method = Request["method"].AsInt(); 
-            var direction = Request["direction"].AsInt(); 
+            var s = Request["s"];
+            var province = Request["province"].AsInt();
+            var district = Request["district"].AsInt();
+            var type = Request["type"].AsInt();
+            var method = Request["method"].AsInt();
+            var direction = Request["direction"].AsInt();
             var price = Request["price"];
 
             var priceIndex = price.IndexOf("|", StringComparison.Ordinal);
-            var priceS = new string[] {};
+            var priceS = new string[] { };
             if (priceIndex == 0)
             {
                 priceS = price.Split('|');
             }
             var priceFrom = 0;
             var priceTo = 0;
-            var flag = false || priceS.Length > 1 && 
+            var flag = false || priceS.Length > 1 &&
                        int.TryParse(priceS[0], out priceFrom) &&
                        int.TryParse(priceS[1], out priceTo);
 
-            IQueryable<tblLand> results = 
-                _db.tblLand.Where(t=>t.Title.ToLower().Contains(s.ToLower()) || 
+            IQueryable<tblLand> results =
+                _db.tblLand.Where(t => t.Title.ToLower().Contains(s.ToLower()) ||
                                     t.ProvinceId == province ||
                                     t.DistrictId == district ||
                                     t.CategoryId == method ||
@@ -139,8 +140,8 @@ namespace PROJECTBDS.Controllers
                                     );
 
             var pageNumber = page ?? 1;
-           
-            return View(results.OrderByDescending(t=>t.Id).ToPagedList(pageNumber, PostsPerPage));
+
+            return View(results.OrderByDescending(t => t.Id).ToPagedList(pageNumber, PostsPerPage));
         }
 
         public ActionResult About()
@@ -158,93 +159,97 @@ namespace PROJECTBDS.Controllers
         }
 
 
-            public ActionResult SendEmail(tblContact model)
-            {
-                model.Date = DateTime.Now;
-                _db.tblContact.Add(model);
-                _db.SaveChanges();
-                return Json(JsonRequestBehavior.AllowGet);
-            }
-
-            /// <summary>
-            /// sự kiện
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Event()
-            {
-                return PartialView("_Partial_Event");
-            }
-
-            /// <summary>
-            /// nhà đất
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Land()
-            {
-                return PartialView("_Partial_Land");
-            }
-
-            /// <summary>
-            /// đối tác
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Partner()
-            {
-                var model = _data.GetImageByCate(46).ToList();
-                return PartialView("_Partial_Partner", model);
-            }
-
-            /// <summary>
-            /// slider
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Slider()
-            {
-                var model = _data.GetImageByCate(44).ToList();
-                return PartialView("_Partial_Slider", model);
-            }
-            /// <summary>
-            /// đối tác
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Advertisement()
-            {
-                var model = _data.GetImageByCate(45).ToList();
-                return PartialView("_Partial_Advertisement", model);
-            }
-
-            /// <summary>
-            /// dự án
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult _Partial_Project()
-            {
-                return PartialView("_Partial_Project");
-            }
-
-            /// <summary>
-            /// danh sách quận huyện
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
-            public JsonResult DistrictList(int? id)
-            {
-                return Json(new SelectList(_db.tblDistrict.Where(p => p.ProvinceId == id).ToList(), "Id", "Name"), JsonRequestBehavior.AllowGet);
-            }
-
-
-            public ActionResult Subscribe(FormCollection fc)
-            {
-                var model = new tblContact()
-                {
-                    Email = fc["ContactEmail"],
-                    Name = fc["ContactName"],
-                    Phone = fc["ContactPhone"],
-                    Date = DateTime.Now,
-                };
-                _db.tblContact.Add(model);
-                _db.SaveChanges();
-                return Json(JsonRequestBehavior.AllowGet);
-            }
+        public ActionResult SendEmail(tblContact model)
+        {
+            model.Date = DateTime.Now;
+            _db.tblContact.Add(model);
+            _db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// sự kiện
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_Event()
+        {
+            return PartialView("_Partial_Event");
+        }
+
+        /// <summary>
+        /// nhà đất
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_LandSale()
+        {
+            return PartialView("_Partial_LandSale");
+        }
+        public ActionResult _Partial_LandForRent()
+        {
+            return PartialView("_Partial_LandForRent");
+        }
+
+        /// <summary>
+        /// đối tác
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_Partner()
+        {
+            var model = _data.GetImageByCate(46).ToList();
+            return PartialView("_Partial_Partner", model);
+        }
+
+        /// <summary>
+        /// slider
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_Slider()
+        {
+            var model = _data.GetImageByCate(44).ToList();
+            return PartialView("_Partial_Slider", model);
+        }
+        /// <summary>
+        /// đối tác
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_Advertisement()
+        {
+            var model = _data.GetImageByCate(45).ToList();
+            return PartialView("_Partial_Advertisement", model);
+        }
+
+        /// <summary>
+        /// dự án
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _Partial_Project()
+        {
+            return PartialView("_Partial_Project");
+        }
+
+        /// <summary>
+        /// danh sách quận huyện
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult DistrictList(int? id)
+        {
+            return Json(new SelectList(_db.tblDistrict.Where(p => p.ProvinceId == id).ToList(), "Id", "Name"), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult Subscribe(FormCollection fc)
+        {
+            var model = new tblContact()
+            {
+                Email = fc["ContactEmail"],
+                Name = fc["ContactName"],
+                Phone = fc["ContactPhone"],
+                Date = DateTime.Now,
+            };
+            _db.tblContact.Add(model);
+            _db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+    }
 }

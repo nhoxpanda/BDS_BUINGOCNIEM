@@ -24,7 +24,7 @@
                     <div class="row gutter-5">
                         <div class="col-xs-6">
                             <select name="province" id="province">
-                                <option value="0">Tỉnh/Thành phố</option>
+                                <option value="0">Thành phố</option>
                                 @foreach (var item in LoadData.ProvinceList())
                                 {
                                     <option value="@item.Id">@item.Name</option>
@@ -33,14 +33,14 @@
                         </div>
                         <div class="col-xs-6">
                             <select name="district" id="district" data-value="">
-                                <option value="0">Quận/Huyện</option>
+                                <option value="0">Quận</option>
                             </select>
                         </div>
                     </div>
                     <div class="row gutter-5">
                         <div class="col-xs-6">
                             <select name="type">
-                                <option value="0">Loại Bất động sản</option>
+                                <option value="0">Loại BĐS</option>
                                 @foreach (var item in LoadData.CategoryList())
                                 {
                                     <option value="@item.Id">@item.Title</option>
@@ -48,29 +48,41 @@
                             </select>
                         </div>
                         <div class="col-xs-6">
-                            <select name="method">
-                                <option value="0">Loại giao dịch</option>
-                                @foreach (var item in LoadData.TransactionList())
+                            <select name="area" id="area">
+                                <option value="0|0">Diện tích</option>
+                                <option value="0|30">&lt;= 30 m2</option>
+                                <option value="30|50">30 - 50 m2</option>
+                                <option value="50|80">50 - 80 m2</option>
+                                <option value="80|100">80 - 100</option>
+                                <option value="100|150">100 - 150 m2</option>
+                                <option value="150|200">150 - 200 m2</option>
+                                <option value="200|250">200 - 250 m2</option>
+                                <option value="250|300">250 - 300 m2</option>
+                                <option value="300|500">300 - 500 m2</option>
+                                <option value="500|10000">&gt; 500 m2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gutter-5">
+                        <div class="col-xs-6">
+                            <select name="bedroom" id="bedroom">
+                                <option value="0">Phòng ngủ</option>
+                                @for (int i = 1; i < 7; i++)
                                 {
-                                    <option value="@item.Id">@item.Title</option>
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <select name="bathroom" id="bathroom">
+                                <option value="0">Phòng tắm</option>
+                                @for (int i = 1; i < 6; i++)
+                                {
+                                    <option value="@i">@i</option>
                                 }
                             </select>
                         </div>
                     </div>
-
-                    <select name="area" style="display:none;">
-                        <option value="0|0">Diện tích</option>
-                        <option value="0|30">&lt;= 30 m2</option>
-                        <option value="30|50">30 - 50 m2</option>
-                        <option value="50|80">50 - 80 m2</option>
-                        <option value="80|100">80 - 100</option>
-                        <option value="100|150">100 - 150 m2</option>
-                        <option value="150|200">150 - 200 m2</option>
-                        <option value="200|250">200 - 250 m2</option>
-                        <option value="250|300">250 - 300 m2</option>
-                        <option value="300|500">300 - 500 m2</option>
-                        <option value="500|10000">&gt; 500 m2</option>
-                    </select>
                     <div class="row gutter-5">
                         <div class="col-xs-6">
                             <select name="direction">
@@ -137,7 +149,14 @@
                         </ul>
                     </div>
                 </div>
-
+                <div class="box-sidebar box-category">
+                    <div class="box-title">
+                        Sự kiện sắp diễn ra
+                    </div>
+                    <div class="box-content" style="text-align: right">
+                        <a href="/su-kien"> Xem thêm <img src="/Content/assets/img/detail-button.jpg"></a>
+                    </div>
+                </div>
                 @Html.Partial("_Partial_Subscribe")
             </div>
         </div>

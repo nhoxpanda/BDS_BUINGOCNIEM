@@ -89,6 +89,10 @@ public partial class tblLand
 
     public bool IsDelete { get; set; }
 
+    public Nullable<int> Bedroom { get; set; }
+
+    public Nullable<int> Bathroom { get; set; }
+
 
 
     public virtual tblCustomer tblCustomer { get; set; }

@@ -71,9 +71,63 @@ namespace PROJECTBDS.Services.Home
             return (List<DuAnBdsViewModel>)_db.Query<DuAnBdsViewModel>(query);
         }
 
+        public List<DuAnBdsViewModel> GetBatDongSanBan()
+        {
+            var query =
+                "SELECT top 10 l.Id,l.Title as TieuDe,l.Image,Code as MaSoNhaDat,Area as DienTich,Road as DuongMatTruoc,d1.Title as HuongNha " +
+                ",d2.Title as LoaiBatDongSan " +
+                ",d3.Title as DonVi " +
+                ",d4.Title as LoaiGiaoDich " +
+                ",d.Name as ThanhPho " +
+                ",d0.Name as Quan " +
+                ",d5.Name as Phuong " +
+                ",d6.Title as PhapLy " +
+                ",d7.Title as DuAn " +
+                ",l.Price as Gia " +
+                "FROM tblLand l " +
+                "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId)  " +
+                "LEFT JOIN tblDistrict d0 ON(d0.Id = l.DistrictId) " +
+                "LEFT JOIN tblWard d5 ON(d5.Id = l.WardId) " +
+                "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) AND d1.CategoryId = 3 " +
+                "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) AND d2.CategoryId = 1 " +
+                "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) AND d3.CategoryId = 12 " +
+                "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) AND d4.CategoryId = 2 " +
+                "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) AND d6.CategoryId = 4 " +
+                "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) " +
+                "WHERE l.TypeId = 5 ORDER BY l.CreateDate DESC";
+            return (List<DuAnBdsViewModel>)_db.Query<DuAnBdsViewModel>(query);
+        }
+
+        public List<DuAnBdsViewModel> GetBatDongSanChoThue()
+        {
+            var query =
+                "SELECT top 5 l.Id,l.Title as TieuDe,l.Image,Code as MaSoNhaDat,Area as DienTich,Road as DuongMatTruoc,d1.Title as HuongNha " +
+                ",d2.Title as LoaiBatDongSan " +
+                ",d3.Title as DonVi " +
+                ",d4.Title as LoaiGiaoDich " +
+                ",d.Name as ThanhPho " +
+                ",d0.Name as Quan " +
+                ",d5.Name as Phuong " +
+                ",d6.Title as PhapLy " +
+                ",d7.Title as DuAn " +
+                ",l.Price as Gia " +
+                "FROM tblLand l " +
+                "LEFT JOIN tblProvince d ON(d.Id = l.ProvinceId)  " +
+                "LEFT JOIN tblDistrict d0 ON(d0.Id = l.DistrictId) " +
+                "LEFT JOIN tblWard d5 ON(d5.Id = l.WardId) " +
+                "LEFT JOIN tblDictionary d1 ON(d1.Id = l.DirectionId) AND d1.CategoryId = 3 " +
+                "LEFT JOIN tblDictionary d2 ON(d2.Id = l.CategoryId) AND d2.CategoryId = 1 " +
+                "LEFT JOIN tblDictionary d3 ON(d3.Id = l.UnitId) AND d3.CategoryId = 12 " +
+                "LEFT JOIN tblDictionary d4 ON(d4.Id = l.TypeId) AND d4.CategoryId = 2 " +
+                "LEFT JOIN tblDictionary d6 ON(d6.Id = l.RuleId) AND d6.CategoryId = 4 " +
+                "LEFT JOIN tblProject d7 ON(d7.Id = l.ProjectId) " +
+                "WHERE l.TypeId = 6 ORDER BY l.CreateDate DESC";
+            return (List<DuAnBdsViewModel>)_db.Query<DuAnBdsViewModel>(query);
+        }
+
         public Land GetLand(long idLand)
         {
-            var query = "SELECT l.Id, l.Title as TieuDe, l.Content, l.Address, " +
+            var query = "SELECT l.Id, l.Code, l.Title as TieuDe, l.Content, l.Bathroom, l.Bedroom, l.Address, " +
                         "l.Image, Code as MaSoNhaDat, Area as DienTich, " +
                         "Road as DuongMatTruoc, d1.Title as HuongNha " +
                         ",d2.Title as LoaiBatDongSan " +

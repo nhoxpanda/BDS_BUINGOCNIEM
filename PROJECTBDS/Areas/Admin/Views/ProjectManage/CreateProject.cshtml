@@ -25,7 +25,6 @@
                             <div class="row" style="margin-top: 20px">
                                 <div class="col-md-12">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="row">
@@ -48,39 +47,37 @@
                                                 @Html.HiddenFor(model => model.Image)
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
                                         <div class="col-lg-4 col-md-4">
                                             @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control", required = "required" })
                                         </div>
                                     </div>
-                                   
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-4 col-md-4">Thành Phố/Tỉnh</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
-                                                </div>
-                                                <label class="control-label col-lg-2 col-md-2">Quận/Huyện</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
-                                                </div>
-                                            </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Thành Phố/Tỉnh</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.ProvinceId, ViewBag.ProvinceId as List<SelectListItem>, new { name = "Name", id = "ProvinceId", @class = "form-control" })
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-1 col-md-1">Giá</label>
-                                                <div class="col-lg-3 col-md-3">
-                                                    @Html.TextBoxFor(model => model.Price, new {@class = "form-control", required = "required"})
-                                                </div>
-                                            </div>
-                                         
+                                        <label class="control-label col-lg-2 col-md-2">Quận/Huyện</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(model => model.DistrictId, ViewBag.DistrictId as List<SelectListItem>, new { name = "Name", id = "DistrictId", @class = "form-control" })
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Giá</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Loại dự án</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownList("TypeId", null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
                                     <div class="form-group" style="padding-right:15px;">
                                         <label class="control-label col-lg-2 col-md-2">Mô tả</label>
                                         <div class="col-lg-10 col-md-10">
@@ -98,7 +95,6 @@
                                             <button type="submit" name="btnSave" class="btn btn-success">Save</button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

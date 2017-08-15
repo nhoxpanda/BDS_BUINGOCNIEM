@@ -1,0 +1,51 @@
+﻿@using PROJECTBDS.Infrastructure
+@using PROJECTBDS.ViewModels.Home
+@model IEnumerable<DuAnBdsViewModel>
+
+<div class="news-list">
+    <div class="news-box">
+        <div class="title-news">
+            <h2><a href="/sieu-thi-dia-oc">Bất động sản cho thuê</a></h2>
+            <span></span>
+        </div>
+        <div class="content-news-lst">
+            <ul>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <li>
+                            <a href="~/sieu-thi-dia-oc/@item.TieuDe.UrlFriendly()-@item.Id">
+                                <img src="@(item.Image)" alt="@item.TieuDe">
+                            </a>
+                            <div class="r-listnews">
+                                <div class="right-listnews">
+                                    <a href="~/sieu-thi-dia-oc/@item.TieuDe.UrlFriendly()-@item.Id" title="@item.TieuDe">@item.TieuDe</a>
+                                    <p>
+                                        <span class="duan">Dự án : @item.DuAn</span>
+                                        <span class="malo">Mã lô : @item.MaSoNhaDat</span>
+                                    </p>
+                                    <p>
+                                        <span class="dientich">Diện tích : @item.DienTich</span>
+                                        <span class="huong">Hướng nhà : @item.HuongNha</span>
+                                    </p>
+                                    <p>
+                                        <span class="duongvao">Đường trước mặt : @item.DuongMatTruoc</span>
+                                        <span class="phaply">Pháp lý : @item.PhapLy</span>
+                                    </p>
+                                    <!--<p></p>-->
+                                </div>
+                                <!--<div class="address-icon"><span class="icon-address-box"></span></div>-->
+                                <div class="right-icon">
+                                    <span style="float: none; margin-top: 0; font-size: 18px;">Giá</span><label><b>@item.DisplayPrice()</b></label>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    @Html.Action("_Partial_Partner", "Home")
+</div>

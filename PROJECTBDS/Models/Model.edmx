@@ -191,7 +191,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="500" />
           <Property Name="Desc" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" />
@@ -222,6 +222,8 @@
           <Property Name="ymap" Type="nvarchar" MaxLength="500" />
           <Property Name="CustomerId" Type="int" />
           <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="Bedroom" Type="int" />
+          <Property Name="Bathroom" Type="int" />
         </EntityType>
         <EntityType Name="tblNews">
           <Key>
@@ -260,6 +262,7 @@
           <Property Name="DistrictId" Type="int" />
           <Property Name="Price" Type="nvarchar" MaxLength="200" />
           <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+          <Property Name="TypeId" Type="int" />
         </EntityType>
         <EntityType Name="tblProjectDetail">
           <Key>
@@ -667,6 +670,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblProjectType_tblDictionaryType">
+          <End Role="tblDictionary" Type="Self.tblDictionary" Multiplicity="0..1" />
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblWard_tblDistrict">
           <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
           <End Role="tblWard" Type="Self.tblWard" Multiplicity="*" />
@@ -837,6 +852,10 @@
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblProjectDetail" EntitySet="tblProjectDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblProjectType_tblDictionaryType" Association="Self.FK_tblProjectType_tblDictionaryType">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblProject" EntitySet="tblProject" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblWard_tblDistrict" Association="Self.FK_tblWard_tblDistrict">
             <End Role="tblDistrict" EntitySet="tblDistrict" />
             <End Role="tblWard" EntitySet="tblWard" />
@@ -990,6 +1009,7 @@
           <NavigationProperty Name="tblNews" Relationship="Self.FK_tblNews_tblDictionary" FromRole="tblDictionary" ToRole="tblNews" />
           <NavigationProperty Name="tblNews1" Relationship="Self.FK_tblNews_tblDictionaryTime" FromRole="tblDictionary" ToRole="tblNews" />
           <NavigationProperty Name="tblProjectDetail" Relationship="Self.FK_tblProjectDetail_tblDictionary" FromRole="tblDictionary" ToRole="tblProjectDetail" />
+          <NavigationProperty Name="tblProject" Relationship="LandSoftModel.FK_tblProjectType_tblDictionaryType" FromRole="tblDictionary" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblDistrict">
           <Key>
@@ -1066,6 +1086,8 @@
           <NavigationProperty Name="tblProject" Relationship="Self.FK_tblLand_tblProject" FromRole="tblLand" ToRole="tblProject" />
           <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblLand_tblProvince" FromRole="tblLand" ToRole="tblProvince" />
           <NavigationProperty Name="tblWard" Relationship="Self.FK_tblLand_tblWard" FromRole="tblLand" ToRole="tblWard" />
+          <Property Name="Bedroom" Type="Int32" />
+          <Property Name="Bathroom" Type="Int32" />
         </EntityType>
         <EntityType Name="tblNews">
           <Key>
@@ -1113,6 +1135,8 @@
           <NavigationProperty Name="tblLand" Relationship="Self.FK_tblLand_tblProject" FromRole="tblProject" ToRole="tblLand" />
           <NavigationProperty Name="tblProvince" Relationship="Self.FK_tblProject_tblProvince" FromRole="tblProject" ToRole="tblProvince" />
           <NavigationProperty Name="tblProjectDetail" Relationship="Self.FK_tblProjectDetail_tblProject" FromRole="tblProject" ToRole="tblProjectDetail" />
+          <Property Name="TypeId" Type="Int32" />
+          <NavigationProperty Name="tblDictionary" Relationship="LandSoftModel.FK_tblProjectType_tblDictionaryType" FromRole="tblProject" ToRole="tblDictionary" />
         </EntityType>
         <EntityType Name="tblProjectDetail">
           <Key>
@@ -1655,6 +1679,10 @@
             <Parameter Name="String" Mode="In" Type="String" />
             <Parameter Name="Delimiter" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK_tblProjectType_tblDictionaryType" Association="LandSoftModel.FK_tblProjectType_tblDictionaryType">
+            <End Role="tblDictionary" EntitySet="tblDictionary" />
+            <End Role="tblProject" EntitySet="tblProject" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1704,6 +1732,18 @@
           <Property Type="Int64" Name="Id" Nullable="true" />
           <Property Type="String" Name="Data" Nullable="true" MaxLength="4000" />
         </ComplexType>
+        <Association Name="FK_tblProjectType_tblDictionaryType">
+          <End Type="LandSoftModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="LandSoftModel.tblProject" Role="tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1864,6 +1904,8 @@
           <EntitySetMapping Name="tblLand">
             <EntityTypeMapping TypeName="LandSoftModel.tblLand">
               <MappingFragment StoreEntitySet="tblLand">
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -1922,6 +1964,7 @@
           <EntitySetMapping Name="tblProject">
             <EntityTypeMapping TypeName="LandSoftModel.tblProject">
               <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />

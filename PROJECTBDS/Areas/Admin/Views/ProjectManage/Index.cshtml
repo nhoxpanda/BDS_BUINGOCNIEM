@@ -58,6 +58,7 @@
                                     <td style="vertical-align: middle">@($"{item.CreateDate:dd/MM/yyyy}")</td>
 
                                     <td style="vertical-align: middle;">
+                                        <a href="@Url.Action("EditProject", "ProjectManage", new { id = item.Id })" class="btn btn-xs btn-success">Sửa</a><br />
                                         <a href="@Url.Action("Create", "ProjectDetails", new { id = item.Id })" class="btn btn-xs btn-info">Chi tiết</a>
                                         <button class="btn btn-xs btn-danger dropdown-toggle" type="button" onclick="deletePost(@item.Id);">
                                             Xóa

@@ -69,7 +69,13 @@ namespace PROJECTBDS.Helpers
             return _db.tblDictionary.Where(p => p.CategoryId == 9 && p.Delete == false).ToList();
         }
 
-        
-
+        /// <summary>
+        /// Danh mục loại dự án
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblDictionary> ProjectTypeList()
+        {
+            return _db.tblDictionary.Where(p => p.CategoryId == 14 && p.Delete == false).ToList();
+        }
     }
 }

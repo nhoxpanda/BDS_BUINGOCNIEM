@@ -155,6 +155,8 @@
     <EntitySetMapping Name="tblLand">
       <EntityTypeMapping TypeName="LandSoftModel.tblLand">
         <MappingFragment StoreEntitySet="tblLand">
+          <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+          <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -213,6 +215,7 @@
     <EntitySetMapping Name="tblProject">
       <EntityTypeMapping TypeName="LandSoftModel.tblProject">
         <MappingFragment StoreEntitySet="tblProject">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />

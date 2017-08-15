@@ -1,9 +1,8 @@
 ﻿<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
     <div class="event-box">
-
         <div class="event-r">
             <div class="title-news">
-                <h2><a href="/tim-kiem-su-kien?timetype=1">Sự kiện sắp diễn ra</a><a></a></h2><a>
+                <h2><a href="/su-kien">Sự kiện sắp diễn ra</a><a></a></h2><a>
                     <span></span>
                 </a>
             </div><a>
@@ -12,38 +11,10 @@
                     <ul></ul>
                 </a><div class="details-button">
                     <a>
-                    </a><a href="/tim-kiem-su-kien?timetype=1"> Xem thêm <img src="/Content/assets/img/detail-button.jpg"></a>
+                    </a><a href="/su-kien"> Xem thêm <img src="/Content/assets/img/detail-button.jpg"></a>
                 </div>
             </div>
         </div>
-
-        <div class="ads-r">
-            <h4>Đăng ký<br> nhận tin bất động sản</h4>
-
-            <div class="box-input">
-                <form id="realRegForm" action="/frontend/ajax/save-contact" method="post">
-                    <input type="hidden" name="_csrf" value="WGNJR1lZa2dqDgY.bTYCKxEzCBQ.dAMvKBUWMiweHjcKBBgKCh4uLg=="><div class="form-group field-frontcontact-name required">
-                        <input type="text" id="frontcontact-name" class="form-control" name="FrontContact[name]" placeholder="Họ và tên"><span class="help-block"><div class="help-block"></div></span>
-                    </div><div class="form-group field-frontcontact-phone required">
-                        <input type="text" id="frontcontact-phone" class="form-control" name="FrontContact[phone]" placeholder="Số điện thoại"><span class="help-block"><div class="help-block"></div></span>
-                    </div><div class="form-group field-frontcontact-email required">
-                        <input type="text" id="frontcontact-email" class="form-control" name="FrontContact[email]" placeholder="Email"><span class="help-block"><div class="help-block"></div></span>
-                    </div><div class="form-group field-frontcontact-type">
-                        <input type="hidden" id="frontcontact-type" class="form-control" name="FrontContact[type]" value="5">
-                        <div class="help-block"></div>
-                    </div><div class="form-group field-frontcontact-object_id">
-                        <input type="hidden" id="frontcontact-object_id" class="form-control" name="FrontContact[object_id]">
-                        <div class="help-block"></div>
-                    </div><div class="form-group field-frontcontact-item_name">
-                        <input type="hidden" id="frontcontact-item_name" class="form-control" name="FrontContact[item_name]">
-                        <div class="help-block"></div>
-                    </div>    	<div class="form-group">
-                        <button type="submit" class="">Đăng ký</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        @Html.Action("_Partial_Advertisement", "Home")
     </div>
+    @Html.Partial("_Partial_Subscribe")
 </div>

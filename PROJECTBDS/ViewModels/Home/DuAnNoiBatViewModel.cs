@@ -13,7 +13,8 @@ namespace PROJECTBDS.ViewModels.Home
 
     public class HomeViewModel
     {
-        public IPagedList<DuAnBdsViewModel> BatDongSan { get; set; }
+        public List<DuAnBdsViewModel> BatDongSanBan { get; set; }
+        public List<DuAnBdsViewModel> BatDongSanChoThue { get; set; }
         public List<DuAnNoiBatViewModel> DuAnNoiBat { get; set; }
 
     }
@@ -52,6 +53,7 @@ namespace PROJECTBDS.ViewModels.Home
     public class DuAnBdsViewModel
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string TieuDe { get; set; }
         public string Image { get; set; }
         public string MaSoNhaDat { get; set; }
@@ -67,7 +69,8 @@ namespace PROJECTBDS.ViewModels.Home
         public string PhapLy { get; set; }
         public string DuAn { get; set; }
         public string Gia { get; set; }
-
+        public int Bedroom { get; set; }
+        public int Bathroom { get; set; }
 
 
         public string DisplayPrice()

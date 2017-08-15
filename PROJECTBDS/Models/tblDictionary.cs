@@ -40,6 +40,8 @@ public partial class tblDictionary
 
         this.tblProjectDetail = new HashSet<tblProjectDetail>();
 
+        this.tblProject = new HashSet<tblProject>();
+
     }
 
 
@@ -96,6 +98,10 @@ public partial class tblDictionary
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<tblProjectDetail> tblProjectDetail { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<tblProject> tblProject { get; set; }
 
 }
 

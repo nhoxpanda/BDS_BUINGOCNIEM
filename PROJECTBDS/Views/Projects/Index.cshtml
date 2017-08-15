@@ -73,13 +73,14 @@
                                 }
                             </select>
                             <select name="district" id="district" data-value="">
-                                <option value="">Quận/Huyện</option>
+                                <option value="0">Quận/Huyện</option>
                             </select>
                             <select name="type">
-                                <option value="">Loại dự án</option>
-                                <option value="1">Nhà</option>
-                                <option value="2">Đất</option>
-                                <option value="3">Chung cư</option>
+                                <option value="0">Loại dự án</option>
+                                @foreach (var item in LoadData.ProjectTypeList())
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
                             </select>
                             <button type="submit">Tìm kiếm</button>
                         </form>

@@ -23,7 +23,10 @@
 <section class="content-bottom">
     <div class="container">
         <div class="row">
-            @Html.Partial("_Partial_Land", Model.BatDongSan)
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                @Html.Partial("_Partial_LandSale", Model.BatDongSanBan)
+                @Html.Partial("_Partial_LandForRent", Model.BatDongSanChoThue)
+            </div>
             @Html.Partial("_Partial_Event")
         </div>
     </div>
