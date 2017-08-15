@@ -69,15 +69,7 @@ namespace PROJECTBDS.Helpers
             return _db.tblDictionary.Where(p => p.CategoryId == 9 && p.Delete == false).ToList();
         }
 
-        /// <summary>
-        /// cấu hình
-        /// </summary>
-        /// <returns></returns>
-        public static tblConfig Config()
-        {
-            return _db.tblConfig.Find(1);
-        }
-
+        
 
     }
 }

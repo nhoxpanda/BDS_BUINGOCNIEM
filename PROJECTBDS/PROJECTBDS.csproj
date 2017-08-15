@@ -250,6 +250,8 @@
     <Compile Include="Areas\Admin\Controllers\Api\LandAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryNewsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyInfoManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ConfigManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\DictionaryManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\EventsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
@@ -277,6 +279,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ConfigService.cs" />
     <Compile Include="Helpers\LoadData.cs" />
     <Compile Include="Infrastructure\FileExtensions.cs" />
     <Compile Include="Infrastructure\RoleProvider.cs" />
@@ -400,6 +403,7 @@
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\fonts\icomoon.svg" />
+    <Content Include="Content\assets\images\bg-footer-red.png" />
     <Content Include="Content\assets\images\close-menu.svg" />
     <Content Include="Content\assets\images\contact_icon.svg" />
     <Content Include="Content\assets\images\icon-address-2.jpg" />
@@ -447,6 +451,7 @@
     <Content Include="Content\assets\img\LUCASTA-BANNER-HOME_57e4e8c8ac055.jpg" />
     <Content Include="Content\assets\img\menu-mobile.svg" />
     <Content Include="Content\assets\img\right-dangtin.svg" />
+    <Content Include="Content\assets\img\search-icon.png" />
     <Content Include="Content\assets\img\search-mobile.svg" />
     <Content Include="Content\assets\img\top-butotn.png" />
     <Content Include="Content\assets\img\venica_5715b01dccd9e.jpg" />

@@ -38,7 +38,7 @@ a {
     }
 
     a:hover {
-        color: #de0002;
+        color: #0cb14b;
         text-decoration: none;
     }
 
@@ -64,7 +64,7 @@ a {
 
         .login a:hover {
             text-decoration: none;
-            color: #e21a22;
+            color: #0cb14b;
         }
 
 .social {
@@ -144,7 +144,7 @@ a {
 }
 
 .navbar-default .navbar-nav > li:hover a, .navbar-default .navbar-nav > li.active a {
-    color: #d71921;
+    color: #0cb14b;
 }
 
 .navbar-nav {
@@ -169,7 +169,7 @@ a {
 }
 
 .ad-button {
-    background: #15a7cb;
+    background: #0cb14b;
     float: right;
     border-radius: 20px;
     position: absolute;
@@ -184,7 +184,7 @@ a {
 }
 
     .ad-button:hover {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
     .ad-button img {
@@ -201,7 +201,7 @@ a {
 }
 
 .nav > li.active a {
-    color: #d71921 !important;
+    color: #0cb14b !important;
     border-bottom: 2px solid #C00;
 }
 
@@ -218,7 +218,7 @@ a {
 }
 
     .head-title h1 span:nth-child(1), .head-title h1 span:nth-child(2) {
-        color: #e21a22;
+        color: #0cb14b;
         font-size: 24px;
         font-weight: bold;
     }
@@ -228,14 +228,14 @@ a {
     }
 
     .head-title h1 span:nth-child(3) {
-        color: #e21a22;
+        color: #0cb14b;
         font-size: 24px;
         font-weight: normal;
     }
 
 .title-sr {
     float: left;
-    background: #e21a22;
+    background: #0cb14b;
     font-size: 14px;
     line-height: 38px;
     color: #fff;
@@ -282,13 +282,13 @@ a {
 
 .bg-search form button {
     height: 32px;
-    border: 2px solid #e21a22;
+    border: 2px solid #0cb14b;
     border-radius: 4px;
     text-align: center;
     width: 100%;
     background: none;
     font-size: 14px;
-    color: #e21a22;
+    color: #0cb14b;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -322,7 +322,7 @@ a {
     height: 3px;
     width: 70px;
     float: left;
-    background: #e21a22;
+    background: #0cb14b;
 }
 
 .title-news h2 {
@@ -426,7 +426,7 @@ a {
     .right-icon label {
         margin-left: 10px;
         float: right;
-        background: #F00;
+        background: #0cb14b;
         padding: 5px 15px;
         -webkit-border-bottom-left-radius: 15px;
         -moz-border-radius-bottomleft: 15px;
@@ -443,7 +443,7 @@ a {
 
 .content-news-lst ul li .right-listnews a:hover {
     text-decoration: none;
-    color: #e21a22;
+    color: #0cb14b;
 }
 
 .news-box {
@@ -466,7 +466,7 @@ a {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     font-size: 16px;
-    background: #e21a22;
+    background: #0cb14b;
     padding: 7px 20px;
     color: #fff;
     text-transform: uppercase;
@@ -550,7 +550,7 @@ a {
 }
 
 .content-event ul li .bottom-event span {
-    background: #e21a22;
+    background: #0cb14b;
     padding: 7px 7px;
     margin-right: 2px;
     color: #fff;
@@ -575,14 +575,14 @@ a {
     }
 
         .details-button a:hover {
-            color: #e21a22;
+            color: #0cb14b;
         }
 
 .ads-r {
     float: left;
     min-height: 306px;
     width: 100%;
-    background: #15a7cc url(../img/bg-sigup.jpg) no-repeat center top;
+    background: #0cb14b url(../img/bg-sigup.jpg) no-repeat center top;
     background-size: cover;
     margin-bottom: 20px;
 }
@@ -655,7 +655,7 @@ a {
 }
 
 .right-logo {
-    background: #e21a22;
+    background: #0cb14b;
     height: 65px;
     font-size: 15px;
     text-transform: uppercase;
@@ -690,9 +690,10 @@ a {
 }
 
 .colums1-footer h6 {
-    color: #fff;
+    color: #0cb14b;
     font-size: 16px;
     margin: 0px 0px 15px;
+    font-weight: bold;
 }
 
 .colums1-footer {
@@ -721,7 +722,7 @@ a {
     }
 
         .footer-ad a:hover {
-            color: #e21a22;
+            color: #0cb14b;
         }
 
 .bottom-footer {
@@ -751,7 +752,7 @@ a {
             }
 
 .p-footer span {
-    color: #e21a22;
+    color: #0cb14b;
 }
 
 .p-footer p {
@@ -788,11 +789,11 @@ a {
     }
 
 .menu-footer a:hover {
-    color: #e21a22;
+    color: #0cb14b;
 }
 
 .menu-footer ul li a:hover:before {
-    background: #e21a22;
+    background: #0cb14b;
 }
 
 .logo-load a {
@@ -801,7 +802,7 @@ a {
 }
 
 .phone-pixel {
-    background: #e21a22;
+    background: #0cb14b;
     position: fixed;
     bottom: 0px;
     right: 0;
@@ -823,7 +824,7 @@ a {
     }
 
         .phone-pixel:hover a, .phone-pixel:hover a span, .phone-pixel:hover a b {
-            color: #e21a22;
+            color: #0cb14b;
         }
 
 .skype-pixel {
@@ -906,7 +907,7 @@ a {
 }
 
 .customNavigation a:hover {
-    background: #e21a22;
+    background: #0cb14b;
 }
 
 .logo-box .carousel-wrapper .customNavigation {
@@ -920,7 +921,7 @@ a {
     }
 
         .logo-box .carousel-wrapper .customNavigation a:hover {
-            background: #e21a22;
+            background: #0cb14b;
         }
 
 .btn.active, .btn:active {
@@ -996,7 +997,7 @@ a {
 
     .pagination li:hover a {
         background: #fff;
-        color: #e21a22;
+        color: #0cb14b;
     }
 
 ul.pagination li.active a {
@@ -1037,7 +1038,7 @@ ul.pagination li.active a {
 }
 
     .top-button:hover svg path:nth-child(1) {
-        fill: #e21a22;
+        fill: #0cb14b;
     }
 
 .r-listnews .right-icon span {
@@ -1074,7 +1075,7 @@ ul.pagination li.active a {
 }
 
 .event-box form button:hover, .bg-search form button:hover {
-    background: #db0000;
+    background: #0cb14b;
     color: #fff;
 }
 
@@ -1168,7 +1169,7 @@ ul.pagination li.active a {
 }
 
 .content-news-lst ul li:hover .right-icon label {
-    background: #e21b22;
+    background: #0cb14b;
 }
 
 .item-project {
@@ -1272,7 +1273,7 @@ ul.pagination li.active a {
     width: 100%;
     position: relative;
     padding: 0;
-    background: #e21a22;
+    background: #0cb14b;
 }
 
     .social-mobile a span {
@@ -1342,7 +1343,7 @@ ul.pagination li.active a {
 
         .menu-mobile2 a.active {
             float: left;
-            background: #e21a22 !important;
+            background: #0cb14b !important;
         }
 
         .menu-mobile2 a:hovef {
@@ -1368,7 +1369,7 @@ ul.pagination li.active a {
     }
 
 .menu-mobile2 a.active {
-    background: #e21a22 !important;
+    background: #0cb14b !important;
 }
 
 .bg-showmenu {

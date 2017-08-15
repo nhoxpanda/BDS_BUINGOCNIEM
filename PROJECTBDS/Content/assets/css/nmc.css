@@ -131,7 +131,7 @@ img.svg {
             }
 
         .project-nav .project-item:hover, .project-nav .project-item.active {
-            background: #e21a22;
+            background: #0cb14b;
             color: #fff;
             -webkit-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.35);
             -moz-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.35);
@@ -149,7 +149,7 @@ img.svg {
                 bottom: -13px;
                 left: 50%;
                 margin-left: -7px;
-                color: #e21a22;
+                color: #0cb14b;
             }
 
 .project-logo, .project-logo-contact {
@@ -260,7 +260,7 @@ h2.page-title {
             top: 8px;
             width: 5px;
             height: 5px;
-            background: #e21a22;
+            background: #0cb14b;
         }
 
 .page-child .editor-content.box-news-detail h2 {
@@ -435,12 +435,12 @@ h2.page-title {
     border: 0px;
     text-align: center;
     border-radius: 0px;
-    background: #15a7cb;
+    background: #0cb14b;
     text-transform: uppercase;
 }
 
     .btn.btn-google-map:hover {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
 .projectmap {
@@ -532,7 +532,7 @@ h2.page-title {
         }
 
         .page-gallery-isotope .grid-item:hover h3.title {
-            background: #e21a22;
+            background: #0cb14b;
             padding-left: 12px;
         }
 
@@ -557,7 +557,7 @@ h2.page-title {
     line-height: 32px;
     color: #fff;
     border-radius: 4px;
-    background: #e21a22;
+    background: #0cb14b;
     position: relative;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -606,7 +606,7 @@ h2.page-title {
 }
 
 .table-contact-info tr td a {
-    color: #15a7cb;
+    color: #0cb14b;
 }
 
 .project-contact-form .form-control {
@@ -622,7 +622,7 @@ h2.page-title {
 
 .project-contact-form .btn-submit {
     border-radius: 0px;
-    background: #15a7cb;
+    background: #0cb14b;
     height: 35px;
     color: #fff;
     border: 0px;
@@ -631,7 +631,7 @@ h2.page-title {
 }
 
     .project-contact-form .btn-submit:hover {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
 .contact-map {
@@ -714,7 +714,7 @@ h2.page-title {
 
     .box-slide-wraper .item .item-title {
         text-transform: uppercase;
-        color: #de0002;
+        color: #0cb14b;
         font-weight: bold;
         padding: 15px 15px 10px;
         margin: 0px;
@@ -754,11 +754,11 @@ h2.page-title {
         }
 
     .box-slide-wraper .item:hover .item-bottom .corner {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
     .box-slide-wraper .item .item-bottom .corner-price {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
     .box-slide-wraper .item:hover .item-bottom .corner-price {
@@ -774,7 +774,7 @@ h2.page-title {
 }
 
     .box-slide-wraper .customNavigation .btn:hover {
-        background: #de0002;
+        background: #0cb14b;
     }
 
 /*Box search*/
@@ -783,7 +783,7 @@ h2.page-title {
 }
 
     .box-search .box-title {
-        background: #e21a22 url('../images/search-icon.png') no-repeat 12px 7px;
+        background: #0cb14b url('../images/search-icon.png') no-repeat 12px 7px;
         line-height: 37px;
         color: #fff;
         text-transform: uppercase;
@@ -808,11 +808,11 @@ h2.page-title {
 
         .box-search .box-content form button.btn {
             height: 32px;
-            border: 2px solid #e21a22;
+            border: 2px solid #0cb14b;
             border-radius: 4px;
             background: transparent;
             font-size: 14px;
-            color: #e21a22;
+            color: #0cb14b;
             text-transform: uppercase;
             font-weight: 700;
         }
@@ -847,7 +847,7 @@ h2.page-title {
             bottom: 0px;
             height: 2px;
             width: 70px;
-            background: #e21a22;
+            background: #0cb14b;
         }
 
 .box-category .box-content ul {
@@ -877,7 +877,7 @@ h2.page-title {
         }
 
     .box-category .box-content ul li.active a, .box-category .box-content ul li:hover a {
-        background: #15a7cb;
+        background: #0cb14b;
         color: #fff;
     }
 
@@ -908,7 +908,7 @@ h2.page-title {
     bottom: 0px;
     height: 2px;
     width: 70px;
-    background: #e21a22;
+    background: #0cb14b;
 }
 
 .box-news-list .news-list .item {
@@ -981,7 +981,7 @@ h2.page-title {
         }
 
     .box-news-list .item:hover .item-bottom .corner {
-        background: #e21a22;
+        background: #0cb14b;
     }
 
 .pagination-wraper {
@@ -1041,7 +1041,7 @@ h2.page-title {
 }
 
     .box-news-list .events-list .item .item-info h3.item-title {
-        color: #e21a22;
+        color: #0cb14b;
         padding-right: 15px;
     }
 
@@ -1074,7 +1074,7 @@ h2.page-title {
     width: 30px;
     height: 30px;
     text-align: center;
-    background: #15a7cb;
+    background: #0cb14b;
     color: #fff;
 }
 
@@ -1121,12 +1121,12 @@ h2.page-title {
             width: 27px;
             height: 27px;
             text-align: center;
-            background: #e21a22;
+            background: #0cb14b;
             color: #fff;
         }
 
         .box-event-hot .item .item-bottom .attribute-location .glyphicon {
-            background: #15a7cb;
+            background: #0cb14b;
         }
 
 .partner-list .item {
@@ -1135,7 +1135,7 @@ h2.page-title {
 }
 
 .page-event-detail .news-detail .box-info {
-    background: #15a7cb;
+    background: #0cb14b;
     min-height: 130px;
     margin-bottom: 15px;
 }
@@ -1182,7 +1182,7 @@ h2.page-title {
 }
 
 .page-contact .box .box-title span {
-    color: #e21a22;
+    color: #0cb14b;
 }
 
 .page-contact .box .box-content table tr td {
@@ -1200,19 +1200,19 @@ h2.page-title {
 
     .page-contact .contact-form .form-horizontal .btn {
         height: 32px;
-        border: 2px solid #e21a22;
+        border: 2px solid #0cb14b;
         border-radius: 4px;
         text-align: center;
         width: 225px;
         background: none;
         font-size: 14px;
-        color: #e21a22;
+        color: #0cb14b;
         text-transform: uppercase;
         font-weight: bold;
     }
 
         .page-contact .contact-form .form-horizontal .btn:hover {
-            background: #e21a22;
+            background: #0cb14b;
             color: #fff;
         }
 
@@ -1223,7 +1223,7 @@ h2.page-title {
 .page-contact .contact-social .hotline {
     margin-bottom: 35px;
     padding: 20px 30px;
-    background: #e21a22;
+    background: #0cb14b;
     color: #fff;
     text-transform: uppercase;
 }
@@ -1323,7 +1323,7 @@ h2.page-title {
 }
 
     .page-real .box-real-detail .btn-showmap:hover {
-        background: #e21a22;
+        background: #0cb14b;
         color: #fff;
     }
 
@@ -1333,7 +1333,7 @@ h2.page-title {
 
     .page-real .box-real-detail .price strong {
         font-size: 24px;
-        color: #e21a22;
+        color: #0cb14b;
         font-weight: 700;
         text-transform: uppercase;
     }
@@ -1354,11 +1354,11 @@ h2.page-title {
 }
 
 .page-real .box-contact-info a {
-    color: #15a7cb;
+    color: #0cb14b;
 }
 
     .page-real .box-contact-info a:hover {
-        color: #e21a22;
+        color: #0cb14b;
     }
 
 .page-real .box-contact-info .hotline {
@@ -1367,7 +1367,7 @@ h2.page-title {
 
 .page-real .box-contact-info .hotline {
     padding: 5px;
-    background: #e21a22;
+    background: #0cb14b;
     color: #fff;
     text-transform: uppercase;
     margin-top: 15px;
@@ -1497,24 +1497,24 @@ h2.page-title {
 }
 
     .page-register .form-group > label span {
-        color: #e21a22;
+        color: #0cb14b;
     }
 
 .page-register .form-group .btn {
     height: 32px;
-    border: 2px solid #e21a22;
+    border: 2px solid #0cb14b;
     border-radius: 4px;
     text-align: center;
     width: 225px;
     background: none;
     font-size: 14px;
-    color: #e21a22;
+    color: #0cb14b;
     text-transform: uppercase;
     font-weight: bold;
 }
 
     .page-register .form-group .btn:hover {
-        background: #e21a22;
+        background: #0cb14b;
         color: #fff;
     }
 
@@ -1534,13 +1534,13 @@ h2.page-title {
 }
 
 .page-login .form-group .btn.btn-info {
-    background: #15a7cb;
+    background: #0cb14b;
     border: 0px;
     color: #fff;
 }
 
     .page-login .form-group .btn.btn-info:hover {
-        background: #e21a22;
+        background: #0cb14b;
         color: #fff;
     }
 
@@ -1553,7 +1553,7 @@ h2.page-title {
 .box-profile .box-title {
     margin: 0px;
     padding: 7px 15px;
-    background: #15a7cb;
+    background: #0cb14b;
     font-size: 14px;
     color: #fff;
 }
@@ -1827,19 +1827,19 @@ h2.page-title {
 
 .btn.btn-special {
     height: 32px;
-    border: 2px solid #e21a22;
+    border: 2px solid #0cb14b;
     border-radius: 4px;
     text-align: center;
     width: 225px;
     background: none;
     font-size: 14px;
-    color: #e21a22;
+    color: #0cb14b;
     text-transform: uppercase;
     font-weight: bold;
 }
 
     .btn.btn-special:hover {
-        background: #e21a22;
+        background: #0cb14b;
         color: #fff;
     }
 

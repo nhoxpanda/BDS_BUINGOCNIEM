@@ -117,7 +117,7 @@ padding:0px 15px;
 }
 .item-project  p, .box-item p{
 text-transform:uppercase;
-color:#de0002;
+color:#0cb14b;
 font-weight:bold;height: 27px;
 font-size:14px;
 margin:7px 15px;
@@ -167,7 +167,7 @@ text-transform:none;color:#272727;font-weight:normal;height: 72px; overflow: hid
     width: auto;
     color: #fff;
 	font-weight:normal;
-    background: #e21a22;
+    background: #0cb14b;
     -webkit-border-bottom-left-radius: 8px;
     -moz-border-radius-bottomleft: 8px;
     border-bottom-left-radius: 8px;
